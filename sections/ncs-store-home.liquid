@@ -8,11 +8,7 @@
     <div class="ncs-hero-overlay"></div>
   </div>
   <div class="ncs-hero-content">
-    {% if settings.logo != blank %}
-      <img class="ncs-hero-logo" src="{{ settings.logo | image_url: width: 400 }}" alt="{{ settings.brand_name | default: 'NEROCASA' }}" width="200" height="80" loading="eager">
-    {% else %}
-      <img class="ncs-hero-logo" src="{{ 'nerocasa-logo.png' | asset_url }}" alt="{{ settings.brand_name | default: 'NEROCASA' }}" width="200" height="80" loading="eager">
-    {% endif %}
+    <h1><span>NE<span>RO</span></span><span class="nc-gold">CASA</span></h1>
     <p class="ncs-hero-tagline">{{ settings.brand_tagline | default: 'Architectural marble furniture, made to order' }}</p>
   </div>
   <div class="ncs-hero-scroll" aria-hidden="true">Scroll</div>

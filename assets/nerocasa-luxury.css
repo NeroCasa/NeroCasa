@@ -164,13 +164,6 @@ body {
   color: var(--nc-gold);
 }
 
-.ncs-hero-logo {
-  width: clamp(140px, 22vw, 220px);
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 8px 32px rgba(0, 0, 0, 0.45));
-}
-
 .ncs-hero-tagline {
   font-family: var(--nc-display);
   font-size: clamp(18px, 2.2vw, 26px);
