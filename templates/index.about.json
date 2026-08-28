@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": {"type": "ncs-about", "settings": {}}
+  },
+  "order": ["main"]
+}

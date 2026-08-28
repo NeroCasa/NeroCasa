@@ -1,0 +1,42 @@
+<section class="ncs-b2b-page">
+  <header class="ncs-b2b-header" data-nc-reveal>
+    <span class="ncs-page-kicker">B2B Enquiry</span>
+    <h1>Project &amp; trade</h1>
+    <p>Tell us about your project — residential, hospitality, retail or commercial. We work with interior designers, architects and developers worldwide.</p>
+  </header>
+
+  <div class="ncs-b2b-form-wrap ncs-b2b-form-wrap-centered" data-nc-reveal>
+    {% form 'contact', class: 'ncs-b2b-form' %}
+      {% if form.posted_successfully? %}
+        <p class="ncs-form-success">Thank you — your enquiry has been received.</p>
+      {% else %}
+        {% if form.errors %}<p class="ncs-form-error">Please check the form and try again.</p>{% endif %}
+        <input type="hidden" name="contact[tags]" value="b2b-enquiry">
+        <div class="ncs-form-row">
+          <label>Name<input type="text" name="contact[name]" required></label>
+          <label>Company<input type="text" name="contact[company]"></label>
+        </div>
+        <div class="ncs-form-row">
+          <label>Email<input type="email" name="contact[email]" value="{{ form.email }}" required></label>
+          <label>Phone<input type="tel" name="contact[phone]"></label>
+        </div>
+        <div class="ncs-form-row">
+          <label>Project type
+            <select name="contact[project_type]">
+              <option>Residential / Interior Design</option>
+              <option>Architecture</option>
+              <option>Hospitality / Hotel</option>
+              <option>Restaurant / Retail</option>
+              <option>Real Estate Development</option>
+              <option>Other Commercial Project</option>
+            </select>
+          </label>
+        </div>
+        <label class="ncs-form-full">Project details<textarea name="contact[body]" rows="7" placeholder="Tell us about the project, timeline and pieces required."></textarea></label>
+        <button type="submit" class="ncs-btn">Send Enquiry ↗</button>
+      {% endif %}
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}{"name":"B2B Enquiry","presets":[{"name":"B2B Project Enquiry"}]}{% endschema %}

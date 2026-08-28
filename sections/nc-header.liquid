@@ -1,0 +1,68 @@
+<header class="nc-header" data-header>
+  <a class="nc-logo-brand" href="{{ routes.root_url }}" aria-label="Nerocasa home">
+    <img src="{{ 'nerocasa-logo-user.png' | asset_url }}" alt="NEROCASA" width="196" height="70">
+  </a>
+
+  <nav class="nc-nav" aria-label="Primary navigation">
+    <a href="{{ routes.collections_url }}">Collections</a>
+    <a href="{{ routes.root_url | append: '?view=custom' }}">Custom</a>
+    <a href="{{ routes.root_url | append: '?view=b2b' }}">B2B</a>
+    <a href="{{ routes.root_url | append: '?view=about' }}">Why Nerocasa</a>
+    <a href="{{ routes.root_url | append: '?view=contact' }}">Contact</a>
+  </nav>
+
+  <div class="nc-actions">
+    <button type="button" class="nc-icon-link" data-search-open aria-label="Search" aria-expanded="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5L21 21"></path></svg>
+    </button>
+    <a class="nc-icon-link" href="{{ routes.cart_url }}" aria-label="Cart">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h2l2.1 10.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 1.9-1.4L21 8H6"></path><circle cx="10" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle></svg>
+      {% if cart.item_count > 0 %}<span class="nc-cart-count" data-cart-count>{{ cart.item_count }}</span>{% endif %}
+    </a>
+  </div>
+</header>
+
+<div class="nc-mobile-nav" aria-label="Mobile navigation">
+  <a href="{{ routes.collections_url }}">Collections</a>
+  <a href="{{ routes.root_url | append: '?view=custom' }}">Custom</a>
+  <a href="{{ routes.root_url | append: '?view=b2b' }}">B2B</a>
+  <a href="{{ routes.root_url | append: '?view=about' }}">Why Nerocasa</a>
+  <a href="{{ routes.root_url | append: '?view=contact' }}">Contact</a>
+  <button type="button" class="nc-icon-link" data-search-open aria-label="Search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5L21 21"></path></svg>
+  </button>
+  <a class="nc-icon-link" href="{{ routes.cart_url }}" aria-label="Cart">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h2l2.1 10.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 1.9-1.4L21 8H6"></path><circle cx="10" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle></svg>
+    <span data-cart-count>{{ cart.item_count }}</span>
+  </a>
+</div>
+
+<div class="nc-search-overlay" data-search-overlay hidden>
+  <div class="nc-search-panel">
+    <form action="{{ routes.search_url }}" method="get" role="search" class="nc-search-form">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products…" aria-label="Search" autocomplete="off" data-search-input>
+      <input type="hidden" name="type" value="product">
+      <button type="submit" aria-label="Submit search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5L21 21"></path></svg>
+      </button>
+    </form>
+    <button type="button" class="nc-search-close" data-search-close aria-label="Close search">×</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var buttons=document.querySelectorAll('[data-search-open]');
+  var overlay=document.querySelector('[data-search-overlay]');
+  var close=document.querySelector('[data-search-close]');
+  var input=document.querySelector('[data-search-input]');
+  if(!overlay)return;
+  function openSearch(){overlay.hidden=false;document.body.classList.add('nc-search-open');buttons.forEach(function(b){b.setAttribute('aria-expanded','true')});if(input)setTimeout(function(){input.focus()},40);}
+  function closeSearch(){overlay.hidden=true;document.body.classList.remove('nc-search-open');buttons.forEach(function(b){b.setAttribute('aria-expanded','false')});}
+  buttons.forEach(function(b){b.addEventListener('click',openSearch)});
+  if(close)close.addEventListener('click',closeSearch);
+  overlay.addEventListener('click',function(e){if(e.target===overlay)closeSearch()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!overlay.hidden)closeSearch()});
+})();
+</script>
+{% schema %}{"name":"Nerocasa Header"}{% endschema %}

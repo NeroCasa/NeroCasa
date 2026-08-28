@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "ncs-contact",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

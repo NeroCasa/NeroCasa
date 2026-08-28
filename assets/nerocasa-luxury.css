@@ -1,0 +1,744 @@
+/* NeroCasa — luxury refinement layer (keeps --nc-gold: #A57B00) */
+
+:root {
+  --nc-header-h: 82px;
+  --nc-space-xs: 16px;
+  --nc-space-sm: 32px;
+  --nc-space-md: 64px;
+  --nc-space-lg: clamp(80px, 10vw, 140px);
+  --nc-space-xl: clamp(100px, 14vw, 180px);
+  --nc-line: rgba(242, 238, 230, 0.08);
+  --nc-display: "Cormorant Garamond", Didot, "Bodoni 72", serif;
+  --nc-ui: "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+  font-family: var(--nc-ui);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Shared page hero ── */
+.ncs-page-kicker {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--nc-gold);
+  margin-bottom: 24px;
+}
+
+.ncs-page-hero,
+.ncs-about-hero {
+  padding: calc(var(--nc-header-h) + var(--nc-space-md)) 8vw var(--nc-space-lg);
+  max-width: 920px;
+}
+
+.ncs-page-hero h1,
+.ncs-about-hero h1 {
+  font-family: var(--nc-display);
+  font-weight: 400;
+  font-size: clamp(48px, 6.5vw, 88px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin: 0 0 28px;
+  color: var(--nc-ink);
+}
+
+.ncs-page-hero h1 em,
+.ncs-about-hero h1 em {
+  font-style: italic;
+  color: var(--nc-gold);
+}
+
+.ncs-page-hero > p,
+.ncs-about-hero-lead {
+  max-width: 520px;
+  margin: 0;
+  color: var(--nc-muted);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+/* ── Scroll reveal ── */
+[data-nc-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.75s cubic-bezier(0.2, 0.65, 0.2, 1),
+    transform 0.75s cubic-bezier(0.2, 0.65, 0.2, 1);
+}
+
+[data-nc-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Header ── */
+.nc-header {
+  height: var(--nc-header-h);
+  backdrop-filter: blur(12px);
+}
+
+.nc-nav {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  gap: 32px;
+}
+
+.nc-header.is-scrolled {
+  background: rgba(8, 8, 7, 0.92);
+}
+
+/* ── Hero (home) ── */
+.ncs-home-hero {
+  min-height: 100vh;
+}
+
+.ncs-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  text-align: center;
+  padding: 0 6vw;
+}
+
+.ncs-hero-content h1 {
+  font-size: clamp(56px, 10vw, 148px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.ncs-hero-content h1 .nc-gold {
+  color: var(--nc-gold);
+}
+
+.ncs-hero-tagline {
+  font-family: var(--nc-display);
+  font-size: clamp(18px, 2.2vw, 26px);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  color: rgba(242, 238, 230, 0.78);
+  margin: 0;
+  max-width: 420px;
+}
+
+.ncs-hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--nc-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.ncs-hero-scroll::after {
+  content: "";
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, var(--nc-gold), transparent);
+  animation: nc-scroll-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes nc-scroll-pulse {
+  0%, 100% { opacity: 0.35; transform: scaleY(0.7); transform-origin: top; }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* ── Home intro ── */
+.ncs-home-intro {
+  display: flex;
+  justify-content: center;
+  padding: var(--nc-space-xl) 10vw;
+}
+
+.ncs-home-intro p {
+  max-width: 680px;
+  text-align: center;
+  font-family: var(--nc-display);
+  font-size: clamp(24px, 3vw, 42px);
+  line-height: 1.25;
+  margin: 0;
+  color: var(--nc-ink);
+}
+
+/* ── Section rhythm ── */
+.ncs-collections,
+.ncs-best,
+.ncs-materials,
+.ncs-ready-home,
+.ncs-mail,
+.ncs-bespoke-cta {
+  padding: var(--nc-space-lg) 8vw;
+}
+
+.ncs-section-head {
+  margin-bottom: 56px;
+}
+
+.ncs-section-head h2 {
+  font-size: clamp(36px, 4.5vw, 64px) !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.03em !important;
+  color: var(--nc-ink) !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}
+
+/* Remove gradient text globally */
+.ncs-collections-page h1,
+.ncs-collection-header h1,
+.ncs-info-page h1,
+.ncs-search-page h1,
+.ncs-mail h2,
+.ncs-bespoke-cta h2,
+.nc-footer-join h2,
+.ncs-form-title {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  color: var(--nc-ink) !important;
+  line-height: 1.05 !important;
+}
+
+/* ── Collections grid ── */
+.ncs-collection-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.ncs-collection-grid > a,
+.ncs-collection-grid > a:nth-child(1),
+.ncs-collection-grid > a:nth-child(2) {
+  grid-column: auto;
+  min-height: 480px;
+}
+
+.ncs-collection-grid div,
+.ncs-collections-list div {
+  left: 32px;
+  bottom: 32px;
+  right: 32px;
+}
+
+.ncs-collection-grid strong {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+}
+
+/* ── Product rail ── */
+.ncs-best-card {
+  flex: 0 0 calc((100% - 40px) / 3);
+}
+
+.ncs-best-meta {
+  padding: 100px 28px 28px;
+}
+
+.ncs-best-meta span {
+  font-size: 11px;
+}
+
+.ncs-best-meta b {
+  font-size: 10px;
+}
+
+/* ── Product cards (no bottom border pile-up) ── */
+.ncs-card-info {
+  padding: 20px 4px 0;
+  border-bottom: 0;
+}
+
+.ncs-grid-products {
+  gap: 48px 24px;
+}
+
+/* ── Bespoke CTA ── */
+.ncs-bespoke-cta {
+  text-align: center;
+  border: 0;
+  padding: var(--nc-space-xl) 8vw;
+}
+
+.ncs-bespoke-cta h2 {
+  font-size: clamp(40px, 6vw, 80px);
+  line-height: 1.05;
+  margin: 20px 0 40px;
+}
+
+/* ── Mail / newsletter ── */
+.ncs-mail {
+  border-top: 0;
+  gap: 60px;
+}
+
+.ncs-mail h2 {
+  font-size: clamp(36px, 5vw, 64px);
+}
+
+.ncs-mail-form input,
+.nc-footer-form input {
+  font-size: 11px;
+}
+
+/* ── WHY NEROCASA — editorial layout ── */
+.ncs-about-page {
+  background: var(--nc-bg);
+}
+
+.ncs-about-quote {
+  margin: 0;
+  padding: 0 8vw var(--nc-space-xl);
+  border: 0;
+}
+
+.ncs-about-quote p {
+  font-family: var(--nc-display);
+  font-size: clamp(28px, 3.8vw, 52px);
+  line-height: 1.2;
+  font-weight: 300;
+  font-style: italic;
+  max-width: 900px;
+  margin: 0;
+  color: var(--nc-ink);
+}
+
+.ncs-about-pillars {
+  padding: 0 8vw var(--nc-space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.ncs-about-pillar {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 48px;
+  padding: var(--nc-space-md) 0;
+  border-top: 1px solid var(--nc-line);
+  align-items: start;
+}
+
+.ncs-about-pillar:last-child {
+  border-bottom: 1px solid var(--nc-line);
+}
+
+.ncs-pillar-num {
+  font-family: var(--nc-display);
+  font-size: clamp(32px, 3vw, 48px);
+  color: var(--nc-gold);
+  line-height: 1;
+  padding-top: 6px;
+}
+
+.ncs-pillar-body h2 {
+  font-family: var(--nc-display);
+  font-weight: 400;
+  font-size: clamp(28px, 3.2vw, 44px);
+  line-height: 1.08;
+  margin: 0 0 20px;
+  color: var(--nc-ink);
+}
+
+.ncs-pillar-body p {
+  max-width: 560px;
+  margin: 0;
+  color: var(--nc-muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.ncs-about-stones {
+  padding: var(--nc-space-lg) 8vw;
+}
+
+.ncs-about-stones ul {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+}
+
+.ncs-about-stones li {
+  font-family: var(--nc-display);
+  font-size: clamp(22px, 2.5vw, 32px);
+  color: var(--nc-ink);
+  letter-spacing: 0.02em;
+}
+
+.ncs-about-stones li::before {
+  content: "—";
+  color: var(--nc-gold);
+  margin-right: 12px;
+}
+
+.ncs-about-page .ncs-about-cta {
+  padding: var(--nc-space-lg) 8vw var(--nc-space-xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 48px;
+  border-top: 1px solid var(--nc-line);
+}
+
+.ncs-about-page .ncs-about-cta h2 {
+  font-family: var(--nc-display);
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 400;
+  line-height: 1.08;
+  margin: 16px 0 0;
+  color: var(--nc-ink);
+}
+
+.ncs-about-page .ncs-about-cta p {
+  max-width: 380px;
+  margin: 16px 0 0;
+  color: var(--nc-muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+/* Hide old why-nerocasa grid if present */
+.ncs-why-editorial,
+.ncs-why-cards,
+.ncs-why-lead {
+  display: none !important;
+}
+
+/* ── Contact page ── */
+.ncs-contact-page {
+  padding-top: 0;
+}
+
+.ncs-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  padding: 0 8vw var(--nc-space-xl);
+}
+
+.ncs-contact-grid > div {
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-top: 1px solid var(--nc-line);
+}
+
+.ncs-contact-grid span:first-child {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--nc-gold);
+}
+
+.ncs-contact-grid span:last-child,
+.ncs-contact-grid a {
+  font-size: 16px;
+  color: var(--nc-ink);
+  transition: color 0.2s;
+}
+
+.ncs-contact-grid a:hover {
+  color: var(--nc-gold);
+}
+
+.ncs-contact-details-simple {
+  display: none !important;
+}
+
+.ncs-contact-page .ncs-info-page {
+  display: none !important;
+}
+
+/* ── Collection pages ── */
+.ncs-collections-page {
+  padding: 0 8vw var(--nc-space-lg);
+}
+
+.ncs-collections-page .ncs-page-hero {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.ncs-collection-page {
+  padding: calc(var(--nc-header-h) + var(--nc-space-md)) 8vw var(--nc-space-lg);
+}
+
+.ncs-collections-page::before,
+.ncs-collection-page .ncs-collection-header:not(:empty)::before {
+  content: none;
+}
+
+.ncs-collection-header {
+  margin-bottom: var(--nc-space-md);
+  max-width: 720px;
+}
+
+.ncs-collection-header h1 {
+  font-size: clamp(44px, 6vw, 80px) !important;
+  line-height: 1.05 !important;
+  margin: 0 0 24px !important;
+}
+
+.ncs-collection-header p {
+  margin: 0 0 var(--nc-space-md) !important;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.ncs-collections-list {
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.ncs-collections-list > a {
+  min-height: 55vh;
+}
+
+.ncs-collections-list > a:nth-child(3) {
+  grid-column: auto;
+  min-height: 55vh;
+}
+
+.ncs-collections-list h2 {
+  font-size: clamp(32px, 4vw, 56px);
+  margin-bottom: 16px;
+}
+
+/* ── Product page spacing ── */
+.ncs-product-page {
+  padding: calc(var(--nc-header-h) + 32px) 8vw var(--nc-space-lg);
+  gap: 8vw;
+}
+
+.ncs-product-config h1 {
+  font-size: clamp(40px, 4.5vw, 72px) !important;
+  line-height: 1.05 !important;
+  margin: 12px 0 24px !important;
+}
+
+.ncs-price {
+  border: 0;
+  padding: 28px 0;
+  margin: 32px 0;
+  border-top: 1px solid var(--nc-line);
+  border-bottom: 1px solid var(--nc-line);
+}
+
+.ncs-buy {
+  border-top: 1px solid var(--nc-line);
+  padding-top: 32px;
+  margin-top: 48px;
+}
+
+.ncs-accordion {
+  border-top: 1px solid var(--nc-line);
+  margin-top: 48px;
+}
+
+.ncs-related {
+  border-top: 1px solid var(--nc-line);
+  padding: var(--nc-space-lg) 8vw;
+}
+
+.ncs-choice > label,
+.ncs-size-mode > label,
+.ncs-buy > div span {
+  font-size: 10px;
+}
+
+/* ── B2B page ── */
+.ncs-b2b-page {
+  padding-top: 0;
+}
+
+.ncs-b2b-header {
+  padding: calc(var(--nc-header-h) + var(--nc-space-md)) 8vw var(--nc-space-sm);
+  max-width: 720px;
+}
+
+.ncs-b2b-header h1 {
+  font-family: var(--nc-display);
+  font-size: clamp(44px, 6vw, 80px);
+  line-height: 1.05;
+  margin: 0 0 20px;
+  color: var(--nc-ink);
+}
+
+.ncs-b2b-header p {
+  margin: 0;
+  color: var(--nc-muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.ncs-b2b-form-wrap-centered {
+  padding: 0 8vw var(--nc-space-xl);
+}
+
+.ncs-b2b-form label {
+  font-size: 10px;
+}
+
+/* ── Material grid — softer ── */
+.ncs-material-grid {
+  border: 0;
+  gap: 24px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.ncs-material-grid div {
+  border: 0;
+  border-top: 1px solid var(--nc-line);
+  padding: 32px 0;
+  min-height: auto;
+}
+
+/* ── Footer ── */
+.nc-footer {
+  border-top: 1px solid var(--nc-line);
+  padding: var(--nc-space-lg) 8vw 32px;
+}
+
+.nc-footer-nav span {
+  font-size: 10px;
+}
+
+.nc-footer-nav a {
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.nc-footer-bottom {
+  margin-top: var(--nc-space-md);
+  font-size: 9px;
+}
+
+.nc-footer-join {
+  display: none;
+}
+
+/* ── Buttons ── */
+.ncs-btn {
+  font-size: 10px;
+  padding: 16px 28px;
+  letter-spacing: 0.16em;
+}
+
+/* ── Empty header cleanup ── */
+.ncs-info-page:empty,
+.ncs-collection-header:empty {
+  display: none !important;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  :root {
+    --nc-header-h: 68px;
+  }
+
+  .ncs-page-hero,
+  .ncs-about-hero {
+    padding: calc(var(--nc-header-h) + 48px) 6vw var(--nc-space-md);
+  }
+
+  .ncs-about-pillar {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 40px 0;
+  }
+
+  .ncs-about-page .ncs-about-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--nc-space-md) 6vw var(--nc-space-lg);
+  }
+
+  .ncs-contact-grid {
+    grid-template-columns: 1fr;
+    padding: 0 6vw var(--nc-space-lg);
+  }
+
+  .ncs-collections-page {
+    padding: 0 6vw var(--nc-space-md);
+  }
+
+  .ncs-collection-page {
+    padding: calc(var(--nc-header-h) + 48px) 6vw var(--nc-space-md);
+  }
+
+  .ncs-collection-grid > a,
+  .ncs-collection-grid > a:nth-child(1),
+  .ncs-collection-grid > a:nth-child(2) {
+    min-height: 52vh;
+  }
+
+  .ncs-best-card {
+    flex-basis: calc((100% - 20px) / 2);
+  }
+
+  .ncs-collections,
+  .ncs-best,
+  .ncs-mail,
+  .ncs-bespoke-cta {
+    padding: var(--nc-space-md) 6vw;
+  }
+
+  .ncs-product-page {
+    padding: calc(var(--nc-header-h) + 24px) 6vw var(--nc-space-md);
+  }
+
+  .ncs-b2b-header {
+    padding: calc(var(--nc-header-h) + 48px) 6vw var(--nc-space-sm);
+  }
+
+  .ncs-b2b-form-wrap-centered {
+    padding: 0 6vw var(--nc-space-lg);
+  }
+
+  .ncs-about-quote {
+    padding: 0 6vw var(--nc-space-md);
+  }
+
+  .ncs-about-pillars {
+    padding: 0 6vw var(--nc-space-md);
+  }
+
+  .ncs-about-stones {
+    padding: var(--nc-space-md) 6vw;
+  }
+
+  .ncs-material-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ncs-material-grid div {
+    border-right: 0 !important;
+    border-bottom: 0 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .ncs-best-card {
+    flex-basis: 82vw;
+  }
+
+  .ncs-grid-products {
+    grid-template-columns: 1fr;
+  }
+
+  .ncs-material-grid {
+    grid-template-columns: 1fr;
+  }
+}

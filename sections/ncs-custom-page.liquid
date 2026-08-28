@@ -1,0 +1,56 @@
+<section class="ncs-custom-ready">
+  <div class="ncs-custom-grid ncs-design-grid">
+    <article><img src="{{ 'collection-decorative.jpg' | asset_url }}" alt="NeroCasa Obsidian Table" width="1600" height="1100" loading="lazy"><div><strong>OBSIDIAN TABLE</strong><b>AED 8,900</b></div></article>
+    <article><img src="{{ 'collection-coffee.jpg' | asset_url }}" alt="NeroCasa Forma Coffee Table" width="1600" height="1100" loading="lazy"><div><strong>FORMA COFFEE TABLE</strong><b>AED 7,500</b></div></article>
+    <article><img src="{{ 'collection-side.webp' | asset_url }}" alt="NeroCasa Line Side Table" width="1600" height="1100" loading="lazy"><div><strong>LINE SIDE TABLE</strong><b>AED 4,800</b></div></article>
+  </div>
+</section>
+
+<section class="ncs-custom-form-wrap">
+  <h2 class="ncs-form-title">FOR YOUR OWN DESIGN</h2>
+  {% form 'contact', class: 'ncs-b2b-form', id: 'NerocasaCustomForm' %}
+    {% if form.posted_successfully? %}
+      <p class="ncs-form-success">Thank you — your custom request has been received.</p>
+    {% else %}
+      <input type="hidden" name="contact[tags]" value="custom-enquiry">
+      <div class="ncs-form-row">
+        <label>Name<input type="text" name="contact[name]" required></label>
+        <label>Email<input type="email" name="contact[email]" required></label>
+      </div>
+      <div class="ncs-form-row">
+        <label>Phone<input type="tel" name="contact[phone]"></label>
+        <label>Marble color<select name="contact[marble_color]"><option>Ibiza White</option><option>Beige Travertine</option><option>Armani Grey</option><option>RossoLeventy</option></select></label>
+      </div>
+
+      <div class="ncs-custom-upload" data-upload-zone>
+        <input id="NcCustomFile" type="file" accept="image/*" data-upload-input>
+        <strong>UPLOAD DESIGN</strong>
+        <span data-upload-name>Drag &amp; drop or click to choose an image.</span>
+      </div>
+
+      <div class="ncs-custom-dimension-grid">
+        <label>HEIGHT<input type="number" min="1" step="0.1" name="contact[height_cm]" required placeholder="cm"></label>
+        <label>WIDTH<input type="number" min="1" step="0.1" name="contact[width_cm]" required placeholder="cm"></label>
+        <label>LENGTH<input type="number" min="1" step="0.1" name="contact[length_cm]" required placeholder="cm"></label>
+      </div>
+      <label class="ncs-form-full">Additional details<textarea name="contact[body]" rows="6" placeholder="Tell us about the design, marble, finish or anything else we should know."></textarea></label>
+      <button type="submit" class="ncs-btn">SUBMIT ENQUIRY ↗</button>
+    {% endif %}
+  {% endform %}
+  <p class="ncs-upload-note">Image selection is prepared in the theme UI; Shopify's native contact form does not transmit binary file attachments. Connect a file-upload form endpoint/app before publishing if actual image delivery is required.</p>
+</section>
+
+<script>
+(function(){
+  var zone=document.querySelector('[data-upload-zone]');
+  var input=document.querySelector('[data-upload-input]');
+  var name=document.querySelector('[data-upload-name]');
+  if(!zone||!input)return;
+  zone.addEventListener('click',function(e){if(e.target!==input)input.click()});
+  ['dragenter','dragover'].forEach(function(type){zone.addEventListener(type,function(e){e.preventDefault();zone.classList.add('is-dragging')})});
+  ['dragleave','drop'].forEach(function(type){zone.addEventListener(type,function(e){e.preventDefault();zone.classList.remove('is-dragging')})});
+  zone.addEventListener('drop',function(e){if(e.dataTransfer.files.length){try{input.files=e.dataTransfer.files}catch(_){ } input.dispatchEvent(new Event('change',{bubbles:true}))}});
+  input.addEventListener('change',function(){if(input.files&&input.files.length)name.textContent=input.files[0].name});
+})();
+</script>
+{% schema %}{"name":"Ready Designs","presets":[{"name":"Ready Designs"}]}{% endschema %}

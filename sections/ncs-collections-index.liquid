@@ -1,0 +1,24 @@
+<section class="ncs-collections-page">
+  <header class="ncs-page-hero" data-nc-reveal>
+    <span class="ncs-page-kicker">Collections</span>
+    <h1>Explore by <em>category</em></h1>
+    <p>Architectural marble tables and objects, grouped by form and function.</p>
+  </header>
+
+  <div class="ncs-collections-list">
+    <a href="{{ collections['coffee-tables'].url | default: routes.collections_url }}" data-nc-reveal>
+      <img src="{{ 'collection-coffee.jpg' | asset_url }}" alt="Coffee Tables" width="1600" height="1100" loading="lazy">
+      <div><h2>Coffee Tables</h2><b>Explore ↗</b></div>
+    </a>
+    <a href="{{ collections['side-tables'].url | default: routes.collections_url }}" data-nc-reveal>
+      <img src="{{ 'collection-side.webp' | asset_url }}" alt="Side Tables" width="1600" height="1100" loading="lazy">
+      <div><h2>Side Tables</h2><b>Explore ↗</b></div>
+    </a>
+    <a href="{{ collections['console-tables'].url | default: routes.collections_url }}" data-nc-reveal>
+      <img src="{{ 'collection-console.webp' | asset_url }}" alt="Console Tables" width="1600" height="1100" loading="lazy">
+      <div><h2>Console Tables</h2><b>Explore ↗</b></div>
+    </a>
+  </div>
+</section>
+
+{% schema %}{"name":"Collections Index","presets":[{"name":"Collections Index"}]}{% endschema %}

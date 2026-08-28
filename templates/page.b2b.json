@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "ncs-b2b",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

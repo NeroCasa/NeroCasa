@@ -1,0 +1,24 @@
+<section class="ncs-contact-page">
+  <header class="ncs-page-hero" data-nc-reveal>
+    <span class="ncs-page-kicker">Contact</span>
+    <h1>Get in <em>touch</em></h1>
+    <p>We respond to every enquiry within one business day. For trade and project enquiries, visit our B2B page.</p>
+  </header>
+
+  <div class="ncs-contact-grid">
+    <div data-nc-reveal>
+      <span>WhatsApp</span>
+      <span>{{ settings.whatsapp_url | default: 'Available on request' }}</span>
+    </div>
+    <div data-nc-reveal>
+      <span>Email</span>
+      <a href="mailto:{{ settings.contact_email | default: 'hello@nerocasa.example' }}">{{ settings.contact_email | default: 'hello@nerocasa.example' }}</a>
+    </div>
+    <div data-nc-reveal>
+      <span>Call</span>
+      <span>{% if settings.contact_phone != blank %}{{ settings.contact_phone }}{% else %}Available on request{% endif %}</span>
+    </div>
+  </div>
+</section>
+
+{% schema %}{"name":"Contact","presets":[{"name":"Contact"}]}{% endschema %}

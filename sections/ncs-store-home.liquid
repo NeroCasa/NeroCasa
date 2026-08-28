@@ -1,0 +1,82 @@
+<section class="ncs-home-hero">
+  <div class="ncs-hero-media">
+    <img src="{{ 'hero-marble.webp' | asset_url }}" alt="NeroCasa marble furniture" width="2400" height="1600" fetchpriority="high">
+    <div class="ncs-hero-overlay"></div>
+  </div>
+  <div class="ncs-hero-content">
+    <h1><span>NE<span>RO</span></span><span class="nc-gold">CASA</span></h1>
+    <p class="ncs-hero-tagline">Architectural marble furniture, made to order</p>
+  </div>
+  <div class="ncs-hero-scroll" aria-hidden="true">Scroll</div>
+</section>
+
+<section class="ncs-home-intro" data-nc-reveal>
+  <p>Objects carved from natural stone — quiet in form, precise in proportion, enduring by nature.</p>
+</section>
+
+<section class="ncs-collections">
+  <div class="ncs-section-head" data-nc-reveal><h2>Collections</h2></div>
+  <div class="ncs-collection-grid">
+    <a href="{{ collections['coffee-tables'].url | default: routes.collections_url }}" data-nc-reveal>
+      <img src="{{ 'collection-coffee.jpg' | asset_url }}" alt="Coffee Tables" width="1600" height="1100" loading="lazy">
+      <div><strong>Coffee Tables</strong></div>
+    </a>
+    <a href="{{ collections['side-tables'].url | default: routes.collections_url }}" data-nc-reveal>
+      <img src="{{ 'collection-side.webp' | asset_url }}" alt="Side Tables" width="1600" height="1100" loading="lazy">
+      <div><strong>Side Tables</strong></div>
+    </a>
+    <a href="{{ collections['console-tables'].url | default: routes.collections_url }}" data-nc-reveal>
+      <img src="{{ 'collection-console.webp' | asset_url }}" alt="Console Tables" width="1600" height="1100" loading="lazy">
+      <div><strong>Console Tables</strong></div>
+    </a>
+  </div>
+</section>
+
+<section class="ncs-best">
+  <div class="ncs-section-head" data-nc-reveal><h2>Most Sellers</h2></div>
+  {% assign best_collection = collections['best-sellers'] %}
+  {% if best_collection == blank or best_collection.products_count == 0 %}{% assign best_collection = collections['all'] %}{% endif %}
+  <div class="ncs-rail-wrap" data-nc-carousel-wrap>
+    <div class="ncs-product-rail" data-nc-carousel tabindex="0" role="region" aria-label="Selected Nerocasa objects">
+      {% for product in best_collection.products limit: 8 %}
+        <a class="ncs-best-card" href="{{ product.url }}">
+          <div class="ncs-best-image">
+            {% if product.featured_image %}
+              <img src="{{ product.featured_image | image_url: width: 1200 }}" alt="{{ product.title | escape }}" width="900" height="1125" loading="lazy">
+            {% else %}
+              <img src="{{ 'hero-marble.webp' | asset_url }}" alt="{{ product.title | escape }}" width="900" height="1125" loading="lazy">
+            {% endif %}
+          </div>
+          <div class="ncs-best-meta"><span>{{ product.title }}</span><b>{{ product.price | money }}</b></div>
+        </a>
+      {% endfor %}
+    </div>
+    {% if best_collection.products_count > 3 %}
+      <div class="ncs-rail-controls">
+        <button class="ncs-rail-control" data-nc-prev type="button" aria-label="Previous products">←</button>
+        <div class="ncs-rail-progress"><i></i></div>
+        <button class="ncs-rail-control" data-nc-next type="button" aria-label="Next products">→</button>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="ncs-bespoke-cta" data-nc-reveal>
+  <span class="ncs-page-kicker">Bespoke</span>
+  <h2>Your vision,<br>in stone</h2>
+  <a class="ncs-btn" href="{{ routes.root_url | append: '?view=custom' }}">Start a Custom Piece ↗</a>
+</section>
+
+<section class="ncs-mail ncs-cta">
+  <div class="ncs-cta-title" data-nc-reveal><h2>Stay Close</h2></div>
+  {% form 'customer', class: 'ncs-mail-form' %}
+    {% if form.posted_successfully? %}
+      <p class="ncs-form-success">Thank you — you're on the list.</p>
+    {% else %}
+      <input type="email" name="contact[email]" placeholder="Your email" required aria-label="Email address">
+      <button type="submit" aria-label="Subscribe">↗</button>
+    {% endif %}
+  {% endform %}
+</section>
+
+{% schema %}{"name":"Nerocasa Store Home","presets":[{"name":"Nerocasa Store Home"}]}{% endschema %}

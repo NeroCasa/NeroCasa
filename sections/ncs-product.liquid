@@ -1,0 +1,185 @@
+<section class="ncs-product-page" data-ncs-product>
+  <div class="ncs-product-gallery">
+    <div class="ncs-main-product-image">
+      <img src="{% if product.featured_image %}{{ product.featured_image | image_url: width: 1800 }}{% else %}{{ 'hero-marble.webp' | asset_url }}{% endif %}"
+           alt="{{ product.featured_image.alt | default: product.title | escape }}"
+           data-ncs-main width="1800" height="1900" loading="eager">
+    </div>
+    {% if product.images.size > 1 %}
+      <div class="ncs-thumbs">
+        {% for image in product.images %}
+          <button type="button" data-ncs-thumb="{{ image | image_url: width: 1800 }}" aria-label="Show image {{ forloop.index }}">
+            <img src="{{ image | image_url: width: 300 }}" alt="{{ image.alt | default: product.title | escape }}" loading="lazy" width="150" height="150">
+          </button>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="ncs-product-config">
+<h1>{{ product.title }}</h1>
+    <div class="ncs-availability">{% if product.available %}AVAILABLE TO ORDER{% else %}CURRENTLY UNAVAILABLE{% endif %}</div>
+
+    <div class="ncs-price">
+      <span data-ncs-price>{{ product.selected_or_first_available_variant.price | money }}</span>
+      {% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
+        <s class="ncs-compare-price">{{ product.selected_or_first_available_variant.compare_at_price | money }}</s>
+      {% endif %}
+      <small>INCLUDING STANDARD VAT</small>
+    </div>
+
+    {% if product.description != blank %}<p class="ncs-short-desc">{{ product.description | strip_html | truncatewords: 28 }}</p>{% endif %}
+
+    {% if product.has_only_default_variant == false %}
+      {% for option in product.options_with_values %}
+        <div class="ncs-choice" data-option-index="{{ forloop.index0 }}" data-option-name="{{ option.name | escape }}">
+          <label>{{ option.name | upcase }}</label>
+          <div class="ncs-choice-row">
+            {% for value in option.values %}
+              <button type="button" data-value="{{ value | escape }}" class="{% if option.selected_value == value %}is-active{% endif %}">{{ value }}</button>
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <div class="ncs-size-mode" data-size-mode>
+      <label>SIZE</label>
+      <div class="ncs-size-mode-row">
+        <button type="button" class="is-active" data-size-mode-button="fixed">STANDARD</button>
+        <button type="button" data-size-mode-button="custom">CUSTOM</button>
+      </div>
+
+      <div class="ncs-fixed-dimensions" data-fixed-size>
+        <div class="ncs-fixed-size-title">STANDARD DIMENSIONS</div>
+        <div class="ncs-fixed-dimensions-values">
+          <span><b>H</b> {{ product.metafields.custom.height | default: '—' }}</span>
+          <span><b>L</b> {{ product.metafields.custom.length | default: '—' }}</span>
+          <span><b>W</b> {{ product.metafields.custom.width | default: '—' }}</span>
+        </div>
+      </div>
+
+      <div class="ncs-custom-dimensions" data-custom-size hidden>
+        <p>Enter measurements in centimetres.</p>
+        <div class="ncs-custom-dimension-grid">
+          <label>HEIGHT<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="H" data-custom-height></label>
+          <label>LENGTH<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="L" data-custom-length></label>
+          <label>WIDTH<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="W" data-custom-width></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="ncs-buy">
+      <div>
+        <span>YOUR CONFIGURATION</span>
+        <b data-ncs-summary>{{ product.selected_or_first_available_variant.title }}</b>
+        <small class="ncs-selected-dimensions" data-ncs-selected-dimensions></small>
+      </div>
+      {% form 'product', product %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-ncs-variant>
+        <input type="hidden" name="properties[Color / Marble]" value="" data-ncs-color-property>
+        <input type="hidden" name="properties[Height]" value="" data-ncs-height-property>
+        <input type="hidden" name="properties[Length]" value="" data-ncs-length-property>
+        <input type="hidden" name="properties[Width]" value="" data-ncs-width-property>
+        <input type="hidden" name="properties[Size Type]" value="Standard" data-ncs-size-type-property>
+        <input type="hidden" name="properties[Custom Size]" value="" data-ncs-custom-size-property>
+        <button type="submit" name="add" data-ncs-add-btn {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
+          {% if product.selected_or_first_available_variant.available %}ADD TO CART <b>↗</b>{% else %}SOLD OUT{% endif %}
+        </button>
+      {% endform %}
+    </div>
+
+    <div class="ncs-accordion">
+      {% if product.description != blank %}
+        <details class="ncs-story-detail" open><summary>THE STORY</summary><div>{{ product.description }}</div></details>
+      {% endif %}
+      <details class="ncs-story-detail">
+        <summary>MATERIALS &amp; FINISH</summary>
+        <div>{% if product.metafields.custom.materials != blank %}{{ product.metafields.custom.materials }}{% else %}<p>Natural stone. Veining and tone vary from slab to slab — part of the material's character.</p>{% endif %}</div>
+      </details>
+      <details class="ncs-story-detail">
+        <summary>DIMENSIONS</summary>
+        <div>{% if product.metafields.custom.height != blank or product.metafields.custom.length != blank or product.metafields.custom.width != blank %}<ul class="ncs-dims">{% if product.metafields.custom.height != blank %}<li><span>Height</span><b>{{ product.metafields.custom.height }}</b></li>{% endif %}{% if product.metafields.custom.length != blank %}<li><span>Length</span><b>{{ product.metafields.custom.length }}</b></li>{% endif %}{% if product.metafields.custom.width != blank %}<li><span>Width</span><b>{{ product.metafields.custom.width }}</b></li>{% endif %}</ul>{% else %}<p>Dimensions are controlled by the selected configuration.</p>{% endif %}</div>
+      </details>
+      <details class="ncs-story-detail">
+        <summary>PRODUCTION &amp; DELIVERY</summary>
+        <div>{% if product.metafields.custom.production_info != blank %}{{ product.metafields.custom.production_info }}{% else %}<p>Made to order. Production and delivery timing is confirmed after your order is placed.</p>{% endif %}</div>
+      </details>
+    </div>
+  </div>
+
+  <script type="application/json" data-ncs-variants>[{% for variant in product.variants %}{"id":{{ variant.id }},"title":{{ variant.title | json }},"available":{{ variant.available | json }},"price":{{ variant.price | money | json }},"options":{{ variant.options | json }},"image":{% if variant.featured_image %}{{ variant.featured_image | image_url: width: 1800 | json }}{% else %}null{% endif %}}{% unless forloop.last %},{% endunless %}{% endfor %}]</script>
+</section>
+
+<section class="ncs-related">
+  <div class="ncs-section-head"><h2>MORE OBJECTS</h2></div>
+  <div class="ncs-related-wrap" data-nc-carousel-wrap>
+    <button class="ncs-rail-arrow" data-nc-prev type="button" aria-label="Previous">←</button>
+    <div class="ncs-related-rail" data-nc-carousel tabindex="0" role="region" aria-label="Related Nerocasa objects">
+      {% assign related_count = 0 %}
+      {% for rp in collections.all.products %}
+        {% unless rp.id == product.id %}
+          <a href="{{ rp.url }}">
+            <img src="{% if rp.featured_image %}{{ rp.featured_image | image_url: width: 1000 }}{% else %}{{ 'hero-marble.webp' | asset_url }}{% endif %}" alt="{{ rp.title | escape }}" loading="lazy" width="500" height="540">
+            <span>{{ rp.title }}</span><b>{{ rp.price | money }}</b>
+          </a>
+          {% assign related_count = related_count | plus: 1 %}
+          {% if related_count == 8 %}{% break %}{% endif %}
+        {% endunless %}
+      {% endfor %}
+    </div>
+    <button class="ncs-rail-arrow" data-nc-next type="button" aria-label="Next">→</button>
+  </div>
+</section>
+
+<script>
+(function(){
+  var root=document.querySelector('[data-ncs-product]'); if(!root)return;
+  var main=root.querySelector('[data-ncs-main]');
+  root.querySelectorAll('[data-ncs-thumb]').forEach(function(t){t.addEventListener('click',function(){if(main){main.style.opacity='.35';setTimeout(function(){main.src=t.dataset.ncsThumb;main.style.opacity='1'},120)}})});
+  var variantsEl=root.querySelector('[data-ncs-variants]'), variants=[];
+  try{variants=JSON.parse(variantsEl.textContent)}catch(e){}
+  var groups=[].slice.call(root.querySelectorAll('.ncs-choice[data-option-index]'));
+  var price=root.querySelector('[data-ncs-price]'), summary=root.querySelector('[data-ncs-summary]');
+  var variantInput=root.querySelector('[data-ncs-variant]'), add=root.querySelector('[data-ncs-add-btn]');
+  var colorProp=root.querySelector('[data-ncs-color-property]');
+  var hProp=root.querySelector('[data-ncs-height-property]'), lProp=root.querySelector('[data-ncs-length-property]'), wProp=root.querySelector('[data-ncs-width-property]');
+  var typeProp=root.querySelector('[data-ncs-size-type-property]'), customProp=root.querySelector('[data-ncs-custom-size-property]');
+  var mode=root.querySelector('[data-size-mode]'), fixed=root.querySelector('[data-fixed-size]'), custom=root.querySelector('[data-custom-size]');
+  var h=root.querySelector('[data-custom-height]'), l=root.querySelector('[data-custom-length]'), w=root.querySelector('[data-custom-width]');
+  function fixedDims(){return {h:'{{ product.metafields.custom.height | escape }}',l:'{{ product.metafields.custom.length | escape }}',w:'{{ product.metafields.custom.width | escape }}'};}
+  function selectedValues(){var a=[];groups.forEach(function(g){var b=g.querySelector('.is-active');a[+g.dataset.optionIndex]=b?b.dataset.value:null});return a;}
+  function setProps(color,type,dh,dl,dw){
+    if(colorProp)colorProp.value=color||'';
+    if(typeProp)typeProp.value=type;
+    if(hProp)hProp.value=dh||''; if(lProp)lProp.value=dl||''; if(wProp)wProp.value=dw||'';
+    if(customProp)customProp.value=type==='Custom' ? [dh,dl,dw].join(' × ')+' cm' : '';
+  }
+  function updateCustomProps(){
+    var isCustom=mode&&mode.querySelector('[data-size-mode-button="custom"].is-active');
+    var dims=isCustom?{h:h?h.value:'',l:l?l.value:'',w:w?w.value:''}:fixedDims();
+    if(fixed)fixed.hidden=!!isCustom; if(custom)custom.hidden=!isCustom;
+    var values=selectedValues(), color='';
+    groups.forEach(function(g,i){var name=(g.dataset.optionName||'').toLowerCase();if(name.indexOf('color')>-1||name.indexOf('colour')>-1||name.indexOf('finish')>-1)color=values[i]||'';});
+    setProps(color,isCustom?'Custom':'Standard',dims.h,dims.l,dims.w);
+    var dim=root.querySelector('[data-ncs-selected-dimensions]'); if(dim)dim.textContent=[dims.h||'—',dims.l||'—',dims.w||'—'].join(' × ')+' cm';
+  }
+  function syncVariant(){
+    if(!variants.length)return updateCustomProps();
+    var selected=selectedValues();
+    var v=variants.find(function(item){return selected.every(function(val,i){return val===null||item.options[i]===val;});});
+    if(!v){if(add){add.disabled=true;add.innerHTML='UNAVAILABLE';}return;}
+    if(variantInput)variantInput.value=v.id;
+    if(price)price.textContent=v.price;
+    if(v.image&&main){main.src=v.image;}
+    if(add){add.disabled=!v.available;add.innerHTML=v.available?'ADD TO CART <b>↗</b>':'SOLD OUT';}
+    if(summary)summary.textContent=v.title;
+    updateCustomProps();
+  }
+  groups.forEach(function(g){g.querySelectorAll('[data-value]').forEach(function(btn){btn.addEventListener('click',function(){g.querySelectorAll('[data-value]').forEach(function(x){x.classList.remove('is-active')});btn.classList.add('is-active');syncVariant()})})});
+  if(mode)mode.querySelectorAll('[data-size-mode-button]').forEach(function(btn){btn.addEventListener('click',function(){mode.querySelectorAll('[data-size-mode-button]').forEach(function(x){x.classList.remove('is-active')});btn.classList.add('is-active');updateCustomProps()})});
+  [h,l,w].forEach(function(x){if(x)x.addEventListener('input',updateCustomProps)});
+  syncVariant(); updateCustomProps();
+})();
+</script>
+{% schema %}{"name":"Nerocasa Product","presets":[{"name":"Nerocasa Product"}]}{% endschema %}

@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "ncs-search",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

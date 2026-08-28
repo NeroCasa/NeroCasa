@@ -1,0 +1,31 @@
+<footer class="nc-footer">
+  <div class="nc-footer-top">
+      <nav class="nc-footer-nav" aria-label="Footer navigation">
+      <div>
+        <span>Explore</span>
+        <a href="{{ routes.collections_url }}">Collections</a>
+        <a href="{{ routes.root_url | append: '?view=custom' }}">Custom</a>
+        <a href="{{ routes.root_url | append: '?view=b2b' }}">B2B</a>
+      </div>
+      <div>
+        <span>Studio</span>
+        <a href="{{ routes.root_url | append: '?view=about' }}">Why Nerocasa</a>
+        <a href="{{ routes.root_url | append: '?view=contact' }}">Contact</a>
+        <a href="{{ routes.search_url }}">Search</a>
+        <a href="{{ routes.cart_url }}">Cart</a>
+      </div>
+      <div>
+        <span>Contact</span>
+        <a href="{{ routes.root_url | append: '?view=contact' }}">WhatsApp</a>
+        <a href="{{ routes.root_url | append: '?view=contact' }}">Email</a>
+        <a href="{{ routes.root_url | append: '?view=contact' }}">Call</a>
+      </div>
+    </nav>
+  </div>
+<div class="nc-footer-bottom">
+    <span>© {{ 'now' | date: '%Y' }} NEROCASA</span>
+    <a href="{{ routes.privacy_policy_url }}">Privacy</a>
+    <a href="{{ routes.terms_of_service_url }}">Terms</a>
+  </div>
+</footer>
+{% schema %}{"name":"Nerocasa Footer"}{% endschema %}
