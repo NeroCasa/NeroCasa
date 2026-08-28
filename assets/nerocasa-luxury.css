@@ -19,12 +19,7 @@ body {
 
 /* ── Shared page hero ── */
 .ncs-page-kicker {
-  display: block;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--nc-gold);
-  margin-bottom: 28px;
+  display: none !important;
 }
 
 .ncs-page-hero {
@@ -69,6 +64,34 @@ body {
 }
 
 /* ── Header & logo ── */
+.nc-logo-brand img {
+  width: auto;
+  height: 44px;
+  max-width: 120px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.nc-action-link {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--nc-ink);
+  opacity: 0.85;
+  white-space: nowrap;
+  transition: color 0.2s, opacity 0.2s;
+}
+
+.nc-action-link:hover {
+  color: var(--nc-gold);
+  opacity: 1;
+}
+
+.nc-actions {
+  gap: 16px !important;
+  align-items: center;
+}
+
 .nc-logo-text {
   font-family: var(--nc-display);
   font-size: clamp(22px, 2.5vw, 28px);
@@ -79,13 +102,6 @@ body {
 
 .nc-logo-text .nc-gold {
   color: var(--nc-gold);
-}
-
-.nc-logo-brand img {
-  width: 150px;
-  height: 55px;
-  object-fit: contain;
-  object-position: left center;
 }
 
 .nc-footer-social {
@@ -148,6 +164,13 @@ body {
   color: var(--nc-gold);
 }
 
+.ncs-hero-logo {
+  width: clamp(140px, 22vw, 220px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 8px 32px rgba(0, 0, 0, 0.45));
+}
+
 .ncs-hero-tagline {
   font-family: var(--nc-display);
   font-size: clamp(18px, 2.2vw, 26px);
@@ -188,10 +211,11 @@ body {
 }
 
 /* ── Home intro ── */
-.ncs-home-intro {
-  display: flex;
-  justify-content: center;
-  padding: var(--nc-space-xl) 10vw;
+.ncs-home-intro,
+.ncs-materials,
+.ncs-bespoke-cta,
+.ncs-about-stones {
+  display: none !important;
 }
 
 .ncs-home-intro p {
@@ -683,17 +707,18 @@ body {
 }
 
 .ncs-collections-list {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--nc-space-sm);
 }
 
 .ncs-collections-list > a {
-  min-height: 48vh;
+  min-height: 52vh;
 }
 
 .ncs-collections-list > a:nth-child(3),
 .ncs-collections-list > a:nth-child(4) {
-  min-height: 44vh;
+  min-height: 52vh;
+  grid-column: auto;
 }
 
 .ncs-collections-list h2 {
@@ -899,9 +924,85 @@ body {
 
 /* ── Buttons ── */
 .ncs-btn {
-  font-size: 10px;
-  padding: 16px 28px;
-  letter-spacing: 0.16em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 12px !important;
+  font-weight: 500;
+  padding: 18px 36px !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase;
+  background: var(--nc-gold) !important;
+  color: #080807 !important;
+  border: 1px solid var(--nc-gold) !important;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+  box-shadow: 0 4px 20px rgba(165, 123, 0, 0.28);
+}
+
+.ncs-btn:hover {
+  background: #c49200 !important;
+  border-color: #c49200 !important;
+  color: #080807 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(165, 123, 0, 0.4);
+}
+
+.ncs-btn--outline {
+  background: transparent !important;
+  color: var(--nc-ink) !important;
+  border-color: rgba(242, 238, 230, 0.35) !important;
+  box-shadow: none;
+}
+
+.ncs-btn--outline:hover {
+  background: rgba(165, 123, 0, 0.12) !important;
+  border-color: var(--nc-gold) !important;
+  color: var(--nc-gold) !important;
+  transform: translateY(-1px);
+}
+
+.ncs-btn--ghost {
+  background: transparent !important;
+  color: var(--nc-gold) !important;
+  box-shadow: none;
+}
+
+.ncs-btn--ghost:hover {
+  background: var(--nc-gold) !important;
+  color: #080807 !important;
+}
+
+.ncs-btn--compact {
+  padding: 14px 24px !important;
+  font-size: 11px !important;
+}
+
+.nc-footer-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: var(--nc-space-md) 0;
+  margin-top: var(--nc-space-md);
+  border-top: 1px solid var(--nc-line);
+}
+
+.nc-footer-logo img {
+  width: auto;
+  height: 52px;
+  max-width: 140px;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.nc-footer-nav span {
+  display: none;
+}
+
+.nc-footer-nav > div {
+  gap: 14px !important;
 }
 
 /* ── Empty header cleanup ── */
@@ -1171,12 +1272,6 @@ body {
 
 .ncs-b2b-form label {
   font-size: 11px !important;
-}
-
-.ncs-btn {
-  font-size: 11px !important;
-  padding: 18px 32px !important;
-  letter-spacing: 0.14em !important;
 }
 
 .nc-footer-nav span {
@@ -1468,9 +1563,59 @@ body {
 }
 
 /* ── Responsive: page layouts ── */
+.ncs-collection-grid img,
+.ncs-collections-list img,
+.ncs-best-image img,
+.ncs-card-media img {
+  filter: brightness(0.88) saturate(0.85) !important;
+}
+
+.ncs-collection-grid > a:hover img,
+.ncs-collections-list > a:hover img,
+.ncs-best-card:hover img,
+.ncs-card:hover .ncs-card-media img {
+  filter: brightness(1) saturate(0.95) !important;
+}
+
+.ncs-buy form button {
+  font-size: 12px !important;
+  padding: 20px 24px !important;
+  font-weight: 500 !important;
+  box-shadow: 0 4px 20px rgba(165, 123, 0, 0.28);
+  transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+}
+
+.ncs-buy form button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(165, 123, 0, 0.4);
+}
+
+.ncs-mail-form {
+  align-items: center;
+  gap: 16px;
+}
+
+.ncs-mail-form .ncs-btn--compact {
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+
 @media (max-width: 900px) {
+  .nc-action-link {
+    display: none;
+  }
+
   .nc-header {
     grid-template-columns: 1fr auto !important;
+  }
+
+  .nc-footer-contact {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ncs-collections-list {
+    grid-template-columns: 1fr !important;
   }
 
   .nc-footer-top {

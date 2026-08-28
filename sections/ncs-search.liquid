@@ -1,6 +1,5 @@
 <section class="ncs-search-page">
   <header class="ncs-search-hero" data-nc-reveal>
-    <span class="ncs-page-kicker">Search</span>
     {% if search.performed %}
       <h1>{{ search.results_count }} result{% if search.results_count != 1 %}s{% endif %}</h1>
       <p>For “{{ search.terms }}”</p>

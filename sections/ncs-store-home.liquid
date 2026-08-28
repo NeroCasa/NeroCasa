@@ -8,42 +8,36 @@
     <div class="ncs-hero-overlay"></div>
   </div>
   <div class="ncs-hero-content">
-    <h1><span>NE<span>RO</span></span><span class="nc-gold">CASA</span></h1>
+    {% if settings.logo != blank %}
+      <img class="ncs-hero-logo" src="{{ settings.logo | image_url: width: 400 }}" alt="{{ settings.brand_name | default: 'NEROCASA' }}" width="200" height="80" loading="eager">
+    {% else %}
+      <img class="ncs-hero-logo" src="{{ 'nerocasa-logo.png' | asset_url }}" alt="{{ settings.brand_name | default: 'NEROCASA' }}" width="200" height="80" loading="eager">
+    {% endif %}
     <p class="ncs-hero-tagline">{{ settings.brand_tagline | default: 'Architectural marble furniture, made to order' }}</p>
   </div>
   <div class="ncs-hero-scroll" aria-hidden="true">Scroll</div>
 </section>
 
-<section class="ncs-home-intro" data-nc-reveal>
-  <p>Objects carved from natural stone — quiet in form, precise in proportion, enduring by nature.</p>
-</section>
-
 <section class="ncs-collections">
-  <div class="ncs-section-head" data-nc-reveal>
-    <span class="ncs-page-kicker">Shop</span>
-    <h2>Collections</h2>
-  </div>
+  <div class="ncs-section-head" data-nc-reveal><h2>Collections</h2></div>
   <div class="ncs-collection-grid">
     <a href="{% render 'nc-collection-url', handle: settings.collection_coffee %}" data-nc-reveal>
       <img src="{{ 'collection-coffee.svg' | asset_url }}" alt="Coffee Tables" width="1600" height="1100" loading="lazy">
-      <div><small>Coffee Tables</small><strong>Coffee Tables</strong></div>
+      <div><strong>Coffee Tables</strong></div>
     </a>
     <a href="{% render 'nc-collection-url', handle: settings.collection_side %}" data-nc-reveal>
       <img src="{{ 'collection-side.svg' | asset_url }}" alt="Side Tables" width="1600" height="1100" loading="lazy">
-      <div><small>Side Tables</small><strong>Side Tables</strong></div>
+      <div><strong>Side Tables</strong></div>
     </a>
     <a href="{% render 'nc-collection-url', handle: settings.collection_console %}" data-nc-reveal>
       <img src="{{ 'collection-console.svg' | asset_url }}" alt="Console Tables" width="1600" height="1100" loading="lazy">
-      <div><small>Console Tables</small><strong>Console Tables</strong></div>
+      <div><strong>Console Tables</strong></div>
     </a>
   </div>
 </section>
 
 <section class="ncs-best">
-  <div class="ncs-section-head" data-nc-reveal>
-    <span class="ncs-page-kicker">Selected</span>
-    <h2>Best Sellers</h2>
-  </div>
+  <div class="ncs-section-head" data-nc-reveal><h2>Best Sellers</h2></div>
   {% assign best_collection = collections[settings.collection_best_sellers] %}
   {% if best_collection == blank or best_collection.products_count == 0 %}{% assign best_collection = collections['all'] %}{% endif %}
   <div class="ncs-rail-wrap" data-nc-carousel-wrap>
@@ -71,36 +65,14 @@
   </div>
 </section>
 
-<section class="ncs-materials">
-  <div class="ncs-section-head" data-nc-reveal>
-    <span class="ncs-page-kicker">Materials</span>
-    <h2>Selected stones</h2>
-  </div>
-  <div class="ncs-material-grid" data-nc-reveal>
-    <div><strong>Ibiza White</strong><span>01</span></div>
-    <div><strong>Beige Travertine</strong><span>02</span></div>
-    <div><strong>Armani Grey</strong><span>03</span></div>
-    <div><strong>Rosso Levanto</strong><span>04</span></div>
-  </div>
-</section>
-
-<section class="ncs-bespoke-cta" data-nc-reveal>
-  <span class="ncs-page-kicker">Bespoke</span>
-  <h2>Your vision,<br>in stone</h2>
-  <a class="ncs-btn" href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}">Start a Custom Piece ↗</a>
-</section>
-
 <section class="ncs-mail ncs-cta">
-  <div class="ncs-cta-title" data-nc-reveal>
-    <span class="ncs-page-kicker">Newsletter</span>
-    <h2>Stay close</h2>
-  </div>
+  <div class="ncs-cta-title" data-nc-reveal><h2>Stay close</h2></div>
   {% form 'customer', class: 'ncs-mail-form' %}
     {% if form.posted_successfully? %}
       <p class="ncs-form-success">Thank you — you're on the list.</p>
     {% else %}
       <input type="email" name="contact[email]" placeholder="Your email" required aria-label="Email address">
-      <button type="submit" aria-label="Subscribe">↗</button>
+      <button type="submit" class="ncs-btn ncs-btn--compact" aria-label="Subscribe">Subscribe ↗</button>
     {% endif %}
   {% endform %}
 </section>
