@@ -1,43 +1,76 @@
-<section class="ncs-custom-ready">
-  <div class="ncs-custom-grid ncs-design-grid">
-    <article><img src="{{ 'collection-decorative.jpg' | asset_url }}" alt="NeroCasa Obsidian Table" width="1600" height="1100" loading="lazy"><div><strong>OBSIDIAN TABLE</strong><b>AED 8,900</b></div></article>
-    <article><img src="{{ 'collection-coffee.jpg' | asset_url }}" alt="NeroCasa Forma Coffee Table" width="1600" height="1100" loading="lazy"><div><strong>FORMA COFFEE TABLE</strong><b>AED 7,500</b></div></article>
-    <article><img src="{{ 'collection-side.webp' | asset_url }}" alt="NeroCasa Line Side Table" width="1600" height="1100" loading="lazy"><div><strong>LINE SIDE TABLE</strong><b>AED 4,800</b></div></article>
+<section class="ncs-custom-page">
+  <header class="ncs-page-hero" data-nc-reveal>
+    <span class="ncs-page-kicker">Custom</span>
+    <h1>Your vision, in <em>stone</em></h1>
+    <p>Choose from ready designs or submit your own dimensions and reference — every piece is made to order.</p>
+  </header>
+
+  <div class="ncs-custom-ready">
+    <div class="ncs-section-head ncs-section-head--compact" data-nc-reveal>
+      <span class="ncs-page-kicker">Ready designs</span>
+      <h2>Starting points</h2>
+    </div>
+    <div class="ncs-custom-grid">
+      <article data-nc-reveal>
+        <img src="{{ 'collection-decorative.svg' | asset_url }}" alt="Obsidian Table" width="1600" height="1100" loading="lazy">
+        <div><strong>Obsidian Table</strong><b>Enquire ↗</b></div>
+      </article>
+      <article data-nc-reveal>
+        <img src="{{ 'collection-coffee.svg' | asset_url }}" alt="Forma Coffee Table" width="1600" height="1100" loading="lazy">
+        <div><strong>Forma Coffee Table</strong><b>Enquire ↗</b></div>
+      </article>
+      <article data-nc-reveal>
+        <img src="{{ 'collection-side.svg' | asset_url }}" alt="Line Side Table" width="1600" height="1100" loading="lazy">
+        <div><strong>Line Side Table</strong><b>Enquire ↗</b></div>
+      </article>
+    </div>
   </div>
-</section>
 
-<section class="ncs-custom-form-wrap">
-  <h2 class="ncs-form-title">FOR YOUR OWN DESIGN</h2>
-  {% form 'contact', class: 'ncs-b2b-form', id: 'NerocasaCustomForm' %}
-    {% if form.posted_successfully? %}
-      <p class="ncs-form-success">Thank you — your custom request has been received.</p>
-    {% else %}
-      <input type="hidden" name="contact[tags]" value="custom-enquiry">
-      <div class="ncs-form-row">
-        <label>Name<input type="text" name="contact[name]" required></label>
-        <label>Email<input type="email" name="contact[email]" required></label>
-      </div>
-      <div class="ncs-form-row">
-        <label>Phone<input type="tel" name="contact[phone]"></label>
-        <label>Marble color<select name="contact[marble_color]"><option>Ibiza White</option><option>Beige Travertine</option><option>Armani Grey</option><option>RossoLeventy</option></select></label>
-      </div>
+  <div class="ncs-custom-form-wrap">
+    <div class="ncs-custom-form-panel" data-nc-reveal>
+      <span class="ncs-page-kicker">Bespoke</span>
+      <h2 class="ncs-form-title">Your own design</h2>
+      <p class="ncs-form-lead">Share your dimensions, marble preference and any reference images. We will respond with a quote and timeline.</p>
 
-      <div class="ncs-custom-upload" data-upload-zone>
-        <input id="NcCustomFile" type="file" accept="image/*" data-upload-input>
-        <strong>UPLOAD DESIGN</strong>
-        <span data-upload-name>Drag &amp; drop or click to choose an image.</span>
-      </div>
+      {% form 'contact', class: 'ncs-b2b-form', id: 'NerocasaCustomForm' %}
+        {% if form.posted_successfully? %}
+          <p class="ncs-form-success">Thank you — your custom request has been received.</p>
+        {% else %}
+          <input type="hidden" name="contact[tags]" value="custom-enquiry">
+          <div class="ncs-form-row">
+            <label>Name<input type="text" name="contact[name]" required autocomplete="name"></label>
+            <label>Email<input type="email" name="contact[email]" required autocomplete="email"></label>
+          </div>
+          <div class="ncs-form-row">
+            <label>Phone<input type="tel" name="contact[phone]" autocomplete="tel"></label>
+            <label>Marble
+              <select name="contact[marble_color]">
+                <option>Ibiza White</option>
+                <option>Beige Travertine</option>
+                <option>Armani Grey</option>
+                <option>Rosso Levanto</option>
+              </select>
+            </label>
+          </div>
 
-      <div class="ncs-custom-dimension-grid">
-        <label>HEIGHT<input type="number" min="1" step="0.1" name="contact[height_cm]" required placeholder="cm"></label>
-        <label>WIDTH<input type="number" min="1" step="0.1" name="contact[width_cm]" required placeholder="cm"></label>
-        <label>LENGTH<input type="number" min="1" step="0.1" name="contact[length_cm]" required placeholder="cm"></label>
-      </div>
-      <label class="ncs-form-full">Additional details<textarea name="contact[body]" rows="6" placeholder="Tell us about the design, marble, finish or anything else we should know."></textarea></label>
-      <button type="submit" class="ncs-btn">SUBMIT ENQUIRY ↗</button>
-    {% endif %}
-  {% endform %}
-  <p class="ncs-upload-note">Image selection is prepared in the theme UI; Shopify's native contact form does not transmit binary file attachments. Connect a file-upload form endpoint/app before publishing if actual image delivery is required.</p>
+          <div class="ncs-custom-upload" data-upload-zone>
+            <input id="NcCustomFile" type="file" accept="image/*" data-upload-input>
+            <strong>Upload reference</strong>
+            <span data-upload-name>Drag &amp; drop or click to choose an image.</span>
+          </div>
+
+          <div class="ncs-custom-dimension-grid">
+            <label>Height (cm)<input type="number" min="1" step="0.1" name="contact[height_cm]" required placeholder="cm"></label>
+            <label>Width (cm)<input type="number" min="1" step="0.1" name="contact[width_cm]" required placeholder="cm"></label>
+            <label>Length (cm)<input type="number" min="1" step="0.1" name="contact[length_cm]" required placeholder="cm"></label>
+          </div>
+          <label class="ncs-form-full">Additional details<textarea name="contact[body]" rows="6" placeholder="Tell us about the design, finish or anything else we should know."></textarea></label>
+          <button type="submit" class="ncs-btn">Submit Enquiry ↗</button>
+        {% endif %}
+      {% endform %}
+      <p class="ncs-upload-note">Reference images are collected in the theme UI. Connect a file-upload endpoint before publishing if binary delivery is required.</p>
+    </div>
+  </div>
 </section>
 
 <script>

@@ -1,0 +1,12 @@
+{%- comment -%}
+  Outputs a collection URL.
+  @param handle {String} Collection handle
+{%- endcomment -%}
+{%- liquid
+  assign coll = collections[handle]
+  if coll != blank
+    echo coll.url
+  else
+    echo routes.collections_url
+  endif
+-%}

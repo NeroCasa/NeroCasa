@@ -1,0 +1,14 @@
+{%- comment -%}
+  Outputs a URL for a content page.
+  Uses the Shopify page when it exists; otherwise falls back to ?view= alternate template.
+  @param handle {String} Page handle configured in theme settings or passed directly
+  @param view {String} Alternate template view (about, contact, b2b, etc.)
+{%- endcomment -%}
+{%- liquid
+  assign page_obj = pages[handle]
+  if page_obj != blank
+    echo page_obj.url
+  else
+    echo routes.root_url | append: '?view=' | append: view
+  endif
+-%}

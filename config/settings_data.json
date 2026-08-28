@@ -1,13 +1,26 @@
 {
   "current": {
     "brand_name": "NEROCASA",
-    "gold": "#C9A86A",
-    "background": "#070706",
-    "contact_email": "hello@nerocasa.example",
+    "brand_tagline": "Architectural marble furniture, made to order",
+    "background": "#080807",
+    "gold": "#A57B00",
+    "contact_email": "hello@nerocasa.com",
     "contact_phone": "",
-    "trade_email": "trade@nerocasa.example",
+    "whatsapp_url": "",
+    "trade_email": "trade@nerocasa.com",
     "instagram_url": "",
     "pinterest_url": "",
-    "whatsapp_url": ""
+    "collection_coffee": "coffee-tables",
+    "collection_side": "side-tables",
+    "collection_console": "console-tables",
+    "collection_dining": "dining-tables",
+    "collection_best_sellers": "best-sellers",
+    "page_about_handle": "why-nerocasa",
+    "page_contact_handle": "contact",
+    "page_custom_handle": "custom",
+    "page_b2b_handle": "b2b",
+    "page_terms_handle": "terms",
+    "page_refunds_handle": "refunds",
+    "page_track_handle": "track-order"
   }
 }

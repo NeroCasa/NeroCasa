@@ -1,14 +1,18 @@
 <header class="nc-header" data-header>
-  <a class="nc-logo-brand" href="{{ routes.root_url }}" aria-label="Nerocasa home">
-    <img src="{{ 'nerocasa-logo-user.png' | asset_url }}" alt="NEROCASA" width="196" height="70">
+  <a class="nc-logo-brand" href="{{ routes.root_url }}" aria-label="{{ settings.brand_name | default: 'Nerocasa' }} home">
+    {% if settings.logo != blank %}
+      <img src="{{ settings.logo | image_url: width: 300 }}" alt="{{ settings.brand_name | default: 'NEROCASA' }}" width="196" height="70" loading="eager">
+    {% else %}
+      <span class="nc-logo-text">NERO<span class="nc-gold">CASA</span></span>
+    {% endif %}
   </a>
 
   <nav class="nc-nav" aria-label="Primary navigation">
     <a href="{{ routes.collections_url }}">Collections</a>
-    <a href="{{ routes.root_url | append: '?view=custom' }}">Custom</a>
-    <a href="{{ routes.root_url | append: '?view=b2b' }}">B2B</a>
-    <a href="{{ routes.root_url | append: '?view=about' }}">Why Nerocasa</a>
-    <a href="{{ routes.root_url | append: '?view=contact' }}">Contact</a>
+    <a href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}">Custom</a>
+    <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B</a>
+    <a href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}">Why Nerocasa</a>
+    <a href="{% render 'nc-page-url', handle: settings.page_contact_handle, view: 'contact' %}">Contact</a>
   </nav>
 
   <div class="nc-actions">
@@ -24,16 +28,16 @@
 
 <div class="nc-mobile-nav" aria-label="Mobile navigation">
   <a href="{{ routes.collections_url }}">Collections</a>
-  <a href="{{ routes.root_url | append: '?view=custom' }}">Custom</a>
-  <a href="{{ routes.root_url | append: '?view=b2b' }}">B2B</a>
-  <a href="{{ routes.root_url | append: '?view=about' }}">Why Nerocasa</a>
-  <a href="{{ routes.root_url | append: '?view=contact' }}">Contact</a>
+  <a href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}">Custom</a>
+  <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B</a>
+  <a href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}">Why</a>
+  <a href="{% render 'nc-page-url', handle: settings.page_contact_handle, view: 'contact' %}">Contact</a>
   <button type="button" class="nc-icon-link" data-search-open aria-label="Search">
     <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5L21 21"></path></svg>
   </button>
   <a class="nc-icon-link" href="{{ routes.cart_url }}" aria-label="Cart">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h2l2.1 10.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 1.9-1.4L21 8H6"></path><circle cx="10" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle></svg>
-    <span data-cart-count>{{ cart.item_count }}</span>
+    {% if cart.item_count > 0 %}<span class="nc-cart-count" data-cart-count>{{ cart.item_count }}</span>{% endif %}
   </a>
 </div>
 

@@ -1,27 +1,41 @@
 <section class="ncs-search-page">
-<form action="{{ routes.search_url }}" method="get" role="search" class="ncs-search-page-form">
+  <header class="ncs-search-hero" data-nc-reveal>
+    <span class="ncs-page-kicker">Search</span>
+    {% if search.performed %}
+      <h1>{{ search.results_count }} result{% if search.results_count != 1 %}s{% endif %}</h1>
+      <p>For “{{ search.terms }}”</p>
+    {% else %}
+      <h1>Find your <em>object</em></h1>
+      <p>Search by product name, collection, or product number.</p>
+    {% endif %}
+  </header>
+
+  <form action="{{ routes.search_url }}" method="get" role="search" class="ncs-search-page-form" data-nc-reveal>
     <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products, collections…" aria-label="Search">
     <input type="hidden" name="type" value="product">
-    <button type="submit">SEARCH ↗</button>
+    <button type="submit" class="ncs-btn">Search ↗</button>
   </form>
 
   {% if search.performed %}
-    <h1>{{ search.results_count }} result{% if search.results_count != 1 %}s{% endif %} for “{{ search.terms }}”</h1>
     {% if search.results_count == 0 %}
-      <p class="ncs-empty">No results found. Try a product name, collection, or product number.</p>
+      <p class="ncs-empty ncs-search-empty">No results found. Try a product name, collection, or product number.</p>
     {% else %}
       {% paginate search.results by 24 %}
-      <div class="ncs-grid-products">
+      <div class="ncs-grid-products ncs-search-results">
         {% for item in search.results %}
           {% if item.object_type == 'product' %}
-            <a class="ncs-card" href="{{ item.url }}">
+            <a class="ncs-card" href="{{ item.url }}" data-nc-reveal>
               <div class="ncs-card-media">
-                {% if item.featured_image %}<img src="{{ item.featured_image | image_url: width: 1400 }}" alt="{{ item.title | escape }}" loading="lazy" width="700" height="700">{% else %}<img src="{{ 'hero-marble.webp' | asset_url }}" alt="{{ item.title | escape }}" loading="lazy">{% endif %}
+                {% if item.featured_image %}
+                  <img src="{{ item.featured_image | image_url: width: 1400 }}" alt="{{ item.title | escape }}" loading="lazy" width="700" height="875">
+                {% else %}
+                  <img src="{{ 'hero-marble.svg' | asset_url }}" alt="{{ item.title | escape }}" loading="lazy">
+                {% endif %}
               </div>
               <div class="ncs-card-info"><span>{{ item.title }}</span><b>{{ item.price | money }}</b></div>
             </a>
           {% elsif item.object_type == 'page' or item.object_type == 'article' %}
-            <a class="ncs-card ncs-card-page" href="{{ item.url }}">
+            <a class="ncs-card ncs-card-page" href="{{ item.url }}" data-nc-reveal>
               <div class="ncs-card-info"><span>{{ item.title }}</span><b>{{ item.object_type | capitalize }}</b></div>
             </a>
           {% endif %}
@@ -36,9 +50,6 @@
       {% endif %}
       {% endpaginate %}
     {% endif %}
-  {% else %}
-    <h1>Search Nerocasa.</h1>
-    <p class="ncs-empty">Search by product name, collection, or product number.</p>
   {% endif %}
 </section>
 {% schema %}{"name":"Search","presets":[{"name":"Search"}]}{% endschema %}

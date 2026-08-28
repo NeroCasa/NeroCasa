@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080807">
-  <meta name="description" content="NeroCasa — architectural marble furniture and objects, made to order.">
-  <title>{% if page_title %}{{ page_title }} — {{ shop.name }}{% else %}NEROCASA{% endif %}</title>
+  <meta name="theme-color" content="{{ settings.background | default: '#080807' }}">
+  <meta name="description" content="{{ settings.brand_name | default: 'NEROCASA' }} — {{ settings.brand_tagline | default: 'Architectural marble furniture and objects, made to order.' | escape }}">
+  <title>{% if page_title %}{{ page_title }} — {{ shop.name }}{% else %}{{ settings.brand_name | default: 'NEROCASA' }}{% endif %}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -14,6 +14,12 @@
   {{ 'nerocasa-v20.css' | asset_url | stylesheet_tag }}
   {{ 'nerocasa-additions.css' | asset_url | stylesheet_tag }}
   {{ 'nerocasa-luxury.css' | asset_url | stylesheet_tag }}
+  <style>
+    :root {
+      --nc-bg: {{ settings.background | default: '#080807' }};
+      --nc-gold: {{ settings.gold | default: '#A57B00' }};
+    }
+  </style>
 </head>
 <body>
   {% section 'nc-header' %}

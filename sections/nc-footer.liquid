@@ -1,29 +1,38 @@
 <footer class="nc-footer">
   <div class="nc-footer-top">
-      <nav class="nc-footer-nav" aria-label="Footer navigation">
+    <div class="nc-footer-brand">
+      <a href="{{ routes.root_url }}" class="nc-footer-logo">NERO<span class="nc-gold">CASA</span></a>
+      <p>{{ settings.brand_tagline | default: 'Architectural marble furniture and objects, made to order.' }}</p>
+      {% if settings.instagram_url != blank or settings.pinterest_url != blank %}
+        <div class="nc-footer-social">
+          {% if settings.instagram_url != blank %}<a href="{{ settings.instagram_url }}" rel="noopener" target="_blank">Instagram ↗</a>{% endif %}
+          {% if settings.pinterest_url != blank %}<a href="{{ settings.pinterest_url }}" rel="noopener" target="_blank">Pinterest ↗</a>{% endif %}
+        </div>
+      {% endif %}
+    </div>
+    <nav class="nc-footer-nav" aria-label="Footer navigation">
       <div>
         <span>Explore</span>
         <a href="{{ routes.collections_url }}">Collections</a>
-        <a href="{{ routes.root_url | append: '?view=custom' }}">Custom</a>
-        <a href="{{ routes.root_url | append: '?view=b2b' }}">B2B</a>
+        <a href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}">Custom</a>
+        <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B</a>
       </div>
       <div>
         <span>Studio</span>
-        <a href="{{ routes.root_url | append: '?view=about' }}">Why Nerocasa</a>
-        <a href="{{ routes.root_url | append: '?view=contact' }}">Contact</a>
+        <a href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}">Why Nerocasa</a>
+        <a href="{% render 'nc-page-url', handle: settings.page_contact_handle, view: 'contact' %}">Contact</a>
         <a href="{{ routes.search_url }}">Search</a>
-        <a href="{{ routes.cart_url }}">Cart</a>
       </div>
       <div>
-        <span>Contact</span>
-        <a href="{{ routes.root_url | append: '?view=contact' }}">WhatsApp</a>
-        <a href="{{ routes.root_url | append: '?view=contact' }}">Email</a>
-        <a href="{{ routes.root_url | append: '?view=contact' }}">Call</a>
+        <span>Legal</span>
+        <a href="{% render 'nc-page-url', handle: settings.page_terms_handle, view: 'terms' %}">Terms</a>
+        <a href="{% render 'nc-page-url', handle: settings.page_refunds_handle, view: 'refunds' %}">Refunds</a>
+        <a href="{% render 'nc-page-url', handle: settings.page_track_handle, view: 'track' %}">Track Order</a>
       </div>
     </nav>
   </div>
-<div class="nc-footer-bottom">
-    <span>© {{ 'now' | date: '%Y' }} NEROCASA</span>
+  <div class="nc-footer-bottom">
+    <span>© {{ 'now' | date: '%Y' }} {{ settings.brand_name | default: 'NEROCASA' }}</span>
     <a href="{{ routes.privacy_policy_url }}">Privacy</a>
     <a href="{{ routes.terms_of_service_url }}">Terms</a>
   </div>

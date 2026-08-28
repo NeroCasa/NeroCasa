@@ -1,1 +1,191 @@
-[]
+[
+  {
+    "name": "theme_info",
+    "theme_name": "NeroCasa",
+    "theme_version": "2.0.0",
+    "theme_author": "NeroCasa",
+    "theme_documentation_url": "https://github.com/NeroCasa/NeroCasa",
+    "theme_support_url": "https://github.com/NeroCasa/NeroCasa/issues"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "text",
+        "id": "brand_name",
+        "label": "Brand name",
+        "default": "NEROCASA"
+      },
+      {
+        "type": "textarea",
+        "id": "brand_tagline",
+        "label": "Tagline",
+        "default": "Architectural marble furniture, made to order"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image",
+        "info": "Optional. Leave empty to use the text wordmark."
+      },
+      {
+        "type": "image_picker",
+        "id": "hero_image",
+        "label": "Home hero image",
+        "info": "Optional. Leave empty to use the default marble placeholder."
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background",
+        "default": "#080807"
+      },
+      {
+        "type": "color",
+        "id": "gold",
+        "label": "Accent gold",
+        "default": "#A57B00"
+      }
+    ]
+  },
+  {
+    "name": "Contact",
+    "settings": [
+      {
+        "type": "text",
+        "id": "contact_email",
+        "label": "Email",
+        "default": "hello@nerocasa.com"
+      },
+      {
+        "type": "text",
+        "id": "contact_phone",
+        "label": "Phone",
+        "info": "Include country code, e.g. +971 50 000 0000"
+      },
+      {
+        "type": "url",
+        "id": "whatsapp_url",
+        "label": "WhatsApp link",
+        "info": "Full wa.me or WhatsApp business URL"
+      },
+      {
+        "type": "text",
+        "id": "trade_email",
+        "label": "Trade / B2B email",
+        "default": "trade@nerocasa.com"
+      }
+    ]
+  },
+  {
+    "name": "Social",
+    "settings": [
+      {
+        "type": "url",
+        "id": "instagram_url",
+        "label": "Instagram"
+      },
+      {
+        "type": "url",
+        "id": "pinterest_url",
+        "label": "Pinterest"
+      }
+    ]
+  },
+  {
+    "name": "Collections",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Enter the URL handle for each collection (from Products → Collections). The theme falls back to /collections if a handle is missing."
+      },
+      {
+        "type": "text",
+        "id": "collection_coffee",
+        "label": "Coffee tables handle",
+        "default": "coffee-tables"
+      },
+      {
+        "type": "text",
+        "id": "collection_side",
+        "label": "Side tables handle",
+        "default": "side-tables"
+      },
+      {
+        "type": "text",
+        "id": "collection_console",
+        "label": "Console tables handle",
+        "default": "console-tables"
+      },
+      {
+        "type": "text",
+        "id": "collection_dining",
+        "label": "Dining tables handle",
+        "default": "dining-tables"
+      },
+      {
+        "type": "text",
+        "id": "collection_best_sellers",
+        "label": "Best sellers handle",
+        "default": "best-sellers",
+        "info": "Used on the home page product rail. Falls back to All products."
+      }
+    ]
+  },
+  {
+    "name": "Pages",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Create Shopify pages with these handles (Online Store → Pages) and assign the matching theme template. Links update automatically once pages exist."
+      },
+      {
+        "type": "text",
+        "id": "page_about_handle",
+        "label": "Why Nerocasa page handle",
+        "default": "why-nerocasa"
+      },
+      {
+        "type": "text",
+        "id": "page_contact_handle",
+        "label": "Contact page handle",
+        "default": "contact"
+      },
+      {
+        "type": "text",
+        "id": "page_custom_handle",
+        "label": "Custom page handle",
+        "default": "custom"
+      },
+      {
+        "type": "text",
+        "id": "page_b2b_handle",
+        "label": "B2B page handle",
+        "default": "b2b"
+      },
+      {
+        "type": "text",
+        "id": "page_terms_handle",
+        "label": "Terms page handle",
+        "default": "terms"
+      },
+      {
+        "type": "text",
+        "id": "page_refunds_handle",
+        "label": "Refunds page handle",
+        "default": "refunds"
+      },
+      {
+        "type": "text",
+        "id": "page_track_handle",
+        "label": "Track order page handle",
+        "default": "track-order"
+      }
+    ]
+  }
+]

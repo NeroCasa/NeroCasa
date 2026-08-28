@@ -1,11 +1,15 @@
 <section class="ncs-home-hero">
   <div class="ncs-hero-media">
-    <img src="{{ 'hero-marble.webp' | asset_url }}" alt="NeroCasa marble furniture" width="2400" height="1600" fetchpriority="high">
+    {% if settings.hero_image != blank %}
+      <img src="{{ settings.hero_image | image_url: width: 2400 }}" alt="{{ settings.brand_name | default: 'NeroCasa' }} marble furniture" width="2400" height="1600" fetchpriority="high">
+    {% else %}
+      <img src="{{ 'hero-marble.svg' | asset_url }}" alt="{{ settings.brand_name | default: 'NeroCasa' }} marble furniture" width="2400" height="1600" fetchpriority="high">
+    {% endif %}
     <div class="ncs-hero-overlay"></div>
   </div>
   <div class="ncs-hero-content">
     <h1><span>NE<span>RO</span></span><span class="nc-gold">CASA</span></h1>
-    <p class="ncs-hero-tagline">Architectural marble furniture, made to order</p>
+    <p class="ncs-hero-tagline">{{ settings.brand_tagline | default: 'Architectural marble furniture, made to order' }}</p>
   </div>
   <div class="ncs-hero-scroll" aria-hidden="true">Scroll</div>
 </section>
@@ -15,26 +19,32 @@
 </section>
 
 <section class="ncs-collections">
-  <div class="ncs-section-head" data-nc-reveal><h2>Collections</h2></div>
+  <div class="ncs-section-head" data-nc-reveal>
+    <span class="ncs-page-kicker">Shop</span>
+    <h2>Collections</h2>
+  </div>
   <div class="ncs-collection-grid">
-    <a href="{{ collections['coffee-tables'].url | default: routes.collections_url }}" data-nc-reveal>
-      <img src="{{ 'collection-coffee.jpg' | asset_url }}" alt="Coffee Tables" width="1600" height="1100" loading="lazy">
-      <div><strong>Coffee Tables</strong></div>
+    <a href="{% render 'nc-collection-url', handle: settings.collection_coffee %}" data-nc-reveal>
+      <img src="{{ 'collection-coffee.svg' | asset_url }}" alt="Coffee Tables" width="1600" height="1100" loading="lazy">
+      <div><small>Coffee Tables</small><strong>Coffee Tables</strong></div>
     </a>
-    <a href="{{ collections['side-tables'].url | default: routes.collections_url }}" data-nc-reveal>
-      <img src="{{ 'collection-side.webp' | asset_url }}" alt="Side Tables" width="1600" height="1100" loading="lazy">
-      <div><strong>Side Tables</strong></div>
+    <a href="{% render 'nc-collection-url', handle: settings.collection_side %}" data-nc-reveal>
+      <img src="{{ 'collection-side.svg' | asset_url }}" alt="Side Tables" width="1600" height="1100" loading="lazy">
+      <div><small>Side Tables</small><strong>Side Tables</strong></div>
     </a>
-    <a href="{{ collections['console-tables'].url | default: routes.collections_url }}" data-nc-reveal>
-      <img src="{{ 'collection-console.webp' | asset_url }}" alt="Console Tables" width="1600" height="1100" loading="lazy">
-      <div><strong>Console Tables</strong></div>
+    <a href="{% render 'nc-collection-url', handle: settings.collection_console %}" data-nc-reveal>
+      <img src="{{ 'collection-console.svg' | asset_url }}" alt="Console Tables" width="1600" height="1100" loading="lazy">
+      <div><small>Console Tables</small><strong>Console Tables</strong></div>
     </a>
   </div>
 </section>
 
 <section class="ncs-best">
-  <div class="ncs-section-head" data-nc-reveal><h2>Most Sellers</h2></div>
-  {% assign best_collection = collections['best-sellers'] %}
+  <div class="ncs-section-head" data-nc-reveal>
+    <span class="ncs-page-kicker">Selected</span>
+    <h2>Best Sellers</h2>
+  </div>
+  {% assign best_collection = collections[settings.collection_best_sellers] %}
   {% if best_collection == blank or best_collection.products_count == 0 %}{% assign best_collection = collections['all'] %}{% endif %}
   <div class="ncs-rail-wrap" data-nc-carousel-wrap>
     <div class="ncs-product-rail" data-nc-carousel tabindex="0" role="region" aria-label="Selected Nerocasa objects">
@@ -44,7 +54,7 @@
             {% if product.featured_image %}
               <img src="{{ product.featured_image | image_url: width: 1200 }}" alt="{{ product.title | escape }}" width="900" height="1125" loading="lazy">
             {% else %}
-              <img src="{{ 'hero-marble.webp' | asset_url }}" alt="{{ product.title | escape }}" width="900" height="1125" loading="lazy">
+              <img src="{{ 'hero-marble.svg' | asset_url }}" alt="{{ product.title | escape }}" width="900" height="1125" loading="lazy">
             {% endif %}
           </div>
           <div class="ncs-best-meta"><span>{{ product.title }}</span><b>{{ product.price | money }}</b></div>
@@ -61,14 +71,30 @@
   </div>
 </section>
 
+<section class="ncs-materials">
+  <div class="ncs-section-head" data-nc-reveal>
+    <span class="ncs-page-kicker">Materials</span>
+    <h2>Selected stones</h2>
+  </div>
+  <div class="ncs-material-grid" data-nc-reveal>
+    <div><strong>Ibiza White</strong><span>01</span></div>
+    <div><strong>Beige Travertine</strong><span>02</span></div>
+    <div><strong>Armani Grey</strong><span>03</span></div>
+    <div><strong>Rosso Levanto</strong><span>04</span></div>
+  </div>
+</section>
+
 <section class="ncs-bespoke-cta" data-nc-reveal>
   <span class="ncs-page-kicker">Bespoke</span>
   <h2>Your vision,<br>in stone</h2>
-  <a class="ncs-btn" href="{{ routes.root_url | append: '?view=custom' }}">Start a Custom Piece ↗</a>
+  <a class="ncs-btn" href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}">Start a Custom Piece ↗</a>
 </section>
 
 <section class="ncs-mail ncs-cta">
-  <div class="ncs-cta-title" data-nc-reveal><h2>Stay Close</h2></div>
+  <div class="ncs-cta-title" data-nc-reveal>
+    <span class="ncs-page-kicker">Newsletter</span>
+    <h2>Stay close</h2>
+  </div>
   {% form 'customer', class: 'ncs-mail-form' %}
     {% if form.posted_successfully? %}
       <p class="ncs-form-success">Thank you — you're on the list.</p>

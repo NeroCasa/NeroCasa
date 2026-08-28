@@ -1,7 +1,7 @@
 <section class="ncs-product-page" data-ncs-product>
   <div class="ncs-product-gallery">
     <div class="ncs-main-product-image">
-      <img src="{% if product.featured_image %}{{ product.featured_image | image_url: width: 1800 }}{% else %}{{ 'hero-marble.webp' | asset_url }}{% endif %}"
+      <img src="{% if product.featured_image %}{{ product.featured_image | image_url: width: 1800 }}{% else %}{{ 'hero-marble.svg' | asset_url }}{% endif %}"
            alt="{{ product.featured_image.alt | default: product.title | escape }}"
            data-ncs-main width="1800" height="1900" loading="eager">
     </div>
@@ -17,8 +17,9 @@
   </div>
 
   <div class="ncs-product-config">
-<h1>{{ product.title }}</h1>
-    <div class="ncs-availability">{% if product.available %}AVAILABLE TO ORDER{% else %}CURRENTLY UNAVAILABLE{% endif %}</div>
+    <span class="ncs-product-kicker">Nerocasa Object</span>
+    <h1>{{ product.title }}</h1>
+    <div class="ncs-availability">{% if product.available %}Available to order{% else %}Currently unavailable{% endif %}</div>
 
     <div class="ncs-price">
       <span data-ncs-price>{{ product.selected_or_first_available_variant.price | money }}</span>
@@ -112,7 +113,10 @@
 </section>
 
 <section class="ncs-related">
-  <div class="ncs-section-head"><h2>MORE OBJECTS</h2></div>
+  <div class="ncs-section-head ncs-section-head--compact" data-nc-reveal>
+    <span class="ncs-page-kicker">Related</span>
+    <h2>More objects</h2>
+  </div>
   <div class="ncs-related-wrap" data-nc-carousel-wrap>
     <button class="ncs-rail-arrow" data-nc-prev type="button" aria-label="Previous">←</button>
     <div class="ncs-related-rail" data-nc-carousel tabindex="0" role="region" aria-label="Related Nerocasa objects">
@@ -120,7 +124,7 @@
       {% for rp in collections.all.products %}
         {% unless rp.id == product.id %}
           <a href="{{ rp.url }}">
-            <img src="{% if rp.featured_image %}{{ rp.featured_image | image_url: width: 1000 }}{% else %}{{ 'hero-marble.webp' | asset_url }}{% endif %}" alt="{{ rp.title | escape }}" loading="lazy" width="500" height="540">
+            <img src="{% if rp.featured_image %}{{ rp.featured_image | image_url: width: 1000 }}{% else %}{{ 'hero-marble.svg' | asset_url }}{% endif %}" alt="{{ rp.title | escape }}" loading="lazy" width="500" height="540">
             <span>{{ rp.title }}</span><b>{{ rp.price | money }}</b>
           </a>
           {% assign related_count = related_count | plus: 1 %}
