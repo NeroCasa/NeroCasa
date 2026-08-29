@@ -1,0 +1,28 @@
+Handle,Title,Body (HTML),Vendor,Type,Tags,Published,Option1 Name,Option1 Value,Variant Price,Variant Requires Shipping,Variant Taxable,Gift Card,Status,Collection
+cft-1,Coffee Table 1,<p>Architectural marble coffee table, made to order.</p>,NeroCasa,Coffee Table,coffee,TRUE,Marble,Ibiza White,8500,TRUE,TRUE,FALSE,active,Coffee Tables
+cft-1,Coffee Table 1,,,,,,Marble,Armani Grey,8800,TRUE,TRUE,FALSE,active,Coffee Tables
+cft-1,Coffee Table 1,,,,,,Marble,Travertine,8200,TRUE,TRUE,FALSE,active,Coffee Tables
+cft-2,Coffee Table 2,<p>Architectural marble coffee table, made to order.</p>,NeroCasa,Coffee Table,coffee,TRUE,Marble,Ibiza White,9200,TRUE,TRUE,FALSE,active,Coffee Tables
+cft-2,Coffee Table 2,,,,,,Marble,Armani Grey,9500,TRUE,TRUE,FALSE,active,Coffee Tables
+cft-2,Coffee Table 2,,,,,,Marble,Travertine,8900,TRUE,TRUE,FALSE,active,Coffee Tables
+cft-3,Coffee Table 3,<p>Architectural marble coffee table, made to order.</p>,NeroCasa,Coffee Table,coffee,TRUE,Marble,Ibiza White,9800,TRUE,TRUE,FALSE,active,Coffee Tables
+cft-3,Coffee Table 3,,,,,,Marble,Travertine,9400,TRUE,TRUE,FALSE,active,Coffee Tables
+cft-3,Coffee Table 3,,,,,,Marble,Rosso Levanto,11200,TRUE,TRUE,FALSE,active,Coffee Tables
+cs-1,Console Table 1,<p>Architectural marble console table, made to order.</p>,NeroCasa,Console Table,console,TRUE,Marble,Ibiza White,7200,TRUE,TRUE,FALSE,active,Console Tables
+cs-1,Console Table 1,,,,,,Marble,Armani Grey,7500,TRUE,TRUE,FALSE,active,Console Tables
+cs-1,Console Table 1,,,,,,Marble,Travertine,6900,TRUE,TRUE,FALSE,active,Console Tables
+cs-2,Console Table 2,<p>Architectural marble console table, made to order.</p>,NeroCasa,Console Table,console,TRUE,Marble,Ibiza White,7800,TRUE,TRUE,FALSE,active,Console Tables
+cs-2,Console Table 2,,,,,,Marble,Armani Grey,8100,TRUE,TRUE,FALSE,active,Console Tables
+cs-2,Console Table 2,,,,,,Marble,Travertine,7600,TRUE,TRUE,FALSE,active,Console Tables
+cs-3,Console Table 3,<p>Architectural marble console table, made to order.</p>,NeroCasa,Console Table,console,TRUE,Marble,Ibiza White,8400,TRUE,TRUE,FALSE,active,Console Tables
+cs-3,Console Table 3,,,,,,Marble,Armani Grey,8700,TRUE,TRUE,FALSE,active,Console Tables
+cs-3,Console Table 3,,,,,,Marble,Travertine,8200,TRUE,TRUE,FALSE,active,Console Tables
+sd-1,Side Table 1,<p>Architectural marble side table, made to order.</p>,NeroCasa,Side Table,side,TRUE,Marble,Ibiza White,4200,TRUE,TRUE,FALSE,active,Side Tables
+sd-1,Side Table 1,,,,,,Marble,Armani Grey,4500,TRUE,TRUE,FALSE,active,Side Tables
+sd-1,Side Table 1,,,,,,Marble,Travertine,3900,TRUE,TRUE,FALSE,active,Side Tables
+sd-2,Side Table 2,<p>Architectural marble side table, made to order.</p>,NeroCasa,Side Table,side,TRUE,Marble,Ibiza White,4600,TRUE,TRUE,FALSE,active,Side Tables
+sd-2,Side Table 2,,,,,,Marble,Armani Grey,4900,TRUE,TRUE,FALSE,active,Side Tables
+sd-2,Side Table 2,,,,,,Marble,Travertine,4300,TRUE,TRUE,FALSE,active,Side Tables
+sd-3,Side Table 3,<p>Architectural marble side table, made to order.</p>,NeroCasa,Side Table,side,TRUE,Marble,Ibiza White,5100,TRUE,TRUE,FALSE,active,Side Tables
+sd-3,Side Table 3,,,,,,Marble,Armani Grey,5400,TRUE,TRUE,FALSE,active,Side Tables
+sd-3,Side Table 3,,,,,,Marble,Travertine,4800,TRUE,TRUE,FALSE,active,Side Tables
