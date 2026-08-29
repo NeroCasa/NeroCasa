@@ -43,7 +43,7 @@
         Shown in {{ shown_marble }}
       </p>
     </div>
-    {% if product.images.size > 1 %}
+    {% if product.images.size > 1 and is_catalog_product == false %}
       <div class="ncs-thumbs">
         {% for image in product.images %}
           <button type="button" data-ncs-thumb="{{ image | image_url: width: 1800 }}" aria-label="Show image {{ forloop.index }}">
@@ -248,9 +248,9 @@
     return normalizeColor(color);
   }
   function resolveImage(v){
-    if(v&&v.image)return v.image;
     var color=getSelectedColor();
     if(catalog&&catalog.images&&color&&catalog.images[color])return catalog.images[color];
+    if(v&&v.image)return v.image;
     return null;
   }
   function setImage(src){
