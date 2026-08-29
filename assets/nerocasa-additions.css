@@ -108,7 +108,7 @@ img{max-width:100%}
 .ncs-mail-form button,.nc-footer-form button{background:none;border:0;padding:14px 0 14px 20px;color:var(--nc-gold);cursor:pointer}
 
 .ncs-collections-page,.ncs-collection-page{padding:14vw 6vw 9vw;background:var(--nc-bg)}
-.ncs-collections-page header span,.ncs-collection-header>span{font-size:8px;color:var(--nc-gold);letter-spacing:.22em}
+.ncs-collections-page header .ncs-page-kicker,.ncs-collection-header .ncs-page-kicker{font-size:8px;color:var(--nc-gold);letter-spacing:.22em}
 .ncs-collections-page h1,.ncs-collection-header h1{font-family:var(--nc-display);font-weight:400;font-size:clamp(70px,11vw,160px);line-height:.76;letter-spacing:-.055em;margin:22px 0 7vw}
 .ncs-collection-header p{max-width:620px;color:var(--nc-muted);line-height:1.7;font-size:13px;margin:-5vw 0 6vw}
 .ncs-collections-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}

@@ -2447,6 +2447,7 @@ body {
 .ncs-about-hero-copy h1 .nc-gold,
 .ncs-b2b-header h1 .nc-gold,
 .ncs-info-page h1 .nc-gold,
+.ncs-search-page h1 .nc-gold,
 .ncs-product-page h1 .nc-gold,
 .ncs-home-story h2 .nc-gold,
 .ncs-home-value h2 .nc-gold,
@@ -2457,6 +2458,11 @@ body {
 .ncs-form-title .nc-gold,
 .ncs-about-manifesto-lead .nc-gold {
   color: var(--nc-gold);
+  font-size: inherit;
+  letter-spacing: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: inherit;
 }
 
 .ncs-b2b-detail {

@@ -42,8 +42,7 @@
 <div class="nc-search-overlay" data-search-overlay hidden>
   <div class="nc-search-panel">
     <form action="{{ routes.search_url }}" method="get" role="search" class="nc-search-form">
-      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products" aria-label="Search" autocomplete="off" data-search-input>
-      <input type="hidden" name="type" value="product">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products" aria-label="Search" autocomplete="off" data-search-input required minlength="1">
       <button type="submit" aria-label="Submit search">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5L21 21"></path></svg>
       </button>
@@ -57,7 +56,7 @@
   var buttons=document.querySelectorAll('[data-search-open]');
   var overlay=document.querySelector('[data-search-overlay]');
   var close=document.querySelector('[data-search-close]');
-  var input=document.querySelector('[data-search-input]');
+  var input=overlay.querySelector('[data-search-input]');
   if(!overlay)return;
   function openSearch(){overlay.hidden=false;document.body.classList.add('nc-search-open');buttons.forEach(function(b){b.setAttribute('aria-expanded','true')});if(input)setTimeout(function(){input.focus()},40);}
   function closeSearch(){overlay.hidden=true;document.body.classList.remove('nc-search-open');buttons.forEach(function(b){b.setAttribute('aria-expanded','false')});}
