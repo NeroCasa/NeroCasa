@@ -52,7 +52,7 @@ img{max-width:100%}
 .ncs-collection-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
 .ncs-collection-grid>a{position:relative;overflow:hidden;min-height:570px;grid-column:span 4}
 .ncs-collection-grid>a:nth-child(1),.ncs-collection-grid>a:nth-child(2){grid-column:span 6}
-.ncs-collection-grid img,.ncs-collections-list img{width:100%;height:100%;object-fit:cover;filter:brightness(.76) saturate(.72);transition:transform .8s cubic-bezier(.2,.65,.2,1),filter .5s}
+.ncs-collection-grid img,.ncs-collections-list img{width:100%;height:100%;object-fit:contain;filter:brightness(.76) saturate(.72);transition:transform .8s cubic-bezier(.2,.65,.2,1),filter .5s}
 .ncs-collection-grid>a:hover img,.ncs-collections-list>a:hover img{transform:scale(1.025);filter:brightness(.9) saturate(.82)}
 .ncs-collection-grid>a:after,.ncs-collections-list>a:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.8),transparent 60%)}
 .ncs-collection-grid div{position:absolute;z-index:2;left:25px;bottom:24px}
@@ -63,7 +63,7 @@ img{max-width:100%}
 .ncs-product-rail::-webkit-scrollbar,.ncs-related-rail::-webkit-scrollbar{display:none}
 .ncs-best-card{flex:0 0 calc((100% - 36px)/3);position:relative;overflow:hidden;scroll-snap-align:start;background:#11110f}
 .ncs-best-image{aspect-ratio:4/5;overflow:hidden}
-.ncs-best-image img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.83) saturate(.75);transition:transform .7s,filter .5s}
+.ncs-best-image img{width:100%;height:100%;object-fit:contain;display:block;filter:brightness(.83) saturate(.75);transition:transform .7s,filter .5s}
 .ncs-best-card:hover img{transform:scale(1.02);filter:brightness(.93) saturate(.88)}
 .ncs-best-meta{position:absolute;bottom:0;left:0;right:0;padding:90px 22px 20px;display:flex;justify-content:space-between;align-items:flex-end;gap:15px;background:linear-gradient(transparent,rgba(5,5,4,.88))}
 .ncs-best-meta span{font-size:10px;letter-spacing:.15em;text-transform:uppercase}
@@ -109,7 +109,7 @@ img{max-width:100%}
 .ncs-grid-products{display:grid;grid-template-columns:repeat(3,1fr);gap:35px 14px}
 .ncs-card{display:block}
 .ncs-card-media{overflow:hidden;background:#111}
-.ncs-card-media img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;filter:brightness(.8) saturate(.72);transition:transform .65s,filter .45s}
+.ncs-card-media img{width:100%;aspect-ratio:4/5;object-fit:contain;display:block;filter:brightness(.8) saturate(.72);transition:transform .65s,filter .45s}
 .ncs-card:hover .ncs-card-media img{transform:scale(1.02);filter:brightness(.9) saturate(.82)}
 .ncs-card-info{display:flex;justify-content:space-between;gap:20px;padding:15px 0;border-bottom:1px solid var(--nc-line)}
 .ncs-card-info span{font-size:9px;letter-spacing:.15em;text-transform:uppercase}
@@ -118,8 +118,8 @@ img{max-width:100%}
 
 .ncs-product-page{display:grid;grid-template-columns:1.12fr .88fr;gap:7vw;padding:9vw 6vw 7vw;background:var(--nc-bg)}
 .ncs-product-gallery{position:sticky;top:30px;height:max-content}
-.ncs-main-product-image{background:#111;overflow:hidden}
-.ncs-main-product-image img{width:100%;aspect-ratio:4/4.5;object-fit:cover;display:block;transition:opacity .2s}
+.ncs-main-product-image{background:#111;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:clamp(24px,4vw,48px);min-height:clamp(420px,52vw,760px)}
+.ncs-main-product-image img{width:auto;height:auto;max-width:100%;max-height:min(72vh,880px);aspect-ratio:auto;object-fit:contain;display:block;transition:opacity .2s}
 .ncs-thumbs{display:flex;gap:8px;margin-top:8px;overflow-x:auto}
 .ncs-thumbs button{padding:0;border:1px solid transparent;background:#111;cursor:pointer}
 .ncs-thumbs img{width:75px;height:75px;object-fit:cover}
@@ -171,7 +171,7 @@ img{max-width:100%}
 .ncs-related-rail{flex:1}
 .ncs-related-wrap{display:flex;gap:12px;align-items:center}
 .ncs-related-rail>a{flex:0 0 27vw;scroll-snap-align:start}
-.ncs-related-rail img{width:100%;aspect-ratio:4/4.3;object-fit:cover;filter:brightness(.78) saturate(.72)}
+.ncs-related-rail img{width:100%;aspect-ratio:4/4.3;object-fit:contain;filter:brightness(.78) saturate(.72)}
 .ncs-related-rail span,.ncs-related-rail b{display:block}
 .ncs-related-rail span{font-size:9px;letter-spacing:.14em;margin-top:12px}
 .ncs-related-rail b{font-size:9px;color:var(--nc-gold);font-weight:400;margin-top:6px}

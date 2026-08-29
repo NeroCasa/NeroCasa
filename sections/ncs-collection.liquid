@@ -12,7 +12,7 @@
       {% for product in collection.products limit: 3 %}
         {% capture product_thumb %}{% render 'nc-product-thumb', product: product %}{% endcapture %}
         <a class="ncs-card" href="{{ product.url }}" data-nc-reveal>
-          <div class="ncs-card-media">
+          <div class="ncs-image-frame ncs-card-media">
             <img src="{{ product_thumb | strip }}" alt="{{ product.title | escape }}" loading="lazy" width="800" height="1000">
           </div>
           <div class="ncs-card-info"><span>{{ product.title }}</span><b>{{ product.price | money }}</b></div>
