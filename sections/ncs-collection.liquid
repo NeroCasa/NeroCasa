@@ -8,14 +8,10 @@
   </header>
 
   <div class="ncs-grid-products">
-    {% for product in collection.products %}
+    {% for product in collection.products limit: 3 %}
       <a class="ncs-card" href="{{ product.url }}" data-nc-reveal>
         <div class="ncs-card-media">
-          {% if product.featured_image %}
-            <img src="{{ product.featured_image | image_url: width: 1600 }}" alt="{{ product.title | escape }}" loading="lazy" width="800" height="1000">
-          {% else %}
-            <img src="{{ 'hero-marble.svg' | asset_url }}" alt="{{ product.title | escape }}" loading="lazy">
-          {% endif %}
+          <img src="{% render 'nc-product-thumb', product: product %}" alt="{{ product.title | escape }}" loading="lazy" width="800" height="1000">
         </div>
         <div class="ncs-card-info"><span>{{ product.title }}</span><b>{{ product.price | money }}</b></div>
       </a>

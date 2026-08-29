@@ -1,7 +1,10 @@
-<section class="ncs-product-page" data-ncs-product>
+{% render 'nc-catalog-data' %}
+
+<section class="ncs-product-page" data-ncs-product data-product-handle="{{ product.handle }}">
   <div class="ncs-product-gallery">
     <div class="ncs-main-product-image">
-      <img src="{% if product.featured_image %}{{ product.featured_image | image_url: width: 1800 }}{% else %}{{ 'hero-marble.svg' | asset_url }}{% endif %}"
+      {%- assign catalog_default = 'products/' | append: product.handle | append: '-ibiza-white.jpg' -%}
+      <img src="{% if product.featured_image %}{{ product.featured_image | image_url: width: 1800 }}{% else %}{{ catalog_default | asset_url }}{% endif %}"
            alt="{{ product.featured_image.alt | default: product.title | escape }}"
            data-ncs-main width="1800" height="1900" loading="eager">
     </div>
@@ -17,7 +20,6 @@
   </div>
 
   <div class="ncs-product-config">
-    <span class="ncs-product-kicker" hidden>Nerocasa Object</span>
     <h1>{{ product.title }}</h1>
     <div class="ncs-availability">{% if product.available %}Available to order{% else %}Currently unavailable{% endif %}</div>
 
@@ -31,18 +33,20 @@
 
     {% if product.description != blank %}<p class="ncs-short-desc">{{ product.description | strip_html | truncatewords: 28 }}</p>{% endif %}
 
-    {% if product.has_only_default_variant == false %}
-      {% for option in product.options_with_values %}
-        <div class="ncs-choice" data-option-index="{{ forloop.index0 }}" data-option-name="{{ option.name | escape }}">
-          <label>{{ option.name | upcase }}</label>
-          <div class="ncs-choice-row">
-            {% for value in option.values %}
-              <button type="button" data-value="{{ value | escape }}" class="{% if option.selected_value == value %}is-active{% endif %}">{{ value }}</button>
-            {% endfor %}
+    <div class="ncs-product-options" data-nc-product-options>
+      {% if product.has_only_default_variant == false %}
+        {% for option in product.options_with_values %}
+          <div class="ncs-choice" data-option-index="{{ forloop.index0 }}" data-option-name="{{ option.name | escape }}">
+            <label>{{ option.name | upcase }}</label>
+            <div class="ncs-choice-row">
+              {% for value in option.values %}
+                <button type="button" data-value="{{ value | escape }}" class="{% if option.selected_value == value %}is-active{% endif %}">{{ value }}</button>
+              {% endfor %}
+            </div>
           </div>
-        </div>
-      {% endfor %}
-    {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
 
     <div class="ncs-size-mode" data-size-mode>
       <label>SIZE</label>
@@ -119,11 +123,21 @@
   <div class="ncs-related-wrap" data-nc-carousel-wrap>
     <button class="ncs-rail-arrow" data-nc-prev type="button" aria-label="Previous">←</button>
     <div class="ncs-related-rail" data-nc-carousel tabindex="0" role="region" aria-label="Related Nerocasa objects">
+      {% assign related_collection = collection %}
+      {% if related_collection == blank or related_collection.products_count == 0 %}
+        {% if product.handle contains 'cft-' %}
+          {% assign related_collection = collections[settings.collection_coffee] %}
+        {% elsif product.handle contains 'cs-' %}
+          {% assign related_collection = collections[settings.collection_console] %}
+        {% elsif product.handle contains 'sd-' %}
+          {% assign related_collection = collections[settings.collection_side] %}
+        {% endif %}
+      {% endif %}
       {% assign related_count = 0 %}
-      {% for rp in collections.all.products %}
+      {% for rp in related_collection.products %}
         {% unless rp.id == product.id %}
           <a href="{{ rp.url }}">
-            <img src="{% if rp.featured_image %}{{ rp.featured_image | image_url: width: 1000 }}{% else %}{{ 'hero-marble.svg' | asset_url }}{% endif %}" alt="{{ rp.title | escape }}" loading="lazy" width="500" height="540">
+            <img src="{% render 'nc-product-thumb', product: rp %}" alt="{{ rp.title | escape }}" loading="lazy" width="500" height="540">
             <span>{{ rp.title }}</span><b>{{ rp.price | money }}</b>
           </a>
           {% assign related_count = related_count | plus: 1 %}
@@ -138,7 +152,10 @@
 <script>
 (function(){
   var root=document.querySelector('[data-ncs-product]'); if(!root)return;
+  var handle=root.dataset.productHandle||'';
+  var catalog=window.NC_CATALOG&&window.NC_CATALOG[handle];
   var main=root.querySelector('[data-ncs-main]');
+  var optionsWrap=root.querySelector('[data-nc-product-options]');
   root.querySelectorAll('[data-ncs-thumb]').forEach(function(t){t.addEventListener('click',function(){if(main){main.style.opacity='.35';setTimeout(function(){main.src=t.dataset.ncsThumb;main.style.opacity='1'},120)}})});
   var variantsEl=root.querySelector('[data-ncs-variants]'), variants=[];
   try{variants=JSON.parse(variantsEl.textContent)}catch(e){}
@@ -150,8 +167,35 @@
   var typeProp=root.querySelector('[data-ncs-size-type-property]'), customProp=root.querySelector('[data-ncs-custom-size-property]');
   var mode=root.querySelector('[data-size-mode]'), fixed=root.querySelector('[data-fixed-size]'), custom=root.querySelector('[data-custom-size]');
   var h=root.querySelector('[data-custom-height]'), l=root.querySelector('[data-custom-length]'), w=root.querySelector('[data-custom-width]');
+
+  function isColorGroup(g){var n=(g.dataset.optionName||'').toLowerCase();return n.indexOf('color')>-1||n.indexOf('colour')>-1||n.indexOf('marble')>-1||n.indexOf('finish')>-1;}
+  function normalizeColor(v){
+    v=(v||'').toLowerCase().trim();
+    if(!v)return '';
+    if(v.indexOf('ibiza')>-1||v==='white')return 'Ibiza White';
+    if(v.indexOf('armani')>-1||v.indexOf('dgrey')>-1||v.indexOf('grey')>-1||v.indexOf('gray')>-1)return 'Armani Grey';
+    if(v.indexOf('travert')>-1||v.indexOf('trav')>-1)return 'Travertine';
+    if(v.indexOf('rosso')>-1||v.indexOf('levant')>-1||v==='red')return 'Rosso Levanto';
+    return v.replace(/\b\w/g,function(c){return c.toUpperCase();});
+  }
   function fixedDims(){return {h:'{{ product.metafields.custom.height | escape }}',l:'{{ product.metafields.custom.length | escape }}',w:'{{ product.metafields.custom.width | escape }}'};}
   function selectedValues(){var a=[];groups.forEach(function(g){var b=g.querySelector('.is-active');a[+g.dataset.optionIndex]=b?b.dataset.value:null});return a;}
+  function getSelectedColor(){
+    var values=selectedValues(), color='';
+    groups.forEach(function(g,i){if(isColorGroup(g))color=values[i]||'';});
+    return normalizeColor(color);
+  }
+  function resolveImage(v){
+    if(v&&v.image)return v.image;
+    var color=getSelectedColor();
+    if(catalog&&catalog.images&&color&&catalog.images[color])return catalog.images[color];
+    return null;
+  }
+  function setImage(src){
+    if(!main||!src)return;
+    main.style.opacity='.35';
+    setTimeout(function(){main.src=src;main.style.opacity='1';},120);
+  }
   function setProps(color,type,dh,dl,dw){
     if(colorProp)colorProp.value=color||'';
     if(typeProp)typeProp.value=type;
@@ -163,26 +207,76 @@
     var dims=isCustom?{h:h?h.value:'',l:l?l.value:'',w:w?w.value:''}:fixedDims();
     if(fixed)fixed.hidden=!!isCustom; if(custom)custom.hidden=!isCustom;
     var values=selectedValues(), color='';
-    groups.forEach(function(g,i){var name=(g.dataset.optionName||'').toLowerCase();if(name.indexOf('color')>-1||name.indexOf('colour')>-1||name.indexOf('finish')>-1)color=values[i]||'';});
+    groups.forEach(function(g,i){if(isColorGroup(g))color=normalizeColor(values[i]||'');});
     setProps(color,isCustom?'Custom':'Standard',dims.h,dims.l,dims.w);
     var dim=root.querySelector('[data-ncs-selected-dimensions]'); if(dim)dim.textContent=[dims.h||'—',dims.l||'—',dims.w||'—'].join(' × ')+' cm';
   }
+  function findVariant(selected){
+    return variants.find(function(item){
+      return item.options.every(function(opt,i){
+        if(selected[i]===null||selected[i]===undefined)return true;
+        if(groups[i]&&isColorGroup(groups[i]))return normalizeColor(opt)===normalizeColor(selected[i]);
+        return opt===selected[i];
+      });
+    });
+  }
   function syncVariant(){
-    if(!variants.length)return updateCustomProps();
+    updateCustomProps();
+    if(!variants.length){
+      var img=resolveImage(null);
+      if(img)setImage(img);
+      return;
+    }
     var selected=selectedValues();
-    var v=variants.find(function(item){return selected.every(function(val,i){return val===null||item.options[i]===val;});});
-    if(!v){if(add){add.disabled=true;add.innerHTML='UNAVAILABLE';}return;}
+    var v=findVariant(selected);
+    if(!v){
+      if(add){add.disabled=true;add.innerHTML='UNAVAILABLE';}
+      var imgOnly=resolveImage(null);
+      if(imgOnly)setImage(imgOnly);
+      return;
+    }
     if(variantInput)variantInput.value=v.id;
     if(price)price.textContent=v.price;
-    if(v.image&&main){main.src=v.image;}
     if(add){add.disabled=!v.available;add.innerHTML=v.available?'ADD TO CART <b>↗</b>':'SOLD OUT';}
     if(summary)summary.textContent=v.title;
-    updateCustomProps();
+    var img=resolveImage(v);
+    if(img)setImage(img);
   }
-  groups.forEach(function(g){g.querySelectorAll('[data-value]').forEach(function(btn){btn.addEventListener('click',function(){g.querySelectorAll('[data-value]').forEach(function(x){x.classList.remove('is-active')});btn.classList.add('is-active');syncVariant()})})});
+  function bindChoiceGroup(g){
+    g.querySelectorAll('[data-value]').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        g.querySelectorAll('[data-value]').forEach(function(x){x.classList.remove('is-active')});
+        btn.classList.add('is-active');
+        syncVariant();
+      });
+    });
+  }
+  function injectMarblePicker(){
+    if(!catalog||!optionsWrap||groups.some(isColorGroup))return;
+    var wrap=document.createElement('div');
+    wrap.className='ncs-choice';
+    wrap.dataset.optionIndex='0';
+    wrap.dataset.optionName='Marble';
+    wrap.dataset.ncInjectedMarble='1';
+    wrap.innerHTML='<label>MARBLE</label><div class="ncs-choice-row"></div>';
+    var row=wrap.querySelector('.ncs-choice-row');
+    catalog.colors.forEach(function(color,i){
+      var btn=document.createElement('button');
+      btn.type='button';
+      btn.dataset.value=color;
+      btn.textContent=color;
+      if(i===0)btn.classList.add('is-active');
+      row.appendChild(btn);
+    });
+    optionsWrap.prepend(wrap);
+    groups=[].slice.call(root.querySelectorAll('.ncs-choice[data-option-index]'));
+    bindChoiceGroup(wrap);
+  }
+  groups.forEach(bindChoiceGroup);
+  injectMarblePicker();
   if(mode)mode.querySelectorAll('[data-size-mode-button]').forEach(function(btn){btn.addEventListener('click',function(){mode.querySelectorAll('[data-size-mode-button]').forEach(function(x){x.classList.remove('is-active')});btn.classList.add('is-active');updateCustomProps()})});
   [h,l,w].forEach(function(x){if(x)x.addEventListener('input',updateCustomProps)});
-  syncVariant(); updateCustomProps();
+  syncVariant();
 })();
 </script>
 {% schema %}{"name":"Nerocasa Product","presets":[{"name":"Nerocasa Product"}]}{% endschema %}

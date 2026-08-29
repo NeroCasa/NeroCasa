@@ -6,15 +6,15 @@
 
   <div class="ncs-collections-list">
     <a href="{% render 'nc-collection-url', handle: settings.collection_coffee %}" data-nc-reveal>
-      <img src="{{ 'collection-coffee.svg' | asset_url }}" alt="Coffee Tables" width="1600" height="1100" loading="lazy">
+      <img src="{% render 'nc-showcase-image', pool: 'coffee' %}" alt="Coffee Tables" width="1600" height="1100" loading="lazy">
       <div><h2>Coffee Tables</h2><b>Explore ↗</b></div>
     </a>
     <a href="{% render 'nc-collection-url', handle: settings.collection_side %}" data-nc-reveal>
-      <img src="{{ 'collection-side.svg' | asset_url }}" alt="Side Tables" width="1600" height="1100" loading="lazy">
+      <img src="{% render 'nc-showcase-image', pool: 'side' %}" alt="Side Tables" width="1600" height="1100" loading="lazy">
       <div><h2>Side Tables</h2><b>Explore ↗</b></div>
     </a>
     <a href="{% render 'nc-collection-url', handle: settings.collection_console %}" data-nc-reveal>
-      <img src="{{ 'collection-console.svg' | asset_url }}" alt="Console Tables" width="1600" height="1100" loading="lazy">
+      <img src="{% render 'nc-showcase-image', pool: 'console' %}" alt="Console Tables" width="1600" height="1100" loading="lazy">
       <div><h2>Console Tables</h2><b>Explore ↗</b></div>
     </a>
   </div>

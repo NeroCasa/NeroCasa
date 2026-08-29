@@ -15,6 +15,7 @@
 body {
   font-family: var(--nc-ui);
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
 /* ── Shared page hero ── */
@@ -142,16 +143,22 @@ body {
 /* ── Hero (home) ── */
 .ncs-home-hero {
   min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .ncs-hero-content {
-  display: flex;
+  position: absolute;
+  inset: 0;
+  display: flex !important;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 28px;
   text-align: center;
-  padding: 0 6vw;
+  padding: calc(var(--nc-header-h) + 88px) 6vw 48px;
+  box-sizing: border-box;
+  z-index: 2;
 }
 
 .ncs-hero-content h1 {
@@ -176,31 +183,30 @@ body {
 }
 
 .ncs-hero-scroll {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 9px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--nc-muted);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: none !important;
+}
+
+/* ── Home accent strip (random catalog glimpses) ── */
+.ncs-home-accent {
+  padding: 0 6vw;
+  margin-top: -1px;
+}
+
+.ncs-home-accent-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
+  max-height: clamp(180px, 22vw, 320px);
 }
 
-.ncs-hero-scroll::after {
-  content: "";
-  width: 1px;
-  height: 48px;
-  background: linear-gradient(to bottom, var(--nc-gold), transparent);
-  animation: nc-scroll-pulse 2.4s ease-in-out infinite;
-}
-
-@keyframes nc-scroll-pulse {
-  0%, 100% { opacity: 0.35; transform: scaleY(0.7); transform-origin: top; }
-  50% { opacity: 1; transform: scaleY(1); }
+.ncs-home-accent-grid img {
+  width: 100%;
+  height: 100%;
+  min-height: clamp(180px, 22vw, 320px);
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.72) saturate(0.78);
+  display: block;
 }
 
 /* ── Home intro ── */
@@ -596,6 +602,22 @@ body {
 
 .ncs-contact-hero .ncs-btn {
   margin-top: 36px;
+}
+
+.ncs-contact-visual {
+  margin: 0 8vw var(--nc-space-md);
+  max-height: clamp(260px, 34vw, 420px);
+  overflow: hidden;
+  background: var(--nc-panel);
+}
+
+.ncs-contact-visual img {
+  width: 100%;
+  height: clamp(260px, 34vw, 420px);
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.78) saturate(0.8);
+  display: block;
 }
 
 .ncs-btn--ghost {
@@ -1100,6 +1122,19 @@ body {
     flex-basis: calc((100% - 20px) / 2);
   }
 
+  .ncs-home-accent-grid {
+    grid-template-columns: 1fr 1fr;
+    max-height: none;
+  }
+
+  .ncs-home-accent-grid img:last-child {
+    display: none;
+  }
+
+  .ncs-home-accent-grid img {
+    min-height: clamp(140px, 28vw, 220px);
+  }
+
   .ncs-collections,
   .ncs-best,
   .ncs-mail,
@@ -1288,10 +1323,6 @@ body {
 
 .ncs-contact-grid span:first-child {
   font-size: 11px !important;
-}
-
-.ncs-hero-scroll {
-  font-size: 10px !important;
 }
 
 .ncs-material-grid div {

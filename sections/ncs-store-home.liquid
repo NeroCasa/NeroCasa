@@ -3,7 +3,7 @@
     {% if settings.hero_image != blank %}
       <img src="{{ settings.hero_image | image_url: width: 2400 }}" alt="{{ settings.brand_name | default: 'NeroCasa' }} marble furniture" width="2400" height="1600" fetchpriority="high">
     {% else %}
-      <img src="{{ 'hero-marble.svg' | asset_url }}" alt="{{ settings.brand_name | default: 'NeroCasa' }} marble furniture" width="2400" height="1600" fetchpriority="high">
+      <img src="{% render 'nc-showcase-image', pool: 'hero' %}" alt="{{ settings.brand_name | default: 'NeroCasa' }} marble furniture" width="2400" height="1600" fetchpriority="high">
     {% endif %}
     <div class="ncs-hero-overlay"></div>
   </div>
@@ -11,22 +11,29 @@
     <h1><span>NE<span>RO</span></span><span class="nc-gold">CASA</span></h1>
     <p class="ncs-hero-tagline">{{ settings.brand_tagline | default: 'Architectural marble furniture, made to order' }}</p>
   </div>
-  <div class="ncs-hero-scroll" aria-hidden="true">Scroll</div>
+</section>
+
+<section class="ncs-home-accent" aria-hidden="true">
+  <div class="ncs-home-accent-grid">
+    <img src="{% render 'nc-showcase-image', pool: 'accent' %}" alt="" width="900" height="1125" loading="lazy">
+    <img src="{% render 'nc-showcase-image', pool: 'accent' %}" alt="" width="900" height="1125" loading="lazy">
+    <img src="{% render 'nc-showcase-image', pool: 'accent' %}" alt="" width="900" height="1125" loading="lazy">
+  </div>
 </section>
 
 <section class="ncs-collections">
   <div class="ncs-section-head" data-nc-reveal><h2>Collections</h2></div>
   <div class="ncs-collection-grid">
     <a href="{% render 'nc-collection-url', handle: settings.collection_coffee %}" data-nc-reveal>
-      <img src="{{ 'collection-coffee.svg' | asset_url }}" alt="Coffee Tables" width="1600" height="1100" loading="lazy">
+      <img src="{% render 'nc-showcase-image', pool: 'coffee' %}" alt="Coffee Tables" width="1600" height="1100" loading="lazy">
       <div><strong>Coffee Tables</strong></div>
     </a>
     <a href="{% render 'nc-collection-url', handle: settings.collection_side %}" data-nc-reveal>
-      <img src="{{ 'collection-side.svg' | asset_url }}" alt="Side Tables" width="1600" height="1100" loading="lazy">
+      <img src="{% render 'nc-showcase-image', pool: 'side' %}" alt="Side Tables" width="1600" height="1100" loading="lazy">
       <div><strong>Side Tables</strong></div>
     </a>
     <a href="{% render 'nc-collection-url', handle: settings.collection_console %}" data-nc-reveal>
-      <img src="{{ 'collection-console.svg' | asset_url }}" alt="Console Tables" width="1600" height="1100" loading="lazy">
+      <img src="{% render 'nc-showcase-image', pool: 'console' %}" alt="Console Tables" width="1600" height="1100" loading="lazy">
       <div><strong>Console Tables</strong></div>
     </a>
   </div>
@@ -35,29 +42,36 @@
 <section class="ncs-best">
   <div class="ncs-section-head" data-nc-reveal><h2>Best Sellers</h2></div>
   {% assign best_collection = collections[settings.collection_best_sellers] %}
-  {% if best_collection == blank or best_collection.products_count == 0 %}{% assign best_collection = collections['all'] %}{% endif %}
+  {% assign showcase_count = 6 %}
+  {% if best_collection == blank or best_collection.products_count == 0 %}
+    {% assign use_showcase = true %}
+  {% elsif best_collection.products_count < showcase_count %}
+    {% assign use_showcase = true %}
+    {% assign showcase_count = showcase_count | minus: best_collection.products_count %}
+  {% else %}
+    {% assign use_showcase = false %}
+  {% endif %}
   <div class="ncs-rail-wrap" data-nc-carousel-wrap>
     <div class="ncs-product-rail" data-nc-carousel tabindex="0" role="region" aria-label="Selected Nerocasa objects">
-      {% for product in best_collection.products limit: 8 %}
-        <a class="ncs-best-card" href="{{ product.url }}">
-          <div class="ncs-best-image">
-            {% if product.featured_image %}
-              <img src="{{ product.featured_image | image_url: width: 1200 }}" alt="{{ product.title | escape }}" width="900" height="1125" loading="lazy">
-            {% else %}
-              <img src="{{ 'hero-marble.svg' | asset_url }}" alt="{{ product.title | escape }}" width="900" height="1125" loading="lazy">
-            {% endif %}
-          </div>
-          <div class="ncs-best-meta"><span>{{ product.title }}</span><b>{{ product.price | money }}</b></div>
-        </a>
-      {% endfor %}
+      {% if best_collection != blank and best_collection.products_count > 0 %}
+        {% for product in best_collection.products limit: 8 %}
+          <a class="ncs-best-card" href="{{ product.url }}">
+            <div class="ncs-best-image">
+              <img src="{% render 'nc-product-thumb', product: product %}" alt="{{ product.title | escape }}" width="900" height="1125" loading="lazy">
+            </div>
+            <div class="ncs-best-meta"><span>{{ product.title }}</span><b>{{ product.price | money }}</b></div>
+          </a>
+        {% endfor %}
+      {% endif %}
+      {% if use_showcase %}
+        {% render 'nc-showcase-best', limit: showcase_count %}
+      {% endif %}
     </div>
-    {% if best_collection.products_count > 3 %}
-      <div class="ncs-rail-controls">
-        <button class="ncs-rail-control" data-nc-prev type="button" aria-label="Previous products">←</button>
-        <div class="ncs-rail-progress"><i></i></div>
-        <button class="ncs-rail-control" data-nc-next type="button" aria-label="Next products">→</button>
-      </div>
-    {% endif %}
+    <div class="ncs-rail-controls">
+      <button class="ncs-rail-control" data-nc-prev type="button" aria-label="Previous products">←</button>
+      <div class="ncs-rail-progress"><i></i></div>
+      <button class="ncs-rail-control" data-nc-next type="button" aria-label="Next products">→</button>
+    </div>
   </div>
 </section>
 
