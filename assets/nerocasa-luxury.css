@@ -142,9 +142,19 @@ body {
 
 /* ── Hero (home) ── */
 .ncs-home-hero {
+  position: relative;
+  z-index: 1;
   min-height: 100vh;
   height: 100vh;
   overflow: hidden;
+  isolation: isolate;
+}
+
+.ncs-home-collections {
+  position: relative;
+  z-index: 2;
+  background: var(--nc-bg);
+  clear: both;
 }
 
 .ncs-hero-content {
@@ -292,7 +302,87 @@ body {
   transition: opacity 0.2s ease;
 }
 
-/* Best sellers — one large object per view */
+/* Best sellers — auto carousel, one product at a time */
+.ncs-home-best {
+  padding-top: var(--nc-space-lg);
+}
+
+.ncs-auto-carousel {
+  overflow: hidden;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.ncs-auto-carousel-track {
+  display: flex;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.ncs-auto-slide {
+  flex: 0 0 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.ncs-auto-slide-media {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ncs-auto-slide-media img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: min(46vh, 440px);
+  display: block;
+}
+
+.ncs-auto-slide-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  padding: 0 12px;
+}
+
+.ncs-auto-slide-meta span {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.ncs-auto-slide-meta b {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--nc-gold);
+  font-weight: 400;
+}
+
+.ncs-home-collections .ncs-collection-thumb {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 220px;
+  max-height: 340px;
+}
+
+.ncs-home-collections .ncs-collection-thumb img {
+  width: auto !important;
+  max-width: 100%;
+  height: auto !important;
+  max-height: 340px;
+  object-fit: contain !important;
+}
+
 .ncs-feature-rail .ncs-product-rail {
   scroll-snap-type: x mandatory;
   gap: clamp(20px, 4vw, 40px);
@@ -419,11 +509,18 @@ body {
   min-height: 0 !important;
 }
 
-.ncs-collection-grid div,
-.ncs-collections-list div {
-  left: 32px;
-  bottom: 32px;
-  right: 32px;
+.ncs-collection-grid .ncs-collection-tile-label {
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+}
+
+.ncs-collections-list .ncs-collection-tile-label {
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
 }
 
 .ncs-collection-grid strong {

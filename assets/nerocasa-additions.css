@@ -55,7 +55,7 @@ img{max-width:100%}
 .ncs-collection-grid img,.ncs-collections-list img{width:100%;height:auto;object-fit:unset;display:block;filter:brightness(.88) saturate(.82);transition:filter .5s}
 .ncs-collection-grid>a:hover img,.ncs-collections-list>a:hover img{filter:brightness(.98) saturate(.92)}
 .ncs-collection-grid>a:after,.ncs-collections-list>a:after{display:none}
-.ncs-collection-grid div{position:absolute;z-index:2;left:25px;bottom:24px}
+.ncs-collection-grid .ncs-collection-tile-label,.ncs-collections-list .ncs-collection-tile-label{position:static;left:auto;bottom:auto}
 .ncs-collection-grid small,.ncs-collections-list small{display:block;color:var(--nc-gold);font-size:8px;letter-spacing:.2em;margin-bottom:8px}
 .ncs-collection-grid strong{font-size:13px;letter-spacing:.16em;font-weight:400}
 
@@ -101,9 +101,8 @@ img{max-width:100%}
 .ncs-collections-page h1,.ncs-collection-header h1{font-family:var(--nc-display);font-weight:400;font-size:clamp(70px,11vw,160px);line-height:.76;letter-spacing:-.055em;margin:22px 0 7vw}
 .ncs-collection-header p{max-width:620px;color:var(--nc-muted);line-height:1.7;font-size:13px;margin:-5vw 0 6vw}
 .ncs-collections-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.ncs-collections-list>a{position:relative;min-height:65vh;overflow:hidden}
-.ncs-collections-list>a:nth-child(3){grid-column:1/-1;min-height:72vh}
-.ncs-collections-list div{position:absolute;z-index:2;left:25px;bottom:25px}
+.ncs-collections-list>a{position:relative;min-height:0;overflow:visible}
+.ncs-collections-list .ncs-collection-tile-label{position:static;left:auto;bottom:auto}
 .ncs-collections-list h2{font-family:var(--nc-display);font-weight:400;font-size:clamp(42px,5vw,76px);margin:0 0 12px;line-height:.85}
 .ncs-collections-list b{font-size:8px;letter-spacing:.18em;font-weight:400;color:var(--nc-gold)}
 .ncs-grid-products{display:grid;grid-template-columns:1fr;gap:clamp(56px,8vw,88px);max-width:920px}
@@ -283,7 +282,7 @@ img{max-width:100%}
 .ncs-collection-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 .ncs-collection-grid>a,.ncs-collection-grid>a:nth-child(1),.ncs-collection-grid>a:nth-child(2){grid-column:auto;min-height:0}
 .ncs-collections-list{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.ncs-collections-list>a,.ncs-collections-list>a:nth-child(3){grid-column:auto;min-height:62vh}
+.ncs-collections-list>a,.ncs-collections-list>a:nth-child(3){grid-column:auto;min-height:0}
 .ncs-collections-list h2{font-size:clamp(30px,3.2vw,54px)}
 .ncs-mail{border-top:0}
 .ncs-cta{padding-top:8vw;padding-bottom:8vw}
@@ -303,7 +302,7 @@ img{max-width:100%}
 .ncs-about-cta h2{font-size:clamp(38px,5vw,68px)}
 .ncs-b2b-page .ncs-info-page h1{font-size:clamp(42px,5.2vw,78px)}
 .nc-footer-join h2{font-size:clamp(40px,5vw,72px)}
-@media(max-width:900px){.ncs-collection-grid{grid-template-columns:1fr}.ncs-collection-grid>a,.ncs-collection-grid>a:nth-child(1),.ncs-collection-grid>a:nth-child(2){min-height:55vh}.ncs-collections-list{grid-template-columns:1fr}.ncs-collections-list>a,.ncs-collections-list>a:nth-child(3){min-height:55vh}.ncs-about-feature{grid-template-columns:1fr;gap:25px}.ncs-about-editorial{margin:0 6vw}}
+@media(max-width:900px){.ncs-collection-grid{grid-template-columns:1fr}.ncs-collection-grid>a,.ncs-collection-grid>a:nth-child(1),.ncs-collection-grid>a:nth-child(2){min-height:0}.ncs-collections-list{grid-template-columns:1fr}.ncs-collections-list>a,.ncs-collections-list>a:nth-child(3){min-height:0}.ncs-about-feature{grid-template-columns:1fr;gap:25px}.ncs-about-editorial{margin:0 6vw}}
 
 /* FINAL LAYOUT REFINEMENT — remove empty title placeholders and elevate Why NeroCasa */
 .ncs-info-page:empty{display:none!important;padding:0!important;margin:0!important;min-height:0!important}

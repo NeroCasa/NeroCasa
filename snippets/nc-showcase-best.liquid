@@ -2,9 +2,15 @@
   Fallback best-seller cards when Shopify collection is empty.
   @param limit {Number} optional, default 6
   @param category {String} optional coffee | side | console
+  @param layout {String} optional rail | slide — slide for home auto-carousel
 {%- endcomment -%}
 {%- liquid
   assign card_limit = limit | default: 6 | plus: 0
+  assign card_layout = layout | default: 'rail'
+  assign slide_class = 'ncs-best-card'
+  if card_layout == 'slide'
+    assign slide_class = 'ncs-auto-slide'
+  endif
   assign showcase_pool = 'cft-1::Coffee Table 1::cft-1-ibiza-white.jpg::coffee|cft-2::Coffee Table 2::cft-2-armani-grey.jpg::coffee|cft-3::Coffee Table 3::cft-3-rosso-levanto.jpg::coffee|cs-1::Console Table 1::cs-1-travertine.jpg::console|cs-2::Console Table 2::cs-2-ibiza-white.jpg::console|cs-3::Console Table 3::cs-3-armani-grey.jpg::console|sd-1::Side Table 1::sd-1-armani-grey.jpg::side|sd-2::Side Table 2::sd-2-travertine.jpg::side|sd-3::Side Table 3::sd-3-ibiza-white.jpg::side' | split: '|'
 
   if category != blank
@@ -37,13 +43,23 @@
     {%- assign item_url = '/products/' | append: item_handle -%}
     {%- assign item_price = '' -%}
   {%- endif -%}
-  <a class="ncs-best-card{% if category != blank %} ncs-card{% endif %}" href="{{ item_url }}">
-    <div class="ncs-showcase-img ncs-best-image{% if category != blank %} ncs-card-media{% endif %}">
-      <img src="{{ item_image | asset_url }}" alt="{{ item_title | escape }}" width="900" height="1125" loading="lazy">
-    </div>
-    <div class="ncs-best-meta{% if category != blank %} ncs-card-info{% endif %}">
-      <span>{{ item_title }}</span>
-      {%- if item_price != blank -%}<b>{{ item_price }}</b>{%- endif -%}
-    </div>
+  <a class="{{ slide_class }}{% if category != blank and card_layout != 'slide' %} ncs-card{% endif %}" href="{{ item_url }}">
+    {%- if card_layout == 'slide' -%}
+      <div class="ncs-auto-slide-media">
+        <img src="{{ item_image | asset_url }}" alt="{{ item_title | escape }}" width="900" height="1125" loading="lazy">
+      </div>
+      <div class="ncs-auto-slide-meta">
+        <span>{{ item_title }}</span>
+        {%- if item_price != blank -%}<b>{{ item_price }}</b>{%- endif -%}
+      </div>
+    {%- else -%}
+      <div class="ncs-showcase-img ncs-best-image{% if category != blank %} ncs-card-media{% endif %}">
+        <img src="{{ item_image | asset_url }}" alt="{{ item_title | escape }}" width="900" height="1125" loading="lazy">
+      </div>
+      <div class="ncs-best-meta{% if category != blank %} ncs-card-info{% endif %}">
+        <span>{{ item_title }}</span>
+        {%- if item_price != blank -%}<b>{{ item_price }}</b>{%- endif -%}
+      </div>
+    {%- endif -%}
   </a>
 {%- endfor -%}
