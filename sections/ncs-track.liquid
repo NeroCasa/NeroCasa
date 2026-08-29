@@ -4,9 +4,9 @@
     {% if page.content != blank %}
       {{ page.content }}
     {% else %}
-      <p>Track your order using the link in your order confirmation email, or sign in to your account if you have one.</p>
-      <p><a class="ncs-btn ncs-btn--ghost" href="{{ routes.account_url }}">Account login ↗</a></p>
-      <p>For help, contact us at <a href="mailto:{{ settings.contact_email | default: 'info@nerocasa.com' }}">{{ settings.contact_email | default: 'info@nerocasa.com' }}</a>.</p>
+      <p>Track your order using the link in your order confirmation email. That email is also your receipt (order number, items, and total paid).</p>
+      <p>Enter your order number and email on the status page linked from the email, or contact us with those details.</p>
+      <p>For warranty or questions about what you bought, email <a href="mailto:{{ settings.contact_email | default: 'info@nerocasa.com' }}">{{ settings.contact_email | default: 'info@nerocasa.com' }}</a> or <a href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">WhatsApp</a> with your order number.</p>
     {% endif %}
   </div>
 </section>
