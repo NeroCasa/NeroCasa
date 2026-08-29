@@ -1,0 +1,12 @@
+{%- comment -%}
+  Page title with the last word in gold.
+  @param title {String}
+{%- endcomment -%}
+{%- assign title_words = title | strip | split: ' ' -%}
+{%- assign last_word = title_words | last -%}
+{%- capture prefix -%}
+  {%- for word in title_words -%}
+    {%- unless forloop.last -%}{{ word }} {%- endunless -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{{- prefix -}}<span class="nc-gold">{{ last_word }}</span>

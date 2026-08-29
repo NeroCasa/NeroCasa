@@ -55,7 +55,7 @@
   </div>
 
   <div class="ncs-product-config">
-    <h1>{{ display_name }}</h1>
+    <h1>{% render 'nc-title-gold', title: display_name %}</h1>
     {%- if catalog_category != blank -%}
       <p class="ncs-product-category">{{ catalog_category }}</p>
     {%- endif -%}

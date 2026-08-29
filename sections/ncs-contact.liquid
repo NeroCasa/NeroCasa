@@ -1,7 +1,7 @@
 <section class="ncs-contact-page">
   <div class="ncs-contact-layout">
     <header class="ncs-page-hero ncs-contact-hero" data-nc-reveal>
-      <h1>Get in <em>touch</em></h1>
+      <h1>{% render 'nc-title-gold', title: 'Get in touch' %}</h1>
       <p>We respond to every enquiry within one business day. For trade and project enquiries, visit our B2B page.</p>
       <a class="ncs-btn ncs-btn--ghost" href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B Enquiry ↗</a>
     </header>
@@ -39,7 +39,7 @@
 
     <div class="ncs-contact-form-wrap" data-nc-reveal>
       <div class="ncs-b2b-form-panel">
-        <h2 class="ncs-form-title">Send a message</h2>
+        <h2 class="ncs-form-title">{% render 'nc-title-gold', title: 'Send a message' %}</h2>
         <p class="ncs-form-lead">General enquiries, order questions, or custom pieces. We reply within one business day.</p>
         {% form 'contact', class: 'ncs-b2b-form' %}
           {% if form.posted_successfully? %}

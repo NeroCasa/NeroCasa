@@ -17,15 +17,15 @@
 
 <section class="ncs-home-values" data-nc-reveal>
   <article class="ncs-home-value">
-    <h2>{{ section.settings.value_1_title }}</h2>
+    <h2>{% render 'nc-title-gold', title: section.settings.value_1_title %}</h2>
     <p>{{ section.settings.value_1_text }}</p>
   </article>
   <article class="ncs-home-value">
-    <h2>{{ section.settings.value_2_title }}</h2>
+    <h2>{% render 'nc-title-gold', title: section.settings.value_2_title %}</h2>
     <p>{{ section.settings.value_2_text }}</p>
   </article>
   <article class="ncs-home-value">
-    <h2>{{ section.settings.value_3_title }}</h2>
+    <h2>{% render 'nc-title-gold', title: section.settings.value_3_title %}</h2>
     <p>{{ section.settings.value_3_text }}</p>
   </article>
 </section>
@@ -33,7 +33,7 @@
 <section class="ncs-home-story" data-nc-reveal>
   <div class="ncs-home-story-copy">
     <span class="ncs-page-kicker">Why Nerocasa</span>
-    <h2>{{ section.settings.story_heading }}</h2>
+    <h2>{% render 'nc-title-gold', title: section.settings.story_heading %}</h2>
     <p>{{ section.settings.story_text }}</p>
     <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}">Our story ↗</a>
   </div>

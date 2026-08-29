@@ -1,7 +1,7 @@
 <section class="ncs-collections-page">
   <header class="ncs-page-hero" data-nc-reveal>
     <span class="ncs-page-kicker">Collections</span>
-    <h1>{{ section.settings.heading }}</h1>
+    <h1>{% render 'nc-title-gold', title: section.settings.heading %}</h1>
     <p>{{ section.settings.lead }}</p>
   </header>
 
@@ -11,7 +11,7 @@
         <img src="{% render 'nc-collection-cover', handle: settings.collection_coffee %}" alt="Coffee Tables" width="1600" height="1200" loading="lazy">
       </div>
       <div class="ncs-collection-tile-label">
-        <h2>Coffee Tables</h2>
+        <h2>{% render 'nc-title-gold', title: 'Coffee Tables' %}</h2>
         <small>{{ section.settings.coffee_subtitle }}</small>
       </div>
     </a>
@@ -20,7 +20,7 @@
         <img src="{% render 'nc-collection-cover', handle: settings.collection_side %}" alt="Side Tables" width="1600" height="1200" loading="lazy">
       </div>
       <div class="ncs-collection-tile-label">
-        <h2>Side Tables</h2>
+        <h2>{% render 'nc-title-gold', title: 'Side Tables' %}</h2>
         <small>{{ section.settings.side_subtitle }}</small>
       </div>
     </a>
@@ -29,7 +29,7 @@
         <img src="{% render 'nc-collection-cover', handle: settings.collection_console %}" alt="Console Tables" width="1600" height="1200" loading="lazy">
       </div>
       <div class="ncs-collection-tile-label">
-        <h2>Console Tables</h2>
+        <h2>{% render 'nc-title-gold', title: 'Console Tables' %}</h2>
         <small>{{ section.settings.console_subtitle }}</small>
       </div>
     </a>

@@ -2,7 +2,7 @@
   <div class="ncs-about-hero-split" data-nc-reveal>
     <div class="ncs-about-hero-copy">
       <span class="ncs-page-kicker">Why Nerocasa</span>
-      <h1>{{ section.settings.hero_heading | default: page.title }}</h1>
+      <h1>{% render 'nc-title-gold', title: section.settings.hero_heading | default: page.title %}</h1>
       <p class="ncs-about-hero-lead">{{ section.settings.hero_lead }}</p>
     </div>
     <div class="ncs-about-hero-visual ncs-brand-visual-frame">
@@ -22,36 +22,42 @@
 
   <div class="ncs-about-values">
     <article class="ncs-about-value" data-nc-reveal>
-      <h2>{{ section.settings.block_1_title }}</h2>
+      <h2>{% render 'nc-title-gold', title: section.settings.block_1_title %}</h2>
       <p>{{ section.settings.block_1_text }}</p>
     </article>
     <article class="ncs-about-value" data-nc-reveal>
-      <h2>{{ section.settings.block_2_title }}</h2>
+      <h2>{% render 'nc-title-gold', title: section.settings.block_2_title %}</h2>
       <p>{{ section.settings.block_2_text }}</p>
     </article>
     <article class="ncs-about-value" data-nc-reveal>
-      <h2>{{ section.settings.block_3_title }}</h2>
+      <h2>{% render 'nc-title-gold', title: section.settings.block_3_title %}</h2>
       <p>{{ section.settings.block_3_text }}</p>
     </article>
     <article class="ncs-about-value" data-nc-reveal>
-      <h2>{{ section.settings.block_4_title }}</h2>
+      <h2>{% render 'nc-title-gold', title: section.settings.block_4_title %}</h2>
       <p>{{ section.settings.block_4_text }}</p>
     </article>
   </div>
 
   <div class="ncs-about-manifesto" data-nc-reveal>
-    <p class="ncs-about-manifesto-lead">{{ section.settings.manifesto_lead }}</p>
+    <p class="ncs-about-manifesto-lead">{% render 'nc-title-gold', title: section.settings.manifesto_lead %}</p>
     <p>{{ section.settings.manifesto_text }}</p>
   </div>
 
-  <div class="ncs-about-cta ncs-about-cta--dual" data-nc-reveal>
-    <div class="ncs-about-cta-copy">
-      <h2>{{ section.settings.cta_heading }}</h2>
-      <p>{{ section.settings.cta_text }}</p>
+  <div class="ncs-about-closer" data-nc-reveal>
+    <div class="ncs-about-closer-grid">
+      <article>
+        <h2>{% render 'nc-title-gold', title: section.settings.advantage_1_title %}</h2>
+        <p>{{ section.settings.advantage_1_text }}</p>
+      </article>
+      <article>
+        <h2>{% render 'nc-title-gold', title: section.settings.advantage_2_title %}</h2>
+        <p>{{ section.settings.advantage_2_text }}</p>
+      </article>
     </div>
-    <div class="ncs-about-cta-actions">
-      <a class="ncs-btn" href="{% render 'nc-collections-index-url' %}">Shop collections ↗</a>
-      <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B ↗</a>
+    <div class="ncs-about-closer-actions">
+      <a class="ncs-btn ncs-btn--compact" href="{% render 'nc-collections-index-url' %}">Shop collections ↗</a>
+      <a class="ncs-btn ncs-btn--outline ncs-btn--compact" href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B ↗</a>
     </div>
   </div>
 </section>
@@ -134,32 +140,44 @@
       "content": "Manifesto"
     },
     {
-      "type": "textarea",
+      "type": "text",
       "id": "manifesto_lead",
       "label": "Manifesto lead",
-      "default": "Marble is not a privilege. It is part of how a home feels."
+      "default": "Marble is not a privilege"
     },
     {
       "type": "textarea",
       "id": "manifesto_text",
       "label": "Manifesto text",
-      "default": "Our catalog will grow. Our commitment will not. Real stone, honest craft, and a brand that treats every client as someone we want in our world for years."
+      "default": "It is part of how a home feels. Our catalog will grow. Our commitment will not. Real stone, honest craft, and a brand that treats every client as someone we want in our world for years."
     },
     {
       "type": "header",
-      "content": "Call to action"
+      "content": "Closing section"
     },
     {
       "type": "text",
-      "id": "cta_heading",
-      "label": "CTA heading",
-      "default": "Begin with stone"
+      "id": "advantage_1_title",
+      "label": "Advantage 1 title",
+      "default": "Better quality, lower price"
     },
     {
       "type": "textarea",
-      "id": "cta_text",
-      "label": "CTA text",
-      "default": "Explore the collections or speak with us about trade and project work."
+      "id": "advantage_1_text",
+      "label": "Advantage 1 text",
+      "default": "We produce what we sell. Without importer, distributor or boutique markups, we deliver genuine stone and stronger finishing for less than most names at the same level."
+    },
+    {
+      "type": "text",
+      "id": "advantage_2_title",
+      "label": "Advantage 2 title",
+      "default": "See your piece being made"
+    },
+    {
+      "type": "textarea",
+      "id": "advantage_2_text",
+      "label": "Advantage 2 text",
+      "default": "Everything is made to order. You can visit the workshop and watch your piece take shape, or we can send video updates as we cut, finish and prepare it for you."
     }
   ],
   "presets": [{ "name": "Why Nerocasa" }]
