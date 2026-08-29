@@ -1,7 +1,7 @@
 <section class="ncs-collection-page">
   <header class="ncs-collection-header" data-nc-reveal>
     <h1>{{ collection.title }}</h1>
-    <p class="ncs-collection-lead">Three designs. Multiple marbles — select your stone on the product page.</p>
+    <p class="ncs-collection-lead">{{ section.settings.lead | default: 'Three signature designs per collection. Each available in multiple stone finishes. Hover to preview on the grid, then choose your marble on the product page.' }}</p>
     {% if collection.description != blank %}
       <p class="ncs-collection-desc">{{ collection.description | strip_html }}</p>
     {% endif %}
@@ -21,4 +21,17 @@
   </div>
 </section>
 
-{% schema %}{"name":"Nerocasa Collection","presets":[{"name":"Nerocasa Collection"}]}{% endschema %}
+{% schema %}
+{
+  "name": "Nerocasa Collection",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "lead",
+      "label": "Lead copy",
+      "default": "Three signature designs per collection. Each available in multiple stone finishes. Hover to preview on the grid, then choose your marble on the product page."
+    }
+  ],
+  "presets": [{ "name": "Nerocasa Collection" }]
+}
+{% endschema %}

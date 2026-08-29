@@ -17,19 +17,28 @@
   <div class="ncs-product-gallery">
     <div class="ncs-fit-img ncs-main-product-image">
       {%- capture catalog_img -%}{% render 'nc-catalog-default-img', handle: product.handle %}{%- endcapture -%}
-      <img src="{% if product.featured_image %}{{ product.featured_image | image_url: width: 1800 }}{% else %}{{ catalog_img | strip }}{% endif %}"
+      {%- capture default_marble -%}{% render 'nc-catalog-default-marble', handle: product.handle %}{%- endcapture -%}
+      {%- assign catalog_img = catalog_img | strip -%}
+      {%- assign default_marble = default_marble | strip -%}
+      {%- assign is_catalog_product = false -%}
+      {%- if product.handle contains 'cft-' or product.handle contains 'cs-' or product.handle contains 'sd-' -%}
+        {%- assign is_catalog_product = true -%}
+      {%- endif -%}
+      <img src="{% if is_catalog_product %}{{ catalog_img }}{% elsif product.featured_image %}{{ product.featured_image | image_url: width: 1800 }}{% else %}{{ catalog_img }}{% endif %}"
            alt="{{ product.featured_image.alt | default: product.title | escape }}"
            data-ncs-main width="1800" height="1900" loading="eager">
       <p class="ncs-shown-in" data-ncs-shown-in>
         {%- liquid
-          assign shown_marble = 'Ibiza White'
-          for option in product.options_with_values
-            assign opt_name = option.name | downcase
-            if opt_name contains 'marble' or opt_name contains 'color' or opt_name contains 'colour'
-              assign shown_marble = option.selected_value
-              break
-            endif
-          endfor
+          assign shown_marble = default_marble
+          if is_catalog_product == false
+            for option in product.options_with_values
+              assign opt_name = option.name | downcase
+              if opt_name contains 'marble' or opt_name contains 'color' or opt_name contains 'colour'
+                assign shown_marble = option.selected_value
+                break
+              endif
+            endfor
+          endif
         -%}
         Shown in {{ shown_marble }}
       </p>
@@ -129,7 +138,7 @@
       {% endif %}
       <details class="ncs-story-detail">
         <summary>MATERIALS &amp; FINISH</summary>
-        <div>{% if product.metafields.custom.materials != blank %}{{ product.metafields.custom.materials }}{% else %}<p>Natural stone. Veining and tone vary from slab to slab — part of the material's character.</p>{% endif %}</div>
+        <div>{% if product.metafields.custom.materials != blank %}{{ product.metafields.custom.materials }}{% else %}<p>Natural stone. Veining and tone vary from slab to slab. That variation is part of the material's character.</p>{% endif %}</div>
       </details>
       <details class="ncs-story-detail">
         <summary>DIMENSIONS</summary>
@@ -154,39 +163,6 @@
   </div>
 
   <script type="application/json" data-ncs-variants>[{% for variant in product.variants %}{"id":{{ variant.id }},"title":{{ variant.title | json }},"available":{{ variant.available | json }},"price":{{ variant.price | money | json }},"options":{{ variant.options | json }},"image":{% if variant.featured_image %}{{ variant.featured_image | image_url: width: 1800 | json }}{% else %}null{% endif %}}{% unless forloop.last %},{% endunless %}{% endfor %}]</script>
-</section>
-
-<section class="ncs-related">
-  <div class="ncs-section-head ncs-section-head--compact" data-nc-reveal>
-    <h2>More objects</h2>
-  </div>
-  <div class="ncs-related-wrap" data-nc-carousel-wrap>
-    <button class="ncs-rail-arrow" data-nc-prev type="button" aria-label="Previous">←</button>
-    <div class="ncs-related-rail" data-nc-carousel tabindex="0" role="region" aria-label="Related Nerocasa objects">
-      {% assign related_collection = collection %}
-      {% if related_collection == blank or related_collection.products_count == 0 %}
-        {% if product.handle contains 'cft-' %}
-          {% assign related_collection = collections[settings.collection_coffee] %}
-        {% elsif product.handle contains 'cs-' %}
-          {% assign related_collection = collections[settings.collection_console] %}
-        {% elsif product.handle contains 'sd-' %}
-          {% assign related_collection = collections[settings.collection_side] %}
-        {% endif %}
-      {% endif %}
-      {% assign related_count = 0 %}
-      {% for rp in related_collection.products %}
-        {% unless rp.id == product.id %}
-          <a href="{{ rp.url }}">
-            <img src="{% render 'nc-product-thumb', product: rp %}" alt="{{ rp.title | escape }}" loading="lazy" width="500" height="540">
-            <span>{{ rp.title }}</span><b>{{ rp.price | money }}</b>
-          </a>
-          {% assign related_count = related_count | plus: 1 %}
-          {% if related_count == 8 %}{% break %}{% endif %}
-        {% endunless %}
-      {% endfor %}
-    </div>
-    <button class="ncs-rail-arrow" data-nc-next type="button" aria-label="Next">→</button>
-  </div>
 </section>
 
 <script>

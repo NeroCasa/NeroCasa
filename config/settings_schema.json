@@ -20,7 +20,7 @@
         "type": "textarea",
         "id": "brand_tagline",
         "label": "Tagline",
-        "default": "Architectural marble furniture, made to order"
+        "default": "Real marble furniture. From our factory to your home."
       },
       {
         "type": "image_picker",

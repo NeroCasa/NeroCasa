@@ -70,8 +70,8 @@ img{max-width:100%}
 .ncs-collection-grid small,.ncs-collections-list small{display:block;color:var(--nc-gold);font-size:8px;letter-spacing:.2em;margin-bottom:8px}
 .ncs-collection-grid strong{font-size:13px;letter-spacing:.16em;font-weight:400}
 
-.ncs-product-rail,.ncs-related-rail{display:flex;overflow-x:auto;scrollbar-width:none;gap:18px;scroll-snap-type:x mandatory;padding-bottom:4px}
-.ncs-product-rail::-webkit-scrollbar,.ncs-related-rail::-webkit-scrollbar{display:none}
+.ncs-product-rail{display:flex;overflow-x:auto;scrollbar-width:none;gap:18px;scroll-snap-type:x mandatory;padding-bottom:4px}
+.ncs-product-rail::-webkit-scrollbar{display:none}
 .ncs-best-card{flex:0 0 calc((100% - 36px)/3);position:relative;overflow:visible;scroll-snap-align:start;background:transparent}
 .ncs-best-image{overflow:hidden;background:transparent}
 .ncs-best-image img{width:100%;height:auto;display:block;filter:brightness(.9) saturate(.82);transition:filter .45s}
@@ -179,14 +179,6 @@ img{max-width:100%}
 .ncs-dims span{font-size:8px;color:var(--nc-gold);letter-spacing:.15em}
 .ncs-dims b{font-weight:400;color:var(--nc-ink)}
 
-.ncs-related{padding:8vw 6vw;border-top:1px solid var(--nc-line)}
-.ncs-related-rail{flex:1}
-.ncs-related-wrap{display:flex;gap:12px;align-items:center}
-.ncs-related-rail>a{flex:0 0 27vw;scroll-snap-align:start}
-.ncs-related-rail img{width:100%;height:auto;object-fit:unset;filter:brightness(.88) saturate(.82)}
-.ncs-related-rail span,.ncs-related-rail b{display:block}
-.ncs-related-rail span{font-size:9px;letter-spacing:.14em;margin-top:12px}
-.ncs-related-rail b{font-size:9px;color:var(--nc-gold);font-weight:400;margin-top:6px}
 .ncs-rail-arrow{flex:0 0 40px;width:40px;height:40px;border:1px solid var(--nc-line);border-radius:50%;background:none;color:var(--nc-gold);cursor:pointer}
 
 .ncs-info-page{padding:14vw 8vw 7vw}
@@ -269,7 +261,6 @@ img{max-width:100%}
   .ncs-collections-page,.ncs-collection-page{padding:24vw 6vw 16vw}.ncs-collections-list,.ncs-collections-list--grid{grid-template-columns:1fr}.ncs-collections-list>a,.ncs-collections-list>a:nth-child(3),.ncs-collections-list--grid>a{grid-column:auto;min-height:0}
   .ncs-grid-products{grid-template-columns:1fr 1fr}
   .ncs-product-page{grid-template-columns:1fr;padding:95px 18px 70px}.ncs-product-gallery{position:relative;top:auto}.ncs-product-config{padding-top:30px}
-  .ncs-related{padding:16vw 6vw}.ncs-related-rail>a{flex-basis:72vw}
   .ncs-info-page{padding:24vw 6vw 12vw}.ncs-about-grid{grid-template-columns:1fr;margin:0 6vw}.ncs-about-grid>div:nth-child(odd){border-right:0}.ncs-about-cta{padding:16vw 6vw;display:block}.ncs-about-cta .ncs-btn{margin-top:30px}
   .ncs-b2b-form-wrap-centered,.ncs-custom-form-wrap{padding-left:6vw;padding-right:6vw}.ncs-form-row{grid-template-columns:1fr}
   .ncs-contact-details-simple{grid-template-columns:1fr;margin:0 6vw}.ncs-contact-details-simple>div{padding:35px 25px}

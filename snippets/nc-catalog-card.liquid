@@ -9,12 +9,8 @@
 {%- assign item_category = item_category | strip -%}
 {%- assign item_url = shop_product.url -%}
 {%- assign item_price_min = shop_product.price_min | money -%}
-{%- if shop_product.featured_image -%}
-  {%- assign item_src = shop_product.featured_image | image_url: width: 900 -%}
-{%- else -%}
-  {%- capture item_src -%}{% render 'nc-catalog-default-img', handle: item_handle %}{%- endcapture -%}
-  {%- assign item_src = item_src | strip -%}
-{%- endif -%}
+{%- capture item_src -%}{% render 'nc-catalog-default-img', handle: item_handle %}{%- endcapture -%}
+{%- assign item_src = item_src | strip -%}
 <a class="ncs-card ncs-marble-card" href="{{ item_url }}" data-nc-marble-card data-nc-reveal>
   <div class="ncs-fit-img ncs-fit-img--tile ncs-card-media">
     <img src="{{ item_src }}" alt="{{ item_name | escape }}" width="900" height="1125" loading="lazy" data-nc-card-img data-default-src="{{ item_src }}">
@@ -73,20 +69,7 @@
           {%- endfor -%}
         {%- endif -%}
       </div>
-      <p class="ncs-card-marbles-label">
-        {%- if marble_option != blank -%}
-          {%- for marble_name in marble_option.values -%}
-            {%- unless forloop.first -%}<span class="ncs-marble-dot" aria-hidden="true">·</span>{%- endunless -%}
-            <span>{{ marble_name }}</span>
-          {%- endfor -%}
-        {%- else -%}
-          {%- for entry in marble_entries -%}
-            {%- assign parts = entry | split: ':' -%}
-            {%- unless forloop.first -%}<span class="ncs-marble-dot" aria-hidden="true">·</span>{%- endunless -%}
-            <span>{{ parts[0] }}</span>
-          {%- endfor -%}
-        {%- endif -%}
-      </p>
+      <p class="ncs-card-marbles-label">Multiple finishes. Hover to preview.</p>
     </div>
   </div>
 </a>

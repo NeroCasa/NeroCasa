@@ -1,0 +1,18 @@
+{%- comment -%}
+  Default marble label for catalog product hero (pairs with nc-catalog-default-img).
+  @param handle {String} product handle e.g. cft-1
+{%- endcomment -%}
+{%- liquid
+  case handle
+    when 'cft-1', 'cs-2', 'sd-3'
+      echo 'Ibiza White'
+    when 'cft-2', 'cs-3', 'sd-1'
+      echo 'Armani Grey'
+    when 'cft-3'
+      echo 'Rosso Levanto'
+    when 'cs-1', 'sd-2'
+      echo 'Travertine'
+    else
+      echo 'Ibiza White'
+  endcase
+-%}

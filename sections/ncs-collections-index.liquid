@@ -1,7 +1,8 @@
 <section class="ncs-collections-page">
   <header class="ncs-page-hero" data-nc-reveal>
-    <h1>Collections</h1>
-    <p>Architectural marble tables, grouped by form and function.</p>
+    <span class="ncs-page-kicker">Catalog</span>
+    <h1>{{ section.settings.heading }}</h1>
+    <p>{{ section.settings.lead }}</p>
   </header>
 
   <div class="ncs-collections-list ncs-collections-list--grid">
@@ -9,21 +10,67 @@
       <div class="ncs-fit-img ncs-fit-img--tile ncs-fit-img--compact">
         <img src="{% render 'nc-collection-cover', handle: settings.collection_coffee %}" alt="Coffee Tables" width="1600" height="1200" loading="lazy">
       </div>
-      <div class="ncs-collection-tile-label"><h2>Coffee Tables</h2></div>
+      <div class="ncs-collection-tile-label">
+        <h2>Coffee Tables</h2>
+        <small>{{ section.settings.coffee_subtitle }}</small>
+      </div>
     </a>
     <a class="ncs-collection-tile" href="{% render 'nc-collection-url', handle: settings.collection_side %}" data-nc-reveal>
       <div class="ncs-fit-img ncs-fit-img--tile ncs-fit-img--compact">
         <img src="{% render 'nc-collection-cover', handle: settings.collection_side %}" alt="Side Tables" width="1600" height="1200" loading="lazy">
       </div>
-      <div class="ncs-collection-tile-label"><h2>Side Tables</h2></div>
+      <div class="ncs-collection-tile-label">
+        <h2>Side Tables</h2>
+        <small>{{ section.settings.side_subtitle }}</small>
+      </div>
     </a>
     <a class="ncs-collection-tile" href="{% render 'nc-collection-url', handle: settings.collection_console %}" data-nc-reveal>
       <div class="ncs-fit-img ncs-fit-img--tile ncs-fit-img--compact">
         <img src="{% render 'nc-collection-cover', handle: settings.collection_console %}" alt="Console Tables" width="1600" height="1200" loading="lazy">
       </div>
-      <div class="ncs-collection-tile-label"><h2>Console Tables</h2></div>
+      <div class="ncs-collection-tile-label">
+        <h2>Console Tables</h2>
+        <small>{{ section.settings.console_subtitle }}</small>
+      </div>
     </a>
   </div>
 </section>
 
-{% schema %}{"name":"Collections Index","presets":[{"name":"Collections Index"}]}{% endschema %}
+{% schema %}
+{
+  "name": "Collections Index",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Three collections. Nine designs."
+    },
+    {
+      "type": "textarea",
+      "id": "lead",
+      "label": "Lead",
+      "default": "Coffee tables, side tables and consoles carved from real stone. Each design comes in multiple finishes. Hover a card to preview, then choose your marble on the product page."
+    },
+    {
+      "type": "text",
+      "id": "coffee_subtitle",
+      "label": "Coffee subtitle",
+      "default": "3 designs for the living room"
+    },
+    {
+      "type": "text",
+      "id": "side_subtitle",
+      "label": "Side subtitle",
+      "default": "3 designs beside the sofa or bed"
+    },
+    {
+      "type": "text",
+      "id": "console_subtitle",
+      "label": "Console subtitle",
+      "default": "3 designs for hallway and entry"
+    }
+  ],
+  "presets": [{ "name": "Collections Index" }]
+}
+{% endschema %}
