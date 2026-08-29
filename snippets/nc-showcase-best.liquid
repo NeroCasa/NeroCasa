@@ -39,22 +39,28 @@
   {%- if shop_product != blank -%}
     {%- assign item_url = shop_product.url -%}
     {%- assign item_price = shop_product.price | money -%}
+    {%- if shop_product.featured_image -%}
+      {%- assign item_src = shop_product.featured_image | image_url: width: 1800 -%}
+    {%- else -%}
+      {%- assign item_src = item_image | asset_url -%}
+    {%- endif -%}
   {%- else -%}
     {%- assign item_url = '/products/' | append: item_handle -%}
     {%- assign item_price = '' -%}
+    {%- assign item_src = item_image | asset_url -%}
   {%- endif -%}
   <a class="{{ slide_class }}{% if category != blank and card_layout != 'slide' %} ncs-card{% endif %}" href="{{ item_url }}">
     {%- if card_layout == 'slide' -%}
-      <div class="ncs-auto-slide-media">
-        <img src="{{ item_image | asset_url }}" alt="{{ item_title | escape }}" width="900" height="1125" loading="lazy">
+      <div class="ncs-fit-img ncs-auto-slide-media">
+        <img src="{{ item_src }}" alt="{{ item_title | escape }}" width="900" height="1125" loading="lazy">
       </div>
       <div class="ncs-auto-slide-meta">
         <span>{{ item_title }}</span>
         {%- if item_price != blank -%}<b>{{ item_price }}</b>{%- endif -%}
       </div>
     {%- else -%}
-      <div class="ncs-showcase-img ncs-best-image{% if category != blank %} ncs-card-media{% endif %}">
-        <img src="{{ item_image | asset_url }}" alt="{{ item_title | escape }}" width="900" height="1125" loading="lazy">
+      <div class="ncs-fit-img ncs-best-image{% if category != blank %} ncs-card-media{% endif %}">
+        <img src="{{ item_src }}" alt="{{ item_title | escape }}" width="900" height="1125" loading="lazy">
       </div>
       <div class="ncs-best-meta{% if category != blank %} ncs-card-info{% endif %}">
         <span>{{ item_title }}</span>

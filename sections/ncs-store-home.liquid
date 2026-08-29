@@ -18,19 +18,19 @@
   <div class="ncs-section-head" data-nc-reveal><h2>Collections</h2></div>
   <div class="ncs-collection-grid">
     <a class="ncs-collection-tile" href="{% render 'nc-collection-url', handle: settings.collection_coffee %}" data-nc-reveal>
-      <div class="ncs-showcase-img ncs-collection-thumb">
+      <div class="ncs-fit-img">
         <img src="{% render 'nc-collection-cover', handle: settings.collection_coffee %}" alt="Coffee Tables" width="1600" height="1200" loading="lazy">
       </div>
       <div class="ncs-collection-tile-label"><strong>Coffee Tables</strong></div>
     </a>
     <a class="ncs-collection-tile" href="{% render 'nc-collection-url', handle: settings.collection_side %}" data-nc-reveal>
-      <div class="ncs-showcase-img ncs-collection-thumb">
+      <div class="ncs-fit-img">
         <img src="{% render 'nc-collection-cover', handle: settings.collection_side %}" alt="Side Tables" width="1600" height="1200" loading="lazy">
       </div>
       <div class="ncs-collection-tile-label"><strong>Side Tables</strong></div>
     </a>
     <a class="ncs-collection-tile" href="{% render 'nc-collection-url', handle: settings.collection_console %}" data-nc-reveal>
-      <div class="ncs-showcase-img ncs-collection-thumb">
+      <div class="ncs-fit-img">
         <img src="{% render 'nc-collection-cover', handle: settings.collection_console %}" alt="Console Tables" width="1600" height="1200" loading="lazy">
       </div>
       <div class="ncs-collection-tile-label"><strong>Console Tables</strong></div>
@@ -41,14 +41,14 @@
 <section class="ncs-best ncs-home-best">
   <div class="ncs-section-head" data-nc-reveal><h2>Best Sellers</h2></div>
   {% assign best_collection = collections[settings.collection_best_sellers] %}
-  <div class="ncs-auto-carousel" data-nc-auto-carousel data-interval="3000">
+  <div class="ncs-auto-carousel" data-nc-auto-carousel data-interval="6000">
     <div class="ncs-auto-carousel-track">
       {% if best_collection != blank and best_collection.products_count > 0 %}
         {% for product in best_collection.products limit: 6 %}
-          {% capture product_thumb %}{% render 'nc-product-thumb', product: product %}{% endcapture %}
+          {% capture product_img %}{% render 'nc-product-img-src', product: product %}{% endcapture %}
           <a class="ncs-auto-slide" href="{{ product.url }}">
-            <div class="ncs-auto-slide-media">
-              <img src="{{ product_thumb | strip }}" alt="{{ product.title | escape }}" width="900" height="1125" loading="lazy">
+            <div class="ncs-fit-img ncs-auto-slide-media">
+              <img src="{{ product_img | strip }}" alt="{{ product.title | escape }}" width="900" height="1125" loading="lazy">
             </div>
             <div class="ncs-auto-slide-meta">
               <span>{{ product.title }}</span>

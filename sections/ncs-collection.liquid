@@ -10,10 +10,10 @@
   <div class="ncs-grid-products">
     {% if collection.products_count > 0 %}
       {% for product in collection.products limit: 3 %}
-        {% capture product_thumb %}{% render 'nc-product-thumb', product: product %}{% endcapture %}
+        {% capture product_img %}{% render 'nc-product-img-src', product: product %}{% endcapture %}
         <a class="ncs-card" href="{{ product.url }}" data-nc-reveal>
-          <div class="ncs-showcase-img ncs-card-media">
-            <img src="{{ product_thumb | strip }}" alt="{{ product.title | escape }}" loading="lazy" width="800" height="1000">
+          <div class="ncs-fit-img ncs-card-media">
+            <img src="{{ product_img | strip }}" alt="{{ product.title | escape }}" loading="lazy" width="800" height="1000">
           </div>
           <div class="ncs-card-info"><span>{{ product.title }}</span><b>{{ product.price | money }}</b></div>
         </a>

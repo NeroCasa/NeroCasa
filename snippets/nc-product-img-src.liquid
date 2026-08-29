@@ -1,0 +1,23 @@
+{%- comment -%}
+  Product image URL — theme catalog asset for NeroCasa handles, else Shopify image.
+  @param product {Product}
+  @param width {Number} optional, default 1800
+{%- endcomment -%}
+{%- liquid
+  assign img_width = width | default: 1800
+  assign catalog_file = product.handle | append: '-ibiza-white.jpg'
+  assign is_catalog = false
+  if product.handle contains 'cft-' or product.handle contains 'cs-' or product.handle contains 'sd-'
+    assign is_catalog = true
+  endif
+
+  if is_catalog
+    echo catalog_file | asset_url
+  elsif product.featured_image != blank
+    echo product.featured_image | image_url: width: img_width
+  elsif product.images.size > 0
+    echo product.images.first | image_url: width: img_width
+  else
+    echo catalog_file | asset_url
+  endif
+-%}

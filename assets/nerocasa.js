@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (slides.length <= 1) return;
 
     var index = 0;
-    var interval = parseInt(root.dataset.interval || '3000', 10);
+    var interval = parseInt(root.dataset.interval || '6000', 10);
     var timer;
 
     function goTo(i) {
