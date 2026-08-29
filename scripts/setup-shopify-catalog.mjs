@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * NeroCasa — one-shot Shopify Admin setup
- * Creates collections, catalog products (with Marble variants), pages, and best-sellers collection.
+ * Creates collections, catalog products (with Marble variants), and pages.
  *
  * Prerequisites:
  *   npm install -g @shopify/cli@latest
@@ -59,7 +59,6 @@ const COLLECTIONS = [
   { title: 'Coffee Tables', handle: 'coffee-tables', description: 'Architectural marble coffee tables.' },
   { title: 'Side Tables', handle: 'side-tables', description: 'Side tables in Ibiza White, Armani Grey, and Travertine.' },
   { title: 'Console Tables', handle: 'console-tables', description: 'Console tables for refined interiors.' },
-  { title: 'Best Sellers', handle: 'best-sellers', description: 'Selected NeroCasa objects.' },
 ];
 
 const PAGES = [
@@ -289,13 +288,6 @@ async function ensureProducts(productMap, collectionMap) {
 
     await assignToCollection(created.id, collectionMap.get(product.collection)?.id);
   }
-
-  const best = collectionMap.get('best-sellers');
-  if (best) {
-    const allIds = PRODUCTS.map((p) => productMap.get(p.handle)?.id).filter(Boolean);
-    await assignManyToCollection(best.id, allIds);
-    console.log('  · Added catalog products to best-sellers');
-  }
 }
 
 async function assignToCollection(productId, collectionId) {
@@ -326,7 +318,7 @@ async function main() {
   await ensureProducts(productMap, collectionMap);
 
   console.log('\nDone. Your store now has:');
-  console.log('  • 4 collections (coffee, side, console, best-sellers)');
+  console.log('  • 3 collections (coffee, side, console)');
   console.log('  • 9 products with Marble color variants + placeholder prices');
   console.log('  • 8 published pages with theme templates');
   console.log('\nEdit prices in Shopify Admin → Products when ready.\n');

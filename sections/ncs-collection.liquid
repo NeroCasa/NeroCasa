@@ -12,7 +12,7 @@
       {% for product in collection.products limit: 3 %}
         {% capture product_img %}{% render 'nc-product-img-src', product: product %}{% endcapture %}
         <a class="ncs-card" href="{{ product.url }}" data-nc-reveal>
-          <div class="ncs-fit-img ncs-card-media">
+          <div class="ncs-fit-img ncs-fit-img--tile ncs-card-media">
             <img src="{{ product_img | strip }}" alt="{{ product.title | escape }}" loading="lazy" width="800" height="1000">
           </div>
           <div class="ncs-card-info"><span>{{ product.title }}</span><b>{{ product.price | money }}</b></div>
@@ -27,7 +27,7 @@
           assign showcase_pool = 'console'
         endif
       %}
-      {% render 'nc-showcase-best', limit: 3, category: showcase_pool %}
+      {% render 'nc-catalog-cards', category: showcase_pool %}
     {% endif %}
   </div>
 </section>

@@ -22,7 +22,7 @@ const KEEP_PRODUCTS = new Set([
 ]);
 
 const KEEP_COLLECTIONS = new Set([
-  'coffee-tables', 'side-tables', 'console-tables', 'best-sellers',
+  'coffee-tables', 'side-tables', 'console-tables',
 ]);
 
 const KEEP_PAGES = new Set([

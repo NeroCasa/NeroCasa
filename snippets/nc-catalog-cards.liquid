@@ -1,0 +1,37 @@
+{%- comment -%}
+  Catalog product cards for collection pages (fallback when Shopify collection is empty).
+  @param category {String} coffee | side | console
+{%- endcomment -%}
+{%- liquid
+  case category
+    when 'side'
+      assign catalog_handles = 'sd-1,sd-2,sd-3' | split: ','
+    when 'console'
+      assign catalog_handles = 'cs-1,cs-2,cs-3' | split: ','
+    else
+      assign catalog_handles = 'cft-1,cft-2,cft-3' | split: ','
+  endcase
+-%}
+{%- for item_handle in catalog_handles -%}
+  {%- assign shop_product = all_products[item_handle] -%}
+  {%- if shop_product != blank -%}
+    {%- assign item_url = shop_product.url -%}
+    {%- assign item_title = shop_product.title -%}
+    {%- assign item_price = shop_product.price | money -%}
+    {%- capture item_src -%}{% render 'nc-product-img-src', product: shop_product %}{%- endcapture -%}
+  {%- else -%}
+    {%- assign item_url = '/products/' | append: item_handle -%}
+    {%- assign item_title = item_handle | upcase -%}
+    {%- assign item_price = '' -%}
+    {%- assign item_src = item_handle | append: '-ibiza-white.jpg' | asset_url -%}
+  {%- endif -%}
+  <a class="ncs-card" href="{{ item_url }}" data-nc-reveal>
+    <div class="ncs-fit-img ncs-fit-img--tile ncs-card-media">
+      <img src="{{ item_src | strip }}" alt="{{ item_title | escape }}" width="900" height="1125" loading="lazy">
+    </div>
+    <div class="ncs-card-info">
+      <span>{{ item_title }}</span>
+      {%- if item_price != blank -%}<b>{{ item_price }}</b>{%- endif -%}
+    </div>
+  </a>
+{%- endfor -%}

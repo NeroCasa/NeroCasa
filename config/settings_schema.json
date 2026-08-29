@@ -121,13 +121,6 @@
         "id": "collection_console",
         "label": "Console tables handle",
         "default": "console-tables"
-      },
-      {
-        "type": "text",
-        "id": "collection_best_sellers",
-        "label": "Best sellers handle",
-        "default": "best-sellers",
-        "info": "Used on the home page product rail. Falls back to All products."
       }
     ]
   },

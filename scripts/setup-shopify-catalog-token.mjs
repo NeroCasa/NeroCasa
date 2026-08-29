@@ -37,7 +37,6 @@ const COLLECTIONS = [
   { title: 'Coffee Tables', handle: 'coffee-tables', description: 'Architectural marble coffee tables.' },
   { title: 'Side Tables', handle: 'side-tables', description: 'Side tables in Ibiza White, Armani Grey, and Travertine.' },
   { title: 'Console Tables', handle: 'console-tables', description: 'Console tables for refined interiors.' },
-  { title: 'Best Sellers', handle: 'best-sellers', description: 'Selected NeroCasa objects.' },
 ];
 
 const PAGES = [
@@ -194,11 +193,6 @@ async function ensureProducts(productMap, collectionMap) {
       console.log(`    · ${updates.length} marble variants priced`);
     }
     await addToCollection(collectionMap.get(product.collection)?.id, [created.id]);
-  }
-  const best = collectionMap.get('best-sellers');
-  if (best) {
-    await addToCollection(best.id, PRODUCTS.map((p) => productMap.get(p.handle)?.id).filter(Boolean));
-    console.log('  · Added all products to Best Sellers');
   }
 }
 

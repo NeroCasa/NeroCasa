@@ -38,31 +38,6 @@
   </div>
 </section>
 
-<section class="ncs-best ncs-home-best">
-  <div class="ncs-section-head" data-nc-reveal><h2>Best Sellers</h2></div>
-  {% assign best_collection = collections[settings.collection_best_sellers] %}
-  <div class="ncs-auto-carousel" data-nc-auto-carousel data-interval="6000">
-    <div class="ncs-auto-carousel-track">
-      {% if best_collection != blank and best_collection.products_count > 0 %}
-        {% for product in best_collection.products limit: 6 %}
-          {% capture product_img %}{% render 'nc-product-img-src', product: product %}{% endcapture %}
-          <a class="ncs-auto-slide" href="{{ product.url }}">
-            <div class="ncs-fit-img ncs-auto-slide-media">
-              <img src="{{ product_img | strip }}" alt="{{ product.title | escape }}" width="900" height="1125" loading="lazy">
-            </div>
-            <div class="ncs-auto-slide-meta">
-              <span>{{ product.title }}</span>
-              <b>{{ product.price | money }}</b>
-            </div>
-          </a>
-        {% endfor %}
-      {% else %}
-        {% render 'nc-showcase-best', limit: 6, layout: 'slide' %}
-      {% endif %}
-    </div>
-  </div>
-</section>
-
 <section class="ncs-mail ncs-cta">
   <div class="ncs-cta-title" data-nc-reveal><h2>Stay close</h2></div>
   {% form 'customer', class: 'ncs-mail-form' %}
