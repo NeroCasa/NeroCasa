@@ -1,77 +1,113 @@
-# Checkout and shipping setup (NeroCasa)
+# Checkout setup (NeroCasa)
 
-Shopify **checkout is not part of your theme**. After `/cart`, customers go to Shopify’s secure checkout (`checkout.shopify.com`). You can brand it and configure payments/shipping in Admin, but you cannot replace the full checkout page with `ncs-*` theme files unless you are on **Shopify Plus**.
+Shopify **checkout and thank you** are **not theme pages**. Configure them in **Admin → Settings → Checkout**, not in the theme editor.
 
-## What the theme controls
+Run the setup guide anytime:
 
-| Step | Controlled by |
-|------|----------------|
-| Product page | NeroCasa theme |
-| Cart page (`/cart`) | NeroCasa theme — email + WhatsApp collected here |
-| Checkout | **Shopify Admin** (hosted checkout) |
-| Order confirmation email | **Shopify Admin** → Notifications |
+```powershell
+node scripts/setup-guest-checkout.mjs zhjbdz-yw.myshopify.com
+```
 
-## 1. Brand checkout (match NeroCasa)
+## What the customer sees
 
-1. **Admin → Settings → Checkout → Customize**
-2. Upload your logo
-3. Set colors: background `#080807`, accent `#A57B00`
-4. Save
+| Step | Where | Guest? |
+|------|--------|--------|
+| Cart | Your theme (`/cart`) | Yes |
+| Checkout | Shopify hosted | Yes — no login |
+| Thank you | Shopify hosted | Yes |
+| **Bill / receipt** | Order confirmation **email** | Yes — no account needed |
+| Track order | Email link or `/pages/track-order` | Order # + email |
 
-## 2. Order emails → info@nerocasa.com
+---
 
-1. **Admin → Settings → Store details** → Store contact email: `info@nerocasa.com`
-2. **Admin → Settings → Notifications** → Customer notifications → Order confirmation (verify sender/recipient settings)
+## 1. Guest checkout
 
-Checkout always collects **email** for order confirmation. The cart also saves **Email** and **WhatsApp** as order attributes for your team.
+**Admin → Settings → Customer accounts**
 
-## 3. Remove PayPal
+- Choose **Don't allow customers to create accounts** for pure guest checkout  
+- Or **Optional** (current) — customers can check out without logging in; account is only if they choose later
 
-1. **Admin → Settings → Payments**
-2. Deactivate **PayPal** (and any wallet you are not ready to use)
-3. Leave **Shopify Payments** or your chosen method for when you add cards later
+Confirm **Login required at checkout** is **off**.
 
-PayPal cannot be removed from theme code alone.
+---
 
-## 4. Free shipping + 3–7 working days
+## 2. Thank you page
 
-Run from the repo (or set manually in Admin):
+**Admin → Settings → Checkout → Customize** → switch preview to **Thank you**
+
+Add or edit a text block with:
+
+```
+Thank you. Your order is confirmed.
+
+We make every piece when you order. Production and delivery usually take 3 to 7 working days after confirmation.
+
+We will contact you on WhatsApp if we need to confirm marble, size, or delivery details.
+
+Your order confirmation email is your receipt. It includes your order number, what you bought, and the total paid (VAT included). Keep it for tracking and warranty.
+
+Questions? WhatsApp us or email info@nerocasa.com
+```
+
+**Branding:** background `#080807`, accent `#A57B00`, NeroCasa logo.
+
+**Phone:** Customer information → **Phone number → Required**  
+Banner text: *Use your WhatsApp number in the phone field so we can reach you about your order.*
+
+---
+
+## 3. The bill (receipt / invoice)
+
+Guests get a bill **without an account**:
+
+1. **At checkout** — order summary shows products, free shipping, **total in AED**
+2. **Order confirmation email** — sent automatically; this is the **receipt** (order number, date, items, total)
+3. **VAT** — product prices include standard VAT (`taxes included` is enabled for the store)
+4. **Formal PDF invoice** — you can send from **Admin → Orders → [order] → Send invoice** if a client asks
+
+**Set notification email:**
+
+- **Settings → Store details** → contact email: `info@nerocasa.com`
+- **Settings → Notifications** → Order confirmation — add: *This email is your receipt. Total includes VAT where applicable.*
+
+---
+
+## 4. Free shipping
+
+**Admin → Settings → Shipping and delivery**
+
+- Rate: **0.00 AED**
+- Name: **Free delivery (3 to 7 working days)**
+
+Or run (if API works on your plan):
 
 ```powershell
 node scripts/setup-free-shipping.mjs zhjbdz-yw.myshopify.com
 ```
 
-Manual alternative: **Admin → Settings → Shipping and delivery** → set rates to **0.00** and name the method **Free delivery (3-7 working days)** for all zones you serve.
+---
 
-## 5. Delivery address (manual vs map pin)
+## 5. Payments
 
-Standard Shopify checkout uses **manual address fields** (with autocomplete in many regions). A **map pin / drop-a-pin** selector is **not** included on standard plans. Options:
+**Admin → Settings → Payments** — deactivate **PayPal** until you are ready.
 
-- **Recommended now:** manual address at checkout (street, area, city, UAE emirate)
-- **Later:** Shopify Plus checkout extension or a delivery app with map selection
+---
 
-## 6. Product images missing in Admin and checkout
+## 6. Product images in checkout
 
-Catalog photos live as **theme assets** (`cft-1-ibiza-white.jpg`, etc.) but were **never uploaded to product media** in Shopify. Admin and checkout only show images attached to products.
-
-**Fix:**
-
-1. Add all JPG files to `assets/` in the repo (27 files: `{handle}-{marble-slug}.jpg`)
-2. Run:
+Checkout uses **product media** in Shopify Admin, not theme assets. Upload via **Products → Media** or:
 
 ```powershell
 node scripts/upload-catalog-images.mjs zhjbdz-yw.myshopify.com
 ```
 
-Or upload images manually in **Admin → Products → each product → Media**.
+Storefront catalog pages still use theme assets; this is mainly for Admin and checkout thumbnails.
 
-## Email and WhatsApp at checkout (not on cart)
+---
 
-Email and phone are collected on **Shopify checkout**, not the cart page.
+## Theme-controlled pages
 
-1. **Admin → Settings → Checkout → Customize**
-2. **Customer information → Phone number → Required**
-3. Email is always required at checkout for order confirmation
-4. Optional checkout banner text: *Use your WhatsApp number in the phone field*
-
-There is no separate WhatsApp field on standard Shopify checkout. The **phone** field is used for WhatsApp contact.
+| Page | Template |
+|------|----------|
+| Cart | `sections/ncs-cart.liquid` |
+| Track order | `page.track` → `/pages/track-order` |

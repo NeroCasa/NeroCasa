@@ -1,0 +1,35 @@
+mutation BrandCheckout($checkoutProfileId: ID!) {
+  checkoutBrandingUpsert(
+    checkoutProfileId: $checkoutProfileId
+    checkoutBrandingInput: {
+      designSystem: {
+        colors: {
+          global: {
+            accent: "#A57B00"
+            brand: "#A57B00"
+          }
+          schemes: {
+            scheme1: {
+              base: { background: "#080807", text: "#F2EEE6" }
+              primaryButton: { background: "#A57B00", border: "#A57B00", text: "#080807" }
+            }
+          }
+        }
+      }
+    }
+  ) {
+    checkoutBranding {
+      designSystem {
+        colors {
+          global {
+            accent
+          }
+        }
+      }
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

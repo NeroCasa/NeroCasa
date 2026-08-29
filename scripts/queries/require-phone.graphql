@@ -1,0 +1,19 @@
+mutation RequirePhone($checkoutProfileId: ID!) {
+  checkoutProfileUpdate(
+    checkoutProfileId: $checkoutProfileId
+    checkoutConfiguration: {
+      contactInfo: {
+        phoneRequired: true
+      }
+    }
+  ) {
+    checkoutProfile {
+      id
+      name
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

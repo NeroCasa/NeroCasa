@@ -1,0 +1,30 @@
+mutation ApplyCheckoutSetup($checkoutProfileId: ID!) {
+  checkoutBrandingUpsert(
+    checkoutProfileId: $checkoutProfileId
+    checkoutBrandingInput: {
+      designSystem: {
+        colors: {
+          global: {
+            accent: "#A57B00"
+            brand: "#A57B00"
+            critical: "#E8A0A0"
+            decorative: "#A57B00"
+            info: "#A57B00"
+            success: "#A57B00"
+            warning: "#A57B00"
+          }
+          schemes: {
+            scheme1: {
+              base: { background: "#080807", text: "#F2EEE6" }
+              control: { background: "#141414", border: "#2A2A2A", text: "#F2EEE6" }
+              primaryButton: { background: "#A57B00", border: "#A57B00", text: "#080807" }
+              secondaryButton: { background: "#141414", border: "#A57B00", text: "#F2EEE6" }
+          }
+        }
+      }
+    }
+  ) {
+    checkoutBranding { id }
+    userErrors { field message }
+  }
+}

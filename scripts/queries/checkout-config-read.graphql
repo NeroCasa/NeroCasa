@@ -1,0 +1,23 @@
+query {
+  checkoutAndAccountsConfigurations(first: 5) {
+    nodes {
+      id
+      name
+      isPublished
+    }
+  }
+  checkoutProfiles(first: 5) {
+    nodes {
+      id
+      name
+      isPublished
+    }
+  }
+  shop {
+    customerAccounts
+    customerAccountsV2 {
+      loginRequiredAtCheckout
+      loginLinksVisibleOnStorefrontAndCheckout
+    }
+  }
+}
