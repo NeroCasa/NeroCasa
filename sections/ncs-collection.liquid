@@ -1,10 +1,11 @@
 <section class="ncs-collection-page">
   <header class="ncs-collection-header" data-nc-reveal>
     <h1>{{ collection.title }}</h1>
+    <p class="ncs-collection-lead">Three forms. Multiple marbles — select your stone on the product page.</p>
     {% if collection.description != blank %}
-      <p>{{ collection.description | strip_html }}</p>
+      <p class="ncs-collection-desc">{{ collection.description | strip_html }}</p>
     {% endif %}
-    <span class="ncs-collection-count">3 object{% if collection.handle != blank %}s{% endif %}</span>
+    <span class="ncs-collection-count">3 designs</span>
   </header>
 
   <div class="ncs-grid-products">

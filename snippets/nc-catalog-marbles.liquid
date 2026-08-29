@@ -1,0 +1,15 @@
+{%- comment -%}
+  Marble options for a catalog product handle.
+  @param handle {String} e.g. cft-1
+  Outputs pipe-separated entries: Name:slug|Name:slug
+{%- endcomment -%}
+{%- liquid
+  case handle
+    when 'cft-1', 'cft-2', 'cs-1', 'cs-2', 'cs-3', 'sd-1', 'sd-2', 'sd-3'
+      echo 'Ibiza White:ibiza-white|Armani Grey:armani-grey|Travertine:travertine'
+    when 'cft-3'
+      echo 'Ibiza White:ibiza-white|Travertine:travertine|Rosso Levanto:rosso-levanto'
+    else
+      echo 'Ibiza White:ibiza-white|Armani Grey:armani-grey|Travertine:travertine'
+  endcase
+-%}

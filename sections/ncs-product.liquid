@@ -7,6 +7,19 @@
       <img src="{% if product.featured_image %}{{ product.featured_image | image_url: width: 1800 }}{% else %}{{ catalog_img | strip }}{% endif %}"
            alt="{{ product.featured_image.alt | default: product.title | escape }}"
            data-ncs-main width="1800" height="1900" loading="eager">
+      <p class="ncs-shown-in" data-ncs-shown-in>
+        {%- liquid
+          assign shown_marble = 'Ibiza White'
+          for option in product.options_with_values
+            assign opt_name = option.name | downcase
+            if opt_name contains 'marble' or opt_name contains 'color' or opt_name contains 'colour'
+              assign shown_marble = option.selected_value
+              break
+            endif
+          endfor
+        -%}
+        Shown in {{ shown_marble }}
+      </p>
     </div>
     {% if product.images.size > 1 %}
       <div class="ncs-thumbs">
@@ -196,6 +209,12 @@
     main.style.opacity='.35';
     setTimeout(function(){main.src=src;main.style.opacity='1';},120);
   }
+  function updateShownIn(){
+    var el=root.querySelector('[data-ncs-shown-in]');
+    if(!el)return;
+    var color=getSelectedColor();
+    if(color)el.textContent='Shown in '+color;
+  }
   function setProps(color,type,dh,dl,dw){
     if(colorProp)colorProp.value=color||'';
     if(typeProp)typeProp.value=type;
@@ -225,6 +244,7 @@
     if(!variants.length){
       var img=resolveImage(null);
       if(img)setImage(img);
+      updateShownIn();
       return;
     }
     var selected=selectedValues();
@@ -233,6 +253,7 @@
       if(add){add.disabled=true;add.innerHTML='UNAVAILABLE';}
       var imgOnly=resolveImage(null);
       if(imgOnly)setImage(imgOnly);
+      updateShownIn();
       return;
     }
     if(variantInput)variantInput.value=v.id;
@@ -241,6 +262,7 @@
     if(summary)summary.textContent=v.title;
     var img=resolveImage(v);
     if(img)setImage(img);
+    updateShownIn();
   }
   function bindChoiceGroup(g){
     g.querySelectorAll('[data-value]').forEach(function(btn){

@@ -313,6 +313,10 @@ body {
   min-height: 0;
   background: transparent;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 14px;
 }
 
 .ncs-main-product-image img {
@@ -322,6 +326,16 @@ body {
   height: auto;
   max-width: 100%;
   object-fit: contain;
+}
+
+.ncs-shown-in {
+  margin: 0;
+  padding: 0 4px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--nc-muted);
+  text-align: center;
 }
 
 /* Collections index — 3 equal columns */
@@ -592,6 +606,67 @@ body {
   letter-spacing: 0.12em;
   color: var(--nc-gold);
   font-weight: 400;
+}
+
+.ncs-card-from {
+  font-size: 11px !important;
+  letter-spacing: 0.12em;
+  color: var(--nc-gold) !important;
+  font-weight: 400;
+}
+
+.ncs-card-marbles {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding-top: 2px;
+}
+
+.ncs-marble-swatches {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ncs-marble-swatch {
+  flex: 0 0 14px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(242, 238, 230, 0.22);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  pointer-events: auto;
+}
+
+.ncs-marble-swatch--ibiza-white { background: #f0ebe3; }
+.ncs-marble-swatch--armani-grey { background: #8a8580; }
+.ncs-marble-swatch--travertine { background: #c7beb2; }
+.ncs-marble-swatch--rosso-levanto { background: #6b3434; }
+
+.ncs-marble-card:hover .ncs-marble-swatch {
+  cursor: pointer;
+}
+
+.ncs-marble-card .ncs-marble-swatch:hover,
+.ncs-marble-card .ncs-marble-swatch:focus-visible {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 1px var(--nc-gold);
+}
+
+.ncs-card-marbles-label {
+  margin: 0;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  line-height: 1.55;
+  color: var(--nc-muted);
+  font-weight: 400;
+}
+
+.ncs-card-marbles-label .ncs-marble-dot {
+  margin: 0 5px;
+  color: var(--nc-gold);
+  opacity: 0.55;
 }
 
 /* ── Bespoke CTA ── */
@@ -958,10 +1033,28 @@ body {
 .ncs-collection-header h1 {
   font-size: clamp(44px, 6vw, 80px) !important;
   line-height: 1.05 !important;
-  margin: 0 0 24px !important;
+  margin: 0 0 20px !important;
 }
 
-.ncs-collection-header p {
+.ncs-collection-lead {
+  font-family: var(--nc-display);
+  font-style: italic;
+  font-size: clamp(17px, 2.1vw, 22px);
+  font-weight: 300;
+  line-height: 1.45;
+  color: rgba(242, 238, 230, 0.78);
+  margin: 0 0 18px !important;
+  max-width: 520px;
+}
+
+.ncs-collection-desc {
+  color: var(--nc-muted) !important;
+  font-size: 14px !important;
+  line-height: 1.75 !important;
+  margin: 0 0 20px !important;
+}
+
+.ncs-collection-header p:not(.ncs-collection-lead):not(.ncs-collection-desc) {
   margin: 0 0 24px !important;
   font-size: 15px;
   line-height: 1.85;

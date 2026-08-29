@@ -17,7 +17,7 @@
   {%- if shop_product != blank -%}
     {%- assign item_url = shop_product.url -%}
     {%- assign item_title = shop_product.title -%}
-    {%- assign item_price = shop_product.price | money -%}
+    {%- assign item_price_min = shop_product.price_min | money -%}
   {%- else -%}
     {%- assign item_url = '/products/' | append: item_handle -%}
     {%- case item_handle -%}
@@ -32,16 +32,46 @@
       {%- when 'sd-3' -%}{%- assign item_title = 'Side Table 3' -%}
       {%- else -%}{%- assign item_title = item_handle | upcase -%}
     {%- endcase -%}
-    {%- assign item_price = '' -%}
+    {%- assign item_price_min = '' -%}
   {%- endif -%}
   {%- capture item_src -%}{% render 'nc-catalog-default-img', handle: item_handle %}{%- endcapture -%}
-  <a class="ncs-card" href="{{ item_url }}" data-nc-reveal>
+  {%- capture marble_data -%}{% render 'nc-catalog-marbles', handle: item_handle %}{%- endcapture -%}
+  {%- assign marble_entries = marble_data | strip | split: '|' -%}
+  <a class="ncs-card ncs-marble-card" href="{{ item_url }}" data-nc-marble-card data-nc-reveal>
     <div class="ncs-fit-img ncs-fit-img--tile ncs-card-media">
-      <img src="{{ item_src | strip }}" alt="{{ item_title | escape }}" width="900" height="1125" loading="lazy">
+      <img src="{{ item_src | strip }}" alt="{{ item_title | escape }}" width="900" height="1125" loading="lazy" data-nc-card-img data-default-src="{{ item_src | strip }}">
     </div>
     <div class="ncs-card-info">
       <span>{{ item_title }}</span>
-      {%- if item_price != blank -%}<b>{{ item_price }}</b>{%- endif -%}
+      {%- if item_price_min != blank -%}
+        <b class="ncs-card-from">From {{ item_price_min }}</b>
+      {%- endif -%}
+      <div class="ncs-card-marbles" aria-label="Available marble finishes">
+        <div class="ncs-marble-swatches">
+          {%- for entry in marble_entries -%}
+            {%- assign parts = entry | split: ':' -%}
+            {%- assign marble_name = parts[0] -%}
+            {%- assign marble_slug = parts[1] -%}
+            {%- assign marble_img = item_handle | append: '-' | append: marble_slug | append: '.jpg' | asset_url -%}
+            <span
+              class="ncs-marble-swatch ncs-marble-swatch--{{ marble_slug }}"
+              data-nc-marble-preview
+              data-img="{{ marble_img }}"
+              title="{{ marble_name }}"
+              aria-label="{{ marble_name }}"
+              tabindex="0"
+              role="img"
+            ></span>
+          {%- endfor -%}
+        </div>
+        <p class="ncs-card-marbles-label">
+          {%- for entry in marble_entries -%}
+            {%- assign parts = entry | split: ':' -%}
+            {%- unless forloop.first -%}<span class="ncs-marble-dot" aria-hidden="true">·</span>{%- endunless -%}
+            <span>{{ parts[0] }}</span>
+          {%- endfor -%}
+        </p>
+      </div>
     </div>
   </a>
 {%- endfor -%}
