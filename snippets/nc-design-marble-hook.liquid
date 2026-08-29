@@ -1,0 +1,73 @@
+{%- comment -%}
+  Design-specific opening line tying product shape to selected marble.
+  @param handle {String} product handle e.g. cft-1
+  @param marble {String} marble display name
+{%- endcomment -%}
+{%- liquid
+  assign marble_key = marble | downcase | strip
+  assign hook_key = handle | append: ':' | append: marble_key
+-%}
+{%- case hook_key -%}
+  {%- when 'cft-1:ibiza white' -%}
+    <p>On Soglia's wide horizontal plane, Ibiza White reads calm and architectural. Light catches the soft grey veining like clouds over a still surface.</p>
+  {%- when 'cft-1:armani grey' -%}
+    <p>Soglia's low span gives Armani Grey room to feel grounded and precise. The graphite tone turns the table into a quiet anchor in the room.</p>
+  {%- when 'cft-1:travertine' -%}
+    <p>Warm travertine softens Soglia's geometry without losing structure. Natural pits and layers add texture you can see and feel up close.</p>
+
+  {%- when 'cft-2:ibiza white' -%}
+    <p>Equilibrio lives on tension between mass and air; Ibiza White keeps that balance luminous. The stone feels light even when the form is bold.</p>
+  {%- when 'cft-2:armani grey' -%}
+    <p>Armani Grey sharpens Equilibrio's lines into something gallery-sharp. White veining traces the edge where structure meets space.</p>
+  {%- when 'cft-2:travertine' -%}
+    <p>Travertine brings an earthy warmth to Equilibrio's sculpted voids. Roman stone, contemporary form.</p>
+
+  {%- when 'cft-3:ibiza white' -%}
+    <p>Monolite is a single vertical plane; Ibiza White makes it feel like a slab of Mediterranean light. Sculpture first, table second.</p>
+  {%- when 'cft-3:travertine' -%}
+    <p>In Monolite, travertine's layered warmth contrasts beautifully with the piece's strict vertical cut. Ancient material, modern monolith.</p>
+  {%- when 'cft-3:rosso levanto' -%}
+    <p>Rosso Levanto turns Monolite into a statement object before it is furniture. The red Ligurian stone and vertical mass were made for each other.</p>
+
+  {%- when 'cs-1:ibiza white' -%}
+    <p>Galleria stands tall in the hallway; Ibiza White keeps the silhouette bright and gallery-clean. Veining draws the eye upward along the vertical face.</p>
+  {%- when 'cs-1:armani grey' -%}
+    <p>Armani Grey gives Galleria a couture-dark presence at entry scale. Fine white lines trace the height of the piece like pencil on stone.</p>
+  {%- when 'cs-1:travertine' -%}
+    <p>Travertine warms Galleria's vertical profile with ivory depth. A console that feels collected, not cold.</p>
+
+  {%- when 'cs-2:ibiza white' -%}
+    <p>Passaggio runs long and low; Ibiza White keeps the path through your space feeling open. The top reads as one continuous bright plane.</p>
+  {%- when 'cs-2:armani grey' -%}
+    <p>Armani Grey gives Passaggio a cinematic low line along the wall. Strong enough to frame art, quiet enough to live with daily.</p>
+  {%- when 'cs-2:travertine' -%}
+    <p>Travertine's natural movement suits Passaggio's length. Each stretch of surface tells a slightly different geological story.</p>
+
+  {%- when 'cs-3:ibiza white' -%}
+    <p>Atrio is built for first impressions; Ibiza White welcomes with light and clarity. The entry piece that sets the tone for the whole home.</p>
+  {%- when 'cs-3:armani grey' -%}
+    <p>Atrio in Armani Grey is an entrance with authority. Dark stone, confident proportions, no apology.</p>
+  {%- when 'cs-3:travertine' -%}
+    <p>Travertine makes Atrio feel rooted and hospitable at the door. Warm stone for the threshold between outside and in.</p>
+
+  {%- when 'sd-1:ibiza white' -%}
+    <p>Nodo sits close at sofa or bedside; Ibiza White keeps the compact form fresh and unobtrusive. A small piece that still feels refined.</p>
+  {%- when 'sd-1:armani grey' -%}
+    <p>Armani Grey gives Nodo weight without bulk. The dark stone makes a compact side table feel intentional.</p>
+  {%- when 'sd-1:travertine' -%}
+    <p>Travertine softens Nodo's vertical compactness with honeyed tone. Perfect beside linen, leather, or warm wood.</p>
+
+  {%- when 'sd-2:ibiza white' -%}
+    <p>Punto is a square pause in the room; Ibiza White makes that pause feel serene. Four equal sides, one calm surface.</p>
+  {%- when 'sd-2:armani grey' -%}
+    <p>Punto in Armani Grey is punctuation in graphite. A geometric side table that holds its own next to larger pieces.</p>
+  {%- when 'sd-2:travertine' -%}
+    <p>Travertine gives Punto tactile warmth in a strict square format. Orderly shape, organic stone.</p>
+
+  {%- when 'sd-3:ibiza white' -%}
+    <p>Scalino's stepped profile catches light on every level; Ibiza White makes each plane distinct. Soft geometry, bright stone.</p>
+  {%- when 'sd-3:armani grey' -%}
+    <p>Armani Grey emphasizes Scalino's quiet steps with depth and shadow. The form reads sculptural even at low height.</p>
+  {%- when 'sd-3:travertine' -%}
+    <p>Travertine layers echo Scalino's stepped design in stone. Form and material speak the same language.</p>
+{%- endcase -%}

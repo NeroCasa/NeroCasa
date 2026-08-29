@@ -1,0 +1,32 @@
+{%- comment -%}
+  Researched marble origin, history, and materials copy.
+  @param marble {String} Ibiza White | Armani Grey | Travertine | Rosso Levanto
+  @param part {String} story | materials
+{%- endcomment -%}
+{%- liquid
+  assign marble_key = marble | downcase | strip
+  assign part = part | default: 'story'
+-%}
+{%- if part == 'story' -%}
+  {%- case marble_key -%}
+    {%- when 'ibiza white' -%}
+      <p>Quarried in Muğla province, Turkey, in the Yatağan and Aydın districts. Ibiza White is a commercial name for a Mediterranean bright white marble; the stone is Turkish, not Spanish. It is dolomitic marble with a luminous field and soft grey cloud veining, exported worldwide for contemporary interiors.</p>
+    {%- when 'armani grey' -%}
+      <p>Known internationally as Pietra Grey and traded as Armani Grey. Quarried in Isfahan province, Iran, particularly around the Lashotor area south of the city. Calcite marble with a graphite to charcoal ground and fine white veining, chosen by architects for bold, monolithic interiors.</p>
+    {%- when 'travertine' -%}
+      <p>Classic Roman travertine from the Tivoli hills east of Rome, historically called Lapis Tiburtinus. Formed over millennia from mineral-rich spring water in the Acque Albule basin. Warm ivory and beige tones with natural pitting and layered movement. The same family of stone shaped Roman architecture, including the Colosseum.</p>
+    {%- when 'rosso levanto' -%}
+      <p>Ophicalcite and serpentinite breccia from the Ligurian coast of Italy, quarried near Levanto, Bonassola, and Deiva Marina in La Spezia province. Deep red matrix crossed by white calcite veins. Used since Etruscan and Roman times; today it remains one of Italy's most distinctive decorative stones.</p>
+  {%- endcase -%}
+{%- elsif part == 'materials' -%}
+  {%- case marble_key -%}
+    {%- when 'ibiza white' -%}
+      <p>Natural dolomitic marble, imported from Muğla, Turkey. Face polished and sealed for residential use. Soft grey veining and subtle tone variation are natural; every slab is unique. Cut and finished in our workshop.</p>
+    {%- when 'armani grey' -%}
+      <p>Natural calcite marble, imported from Isfahan province, Iran. Polished face with sealed surface for daily use. Fine white veining on a graphite ground; pattern and depth vary from slab to slab. Finished in our workshop.</p>
+    {%- when 'travertine' -%}
+      <p>Natural travertine limestone, imported from the Tivoli region, Italy. Honed or polished face, sealed for home use. Natural pores and layered bands are part of the material, not defects. Each piece carries its own geological character.</p>
+    {%- when 'rosso levanto' -%}
+      <p>Natural Rosso Levanto ophicalcite, imported from Liguria, Italy. Polished and sealed for interior use. Red matrix with white calcite veining; variation in tone and vein pattern is expected and valued. Cut and finished in our workshop.</p>
+  {%- endcase -%}
+{%- endif -%}

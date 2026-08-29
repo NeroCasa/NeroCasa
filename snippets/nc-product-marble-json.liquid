@@ -1,0 +1,17 @@
+{%- comment -%}
+  JSON map of marble-specific story and materials HTML for a catalog product.
+  @param handle {String} product handle
+{%- endcomment -%}
+{%- capture marbles_pipe -%}{% render 'nc-catalog-marbles', handle: handle %}{%- endcapture -%}
+{%- assign marbles_parts = marbles_pipe | strip | split: '|' -%}
+<script type="application/json" data-nc-marble-content>{
+{%- for part in marbles_parts -%}
+  {%- assign pair = part | split: ':' -%}
+  {%- assign marble_name = pair[0] | strip -%}
+  {%- capture hook_html -%}{% render 'nc-design-marble-hook', handle: handle, marble: marble_name %}{%- endcapture -%}
+  {%- capture origin_html -%}{% render 'nc-marble-profile', marble: marble_name, part: 'story' %}{%- endcapture -%}
+  {%- capture story_html -%}{{ hook_html }}{{ origin_html }}{%- endcapture -%}
+  {%- capture materials_html -%}{% render 'nc-marble-profile', marble: marble_name, part: 'materials' %}{%- endcapture -%}
+  {{ marble_name | json }}:{"story":{{ story_html | strip | json }},"materials":{{ materials_html | strip | json }}}{% unless forloop.last %},{% endunless %}
+{%- endfor -%}
+}</script>

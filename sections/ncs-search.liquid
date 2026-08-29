@@ -1,3 +1,5 @@
+{% render 'nc-catalog-search-index' %}
+
 <section class="ncs-search-page">
   <header class="ncs-search-hero" data-nc-reveal>
     {% if search.performed %}
@@ -12,18 +14,19 @@
       <p>For “{{ search.terms | escape }}”</p>
     {% else %}
       <h1>{% render 'nc-title-gold', title: 'Find your piece' %}</h1>
-      <p>Search by product name, collection, or design.</p>
+      <p>Search by design name, collection, or marble.</p>
     {% endif %}
   </header>
 
-  <form action="{{ routes.search_url }}" method="get" role="search" class="ncs-search-page-form" data-nc-reveal>
-    <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products and collections" aria-label="Search" required minlength="1">
+  <form action="{{ routes.search_url }}" method="get" role="search" class="ncs-search-page-form" data-nc-reveal data-nc-search-form>
+    <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Soglia, Equilibrio, coffee tables…" aria-label="Search" data-nc-search-input>
     <button type="submit" class="ncs-btn">Search ↗</button>
   </form>
 
   {% if search.performed %}
     {% if search.results_count == 0 %}
-      <p class="ncs-empty ncs-search-empty">No results found. Try a product name, collection, or design.</p>
+      <p class="ncs-empty ncs-search-empty" data-nc-search-empty>Searching our catalog…</p>
+      <div class="ncs-grid-products ncs-search-results" data-nc-catalog-results hidden></div>
     {% else %}
       {% paginate search.results by 24 %}
       <div class="ncs-grid-products ncs-search-results">
@@ -80,4 +83,36 @@
     {% endif %}
   {% endif %}
 </section>
+
+<script>
+(function(){
+  var indexEl=document.querySelector('[data-nc-catalog-search]');
+  var emptyEl=document.querySelector('[data-nc-search-empty]');
+  var resultsEl=document.querySelector('[data-nc-catalog-results]');
+  if(!indexEl||!emptyEl||!resultsEl)return;
+  var catalog=[];
+  try{catalog=JSON.parse(indexEl.textContent)}catch(e){return}
+  var params=new URLSearchParams(window.location.search);
+  var query=(params.get('q')||'').trim().toLowerCase();
+  if(!query)return;
+
+  var matches=catalog.filter(function(item){
+    var hay=(item.name+' '+item.category+' '+item.handle+' '+item.keywords).toLowerCase();
+    return hay.indexOf(query)>-1;
+  });
+
+  if(!matches.length){
+    emptyEl.textContent='No results found. Try Soglia, Monolite, coffee tables, or a marble name.';
+    return;
+  }
+
+  emptyEl.hidden=true;
+  resultsEl.hidden=false;
+  resultsEl.innerHTML=matches.map(function(item){
+    var isCollection=item.category==='Collection';
+    var media='<div class="ncs-card-media ncs-fit-img ncs-fit-img--tile'+(isCollection?' ncs-fit-img--compact':'')+'"><img src="'+item.image+'" alt="'+item.name.replace(/"/g,'&quot;')+'" loading="lazy" width="700" height="'+(isCollection?'525':'875')+'"></div>';
+    return '<a class="ncs-card" href="'+item.url+'">'+media+'<div class="ncs-card-info"><span class="ncs-card-name">'+item.name+'</span><span class="ncs-card-category">'+item.category+'</span></div></a>';
+  }).join('');
+})();
+</script>
 {% schema %}{"name":"Search","presets":[{"name":"Search"}]}{% endschema %}

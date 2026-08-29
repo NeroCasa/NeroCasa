@@ -137,17 +137,37 @@
       {% endform %}
     </div>
 
-    <div class="ncs-accordion">
-      {% if product.description != blank %}
-        <details class="ncs-story-detail" open><summary>THE STORY</summary><div>{{ product.description }}</div></details>
-      {% endif %}
+    <div class="ncs-accordion" data-ncs-accordion>
+      <details class="ncs-story-detail" open>
+        <summary>THE STORY</summary>
+        <div class="ncs-story-body" data-ncs-story>
+          {%- if is_catalog_product -%}
+            {%- assign initial_marble = default_marble -%}
+            {%- capture hook_html -%}{% render 'nc-design-marble-hook', handle: product.handle, marble: initial_marble %}{%- endcapture -%}
+            {%- capture origin_html -%}{% render 'nc-marble-profile', marble: initial_marble, part: 'story' %}{%- endcapture -%}
+            {{ hook_html }}{{ origin_html }}
+          {%- elsif product.description != blank -%}
+            {{ product.description }}
+          {%- else -%}
+            <p>Natural stone furniture, made in our workshop when you order.</p>
+          {%- endif -%}
+        </div>
+      </details>
       <details class="ncs-story-detail">
         <summary>MATERIALS &amp; FINISH</summary>
-        <div>{% if product.metafields.custom.materials != blank %}{{ product.metafields.custom.materials }}{% else %}<p>Natural stone. Veining and tone vary from slab to slab. That variation is part of the material's character.</p>{% endif %}</div>
+        <div class="ncs-story-body" data-ncs-materials>
+          {%- if is_catalog_product -%}
+            {% render 'nc-marble-profile', marble: default_marble, part: 'materials' %}
+          {%- elsif product.metafields.custom.materials != blank -%}
+            {{ product.metafields.custom.materials }}
+          {%- else -%}
+            <p>Natural stone. Veining and tone vary from slab to slab. That variation is part of the material's character.</p>
+          {%- endif -%}
+        </div>
       </details>
       <details class="ncs-story-detail">
         <summary>DIMENSIONS</summary>
-        <div>
+        <div class="ncs-story-body" data-ncs-dimensions>
           {%- if dim_h != blank or dim_l != blank or dim_w != blank or dim_d != blank -%}
             <ul class="ncs-dims">
               {%- if dim_h != blank -%}<li><span>H</span><b>{{ dim_h }} cm</b></li>{%- endif -%}
@@ -162,7 +182,14 @@
       </details>
       <details class="ncs-story-detail">
         <summary>PRODUCTION &amp; DELIVERY</summary>
-        <div>{% if product.metafields.custom.production_info != blank %}{{ product.metafields.custom.production_info }}{% else %}<p>Made to order. When you order, we begin work on your piece. Production and delivery timing is confirmed after your order is placed.</p>{% endif %}</div>
+        <div class="ncs-story-body" data-ncs-production>
+          {%- if product.metafields.custom.production_info != blank -%}
+            {{ product.metafields.custom.production_info }}
+          {%- else -%}
+            <p>Every NeroCasa piece is made to order in our workshop when you order. We import natural stone from quarries worldwide and cut, finish, and assemble each design ourselves. We never buy ready-made furniture.</p>
+            <p>Production and delivery typically take <strong>3 to 7 working days</strong> after order confirmation. We confirm timing for your configuration before dispatch.</p>
+          {%- endif -%}
+        </div>
       </details>
     </div>
   </div>
@@ -175,6 +202,11 @@
   var root=document.querySelector('[data-ncs-product]'); if(!root)return;
   var handle=root.dataset.productHandle||'';
   var catalog=window.NC_CATALOG&&window.NC_CATALOG[handle];
+  var marbleContent={};
+  var marbleContentEl=document.querySelector('[data-nc-marble-content]');
+  if(marbleContentEl){try{marbleContent=JSON.parse(marbleContentEl.textContent)}catch(e){}}
+  var storyEl=root.querySelector('[data-ncs-story]');
+  var materialsEl=root.querySelector('[data-ncs-materials]');
   var main=root.querySelector('[data-ncs-main]');
   var optionsWrap=root.querySelector('[data-nc-product-options]');
   root.querySelectorAll('[data-ncs-thumb]').forEach(function(t){t.addEventListener('click',function(){if(main){main.style.opacity='.35';setTimeout(function(){main.src=t.dataset.ncsThumb;main.style.opacity='1'},120)}})});
@@ -231,6 +263,14 @@
     var color=getSelectedColor();
     if(color)el.textContent='Shown in '+color;
   }
+  function updateMarbleContent(){
+    var color=getSelectedColor();
+    if(!color)return;
+    var entry=marbleContent[color];
+    if(!entry)return;
+    if(storyEl&&entry.story)storyEl.innerHTML=entry.story;
+    if(materialsEl&&entry.materials)materialsEl.innerHTML=entry.materials;
+  }
   function setProps(color,type,dh,dl,dw,dd){
     if(colorProp)colorProp.value=color||'';
     if(typeProp)typeProp.value=type;
@@ -261,6 +301,7 @@
       var img=resolveImage(null);
       if(img)setImage(img);
       updateShownIn();
+      updateMarbleContent();
       return;
     }
     var selected=selectedValues();
@@ -270,6 +311,7 @@
       var imgOnly=resolveImage(null);
       if(imgOnly)setImage(imgOnly);
       updateShownIn();
+      updateMarbleContent();
       return;
     }
     if(variantInput)variantInput.value=v.id;
@@ -279,6 +321,7 @@
     var img=resolveImage(v);
     if(img)setImage(img);
     updateShownIn();
+    updateMarbleContent();
   }
   function bindChoiceGroup(g){
     g.querySelectorAll('[data-value]').forEach(function(btn){
