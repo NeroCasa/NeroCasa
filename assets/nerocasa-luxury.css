@@ -193,15 +193,14 @@ body {
 
 /* ── Collection tiles (home + collections index) ── */
 .ncs-collection-tile {
-  position: relative;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  min-height: unset;
+  gap: 16px;
   text-decoration: none;
   color: inherit;
-  background: var(--nc-panel);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: transparent;
+  border: 0;
+  overflow: visible;
 }
 
 .ncs-collection-tile::after {
@@ -209,9 +208,7 @@ body {
 }
 
 .ncs-collection-tile-label {
-  position: static;
-  z-index: 2;
-  padding: 20px 24px 24px;
+  padding: 0 4px;
   pointer-events: none;
 }
 
@@ -233,7 +230,8 @@ body {
 .ncs-collection-grid > a,
 .ncs-collections-list > a {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  min-height: 0 !important;
 }
 
 .ncs-collection-grid > a::after,
@@ -241,66 +239,105 @@ body {
   display: none;
 }
 
-/* ── Full-image frame (collections, cards, best sellers, PDP) ── */
+/* ── Full-size imagery — natural scale, never cropped, no letterbox ── */
+.ncs-showcase-img,
 .ncs-image-frame {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 4 / 5;
+  display: block;
   width: 100%;
-  padding: clamp(18px, 3vw, 36px);
-  background: #11110f;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  aspect-ratio: auto;
+  min-height: 0;
   overflow: hidden;
 }
 
+.ncs-showcase-img img,
 .ncs-image-frame img {
   position: static !important;
   inset: auto !important;
-  width: auto !important;
+  width: 100% !important;
   height: auto !important;
   max-width: 100%;
-  max-height: 100%;
-  object-fit: contain !important;
+  max-height: none !important;
+  object-fit: unset !important;
   object-position: center;
   display: block;
   filter: brightness(0.94) saturate(0.9);
-  transition: filter 0.35s ease, transform 0.45s ease;
+  transition: filter 0.35s ease;
 }
 
-.ncs-collection-tile:hover .ncs-image-frame img,
-.ncs-best-card:hover .ncs-image-frame img,
-.ncs-card:hover .ncs-image-frame img {
+.ncs-collection-tile:hover .ncs-showcase-img img,
+.ncs-best-card:hover .ncs-showcase-img img,
+.ncs-card:hover .ncs-showcase-img img {
   filter: brightness(1) saturate(0.96);
-  transform: scale(1.015);
 }
 
-.ncs-main-product-image.ncs-image-frame,
 .ncs-main-product-image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: auto;
-  min-height: clamp(420px, 52vw, 760px);
-  padding: clamp(24px, 4vw, 48px);
-  background: #11110f;
-  overflow: hidden;
+  display: block;
+  padding: 0 !important;
+  min-height: 0 !important;
+  background: transparent !important;
+  overflow: visible;
 }
 
 .ncs-main-product-image img {
-  position: static !important;
-  width: auto !important;
+  width: 100% !important;
   height: auto !important;
   max-width: 100%;
-  max-height: min(72vh, 880px);
+  max-height: none !important;
   aspect-ratio: auto !important;
-  object-fit: contain !important;
-  object-position: center;
+  object-fit: unset !important;
   display: block;
   transition: opacity 0.2s ease;
 }
 
-/* ── Home intro ── */
+/* Best sellers — one large object per view */
+.ncs-feature-rail .ncs-product-rail {
+  scroll-snap-type: x mandatory;
+  gap: clamp(20px, 4vw, 40px);
+  padding-bottom: 8px;
+}
+
+.ncs-feature-rail .ncs-best-card {
+  flex: 0 0 clamp(300px, 82vw, 720px);
+  scroll-snap-align: center;
+  background: transparent;
+  border: 0;
+  gap: 14px;
+}
+
+.ncs-collections-list {
+  grid-template-columns: 1fr !important;
+  gap: clamp(48px, 8vw, 96px) !important;
+  max-width: 960px;
+}
+
+.ncs-collections-list .ncs-collection-tile {
+  gap: 20px;
+}
+
+/* ── Product page — image leads, full object visible ── */
+.ncs-product-page {
+  grid-template-columns: 1fr 1fr !important;
+  align-items: start;
+}
+
+.ncs-product-gallery {
+  position: sticky;
+  top: calc(var(--nc-header-h, 82px) + 24px);
+}
+
+@media (max-width: 900px) {
+  .ncs-product-page {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+
+  .ncs-product-gallery {
+    position: static;
+  }
+}
 .ncs-home-intro,
 .ncs-materials,
 .ncs-bespoke-cta,
@@ -379,7 +416,7 @@ body {
 .ncs-collection-grid > a:nth-child(1),
 .ncs-collection-grid > a:nth-child(2) {
   grid-column: auto;
-  min-height: 480px;
+  min-height: 0 !important;
 }
 
 .ncs-collection-grid div,
@@ -408,35 +445,32 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
+  gap: 14px;
   text-decoration: none;
   color: inherit;
-  overflow: hidden;
-  background: var(--nc-panel);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: visible;
+  background: transparent;
+  border: 0;
 }
 
 .ncs-best-image {
-  aspect-ratio: auto;
-  overflow: visible;
+  overflow: hidden;
   background: transparent;
 }
 
 .ncs-best-image img {
-  width: auto !important;
+  width: 100% !important;
   height: auto !important;
 }
 
 .ncs-best-meta {
   position: static !important;
-  left: auto;
-  right: auto;
-  bottom: auto;
-  padding: 18px 20px 22px;
+  padding: 0 4px !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
   justify-content: flex-start !important;
-  gap: 10px;
+  gap: 8px;
   background: transparent !important;
 }
 
@@ -458,33 +492,35 @@ body {
 
 /* ── Product cards on collection pages ── */
 .ncs-grid-products {
-  gap: 48px 24px;
+  grid-template-columns: 1fr !important;
+  gap: clamp(56px, 8vw, 88px) !important;
+  max-width: 920px;
 }
 
 .ncs-card {
   display: flex;
   flex-direction: column;
+  gap: 14px;
   text-decoration: none;
   color: inherit;
-  background: var(--nc-panel);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  overflow: hidden;
+  background: transparent;
+  border: 0;
+  overflow: visible;
 }
 
 .ncs-card-media {
-  aspect-ratio: auto;
-  overflow: visible;
+  overflow: hidden;
   background: transparent;
 }
 
 .ncs-card-media img {
-  width: auto !important;
+  width: 100% !important;
   height: auto !important;
   aspect-ratio: auto !important;
 }
 
 .ncs-card-info {
-  padding: 20px 2px 0;
+  padding: 0 4px !important;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1757,6 +1793,7 @@ body {
 /* ── Responsive: page layouts ── */
 .ncs-collection-grid img,
 .ncs-collections-list img,
+.ncs-showcase-img img,
 .ncs-best-image img,
 .ncs-card-media img,
 .ncs-main-product-image img {
@@ -1766,8 +1803,7 @@ body {
 .ncs-collection-grid > a:hover img,
 .ncs-collections-list > a:hover img,
 .ncs-best-card:hover img,
-.ncs-card:hover .ncs-card-media img,
-.ncs-main-product-image img {
+.ncs-card:hover .ncs-card-media img {
   filter: brightness(1) saturate(0.96) !important;
 }
 

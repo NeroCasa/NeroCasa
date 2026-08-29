@@ -4,7 +4,7 @@
 {%- endcomment -%}
 {%- assign fallback_asset = product.handle | append: '-ibiza-white.jpg' -%}
 {%- if product.featured_image -%}
-  {{ product.featured_image | image_url: width: 1600 }}
+  {{ product.featured_image | image_url: width: 2400 }}
 {%- else -%}
   {{ fallback_asset | asset_url }}
 {%- endif -%}

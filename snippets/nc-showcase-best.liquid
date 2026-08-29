@@ -38,7 +38,7 @@
     {%- assign item_price = '' -%}
   {%- endif -%}
   <a class="ncs-best-card{% if category != blank %} ncs-card{% endif %}" href="{{ item_url }}">
-    <div class="ncs-image-frame ncs-best-image{% if category != blank %} ncs-card-media{% endif %}">
+    <div class="ncs-showcase-img ncs-best-image{% if category != blank %} ncs-card-media{% endif %}">
       <img src="{{ item_image | asset_url }}" alt="{{ item_title | escape }}" width="900" height="1125" loading="lazy">
     </div>
     <div class="ncs-best-meta{% if category != blank %} ncs-card-info{% endif %}">
