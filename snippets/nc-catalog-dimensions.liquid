@@ -1,0 +1,16 @@
+{%- comment -%}
+  Renders standard dimension chips (H / L / W / D) for a catalog handle.
+  @param handle {String} e.g. cft-1
+{%- endcomment -%}
+{%- capture dim_h -%}{% render 'nc-catalog-meta', handle: handle, field: 'height' %}{%- endcapture -%}
+{%- capture dim_l -%}{% render 'nc-catalog-meta', handle: handle, field: 'length' %}{%- endcapture -%}
+{%- capture dim_w -%}{% render 'nc-catalog-meta', handle: handle, field: 'width' %}{%- endcapture -%}
+{%- capture dim_d -%}{% render 'nc-catalog-meta', handle: handle, field: 'depth' %}{%- endcapture -%}
+{%- assign dim_h = dim_h | strip -%}
+{%- assign dim_l = dim_l | strip -%}
+{%- assign dim_w = dim_w | strip -%}
+{%- assign dim_d = dim_d | strip -%}
+{%- if dim_h != blank -%}<span><b>H</b> {{ dim_h }} cm</span>{%- endif -%}
+{%- if dim_l != blank -%}<span><b>L</b> {{ dim_l }} cm</span>{%- endif -%}
+{%- if dim_w != blank -%}<span><b>W</b> {{ dim_w }} cm</span>{%- endif -%}
+{%- if dim_d != blank -%}<span><b>D</b> {{ dim_d }} cm</span>{%- endif -%}

@@ -1,5 +1,19 @@
 {% render 'nc-catalog-data' %}
 
+{%- capture catalog_name -%}{% render 'nc-catalog-meta', handle: product.handle, field: 'name' %}{%- endcapture -%}
+{%- capture catalog_category -%}{% render 'nc-catalog-meta', handle: product.handle, field: 'category' %}{%- endcapture -%}
+{%- capture dim_h -%}{% render 'nc-catalog-meta', handle: product.handle, field: 'height' %}{%- endcapture -%}
+{%- capture dim_l -%}{% render 'nc-catalog-meta', handle: product.handle, field: 'length' %}{%- endcapture -%}
+{%- capture dim_w -%}{% render 'nc-catalog-meta', handle: product.handle, field: 'width' %}{%- endcapture -%}
+{%- capture dim_d -%}{% render 'nc-catalog-meta', handle: product.handle, field: 'depth' %}{%- endcapture -%}
+{%- assign catalog_name = catalog_name | strip -%}
+{%- assign catalog_category = catalog_category | strip -%}
+{%- assign dim_h = dim_h | strip -%}
+{%- assign dim_l = dim_l | strip -%}
+{%- assign dim_w = dim_w | strip -%}
+{%- assign dim_d = dim_d | strip -%}
+{%- assign display_name = catalog_name | default: product.title -%}
+
 <section class="ncs-product-page" data-ncs-product data-product-handle="{{ product.handle }}">
   <div class="ncs-product-gallery">
     <div class="ncs-fit-img ncs-main-product-image">
@@ -33,7 +47,10 @@
   </div>
 
   <div class="ncs-product-config">
-    <h1>{{ product.title }}</h1>
+    <h1>{{ display_name }}</h1>
+    {%- if catalog_category != blank -%}
+      <p class="ncs-product-category">{{ catalog_category }}</p>
+    {%- endif -%}
     <div class="ncs-availability">{% if product.available %}Available to order{% else %}Currently unavailable{% endif %}</div>
 
     <div class="ncs-price">
@@ -71,18 +88,17 @@
       <div class="ncs-fixed-dimensions" data-fixed-size>
         <div class="ncs-fixed-size-title">STANDARD DIMENSIONS</div>
         <div class="ncs-fixed-dimensions-values">
-          <span><b>H</b> {{ product.metafields.custom.height | default: '—' }}</span>
-          <span><b>L</b> {{ product.metafields.custom.length | default: '—' }}</span>
-          <span><b>W</b> {{ product.metafields.custom.width | default: '—' }}</span>
+          {% render 'nc-catalog-dimensions', handle: product.handle %}
         </div>
       </div>
 
       <div class="ncs-custom-dimensions" data-custom-size hidden>
-        <p>Enter measurements in centimetres.</p>
-        <div class="ncs-custom-dimension-grid">
-          <label>HEIGHT<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="H" data-custom-height></label>
-          <label>LENGTH<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="L" data-custom-length></label>
-          <label>WIDTH<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="W" data-custom-width></label>
+        <p>Enter measurements in centimetres (H, L, W, D).</p>
+        <div class="ncs-custom-dimension-grid ncs-custom-dimension-grid--4">
+          <label>H<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="cm" data-custom-height></label>
+          <label>L<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="cm" data-custom-length></label>
+          <label>W<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="cm" data-custom-width></label>
+          <label>D<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="cm" data-custom-depth></label>
         </div>
       </div>
     </div>
@@ -99,6 +115,7 @@
         <input type="hidden" name="properties[Height]" value="" data-ncs-height-property>
         <input type="hidden" name="properties[Length]" value="" data-ncs-length-property>
         <input type="hidden" name="properties[Width]" value="" data-ncs-width-property>
+        <input type="hidden" name="properties[Depth]" value="" data-ncs-depth-property>
         <input type="hidden" name="properties[Size Type]" value="Standard" data-ncs-size-type-property>
         <input type="hidden" name="properties[Custom Size]" value="" data-ncs-custom-size-property>
         <button type="submit" name="add" data-ncs-add-btn {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
@@ -117,7 +134,18 @@
       </details>
       <details class="ncs-story-detail">
         <summary>DIMENSIONS</summary>
-        <div>{% if product.metafields.custom.height != blank or product.metafields.custom.length != blank or product.metafields.custom.width != blank %}<ul class="ncs-dims">{% if product.metafields.custom.height != blank %}<li><span>Height</span><b>{{ product.metafields.custom.height }}</b></li>{% endif %}{% if product.metafields.custom.length != blank %}<li><span>Length</span><b>{{ product.metafields.custom.length }}</b></li>{% endif %}{% if product.metafields.custom.width != blank %}<li><span>Width</span><b>{{ product.metafields.custom.width }}</b></li>{% endif %}</ul>{% else %}<p>Dimensions are controlled by the selected configuration.</p>{% endif %}</div>
+        <div>
+          {%- if dim_h != blank or dim_l != blank or dim_w != blank or dim_d != blank -%}
+            <ul class="ncs-dims">
+              {%- if dim_h != blank -%}<li><span>H</span><b>{{ dim_h }} cm</b></li>{%- endif -%}
+              {%- if dim_l != blank -%}<li><span>L</span><b>{{ dim_l }} cm</b></li>{%- endif -%}
+              {%- if dim_w != blank -%}<li><span>W</span><b>{{ dim_w }} cm</b></li>{%- endif -%}
+              {%- if dim_d != blank -%}<li><span>D</span><b>{{ dim_d }} cm</b></li>{%- endif -%}
+            </ul>
+          {%- else -%}
+            <p>Dimensions are controlled by the selected configuration.</p>
+          {%- endif -%}
+        </div>
       </details>
       <details class="ncs-story-detail">
         <summary>PRODUCTION &amp; DELIVERY</summary>
@@ -151,7 +179,7 @@
         {% unless rp.id == product.id %}
           <a href="{{ rp.url }}">
             <img src="{% render 'nc-product-thumb', product: rp %}" alt="{{ rp.title | escape }}" loading="lazy" width="500" height="540">
-            <span>{{ rp.title }}</span><b>{{ rp.price | money }}</b>
+            <span>{% capture related_name %}{% render 'nc-catalog-meta', handle: rp.handle, field: 'name' %}{% endcapture %}{{ related_name | strip | default: rp.title }}</span><b>{{ rp.price | money }}</b>
           </a>
           {% assign related_count = related_count | plus: 1 %}
           {% if related_count == 8 %}{% break %}{% endif %}
@@ -176,10 +204,10 @@
   var price=root.querySelector('[data-ncs-price]'), summary=root.querySelector('[data-ncs-summary]');
   var variantInput=root.querySelector('[data-ncs-variant]'), add=root.querySelector('[data-ncs-add-btn]');
   var colorProp=root.querySelector('[data-ncs-color-property]');
-  var hProp=root.querySelector('[data-ncs-height-property]'), lProp=root.querySelector('[data-ncs-length-property]'), wProp=root.querySelector('[data-ncs-width-property]');
+  var hProp=root.querySelector('[data-ncs-height-property]'), lProp=root.querySelector('[data-ncs-length-property]'), wProp=root.querySelector('[data-ncs-width-property]'), dProp=root.querySelector('[data-ncs-depth-property]');
   var typeProp=root.querySelector('[data-ncs-size-type-property]'), customProp=root.querySelector('[data-ncs-custom-size-property]');
   var mode=root.querySelector('[data-size-mode]'), fixed=root.querySelector('[data-fixed-size]'), custom=root.querySelector('[data-custom-size]');
-  var h=root.querySelector('[data-custom-height]'), l=root.querySelector('[data-custom-length]'), w=root.querySelector('[data-custom-width]');
+  var h=root.querySelector('[data-custom-height]'), l=root.querySelector('[data-custom-length]'), w=root.querySelector('[data-custom-width]'), d=root.querySelector('[data-custom-depth]');
 
   function isColorGroup(g){var n=(g.dataset.optionName||'').toLowerCase();return n.indexOf('color')>-1||n.indexOf('colour')>-1||n.indexOf('marble')>-1||n.indexOf('finish')>-1;}
   function normalizeColor(v){
@@ -191,7 +219,15 @@
     if(v.indexOf('rosso')>-1||v.indexOf('levant')>-1||v==='red')return 'Rosso Levanto';
     return v.replace(/\b\w/g,function(c){return c.toUpperCase();});
   }
-  function fixedDims(){return {h:'{{ product.metafields.custom.height | escape }}',l:'{{ product.metafields.custom.length | escape }}',w:'{{ product.metafields.custom.width | escape }}'};}
+  function fixedDims(){return {h:'{{ dim_h | escape }}',l:'{{ dim_l | escape }}',w:'{{ dim_w | escape }}',d:'{{ dim_d | escape }}'};}
+  function formatDims(dims){
+    var parts=[];
+    if(dims.h)parts.push('H '+dims.h);
+    if(dims.l)parts.push('L '+dims.l);
+    if(dims.w)parts.push('W '+dims.w);
+    if(dims.d)parts.push('D '+dims.d);
+    return parts.length?parts.join(' × ')+' cm':'';
+  }
   function selectedValues(){var a=[];groups.forEach(function(g){var b=g.querySelector('.is-active');a[+g.dataset.optionIndex]=b?b.dataset.value:null});return a;}
   function getSelectedColor(){
     var values=selectedValues(), color='';
@@ -215,20 +251,20 @@
     var color=getSelectedColor();
     if(color)el.textContent='Shown in '+color;
   }
-  function setProps(color,type,dh,dl,dw){
+  function setProps(color,type,dh,dl,dw,dd){
     if(colorProp)colorProp.value=color||'';
     if(typeProp)typeProp.value=type;
-    if(hProp)hProp.value=dh||''; if(lProp)lProp.value=dl||''; if(wProp)wProp.value=dw||'';
-    if(customProp)customProp.value=type==='Custom' ? [dh,dl,dw].join(' × ')+' cm' : '';
+    if(hProp)hProp.value=dh||''; if(lProp)lProp.value=dl||''; if(wProp)wProp.value=dw||''; if(dProp)dProp.value=dd||'';
+    if(customProp)customProp.value=type==='Custom'?formatDims({h:dh,l:dl,w:dw,d:dd}):'';
   }
   function updateCustomProps(){
     var isCustom=mode&&mode.querySelector('[data-size-mode-button="custom"].is-active');
-    var dims=isCustom?{h:h?h.value:'',l:l?l.value:'',w:w?w.value:''}:fixedDims();
+    var dims=isCustom?{h:h?h.value:'',l:l?l.value:'',w:w?w.value:'',d:d?d.value:''}:fixedDims();
     if(fixed)fixed.hidden=!!isCustom; if(custom)custom.hidden=!isCustom;
     var values=selectedValues(), color='';
     groups.forEach(function(g,i){if(isColorGroup(g))color=normalizeColor(values[i]||'');});
-    setProps(color,isCustom?'Custom':'Standard',dims.h,dims.l,dims.w);
-    var dim=root.querySelector('[data-ncs-selected-dimensions]'); if(dim)dim.textContent=[dims.h||'—',dims.l||'—',dims.w||'—'].join(' × ')+' cm';
+    setProps(color,isCustom?'Custom':'Standard',dims.h,dims.l,dims.w,dims.d);
+    var dim=root.querySelector('[data-ncs-selected-dimensions]'); if(dim)dim.textContent=formatDims(dims);
   }
   function findVariant(selected){
     return variants.find(function(item){
@@ -297,7 +333,7 @@
   groups.forEach(bindChoiceGroup);
   injectMarblePicker();
   if(mode)mode.querySelectorAll('[data-size-mode-button]').forEach(function(btn){btn.addEventListener('click',function(){mode.querySelectorAll('[data-size-mode-button]').forEach(function(x){x.classList.remove('is-active')});btn.classList.add('is-active');updateCustomProps()})});
-  [h,l,w].forEach(function(x){if(x)x.addEventListener('input',updateCustomProps)});
+  [h,l,w,d].forEach(function(x){if(x)x.addEventListener('input',updateCustomProps)});
   syncVariant();
 })();
 </script>

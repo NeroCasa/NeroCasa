@@ -155,6 +155,8 @@ img{max-width:100%}
 .ncs-fixed-dimensions-values b{color:var(--nc-gold);margin-right:4px}
 .ncs-custom-dimensions p{font-size:10px;color:var(--nc-muted);margin:0 0 13px}
 .ncs-custom-dimension-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ncs-custom-dimension-grid--4{grid-template-columns:repeat(2,1fr)}
+@media (min-width:720px){.ncs-custom-dimension-grid--4{grid-template-columns:repeat(4,1fr)}}
 .ncs-custom-dimension-grid label{font-size:8px;letter-spacing:.14em;color:var(--nc-muted)}
 .ncs-custom-dimension-grid input{display:block;width:100%;margin-top:7px;padding:12px 9px;background:transparent;border:1px solid var(--nc-line);outline:0}
 .ncs-custom-dimension-grid input:focus{border-color:var(--nc-gold)}

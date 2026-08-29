@@ -13,25 +13,16 @@
   endcase
 -%}
 {%- for item_handle in catalog_handles -%}
+  {%- capture item_name -%}{% render 'nc-catalog-meta', handle: item_handle, field: 'name' %}{%- endcapture -%}
+  {%- capture item_category -%}{% render 'nc-catalog-meta', handle: item_handle, field: 'category' %}{%- endcapture -%}
+  {%- assign item_name = item_name | strip -%}
+  {%- assign item_category = item_category | strip -%}
   {%- assign shop_product = all_products[item_handle] -%}
   {%- if shop_product != blank -%}
     {%- assign item_url = shop_product.url -%}
-    {%- assign item_title = shop_product.title -%}
     {%- assign item_price_min = shop_product.price_min | money -%}
   {%- else -%}
     {%- assign item_url = '/products/' | append: item_handle -%}
-    {%- case item_handle -%}
-      {%- when 'cft-1' -%}{%- assign item_title = 'Coffee Table 1' -%}
-      {%- when 'cft-2' -%}{%- assign item_title = 'Coffee Table 2' -%}
-      {%- when 'cft-3' -%}{%- assign item_title = 'Coffee Table 3' -%}
-      {%- when 'cs-1' -%}{%- assign item_title = 'Console Table 1' -%}
-      {%- when 'cs-2' -%}{%- assign item_title = 'Console Table 2' -%}
-      {%- when 'cs-3' -%}{%- assign item_title = 'Console Table 3' -%}
-      {%- when 'sd-1' -%}{%- assign item_title = 'Side Table 1' -%}
-      {%- when 'sd-2' -%}{%- assign item_title = 'Side Table 2' -%}
-      {%- when 'sd-3' -%}{%- assign item_title = 'Side Table 3' -%}
-      {%- else -%}{%- assign item_title = item_handle | upcase -%}
-    {%- endcase -%}
     {%- assign item_price_min = '' -%}
   {%- endif -%}
   {%- capture item_src -%}{% render 'nc-catalog-default-img', handle: item_handle %}{%- endcapture -%}
@@ -39,10 +30,13 @@
   {%- assign marble_entries = marble_data | strip | split: '|' -%}
   <a class="ncs-card ncs-marble-card" href="{{ item_url }}" data-nc-marble-card data-nc-reveal>
     <div class="ncs-fit-img ncs-fit-img--tile ncs-card-media">
-      <img src="{{ item_src | strip }}" alt="{{ item_title | escape }}" width="900" height="1125" loading="lazy" data-nc-card-img data-default-src="{{ item_src | strip }}">
+      <img src="{{ item_src | strip }}" alt="{{ item_name | escape }}" width="900" height="1125" loading="lazy" data-nc-card-img data-default-src="{{ item_src | strip }}">
     </div>
     <div class="ncs-card-info">
-      <span>{{ item_title }}</span>
+      <span class="ncs-card-name">{{ item_name }}</span>
+      {%- if item_category != blank -%}
+        <span class="ncs-card-category">{{ item_category }}</span>
+      {%- endif -%}
       {%- if item_price_min != blank -%}
         <b class="ncs-card-from">From {{ item_price_min }}</b>
       {%- endif -%}

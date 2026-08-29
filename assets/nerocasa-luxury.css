@@ -2032,3 +2032,38 @@ body {
     margin-top: 28px;
   }
 }
+
+/* Catalog names + H/L/W/D dimensions */
+.ncs-card-name {
+  font-family: var(--nc-display);
+  font-size: clamp(22px, 2.2vw, 28px) !important;
+  letter-spacing: -0.02em !important;
+  text-transform: none !important;
+  line-height: 1.05 !important;
+}
+
+.ncs-card-category {
+  font-size: 9px !important;
+  letter-spacing: 0.16em !important;
+  color: var(--nc-muted) !important;
+  text-transform: uppercase !important;
+}
+
+.ncs-product-category {
+  margin: -12px 0 0;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--nc-muted);
+}
+
+.ncs-custom-dimension-grid--4 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 720px) {
+  .ncs-custom-dimension-grid--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
