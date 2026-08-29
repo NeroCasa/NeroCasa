@@ -1,5 +1,5 @@
 {%- comment -%}
-  Catalog product cards for collection pages (fallback when Shopify collection is empty).
+  Catalog product cards for a collection page.
   @param category {String} coffee | side | console
 {%- endcomment -%}
 {%- liquid
@@ -18,13 +18,23 @@
     {%- assign item_url = shop_product.url -%}
     {%- assign item_title = shop_product.title -%}
     {%- assign item_price = shop_product.price | money -%}
-    {%- capture item_src -%}{% render 'nc-product-img-src', product: shop_product %}{%- endcapture -%}
   {%- else -%}
     {%- assign item_url = '/products/' | append: item_handle -%}
-    {%- assign item_title = item_handle | upcase -%}
+    {%- case item_handle -%}
+      {%- when 'cft-1' -%}{%- assign item_title = 'Coffee Table 1' -%}
+      {%- when 'cft-2' -%}{%- assign item_title = 'Coffee Table 2' -%}
+      {%- when 'cft-3' -%}{%- assign item_title = 'Coffee Table 3' -%}
+      {%- when 'cs-1' -%}{%- assign item_title = 'Console Table 1' -%}
+      {%- when 'cs-2' -%}{%- assign item_title = 'Console Table 2' -%}
+      {%- when 'cs-3' -%}{%- assign item_title = 'Console Table 3' -%}
+      {%- when 'sd-1' -%}{%- assign item_title = 'Side Table 1' -%}
+      {%- when 'sd-2' -%}{%- assign item_title = 'Side Table 2' -%}
+      {%- when 'sd-3' -%}{%- assign item_title = 'Side Table 3' -%}
+      {%- else -%}{%- assign item_title = item_handle | upcase -%}
+    {%- endcase -%}
     {%- assign item_price = '' -%}
-    {%- assign item_src = item_handle | append: '-ibiza-white.jpg' | asset_url -%}
   {%- endif -%}
+  {%- capture item_src -%}{% render 'nc-catalog-default-img', handle: item_handle %}{%- endcapture -%}
   <a class="ncs-card" href="{{ item_url }}" data-nc-reveal>
     <div class="ncs-fit-img ncs-fit-img--tile ncs-card-media">
       <img src="{{ item_src | strip }}" alt="{{ item_title | escape }}" width="900" height="1125" loading="lazy">

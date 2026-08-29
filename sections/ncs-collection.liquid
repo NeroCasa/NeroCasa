@@ -4,31 +4,19 @@
     {% if collection.description != blank %}
       <p>{{ collection.description | strip_html }}</p>
     {% endif %}
-    <span class="ncs-collection-count">{{ collection.products_count }} object{% if collection.products_count != 1 %}s{% endif %}</span>
+    <span class="ncs-collection-count">3 object{% if collection.handle != blank %}s{% endif %}</span>
   </header>
 
   <div class="ncs-grid-products">
-    {% if collection.products_count > 0 %}
-      {% for product in collection.products limit: 3 %}
-        {% capture product_img %}{% render 'nc-product-img-src', product: product %}{% endcapture %}
-        <a class="ncs-card" href="{{ product.url }}" data-nc-reveal>
-          <div class="ncs-fit-img ncs-fit-img--tile ncs-card-media">
-            <img src="{{ product_img | strip }}" alt="{{ product.title | escape }}" loading="lazy" width="800" height="1000">
-          </div>
-          <div class="ncs-card-info"><span>{{ product.title }}</span><b>{{ product.price | money }}</b></div>
-        </a>
-      {% endfor %}
-    {% else %}
-      {% liquid
-        assign showcase_pool = 'coffee'
-        if collection.handle == settings.collection_side or collection.handle == 'side-tables'
-          assign showcase_pool = 'side'
-        elsif collection.handle == settings.collection_console or collection.handle == 'console-tables'
-          assign showcase_pool = 'console'
-        endif
-      %}
-      {% render 'nc-catalog-cards', category: showcase_pool %}
-    {% endif %}
+    {% liquid
+      assign catalog_category = 'coffee'
+      if collection.handle == settings.collection_side or collection.handle == 'side-tables'
+        assign catalog_category = 'side'
+      elsif collection.handle == settings.collection_console or collection.handle == 'console-tables'
+        assign catalog_category = 'console'
+      endif
+    %}
+    {% render 'nc-catalog-cards', category: catalog_category %}
   </div>
 </section>
 
