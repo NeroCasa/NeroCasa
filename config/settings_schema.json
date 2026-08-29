@@ -30,6 +30,12 @@
       },
       {
         "type": "image_picker",
+        "id": "brand_visual",
+        "label": "Brand mark image",
+        "info": "Used on home story and Why Nerocasa. Leave empty to use nerocasa-brand-logo.jpg."
+      },
+      {
+        "type": "image_picker",
         "id": "hero_image",
         "label": "Home hero image",
         "info": "Optional. Leave empty to use the default marble placeholder."
@@ -60,19 +66,20 @@
         "type": "text",
         "id": "contact_email",
         "label": "Email",
-        "default": "hello@nerocasa.com"
+        "default": "info@nerocasa.com"
       },
       {
         "type": "text",
         "id": "contact_phone",
         "label": "Phone",
-        "info": "Include country code, e.g. +971 50 000 0000"
+        "default": "+971 50 858 8828",
+        "info": "Include country code. Shown in footer and contact page (not WhatsApp)."
       },
       {
         "type": "url",
         "id": "whatsapp_url",
         "label": "WhatsApp link",
-        "info": "Full wa.me or WhatsApp business URL"
+        "info": "Full wa.me URL, e.g. https://wa.me/971568788789"
       },
       {
         "type": "text",
