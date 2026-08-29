@@ -1,0 +1,8 @@
+{%- comment -%}
+  Marble name → asset slug for CSS classes and fallback images.
+  @param name {String} e.g. Ibiza White
+{%- endcomment -%}
+{%- liquid
+  assign slug = name | downcase | replace: ' ', '-'
+  echo slug
+-%}

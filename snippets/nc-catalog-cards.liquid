@@ -1,71 +1,27 @@
 {%- comment -%}
-  Catalog product cards for a collection page.
+  Collection grid — prefers Shopify collection products; fallback handles for dev.
   @param category {String} coffee | side | console
+  @param collection {Collection} optional
 {%- endcomment -%}
-{%- liquid
-  case category
-    when 'side'
-      assign catalog_handles = 'sd-1,sd-2,sd-3' | split: ','
-    when 'console'
-      assign catalog_handles = 'cs-1,cs-2,cs-3' | split: ','
-    else
-      assign catalog_handles = 'cft-1,cft-2,cft-3' | split: ','
-  endcase
--%}
-{%- for item_handle in catalog_handles -%}
-  {%- capture item_name -%}{% render 'nc-catalog-meta', handle: item_handle, field: 'name' %}{%- endcapture -%}
-  {%- capture item_category -%}{% render 'nc-catalog-meta', handle: item_handle, field: 'category' %}{%- endcapture -%}
-  {%- assign item_name = item_name | strip -%}
-  {%- assign item_category = item_category | strip -%}
-  {%- assign shop_product = all_products[item_handle] -%}
-  {%- if shop_product != blank -%}
-    {%- assign item_url = shop_product.url -%}
-    {%- assign item_price_min = shop_product.price_min | money -%}
-  {%- else -%}
-    {%- assign item_url = '/products/' | append: item_handle -%}
-    {%- assign item_price_min = '' -%}
-  {%- endif -%}
-  {%- capture item_src -%}{% render 'nc-catalog-default-img', handle: item_handle %}{%- endcapture -%}
-  {%- capture marble_data -%}{% render 'nc-catalog-marbles', handle: item_handle %}{%- endcapture -%}
-  {%- assign marble_entries = marble_data | strip | split: '|' -%}
-  <a class="ncs-card ncs-marble-card" href="{{ item_url }}" data-nc-marble-card data-nc-reveal>
-    <div class="ncs-fit-img ncs-fit-img--tile ncs-card-media">
-      <img src="{{ item_src | strip }}" alt="{{ item_name | escape }}" width="900" height="1125" loading="lazy" data-nc-card-img data-default-src="{{ item_src | strip }}">
-    </div>
-    <div class="ncs-card-info">
-      <span class="ncs-card-name">{{ item_name }}</span>
-      {%- if item_category != blank -%}
-        <span class="ncs-card-category">{{ item_category }}</span>
-      {%- endif -%}
-      {%- if item_price_min != blank -%}
-        <b class="ncs-card-from">From {{ item_price_min }}</b>
-      {%- endif -%}
-      <div class="ncs-card-marbles" aria-label="Available marble finishes">
-        <div class="ncs-marble-swatches">
-          {%- for entry in marble_entries -%}
-            {%- assign parts = entry | split: ':' -%}
-            {%- assign marble_name = parts[0] -%}
-            {%- assign marble_slug = parts[1] -%}
-            {%- assign marble_img = item_handle | append: '-' | append: marble_slug | append: '.jpg' | asset_url -%}
-            <span
-              class="ncs-marble-swatch ncs-marble-swatch--{{ marble_slug }}"
-              data-nc-marble-preview
-              data-img="{{ marble_img }}"
-              title="{{ marble_name }}"
-              aria-label="{{ marble_name }}"
-              tabindex="0"
-              role="img"
-            ></span>
-          {%- endfor -%}
-        </div>
-        <p class="ncs-card-marbles-label">
-          {%- for entry in marble_entries -%}
-            {%- assign parts = entry | split: ':' -%}
-            {%- unless forloop.first -%}<span class="ncs-marble-dot" aria-hidden="true">·</span>{%- endunless -%}
-            <span>{{ parts[0] }}</span>
-          {%- endfor -%}
-        </p>
-      </div>
-    </div>
-  </a>
-{%- endfor -%}
+{%- if collection != blank and collection.products_count > 0 -%}
+  {%- for shop_product in collection.products -%}
+    {% render 'nc-catalog-card', shop_product: shop_product %}
+  {%- endfor -%}
+{%- else -%}
+  {%- liquid
+    case category
+      when 'side'
+        assign catalog_handles = 'sd-1,sd-2,sd-3' | split: ','
+      when 'console'
+        assign catalog_handles = 'cs-1,cs-2,cs-3' | split: ','
+      else
+        assign catalog_handles = 'cft-1,cft-2,cft-3' | split: ','
+    endcase
+  -%}
+  {%- for item_handle in catalog_handles -%}
+    {%- assign shop_product = all_products[item_handle] -%}
+    {%- if shop_product != blank -%}
+      {% render 'nc-catalog-card', shop_product: shop_product %}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}

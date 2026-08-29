@@ -3,7 +3,7 @@
     {% if settings.logo != blank %}
       <img src="{{ settings.logo | image_url: width: 300 }}" alt="{{ settings.brand_name | default: 'NEROCASA' }}" width="120" height="48" loading="eager">
     {% else %}
-      <img src="{{ 'nerocasa-logo.png' | asset_url }}" alt="{{ settings.brand_name | default: 'NEROCASA' }}" width="120" height="48" loading="eager">
+      <img src="{{ 'nerocasa-logo-user.png' | asset_url }}" alt="{{ settings.brand_name | default: 'NEROCASA' }}" width="120" height="48" loading="eager">
     {% endif %}
   </a>
 

@@ -1,0 +1,82 @@
+<section class="ncs-cart-page">
+  <header class="ncs-page-hero" data-nc-reveal>
+    <h1>Your <em>cart</em></h1>
+    {% if cart.item_count > 0 %}
+      <p>{{ cart.item_count }} piece{% if cart.item_count != 1 %}s{% endif %} selected</p>
+    {% endif %}
+  </header>
+
+  {% if cart.item_count == 0 %}
+    <div class="ncs-cart-empty" data-nc-reveal>
+      <p>Your cart is empty.</p>
+      <a class="ncs-btn" href="{% render 'nc-collections-index-url' %}">Browse collections ↗</a>
+    </div>
+  {% else %}
+    <form action="{{ routes.cart_url }}" method="post" class="ncs-cart-form" data-nc-reveal>
+      <div class="ncs-cart-lines">
+        {% for item in cart.items %}
+          {%- capture display_name -%}{% render 'nc-product-field', product: item.product, handle: item.product.handle, field: 'name' %}{%- endcapture -%}
+          {%- capture display_category -%}{% render 'nc-product-field', product: item.product, handle: item.product.handle, field: 'category' %}{%- endcapture -%}
+          {%- assign display_name = display_name | strip | default: item.product.title -%}
+          {%- assign display_category = display_category | strip -%}
+          <article class="ncs-cart-line">
+            <a class="ncs-cart-line-media" href="{{ item.url }}">
+              {% if item.image %}
+                <img src="{{ item.image | image_url: width: 400 }}" alt="{{ item.title | escape }}" width="200" height="220" loading="lazy">
+              {% else %}
+                <img src="{% render 'nc-catalog-default-img', handle: item.product.handle %}" alt="{{ item.title | escape }}" width="200" height="220" loading="lazy">
+              {% endif %}
+            </a>
+            <div class="ncs-cart-line-body">
+              <div class="ncs-cart-line-head">
+                <div>
+                  <a href="{{ item.url }}">
+                    <strong>{{ display_name | default: item.product.title }}</strong>
+                  </a>
+                  {% if display_category != blank %}
+                    <span class="ncs-cart-line-category">{{ display_category }}</span>
+                  {% endif %}
+                  {% unless item.variant.title == 'Default Title' %}
+                    <span class="ncs-cart-line-variant">{{ item.variant.title }}</span>
+                  {% endunless %}
+                </div>
+                <span class="ncs-cart-line-price">{{ item.final_line_price | money }}</span>
+              </div>
+              {% if item.properties.size > 0 %}
+                <ul class="ncs-cart-line-props">
+                  {% for prop in item.properties %}
+                    {% unless prop.last == blank %}
+                      <li><span>{{ prop.first }}</span> {{ prop.last }}</li>
+                    {% endunless %}
+                  {% endfor %}
+                </ul>
+              {% endif %}
+              <div class="ncs-cart-line-actions">
+                <label class="ncs-cart-qty">
+                  <span>Qty</span>
+                  <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" inputmode="numeric" aria-label="Quantity for {{ item.title | escape }}">
+                </label>
+                <a class="ncs-cart-remove" href="{{ item.url_to_remove }}">Remove</a>
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+
+      <aside class="ncs-cart-summary">
+        <div class="ncs-cart-summary-row">
+          <span>Subtotal</span>
+          <strong>{{ cart.total_price | money }}</strong>
+        </div>
+        <p class="ncs-cart-note">Shipping and taxes calculated at checkout. Made-to-order pieces — production timing confirmed after order.</p>
+        <div class="ncs-cart-summary-actions">
+          <button type="submit" name="update" class="ncs-btn ncs-btn--outline">Update cart</button>
+          <button type="submit" name="checkout" class="ncs-btn">Proceed to checkout ↗</button>
+        </div>
+        <a class="ncs-cart-continue" href="{% render 'nc-collections-index-url' %}">Continue shopping</a>
+      </aside>
+    </form>
+  {% endif %}
+</section>
+
+{% schema %}{"name":"Cart","presets":[{"name":"Cart"}]}{% endschema %}

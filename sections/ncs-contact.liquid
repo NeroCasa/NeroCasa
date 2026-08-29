@@ -36,6 +36,27 @@
         <p class="ncs-contact-note">Studio hours, Monday to Friday.</p>
       </div>
     </div>
+
+    <div class="ncs-contact-form-wrap" data-nc-reveal>
+      <div class="ncs-b2b-form-panel">
+        <h2 class="ncs-form-title">Send a message</h2>
+        <p class="ncs-form-lead">General enquiries, order questions, or custom pieces — we reply within one business day.</p>
+        {% form 'contact', class: 'ncs-b2b-form' %}
+          {% if form.posted_successfully? %}
+            <p class="ncs-form-success">Thank you — your message has been received.</p>
+          {% else %}
+            {% if form.errors %}<p class="ncs-form-error">Please check the form and try again.</p>{% endif %}
+            <input type="hidden" name="contact[tags]" value="contact-enquiry">
+            <div class="ncs-form-row">
+              <label>Name<input type="text" name="contact[name]" required autocomplete="name"></label>
+              <label>Email<input type="email" name="contact[email]" value="{{ form.email }}" required autocomplete="email"></label>
+            </div>
+            <label class="ncs-form-full">Message<textarea name="contact[body]" rows="6" required placeholder="How can we help?"></textarea></label>
+            <button type="submit" class="ncs-btn">Send message ↗</button>
+          {% endif %}
+        {% endform %}
+      </div>
+    </div>
   </div>
 </section>
 

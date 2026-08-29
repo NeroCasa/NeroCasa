@@ -51,15 +51,15 @@ const PAGES = [
 ];
 
 const PRODUCTS = [
-  { handle: 'cft-1', title: 'Coffee Table 1', type: 'Coffee Table', collection: 'coffee-tables', colors: ['Ibiza White', 'Armani Grey', 'Travertine'], prices: [8500, 8800, 8200] },
-  { handle: 'cft-2', title: 'Coffee Table 2', type: 'Coffee Table', collection: 'coffee-tables', colors: ['Ibiza White', 'Armani Grey', 'Travertine'], prices: [9200, 9500, 8900] },
-  { handle: 'cft-3', title: 'Coffee Table 3', type: 'Coffee Table', collection: 'coffee-tables', colors: ['Ibiza White', 'Travertine', 'Rosso Levanto'], prices: [9800, 9400, 11200] },
-  { handle: 'cs-1', title: 'Console Table 1', type: 'Console Table', collection: 'console-tables', colors: ['Ibiza White', 'Armani Grey', 'Travertine'], prices: [7200, 7500, 6900] },
-  { handle: 'cs-2', title: 'Console Table 2', type: 'Console Table', collection: 'console-tables', colors: ['Ibiza White', 'Armani Grey', 'Travertine'], prices: [7800, 8100, 7600] },
-  { handle: 'cs-3', title: 'Console Table 3', type: 'Console Table', collection: 'console-tables', colors: ['Ibiza White', 'Armani Grey', 'Travertine'], prices: [8400, 8700, 8200] },
-  { handle: 'sd-1', title: 'Side Table 1', type: 'Side Table', collection: 'side-tables', colors: ['Ibiza White', 'Armani Grey', 'Travertine'], prices: [4200, 4500, 3900] },
-  { handle: 'sd-2', title: 'Side Table 2', type: 'Side Table', collection: 'side-tables', colors: ['Ibiza White', 'Armani Grey', 'Travertine'], prices: [4600, 4900, 4300] },
-  { handle: 'sd-3', title: 'Side Table 3', type: 'Side Table', collection: 'side-tables', colors: ['Ibiza White', 'Armani Grey', 'Travertine'], prices: [5100, 5400, 4800] },
+  { handle: 'cft-1', title: 'Soglia', type: 'Coffee Table', collection: 'coffee-tables', colors: ['Ibiza White', 'Armani Grey', 'Travertine'], prices: [8500, 8800, 8200] },
+  { handle: 'cft-2', title: 'Equilibrio', type: 'Coffee Table', collection: 'coffee-tables', colors: ['Ibiza White', 'Armani Grey', 'Travertine'], prices: [9200, 9500, 8900] },
+  { handle: 'cft-3', title: 'Monolite', type: 'Coffee Table', collection: 'coffee-tables', colors: ['Ibiza White', 'Travertine', 'Rosso Levanto'], prices: [9800, 9400, 11200] },
+  { handle: 'cs-1', title: 'Galleria', type: 'Console Table', collection: 'console-tables', colors: ['Ibiza White', 'Armani Grey', 'Travertine'], prices: [7200, 7500, 6900] },
+  { handle: 'cs-2', title: 'Passaggio', type: 'Console Table', collection: 'console-tables', colors: ['Ibiza White', 'Armani Grey', 'Travertine'], prices: [7800, 8100, 7600] },
+  { handle: 'cs-3', title: 'Atrio', type: 'Console Table', collection: 'console-tables', colors: ['Ibiza White', 'Armani Grey', 'Travertine'], prices: [8400, 8700, 8200] },
+  { handle: 'sd-1', title: 'Nodo', type: 'Side Table', collection: 'side-tables', colors: ['Ibiza White', 'Armani Grey', 'Travertine'], prices: [4200, 4500, 3900] },
+  { handle: 'sd-2', title: 'Punto', type: 'Side Table', collection: 'side-tables', colors: ['Ibiza White', 'Armani Grey', 'Travertine'], prices: [4600, 4900, 4300] },
+  { handle: 'sd-3', title: 'Scalino', type: 'Side Table', collection: 'side-tables', colors: ['Ibiza White', 'Armani Grey', 'Travertine'], prices: [5100, 5400, 4800] },
 ];
 
 async function gql(query, variables) {

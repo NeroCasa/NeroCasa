@@ -5,7 +5,7 @@
         {% if settings.logo != blank %}
           <img src="{{ settings.logo | image_url: width: 240 }}" alt="{{ settings.brand_name | default: 'NEROCASA' }}" width="140" height="56" loading="lazy">
         {% else %}
-          <img src="{{ 'nerocasa-logo.png' | asset_url }}" alt="{{ settings.brand_name | default: 'NEROCASA' }}" width="140" height="56" loading="lazy">
+          <img src="{{ 'nerocasa-logo-user.png' | asset_url }}" alt="{{ settings.brand_name | default: 'NEROCASA' }}" width="140" height="56" loading="lazy">
         {% endif %}
       </a>
       <p>{{ settings.brand_tagline | default: 'Architectural marble furniture and objects, made to order.' }}</p>

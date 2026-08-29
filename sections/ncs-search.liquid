@@ -31,7 +31,17 @@
                   <img src="{{ 'hero-marble.svg' | asset_url }}" alt="{{ item.title | escape }}" loading="lazy">
                 {% endif %}
               </div>
-              <div class="ncs-card-info"><span>{{ item.title }}</span><b>{{ item.price | money }}</b></div>
+              <div class="ncs-card-info">
+                {%- capture search_name -%}{% render 'nc-product-field', product: item, handle: item.handle, field: 'name' %}{%- endcapture -%}
+                {%- capture search_category -%}{% render 'nc-product-field', product: item, handle: item.handle, field: 'category' %}{%- endcapture -%}
+                {%- assign search_name = search_name | strip -%}
+                {%- assign search_category = search_category | strip -%}
+                <span class="ncs-card-name">{{ search_name | default: item.title }}</span>
+                {%- if search_category != blank -%}
+                  <span class="ncs-card-category">{{ search_category }}</span>
+                {%- endif -%}
+                <b>{{ item.price | money }}</b>
+              </div>
             </a>
           {% elsif item.object_type == 'page' or item.object_type == 'article' %}
             <a class="ncs-card ncs-card-page" href="{{ item.url }}" data-nc-reveal>

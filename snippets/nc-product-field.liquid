@@ -1,0 +1,44 @@
+{%- comment -%}
+  Resolve product display data from Shopify admin first, theme fallback second.
+  @param product {Product} optional
+  @param handle {String} required when product is blank
+  @param field {String} name | category | height | length | width | depth
+{%- endcomment -%}
+{%- liquid
+  assign field = field | default: 'name'
+  assign resolved = blank
+
+  if product != blank
+    case field
+      when 'name'
+        assign resolved = product.title
+      when 'category'
+        assign resolved = product.type
+      when 'height'
+        if product.metafields.custom.height != blank
+          assign resolved = product.metafields.custom.height.value | default: product.metafields.custom.height
+        endif
+      when 'length'
+        if product.metafields.custom.length != blank
+          assign resolved = product.metafields.custom.length.value | default: product.metafields.custom.length
+        endif
+      when 'width'
+        if product.metafields.custom.width != blank
+          assign resolved = product.metafields.custom.width.value | default: product.metafields.custom.width
+        endif
+      when 'depth'
+        if product.metafields.custom.depth != blank
+          assign resolved = product.metafields.custom.depth.value | default: product.metafields.custom.depth
+        endif
+    endcase
+  endif
+
+  if resolved == blank and handle != blank
+    capture fallback
+      render 'nc-catalog-meta', handle: handle, field: field
+    endcapture
+    assign resolved = fallback | strip
+  endif
+
+  echo resolved
+-%}

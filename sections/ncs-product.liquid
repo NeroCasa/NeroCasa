@@ -1,18 +1,17 @@
-{% render 'nc-catalog-data' %}
+{% render 'nc-product-catalog-data', product: product %}
 
-{%- capture catalog_name -%}{% render 'nc-catalog-meta', handle: product.handle, field: 'name' %}{%- endcapture -%}
-{%- capture catalog_category -%}{% render 'nc-catalog-meta', handle: product.handle, field: 'category' %}{%- endcapture -%}
-{%- capture dim_h -%}{% render 'nc-catalog-meta', handle: product.handle, field: 'height' %}{%- endcapture -%}
-{%- capture dim_l -%}{% render 'nc-catalog-meta', handle: product.handle, field: 'length' %}{%- endcapture -%}
-{%- capture dim_w -%}{% render 'nc-catalog-meta', handle: product.handle, field: 'width' %}{%- endcapture -%}
-{%- capture dim_d -%}{% render 'nc-catalog-meta', handle: product.handle, field: 'depth' %}{%- endcapture -%}
-{%- assign catalog_name = catalog_name | strip -%}
+{%- capture display_name -%}{% render 'nc-product-field', product: product, handle: product.handle, field: 'name' %}{%- endcapture -%}
+{%- capture catalog_category -%}{% render 'nc-product-field', product: product, handle: product.handle, field: 'category' %}{%- endcapture -%}
+{%- capture dim_h -%}{% render 'nc-product-field', product: product, handle: product.handle, field: 'height' %}{%- endcapture -%}
+{%- capture dim_l -%}{% render 'nc-product-field', product: product, handle: product.handle, field: 'length' %}{%- endcapture -%}
+{%- capture dim_w -%}{% render 'nc-product-field', product: product, handle: product.handle, field: 'width' %}{%- endcapture -%}
+{%- capture dim_d -%}{% render 'nc-product-field', product: product, handle: product.handle, field: 'depth' %}{%- endcapture -%}
+{%- assign display_name = display_name | strip | default: product.title -%}
 {%- assign catalog_category = catalog_category | strip -%}
 {%- assign dim_h = dim_h | strip -%}
 {%- assign dim_l = dim_l | strip -%}
 {%- assign dim_w = dim_w | strip -%}
 {%- assign dim_d = dim_d | strip -%}
-{%- assign display_name = catalog_name | default: product.title -%}
 
 <section class="ncs-product-page" data-ncs-product data-product-handle="{{ product.handle }}">
   <div class="ncs-product-gallery">
@@ -88,7 +87,7 @@
       <div class="ncs-fixed-dimensions" data-fixed-size>
         <div class="ncs-fixed-size-title">STANDARD DIMENSIONS</div>
         <div class="ncs-fixed-dimensions-values">
-          {% render 'nc-catalog-dimensions', handle: product.handle %}
+          {% render 'nc-catalog-dimensions', product: product, handle: product.handle %}
         </div>
       </div>
 
@@ -179,7 +178,7 @@
         {% unless rp.id == product.id %}
           <a href="{{ rp.url }}">
             <img src="{% render 'nc-product-thumb', product: rp %}" alt="{{ rp.title | escape }}" loading="lazy" width="500" height="540">
-            <span>{% capture related_name %}{% render 'nc-catalog-meta', handle: rp.handle, field: 'name' %}{% endcapture %}{{ related_name | strip | default: rp.title }}</span><b>{{ rp.price | money }}</b>
+            <span>{{ rp.title }}</span><b>{{ rp.price | money }}</b>
           </a>
           {% assign related_count = related_count | plus: 1 %}
           {% if related_count == 8 %}{% break %}{% endif %}

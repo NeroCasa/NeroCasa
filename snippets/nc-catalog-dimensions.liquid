@@ -1,11 +1,12 @@
 {%- comment -%}
-  Renders standard dimension chips (H / L / W / D) for a catalog handle.
-  @param handle {String} e.g. cft-1
+  Standard dimension chips from Shopify metafields (fallback: catalog defaults).
+  @param product {Product} optional
+  @param handle {String}
 {%- endcomment -%}
-{%- capture dim_h -%}{% render 'nc-catalog-meta', handle: handle, field: 'height' %}{%- endcapture -%}
-{%- capture dim_l -%}{% render 'nc-catalog-meta', handle: handle, field: 'length' %}{%- endcapture -%}
-{%- capture dim_w -%}{% render 'nc-catalog-meta', handle: handle, field: 'width' %}{%- endcapture -%}
-{%- capture dim_d -%}{% render 'nc-catalog-meta', handle: handle, field: 'depth' %}{%- endcapture -%}
+{%- capture dim_h -%}{% render 'nc-product-field', product: product, handle: handle, field: 'height' %}{%- endcapture -%}
+{%- capture dim_l -%}{% render 'nc-product-field', product: product, handle: handle, field: 'length' %}{%- endcapture -%}
+{%- capture dim_w -%}{% render 'nc-product-field', product: product, handle: handle, field: 'width' %}{%- endcapture -%}
+{%- capture dim_d -%}{% render 'nc-product-field', product: product, handle: handle, field: 'depth' %}{%- endcapture -%}
 {%- assign dim_h = dim_h | strip -%}
 {%- assign dim_l = dim_l | strip -%}
 {%- assign dim_w = dim_w | strip -%}

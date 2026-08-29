@@ -1,7 +1,11 @@
 <section class="ncs-info-page ncs-legal-page">
-  <h1>Terms &amp; Conditions</h1>
+  <h1>{{ page.title | default: 'Terms & Conditions' }}</h1>
   <div class="ncs-legal-body">
-    <p>Replace this demo copy with your final legal terms before publishing.</p>
+    {% if page.content != blank %}
+      {{ page.content }}
+    {% else %}
+      <p>Add your terms in <strong>Online Store → Pages → Terms &amp; Conditions</strong>. Content entered there will appear here automatically.</p>
+    {% endif %}
   </div>
 </section>
 {% schema %}{"name":"TERMS & CONDITIONS","presets":[{"name":"TERMS & CONDITIONS"}]}{% endschema %}

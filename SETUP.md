@@ -9,7 +9,7 @@ Go to **Online Store → Themes → Customize → Theme settings**.
 | Setting | What to enter |
 |---------|----------------|
 | Brand name / tagline | Your public copy |
-| Logo / Hero image | Upload when ready (optional — placeholders work until then) |
+| Logo / Hero image | Optional — default logo is `nerocasa-logo-user.png` in theme assets |
 | Accent gold | Keep `#A57B00` unless you intentionally change it |
 | Contact email / phone / WhatsApp | Real contact details |
 | Collection handles | Match your collection URL handles (see step 2) |
@@ -26,9 +26,8 @@ Create each collection and set the **URL handle** exactly as below (or update ha
 | Coffee Tables | `coffee-tables` |
 | Side Tables | `side-tables` |
 | Console Tables | `console-tables` |
-| Best Sellers | `best-sellers` (manual collection — optional; theme fills with random catalog picks if empty) |
 
-Add **3 products per collection** (see step 2b). The home page and collections index link to these automatically.
+Add **3 products per collection** (see step 2b).
 
 ## 2b. Create the 9 catalog products
 
@@ -38,25 +37,25 @@ Create **9 products** in **Products → Add product**. Each needs a **URL handle
 
 | Product title | Handle | Marble variants (option name: **Marble**) |
 |---------------|--------|-------------------------------------------|
-| Coffee Table 1 | `cft-1` | Ibiza White, Armani Grey, Travertine |
-| Coffee Table 2 | `cft-2` | Ibiza White, Armani Grey, Travertine |
-| Coffee Table 3 | `cft-3` | Ibiza White, Travertine, Rosso Levanto |
+| Soglia | `cft-1` | Ibiza White, Armani Grey, Travertine |
+| Equilibrio | `cft-2` | Ibiza White, Armani Grey, Travertine |
+| Monolite | `cft-3` | Ibiza White, Travertine, Rosso Levanto |
 
 ### Console Tables — collection `console-tables`
 
 | Product title | Handle | Marble variants |
 |---------------|--------|-----------------|
-| Console Table 1 | `cs-1` | Ibiza White, Armani Grey, Travertine |
-| Console Table 2 | `cs-2` | Ibiza White, Armani Grey, Travertine |
-| Console Table 3 | `cs-3` | Ibiza White, Armani Grey, Travertine |
+| Galleria | `cs-1` | Ibiza White, Armani Grey, Travertine |
+| Passaggio | `cs-2` | Ibiza White, Armani Grey, Travertine |
+| Atrio | `cs-3` | Ibiza White, Armani Grey, Travertine |
 
 ### Side Tables — collection `side-tables`
 
 | Product title | Handle | Marble variants |
 |---------------|--------|-----------------|
-| Side Table 1 | `sd-1` | Ibiza White, Armani Grey, Travertine |
-| Side Table 2 | `sd-2` | Ibiza White, Armani Grey, Travertine |
-| Side Table 3 | `sd-3` | Ibiza White, Armani Grey, Travertine |
+| Nodo | `sd-1` | Ibiza White, Armani Grey, Travertine |
+| Punto | `sd-2` | Ibiza White, Armani Grey, Travertine |
+| Scalino | `sd-3` | Ibiza White, Armani Grey, Travertine |
 
 **Color names must match exactly** (the theme maps images to these):
 
@@ -91,33 +90,46 @@ Once pages exist, navigation links switch from `/?view=about` to `/pages/why-ner
 
 ## 4. Legal & policy content
 
-- Edit **Terms** and **Refunds** page body in Shopify (or keep theme section copy and replace in code).
+- Edit **Terms**, **Refunds**, and **Track order** page body in **Online Store → Pages** — content appears on the storefront automatically.
 - Set **Settings → Policies** for Privacy and Terms of Service (footer links use Shopify policy URLs).
 
 ## 5. Contact forms
 
-B2B and Custom forms use Shopify's **contact form** — submissions go to the store notification email (**Settings → Notifications**).
+Contact, B2B, and Custom forms use Shopify's **contact form** — submissions go to the store notification email (**Settings → Notifications**).
 
 **Note:** Custom page file upload is UI-only. For real file attachments, connect a form app (e.g. Shopify Forms, HulkForm) or a custom endpoint later.
 
-## 6. Product metafields (optional)
+## 6. Standard dimensions (editable in Shopify)
 
-For dimensions on product pages, add metafields under **Settings → Custom data → Products**:
+Dimensions are stored as **product metafields** (`custom.height`, `custom.length`, `custom.width`, `custom.depth`) and editable under **Products → [product] → Metafields**.
 
-| Namespace & key | Type | Example |
-|-----------------|------|---------|
-| `custom.height` | Single line text | `45 cm` |
-| `custom.length` | Single line text | `120 cm` |
-| `custom.width` | Single line text | `60 cm` |
-| `custom.materials` | Multi-line text | Stone description |
-| `custom.production_info` | Multi-line text | Lead time copy |
+Seed definitions and default values once:
+
+```powershell
+node scripts/seed-product-metafields.mjs zhjbdz-yw.myshopify.com
+node scripts/rename-catalog-titles.mjs zhjbdz-yw.myshopify.com
+```
+
+**Product photos:** upload in **Products → Media** or assign per variant. Theme uses Shopify images when present; bundled JPG assets are fallback only.
+
+**Marble options:** managed as product **Marble** variants in Shopify (already wired).
+
+**About / Home copy:** edit in **Theme customize** → About or Home section settings. Optional extra About body via **Pages → Why Nerocasa → Content**.
+
+Optional product metafields for extra copy:
+
+| Namespace & key | Type | Use |
+|-----------------|------|-----|
+| `custom.materials` | Multi-line text | Materials accordion |
+| `custom.production_info` | Multi-line text | Production & delivery accordion |
 
 ## 7. Publish checklist
 
 - [ ] Homepage loads with hero and collections
 - [ ] All nav links work (no 404s)
 - [ ] Contact email and WhatsApp open correctly
-- [ ] Test add-to-cart on a product
+- [ ] Test add-to-cart → cart page → checkout preview
+- [ ] Run `node scripts/rename-catalog-titles.mjs zhjbdz-yw.myshopify.com` if products still have old titles
 - [ ] Submit test B2B / custom enquiry
 - [ ] Replace placeholder legal copy before launch
 

@@ -1,7 +1,13 @@
 <section class="ncs-info-page ncs-legal-page">
-  <h1>Track Your Order</h1>
+  <h1>{{ page.title | default: 'Track Your Order' }}</h1>
   <div class="ncs-legal-body">
-    <p>This page is ready to connect to Shopify order status or your preferred tracking provider.</p>
+    {% if page.content != blank %}
+      {{ page.content }}
+    {% else %}
+      <p>Track your order using the link in your order confirmation email, or sign in to your account if you have one.</p>
+      <p><a class="ncs-btn ncs-btn--ghost" href="{{ routes.account_url }}">Account login ↗</a></p>
+      <p>For help, contact us at <a href="mailto:{{ settings.contact_email | default: 'hello@nerocasa.com' }}">{{ settings.contact_email | default: 'hello@nerocasa.com' }}</a>.</p>
+    {% endif %}
   </div>
 </section>
 {% schema %}{"name":"TRACK YOUR ORDER","presets":[{"name":"TRACK YOUR ORDER"}]}{% endschema %}

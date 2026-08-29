@@ -1,0 +1,32 @@
+{%- comment -%}
+  PDP variant image map from Shopify product (variants + media), asset fallback.
+  @param product {Product}
+{%- endcomment -%}
+<script>
+window.NC_CATALOG = window.NC_CATALOG || {};
+window.NC_CATALOG[{{ product.handle | json }}] = {
+  "colors": [
+    {%- assign marble_option = blank -%}
+    {%- for option in product.options_with_values -%}
+      {%- assign opt_name = option.name | downcase -%}
+      {%- if opt_name contains 'marble' or opt_name contains 'color' or opt_name contains 'colour' -%}
+        {%- assign marble_option = option -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if marble_option != blank -%}
+      {%- for marble_name in marble_option.values -%}
+        {{ marble_name | json }}{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    {%- endif -%}
+  ],
+  "images": {
+    {%- if marble_option != blank -%}
+      {%- for marble_name in marble_option.values -%}
+        {%- capture marble_img -%}{% render 'nc-variant-image', product: product, marble_name: marble_name %}{%- endcapture -%}
+        {{ marble_name | json }}: {{ marble_img | strip | json }}{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    {%- endif -%}
+  }
+};
+</script>

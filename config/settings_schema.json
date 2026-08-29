@@ -26,7 +26,7 @@
         "type": "image_picker",
         "id": "logo",
         "label": "Logo image",
-        "info": "Optional. Leave empty to use the text wordmark."
+        "info": "Optional. Leave empty to use the bundled nerocasa-logo-user.png asset."
       },
       {
         "type": "image_picker",

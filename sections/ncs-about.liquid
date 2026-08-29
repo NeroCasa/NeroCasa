@@ -1,64 +1,103 @@
 <section class="ncs-about-page">
   <div class="ncs-about-hero-split" data-nc-reveal>
     <div class="ncs-about-hero-copy">
-      <h1>Defined by <em>material</em></h1>
-      <p class="ncs-about-hero-lead">Natural stone, considered form, precise finishing — objects shaped for quiet, architectural interiors.</p>
+      <h1>{{ section.settings.hero_heading | default: page.title | default: 'Defined by material' }}</h1>
+      <p class="ncs-about-hero-lead">{{ section.settings.hero_lead }}</p>
     </div>
     <div class="ncs-about-hero-visual">
-      {% capture about_image %}{% render 'nc-showcase-image', pool: 'about' %}{% endcapture %}
-      <img src="{{ about_image | strip }}" alt="NeroCasa marble furniture" width="1200" height="900" loading="eager">
+      {% if section.settings.hero_image != blank %}
+        <img src="{{ section.settings.hero_image | image_url: width: 1200 }}" alt="{{ section.settings.hero_image.alt | default: settings.brand_name | escape }}" width="1200" height="900" loading="eager">
+      {% else %}
+        {% capture about_image %}{% render 'nc-showcase-image', pool: 'about' %}{% endcapture %}
+        <img src="{{ about_image | strip }}" alt="NeroCasa marble furniture" width="1200" height="900" loading="eager">
+      {% endif %}
     </div>
   </div>
 
-  <blockquote class="ncs-about-quote" data-nc-reveal>
-    <p>We work with stone as architects work with light — selectively, precisely, with permanence in mind.</p>
-  </blockquote>
+  {% if page.content != blank %}
+    <div class="ncs-about-page-content ncs-legal-body" data-nc-reveal>
+      {{ page.content }}
+    </div>
+  {% endif %}
+
+  {% if section.settings.quote != blank %}
+    <blockquote class="ncs-about-quote" data-nc-reveal>
+      <p>{{ section.settings.quote }}</p>
+    </blockquote>
+  {% endif %}
 
   <div class="ncs-about-pillars">
-    <article class="ncs-about-pillar" data-nc-reveal>
-      <span class="ncs-pillar-num">01</span>
-      <div class="ncs-pillar-body">
-        <h2>Material</h2>
-        <p>Ibiza White, Beige Travertine, Armani Grey and Rosso Levanto are selected for tone, veining, depth and presence — never as filler, always as the defining element.</p>
-      </div>
-    </article>
-    <article class="ncs-about-pillar" data-nc-reveal>
-      <span class="ncs-pillar-num">02</span>
-      <div class="ncs-pillar-body">
-        <h2>Proportion</h2>
-        <p>Essential geometry and controlled dimensions keep every object quiet and architectural. Nothing ornamental for its own sake.</p>
-      </div>
-    </article>
-    <article class="ncs-about-pillar" data-nc-reveal>
-      <span class="ncs-pillar-num">03</span>
-      <div class="ncs-pillar-body">
-        <h2>Precision</h2>
-        <p>Edges, surfaces and transitions are treated as part of the object — not as finishing details applied at the end.</p>
-      </div>
-    </article>
-    <article class="ncs-about-pillar" data-nc-reveal>
-      <span class="ncs-pillar-num">04</span>
-      <div class="ncs-pillar-body">
-        <h2>Surface</h2>
-        <p>Each finish preserves the natural variation of stone while maintaining a refined tactile quality you can feel in the hand.</p>
-      </div>
-    </article>
-    <article class="ncs-about-pillar ncs-about-pillar--wide" data-nc-reveal>
-      <span class="ncs-pillar-num">05</span>
-      <div class="ncs-pillar-body">
-        <h2>Made to order</h2>
-        <p>Objects are produced for each order rather than held as finished stock. Every piece is considered before it is cut.</p>
-      </div>
-    </article>
+    {% for i in (1..5) %}
+      {%- liquid
+        assign title_key = 'pillar_' | append: i | append: '_title'
+        assign text_key = 'pillar_' | append: i | append: '_text'
+        assign pillar_title = section.settings[title_key]
+        assign pillar_text = section.settings[text_key]
+      -%}
+      {% if pillar_title != blank or pillar_text != blank %}
+        <article class="ncs-about-pillar{% if i == 5 %} ncs-about-pillar--wide{% endif %}" data-nc-reveal>
+          <span class="ncs-pillar-num">0{{ i }}</span>
+          <div class="ncs-pillar-body">
+            {% if pillar_title != blank %}<h2>{{ pillar_title }}</h2>{% endif %}
+            {% if pillar_text != blank %}<p>{{ pillar_text }}</p>{% endif %}
+          </div>
+        </article>
+      {% endif %}
+    {% endfor %}
   </div>
 
   <div class="ncs-about-cta" data-nc-reveal>
     <div class="ncs-about-cta-copy">
-      <h2>Work with us</h2>
-      <p>For interior designers, architects and hospitality projects seeking bespoke marble objects.</p>
+      <h2>{{ section.settings.cta_heading }}</h2>
+      <p>{{ section.settings.cta_text }}</p>
     </div>
     <a class="ncs-btn" href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B Enquiry ↗</a>
   </div>
 </section>
 
-{% schema %}{"name":"Why Nerocasa","presets":[{"name":"Why Nerocasa"}]}{% endschema %}
+{% schema %}
+{
+  "name": "Why Nerocasa",
+  "settings": [
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Hero heading",
+      "default": "Defined by material"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_lead",
+      "label": "Hero lead",
+      "default": "Natural stone, considered form, precise finishing — objects shaped for quiet, architectural interiors."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image",
+      "info": "Optional. Leave empty for catalog lifestyle image."
+    },
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Quote",
+      "default": "We work with stone as architects work with light — selectively, precisely, with permanence in mind."
+    },
+    { "type": "header", "content": "Pillars" },
+    { "type": "text", "id": "pillar_1_title", "label": "Pillar 1 title", "default": "Material" },
+    { "type": "textarea", "id": "pillar_1_text", "label": "Pillar 1 text", "default": "Ibiza White, Beige Travertine, Armani Grey and Rosso Levanto are selected for tone, veining, depth and presence — never as filler, always as the defining element." },
+    { "type": "text", "id": "pillar_2_title", "label": "Pillar 2 title", "default": "Proportion" },
+    { "type": "textarea", "id": "pillar_2_text", "label": "Pillar 2 text", "default": "Essential geometry and controlled dimensions keep every object quiet and architectural. Nothing ornamental for its own sake." },
+    { "type": "text", "id": "pillar_3_title", "label": "Pillar 3 title", "default": "Precision" },
+    { "type": "textarea", "id": "pillar_3_text", "label": "Pillar 3 text", "default": "Edges, surfaces and transitions are treated as part of the object — not as finishing details applied at the end." },
+    { "type": "text", "id": "pillar_4_title", "label": "Pillar 4 title", "default": "Surface" },
+    { "type": "textarea", "id": "pillar_4_text", "label": "Pillar 4 text", "default": "Each finish preserves the natural variation of stone while maintaining a refined tactile quality you can feel in the hand." },
+    { "type": "text", "id": "pillar_5_title", "label": "Pillar 5 title", "default": "Made to order" },
+    { "type": "textarea", "id": "pillar_5_text", "label": "Pillar 5 text", "default": "Objects are produced for each order rather than held as finished stock. Every piece is considered before it is cut." },
+    { "type": "header", "content": "Call to action" },
+    { "type": "text", "id": "cta_heading", "label": "CTA heading", "default": "Work with us" },
+    { "type": "textarea", "id": "cta_text", "label": "CTA text", "default": "For interior designers, architects and hospitality projects seeking bespoke marble objects." }
+  ],
+  "presets": [{ "name": "Why Nerocasa" }]
+}
+{% endschema %}

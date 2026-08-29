@@ -1,0 +1,35 @@
+{%- comment -%}
+  Image URL for a product + marble finish.
+  Prefers Shopify variant media; falls back to theme asset JPG.
+  @param product {Product}
+  @param marble_name {String}
+{%- endcomment -%}
+{%- liquid
+  assign image_url = blank
+  assign marble_slug = marble_name | downcase | replace: ' ', '-'
+
+  for variant in product.variants
+    assign matches = false
+    for option in variant.options
+      if option == marble_name
+        assign matches = true
+        break
+      endif
+    endfor
+    if matches and variant.featured_image
+      assign image_url = variant.featured_image | image_url: width: 1800
+      break
+    endif
+  endfor
+
+  if image_url == blank and product.featured_image
+    assign image_url = product.featured_image | image_url: width: 1800
+  endif
+
+  if image_url == blank
+    assign asset_name = product.handle | append: '-' | append: marble_slug | append: '.jpg'
+    assign image_url = asset_name | asset_url
+  endif
+
+  echo image_url
+-%}

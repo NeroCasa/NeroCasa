@@ -10,12 +10,12 @@
   </div>
   <div class="ncs-hero-content">
     <h1><span>NE<span>RO</span></span><span class="nc-gold">CASA</span></h1>
-    <p class="ncs-hero-tagline">{{ settings.brand_tagline | default: 'Architectural marble furniture, made to order' }}</p>
+    <p class="ncs-hero-tagline">{{ section.settings.hero_tagline | default: settings.brand_tagline | default: 'Architectural marble furniture, made to order' }}</p>
   </div>
 </section>
 
 <section class="ncs-collections ncs-home-collections">
-  <div class="ncs-section-head" data-nc-reveal><h2>Collections</h2></div>
+  <div class="ncs-section-head" data-nc-reveal><h2>{{ section.settings.collections_heading }}</h2></div>
   <div class="ncs-collection-grid">
     <a class="ncs-collection-tile" href="{% render 'nc-collection-url', handle: settings.collection_coffee %}" data-nc-reveal>
       <div class="ncs-fit-img ncs-fit-img--tile">
@@ -39,7 +39,7 @@
 </section>
 
 <section class="ncs-mail ncs-cta">
-  <div class="ncs-cta-title" data-nc-reveal><h2>Stay close</h2></div>
+  <div class="ncs-cta-title" data-nc-reveal><h2>{{ section.settings.newsletter_heading }}</h2></div>
   {% form 'customer', class: 'ncs-mail-form' %}
     {% if form.posted_successfully? %}
       <p class="ncs-form-success">Thank you — you're on the list.</p>
@@ -50,4 +50,29 @@
   {% endform %}
 </section>
 
-{% schema %}{"name":"Nerocasa Store Home","presets":[{"name":"Nerocasa Store Home"}]}{% endschema %}
+{% schema %}
+{
+  "name": "Nerocasa Store Home",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "hero_tagline",
+      "label": "Hero tagline",
+      "info": "Overrides theme brand tagline on the homepage only."
+    },
+    {
+      "type": "text",
+      "id": "collections_heading",
+      "label": "Collections heading",
+      "default": "Collections"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter heading",
+      "default": "Stay close"
+    }
+  ],
+  "presets": [{ "name": "Nerocasa Store Home" }]
+}
+{% endschema %}
