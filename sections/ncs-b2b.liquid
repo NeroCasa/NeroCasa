@@ -14,9 +14,10 @@
 
     <div class="ncs-b2b-form-wrap" data-nc-reveal>
       <div class="ncs-b2b-form-panel">
+        <p class="ncs-form-route">Enquiries are sent to <a href="mailto:{{ settings.contact_email | default: 'info@nerocasa.com' }}">{{ settings.contact_email | default: 'info@nerocasa.com' }}</a>. We respond within one business day.</p>
         {% form 'contact', class: 'ncs-b2b-form' %}
           {% if form.posted_successfully? %}
-            <p class="ncs-form-success">Thank you. Your enquiry has been received. We will respond within one business day.</p>
+            <p class="ncs-form-success">Thank you. Your enquiry has been received at info@nerocasa.com. We will respond within one business day.</p>
           {% else %}
             {% if form.errors %}<p class="ncs-form-error">Please check the form and try again.</p>{% endif %}
             <input type="hidden" name="contact[tags]" value="b2b-enquiry">
@@ -70,13 +71,13 @@
       "type": "textarea",
       "id": "lead",
       "label": "Lead",
-      "default": "Hotels, residences, restaurants and retail spaces. We partner with designers, architects and developers who need real stone at volume, with production they can trust."
+      "default": "Hotels, residences, restaurants and retail spaces. We partner with designers, architects and developers who need real stone at volume, with production they can trust. Any catalog design can be adapted in different marbles, sizes, or finishes for your project."
     },
     {
       "type": "textarea",
       "id": "detail_text",
       "label": "Detail",
-      "default": "Because NeroCasa imports marble and owns its factory, we do not buy ready-made pieces from outside. That removes finished-product markups and lets us deliver better stone and craft for less than comparable suppliers."
+      "default": "Because NeroCasa imports marble and owns its factory, we do not buy ready-made pieces from outside. We build to order, including custom versions of our current designs and project-specific stone work."
     },
     {
       "type": "text",

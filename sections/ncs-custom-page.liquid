@@ -1,144 +1,140 @@
 <section class="ncs-custom-page">
   <header class="ncs-page-hero" data-nc-reveal>
-    <span class="ncs-page-kicker">Water jet cutting</span>
-    <h1>{% render 'nc-title-gold', title: 'Custom in stone' %}</h1>
+    <span class="ncs-page-kicker">{{ section.settings.hero_kicker }}</span>
+    <h1>{% render 'nc-title-gold', title: section.settings.hero_heading %}</h1>
     <p>{{ section.settings.hero_lead }}</p>
   </header>
 
-  <section class="ncs-custom-block" data-nc-reveal>
-    <span class="ncs-page-kicker">NeroCasa designs</span>
-    <h2>{% render 'nc-title-gold', title: section.settings.designs_heading %}</h2>
-    <p class="ncs-custom-soon">{{ section.settings.designs_note }}</p>
-    <p>{{ section.settings.designs_text }}</p>
+  <section class="ncs-custom-block ncs-custom-block--whatsapp" data-nc-reveal>
+    <span class="ncs-page-kicker">Your commission</span>
+    <h2>{% render 'nc-title-gold', title: section.settings.vision_heading %}</h2>
+    <p class="ncs-form-lead">{{ section.settings.vision_lead }}</p>
+
+    <ul class="ncs-custom-scope">
+      <li>{{ section.settings.scope_1 }}</li>
+      <li>{{ section.settings.scope_2 }}</li>
+      <li>{{ section.settings.scope_3 }}</li>
+      <li>{{ section.settings.scope_4 }}</li>
+    </ul>
+
+    <div class="ncs-custom-whatsapp-panel">
+      <p class="ncs-custom-whatsapp-note">{{ section.settings.whatsapp_note }}</p>
+      <a class="ncs-btn" href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">Talk to us on WhatsApp ↗</a>
+      <p class="ncs-custom-whatsapp-hint">{{ section.settings.whatsapp_hint }}</p>
+    </div>
+
+    <p class="ncs-custom-b2b-note">{{ section.settings.b2b_note }} <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B enquiry ↗</a></p>
   </section>
 
-  <section class="ncs-custom-block ncs-custom-block--form" data-nc-reveal>
-    <span class="ncs-page-kicker">Your commission</span>
-    <h2>{% render 'nc-title-gold', title: section.settings.form_heading %}</h2>
-    <p class="ncs-form-lead">{{ section.settings.form_lead }}</p>
-
-    <div class="ncs-custom-form-panel">
-      {% form 'contact', class: 'ncs-b2b-form', id: 'NerocasaCustomForm' %}
-        {% if form.posted_successfully? %}
-          <p class="ncs-form-success">Thank you. Your custom request has been received.</p>
-        {% else %}
-          <input type="hidden" name="contact[tags]" value="custom-enquiry">
-          <div class="ncs-form-row">
-            <label>Name<input type="text" name="contact[name]" required autocomplete="name"></label>
-            <label>Email<input type="email" name="contact[email]" required autocomplete="email"></label>
-          </div>
-          <div class="ncs-form-row">
-            <label>Phone<input type="tel" name="contact[phone]" autocomplete="tel"></label>
-            <label>Marble or stone preference<input type="text" name="contact[marble_preference]" placeholder="White marble, travertine, or describe what you want"></label>
-          </div>
-
-          <div class="ncs-custom-dimension-grid ncs-custom-dimension-grid--4">
-            <label>H (cm)<input type="number" min="1" step="0.1" name="contact[height_cm]" placeholder="cm"></label>
-            <label>L (cm)<input type="number" min="1" step="0.1" name="contact[length_cm]" placeholder="cm"></label>
-            <label>W (cm)<input type="number" min="1" step="0.1" name="contact[width_cm]" placeholder="cm"></label>
-            <label>D (cm)<input type="number" min="1" step="0.1" name="contact[depth_cm]" placeholder="cm"></label>
-          </div>
-
-          <label class="ncs-form-full ncs-dropzone" data-nc-dropzone>
-            <span class="ncs-dropzone-label">Reference image</span>
-            <span class="ncs-dropzone-hint">Drop an image here or click to upload</span>
-            <input type="file" accept="image/*" hidden data-nc-file-input>
-            <img class="ncs-dropzone-preview" data-nc-file-preview alt="" hidden>
-          </label>
-
-          <label class="ncs-form-full">Tell us about your piece<textarea name="contact[body]" rows="6" data-nc-custom-body placeholder="Shape, room, finish, inspiration, or anything else we should know."></textarea></label>
-          <button type="submit" class="ncs-btn">Submit request ↗</button>
-        {% endif %}
-      {% endform %}
-    </div>
+  <section class="ncs-custom-block ncs-custom-block--waterjet" data-nc-reveal>
+    <span class="ncs-page-kicker">{{ section.settings.waterjet_kicker }}</span>
+    <h2>{% render 'nc-title-gold', title: section.settings.waterjet_heading %}</h2>
+    <p class="ncs-custom-soon">{{ section.settings.waterjet_note }}</p>
+    <p>{{ section.settings.waterjet_text }}</p>
   </section>
 </section>
 
-<script>
-(function(){
-  var form=document.getElementById('NerocasaCustomForm');
-  if(!form)return;
-  var dropzone=form.querySelector('[data-nc-dropzone]');
-  var input=form.querySelector('[data-nc-file-input]');
-  var preview=form.querySelector('[data-nc-file-preview]');
-  var body=form.querySelector('[data-nc-custom-body]');
-  var fileName='';
-
-  function setFile(file){
-    if(!file||!file.type.match(/^image\//))return;
-    fileName=file.name;
-    var reader=new FileReader();
-    reader.onload=function(e){
-      if(preview){
-        preview.src=e.target.result;
-        preview.hidden=false;
-      }
-      if(dropzone)dropzone.classList.add('has-file');
-    };
-    reader.readAsDataURL(file);
-  }
-
-  if(dropzone&&input){
-    dropzone.addEventListener('click',function(){input.click();});
-    input.addEventListener('change',function(){if(input.files[0])setFile(input.files[0]);});
-    dropzone.addEventListener('dragover',function(e){e.preventDefault();dropzone.classList.add('is-dragover');});
-    dropzone.addEventListener('dragleave',function(){dropzone.classList.remove('is-dragover');});
-    dropzone.addEventListener('drop',function(e){
-      e.preventDefault();
-      dropzone.classList.remove('is-dragover');
-      if(e.dataTransfer.files[0])setFile(e.dataTransfer.files[0]);
-    });
-  }
-
-  form.addEventListener('submit',function(){
-    if(!body||!fileName)return;
-    var note='\n\nReference image: '+fileName+'. If needed, send the file via WhatsApp as well.';
-    if(body.value.indexOf(fileName)===-1)body.value=(body.value||'').trim()+note;
-  });
-})();
-</script>
-
 {% schema %}
 {
-  "name": "Custom Water Cutting",
+  "name": "Custom Page",
   "settings": [
+    {
+      "type": "text",
+      "id": "hero_kicker",
+      "label": "Hero kicker",
+      "default": "Beyond the catalog"
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Hero heading",
+      "default": "Made for you"
+    },
     {
       "type": "textarea",
       "id": "hero_lead",
       "label": "Hero lead",
-      "default": "Separate from our main collections. This is water jet cutting: bespoke marble shapes, surfaces and objects made to your brief in our workshop."
+      "default": "Separate from our main collections. Custom at NeroCasa is not only water jet cutting. Any current design in a different marble, a new size, or a piece built to your brief, we make it in our workshop when you order. For custom requests, talk to us on WhatsApp."
     },
     {
       "type": "text",
-      "id": "designs_heading",
-      "label": "Designs heading",
-      "default": "Our designs"
-    },
-    {
-      "type": "textarea",
-      "id": "designs_text",
-      "label": "Designs text",
-      "default": "A curated line of NeroCasa water-cut pieces is in development. These will sit alongside custom commissions, not inside the standard collections catalog."
-    },
-    {
-      "type": "text",
-      "id": "designs_note",
-      "label": "Designs note",
-      "default": "Coming soon"
-    },
-    {
-      "type": "text",
-      "id": "form_heading",
-      "label": "Form heading",
+      "id": "vision_heading",
+      "label": "Vision heading",
       "default": "Share your vision"
     },
     {
       "type": "textarea",
-      "id": "form_lead",
-      "label": "Form lead",
-      "default": "Send dimensions, stone preference and a reference image. We reply with feasibility, timing and next steps."
+      "id": "vision_lead",
+      "label": "Vision lead",
+      "default": "Tell us what you want on WhatsApp. We reply with feasibility, stone options, timing, and next steps."
+    },
+    {
+      "type": "text",
+      "id": "scope_1",
+      "label": "Scope point 1",
+      "default": "Any collection design in a different marble or custom size"
+    },
+    {
+      "type": "text",
+      "id": "scope_2",
+      "label": "Scope point 2",
+      "default": "Soglia, Monolite, Galleria, and every piece in our catalog, adapted to your space"
+    },
+    {
+      "type": "text",
+      "id": "scope_3",
+      "label": "Scope point 3",
+      "default": "One-off furniture, tables, and surfaces made when you order"
+    },
+    {
+      "type": "text",
+      "id": "scope_4",
+      "label": "Scope point 4",
+      "default": "Stone preference, dimensions, finish, and reference images discussed directly with our team"
+    },
+    {
+      "type": "textarea",
+      "id": "whatsapp_note",
+      "label": "WhatsApp note",
+      "default": "Custom commissions are handled on WhatsApp so we can talk through your idea, images, and measurements directly."
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_hint",
+      "label": "WhatsApp hint",
+      "default": "Share dimensions, marble preference, reference images, and your room or project details."
+    },
+    {
+      "type": "textarea",
+      "id": "b2b_note",
+      "label": "B2B note",
+      "default": "For trade, hospitality, and commercial projects, use our B2B form. Enquiries go to info@nerocasa.com."
+    },
+    {
+      "type": "text",
+      "id": "waterjet_kicker",
+      "label": "Water jet kicker",
+      "default": "Water jet cutting"
+    },
+    {
+      "type": "text",
+      "id": "waterjet_heading",
+      "label": "Water jet heading",
+      "default": "Our water jet designs"
+    },
+    {
+      "type": "text",
+      "id": "waterjet_note",
+      "label": "Water jet note",
+      "default": "Coming soon"
+    },
+    {
+      "type": "textarea",
+      "id": "waterjet_text",
+      "label": "Water jet text",
+      "default": "A curated line of NeroCasa water-cut marble shapes, surfaces, and objects is in development. Bespoke water jet work is still available now through WhatsApp above."
     }
   ],
-  "presets": [{ "name": "Custom Water Cutting" }]
+  "presets": [{ "name": "Custom Page" }]
 }
 {% endschema %}
