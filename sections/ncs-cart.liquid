@@ -64,11 +64,22 @@
       </div>
 
       <aside class="ncs-cart-summary">
+        <div class="ncs-cart-delivery-banner">
+          <strong>Free delivery</strong>
+          <span>Production and delivery in <b>3 to 7 working days</b> after order confirmation.</span>
+        </div>
+
         <div class="ncs-cart-summary-row">
           <span>Subtotal</span>
           <strong>{{ cart.total_price | money }}</strong>
         </div>
-        <p class="ncs-cart-note">Shipping and taxes calculated at checkout. Made to order. Production timing is confirmed after your order.</p>
+        <div class="ncs-cart-summary-row ncs-cart-summary-row--shipping">
+          <span>Shipping</span>
+          <strong>Free</strong>
+        </div>
+
+        <p class="ncs-cart-note">At checkout you will enter your <strong>email</strong> for order confirmation and your <strong>phone number</strong> (WhatsApp) so we can reach you. Delivery address is entered there too.</p>
+
         <div class="ncs-cart-summary-actions">
           <button type="submit" name="update" class="ncs-btn ncs-btn--outline">Update cart</button>
           <button type="submit" name="checkout" class="ncs-btn">Proceed to checkout ↗</button>
