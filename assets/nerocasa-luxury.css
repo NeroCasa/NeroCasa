@@ -2161,6 +2161,70 @@ body {
   border: 1px solid var(--nc-line);
 }
 
+.ncs-cart-summary-row--shipping strong {
+  color: var(--nc-gold);
+}
+
+.ncs-cart-delivery-banner {
+  padding: 18px 0 22px;
+  border-bottom: 1px solid var(--nc-line);
+  display: grid;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.ncs-cart-delivery-banner strong {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--nc-gold);
+  font-weight: 500;
+}
+
+.ncs-cart-delivery-banner span {
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(242, 238, 230, 0.78);
+}
+
+.ncs-cart-contact-fields {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 22px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--nc-line);
+}
+
+.ncs-cart-contact-lead {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.65;
+  color: rgba(242, 238, 230, 0.72);
+}
+
+.ncs-cart-contact-fields label {
+  display: grid;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--nc-muted);
+}
+
+.ncs-cart-contact-fields input {
+  width: 100%;
+  padding: 12px 0;
+  border: 0;
+  border-bottom: 1px solid var(--nc-line);
+  background: none;
+  color: inherit;
+  font: inherit;
+}
+
+.ncs-cart-note--error {
+  color: #e8a0a0;
+}
+
 .ncs-cart-summary-row {
   display: flex;
   justify-content: space-between;
