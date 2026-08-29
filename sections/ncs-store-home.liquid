@@ -17,17 +17,14 @@
 
 <section class="ncs-home-values" data-nc-reveal>
   <article class="ncs-home-value">
-    <span class="ncs-home-value-num">01</span>
     <h2>{{ section.settings.value_1_title }}</h2>
     <p>{{ section.settings.value_1_text }}</p>
   </article>
   <article class="ncs-home-value">
-    <span class="ncs-home-value-num">02</span>
     <h2>{{ section.settings.value_2_title }}</h2>
     <p>{{ section.settings.value_2_text }}</p>
   </article>
   <article class="ncs-home-value">
-    <span class="ncs-home-value-num">03</span>
     <h2>{{ section.settings.value_3_title }}</h2>
     <p>{{ section.settings.value_3_text }}</p>
   </article>
@@ -40,23 +37,9 @@
     <p>{{ section.settings.story_text }}</p>
     <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}">Our story ↗</a>
   </div>
-  <div class="ncs-home-story-visual">
-    {% capture story_image %}{% render 'nc-showcase-image', pool: 'about' %}{% endcapture %}
-    <img src="{{ story_image | strip }}" alt="" width="1200" height="900" loading="lazy">
+  <div class="ncs-home-story-visual ncs-brand-visual-frame">
+    <img src="{% render 'nc-brand-visual' %}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="900" loading="lazy">
   </div>
-</section>
-
-<section class="ncs-mail ncs-cta">
-  <div class="ncs-cta-title" data-nc-reveal><h2>{{ section.settings.newsletter_heading }}</h2></div>
-  <p class="ncs-cta-sub" data-nc-reveal>{{ section.settings.newsletter_subtext }}</p>
-  {% form 'customer', class: 'ncs-mail-form' %}
-    {% if form.posted_successfully? %}
-      <p class="ncs-form-success">Thank you. You are on the list.</p>
-    {% else %}
-      <input type="email" name="contact[email]" placeholder="Your email" required aria-label="Email address">
-      <button type="submit" class="ncs-btn ncs-btn--compact" aria-label="Subscribe">Subscribe ↗</button>
-    {% endif %}
-  {% endform %}
 </section>
 
 {% schema %}
@@ -77,37 +60,37 @@
       "type": "text",
       "id": "value_1_title",
       "label": "Value 1 title",
-      "default": "Factory direct"
+      "default": "From our workshop"
     },
     {
       "type": "textarea",
       "id": "value_1_text",
       "label": "Value 1 text",
-      "default": "We design, cut and finish under one roof. No showroom layers between the slab and your home."
+      "default": "We design, cut and finish under one roof. When you order, we begin work on your piece with the care it deserves."
     },
     {
       "type": "text",
       "id": "value_2_title",
       "label": "Value 2 title",
-      "default": "Genuine stone"
+      "default": "Natural stone only"
     },
     {
       "type": "textarea",
       "id": "value_2_text",
       "label": "Value 2 text",
-      "default": "Every piece is carved from real natural marble and stone. Honest material, honestly finished."
+      "default": "Every surface is genuine marble or stone. Selected for character, finished for a lifetime in your home."
     },
     {
       "type": "text",
       "id": "value_3_title",
       "label": "Value 3 title",
-      "default": "Made for living"
+      "default": "Marble for every home"
     },
     {
       "type": "textarea",
       "id": "value_3_text",
       "label": "Value 3 text",
-      "default": "Marble belongs in everyday rooms, not only in showrooms. We keep the craft high and the price fair."
+      "default": "Living with stone should not be reserved for a few. We exist so more people can own real marble, beautifully made and fairly priced."
     },
     {
       "type": "header",
@@ -117,29 +100,13 @@
       "type": "text",
       "id": "story_heading",
       "label": "Story heading",
-      "default": "Marble you can fall in love with"
+      "default": "Stone you live with"
     },
     {
       "type": "textarea",
       "id": "story_text",
       "label": "Story text",
-      "default": "NeroCasa is a brand with its own production. That is why our tables cost less than comparable pieces on the market, without ever compromising the stone, the finish, or the way we treat you."
-    },
-    {
-      "type": "header",
-      "content": "Newsletter"
-    },
-    {
-      "type": "text",
-      "id": "newsletter_heading",
-      "label": "Newsletter heading",
-      "default": "Stay close"
-    },
-    {
-      "type": "text",
-      "id": "newsletter_subtext",
-      "label": "Newsletter subtext",
-      "default": "New designs, stone arrivals, and quiet notes from the workshop."
+      "default": "NeroCasa is production and e-commerce together. We make marble furniture and objects for the home, crafted when you order, delivered with the attention we would want in our own spaces."
     }
   ],
   "presets": [{ "name": "Nerocasa Store Home" }]

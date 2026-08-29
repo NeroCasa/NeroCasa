@@ -101,12 +101,17 @@
       </div>
 
       <div class="ncs-custom-dimensions" data-custom-size hidden>
-        <p>Enter measurements in centimetres (H, L, W, D).</p>
-        <div class="ncs-custom-dimension-grid ncs-custom-dimension-grid--4">
-          <label>H<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="cm" data-custom-height></label>
-          <label>L<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="cm" data-custom-length></label>
-          <label>W<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="cm" data-custom-width></label>
-          <label>D<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="cm" data-custom-depth></label>
+        {%- assign dim_fields = 0 -%}
+        {%- if dim_h != blank -%}{%- assign dim_fields = dim_fields | plus: 1 -%}{%- endif -%}
+        {%- if dim_l != blank -%}{%- assign dim_fields = dim_fields | plus: 1 -%}{%- endif -%}
+        {%- if dim_w != blank -%}{%- assign dim_fields = dim_fields | plus: 1 -%}{%- endif -%}
+        {%- if dim_d != blank -%}{%- assign dim_fields = dim_fields | plus: 1 -%}{%- endif -%}
+        <p>{% if dim_fields > 0 %}Enter your measurements in centimetres.{% else %}Enter the measurements you need in centimetres.{% endif %}</p>
+        <div class="ncs-custom-dimension-grid{% if dim_fields == 4 %} ncs-custom-dimension-grid--4{% endif %}">
+          {%- if dim_h != blank -%}<label>H<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="cm" data-custom-height></label>{%- endif -%}
+          {%- if dim_l != blank -%}<label>L<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="cm" data-custom-length></label>{%- endif -%}
+          {%- if dim_w != blank -%}<label>W<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="cm" data-custom-width></label>{%- endif -%}
+          {%- if dim_d != blank -%}<label>D<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="cm" data-custom-depth></label>{%- endif -%}
         </div>
       </div>
     </div>
@@ -157,7 +162,7 @@
       </details>
       <details class="ncs-story-detail">
         <summary>PRODUCTION &amp; DELIVERY</summary>
-        <div>{% if product.metafields.custom.production_info != blank %}{{ product.metafields.custom.production_info }}{% else %}<p>Made to order. Production and delivery timing is confirmed after your order is placed.</p>{% endif %}</div>
+        <div>{% if product.metafields.custom.production_info != blank %}{{ product.metafields.custom.production_info }}{% else %}<p>Made to order. When you order, we begin work on your piece. Production and delivery timing is confirmed after your order is placed.</p>{% endif %}</div>
       </details>
     </div>
   </div>

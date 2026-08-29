@@ -1,6 +1,6 @@
 <section class="ncs-b2b-page">
   <div class="ncs-b2b-layout ncs-b2b-layout--split">
-    <header class="ncs-b2b-header" data-nc-reveal>
+    <header class="ncs-b2b-header ncs-page-hero" data-nc-reveal>
       <span class="ncs-page-kicker">{{ section.settings.kicker }}</span>
       <h1>{{ section.settings.heading }}</h1>
       <p class="ncs-b2b-lead">{{ section.settings.lead }}</p>
@@ -8,16 +8,11 @@
         <li>{{ section.settings.trust_1 }}</li>
         <li>{{ section.settings.trust_2 }}</li>
         <li>{{ section.settings.trust_3 }}</li>
-        <li>{{ section.settings.trust_4 }}</li>
       </ul>
-      <div class="ncs-b2b-aside">
-        <p>{{ section.settings.aside_text }}</p>
-      </div>
     </header>
 
     <div class="ncs-b2b-form-wrap" data-nc-reveal>
       <div class="ncs-b2b-form-panel">
-        <h2 class="ncs-form-title">{{ section.settings.form_title }}</h2>
         {% form 'contact', class: 'ncs-b2b-form' %}
           {% if form.posted_successfully? %}
             <p class="ncs-form-success">Thank you. Your enquiry has been received. We will respond within one business day.</p>
@@ -62,55 +57,37 @@
       "type": "text",
       "id": "kicker",
       "label": "Kicker",
-      "default": "Trade & projects"
+      "default": "Trade and projects"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Stone for spaces that stay with people"
+      "default": "For professionals"
     },
     {
       "type": "textarea",
       "id": "lead",
       "label": "Lead",
-      "default": "Hotels, residences, restaurants, retail. We partner with designers, architects and developers who want real marble, factory direct pricing, and production they can plan around."
+      "default": "Hotels, residences, restaurants and retail spaces. We work with designers and developers who need real stone, reliable production and direct access to our workshop."
     },
     {
       "type": "text",
       "id": "trust_1",
       "label": "Trust point 1",
-      "default": "Factory direct pricing"
+      "default": "Factory pricing"
     },
     {
       "type": "text",
       "id": "trust_2",
       "label": "Trust point 2",
-      "default": "Genuine natural stone"
+      "default": "Natural stone at scale"
     },
     {
       "type": "text",
       "id": "trust_3",
       "label": "Trust point 3",
-      "default": "Made to order at scale"
-    },
-    {
-      "type": "text",
-      "id": "trust_4",
-      "label": "Trust point 4",
       "default": "Dedicated project support"
-    },
-    {
-      "type": "textarea",
-      "id": "aside_text",
-      "label": "Aside",
-      "default": "Tell us what you are furnishing, how many pieces you need, and your timeline. We respond within one business day with options and next steps."
-    },
-    {
-      "type": "text",
-      "id": "form_title",
-      "label": "Form title",
-      "default": "Project enquiry"
     }
   ],
   "presets": [{ "name": "B2B Project Enquiry" }]

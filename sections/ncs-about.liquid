@@ -5,12 +5,11 @@
       <h1>{{ section.settings.hero_heading | default: page.title }}</h1>
       <p class="ncs-about-hero-lead">{{ section.settings.hero_lead }}</p>
     </div>
-    <div class="ncs-about-hero-visual">
+    <div class="ncs-about-hero-visual ncs-brand-visual-frame">
       {% if section.settings.hero_image != blank %}
         <img src="{{ section.settings.hero_image | image_url: width: 1200 }}" alt="{{ section.settings.hero_image.alt | default: settings.brand_name | escape }}" width="1200" height="900" loading="eager">
       {% else %}
-        {% capture about_image %}{% render 'nc-showcase-image', pool: 'about' %}{% endcapture %}
-        <img src="{{ about_image | strip }}" alt="NeroCasa marble furniture" width="1200" height="900" loading="eager">
+        <img src="{% render 'nc-brand-visual' %}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="900" loading="eager">
       {% endif %}
     </div>
   </div>
@@ -23,35 +22,26 @@
 
   <div class="ncs-about-values">
     <article class="ncs-about-value" data-nc-reveal>
-      <span class="ncs-about-value-num">01</span>
       <h2>{{ section.settings.block_1_title }}</h2>
       <p>{{ section.settings.block_1_text }}</p>
     </article>
     <article class="ncs-about-value" data-nc-reveal>
-      <span class="ncs-about-value-num">02</span>
       <h2>{{ section.settings.block_2_title }}</h2>
       <p>{{ section.settings.block_2_text }}</p>
     </article>
     <article class="ncs-about-value" data-nc-reveal>
-      <span class="ncs-about-value-num">03</span>
       <h2>{{ section.settings.block_3_title }}</h2>
       <p>{{ section.settings.block_3_text }}</p>
     </article>
     <article class="ncs-about-value" data-nc-reveal>
-      <span class="ncs-about-value-num">04</span>
       <h2>{{ section.settings.block_4_title }}</h2>
       <p>{{ section.settings.block_4_text }}</p>
     </article>
   </div>
 
-  <div class="ncs-about-process" data-nc-reveal>
-    <h2>{{ section.settings.process_heading }}</h2>
-    <ol class="ncs-about-steps">
-      <li><span>1</span><div><strong>{{ section.settings.step_1_title }}</strong><p>{{ section.settings.step_1_text }}</p></div></li>
-      <li><span>2</span><div><strong>{{ section.settings.step_2_title }}</strong><p>{{ section.settings.step_2_text }}</p></div></li>
-      <li><span>3</span><div><strong>{{ section.settings.step_3_title }}</strong><p>{{ section.settings.step_3_text }}</p></div></li>
-      <li><span>4</span><div><strong>{{ section.settings.step_4_title }}</strong><p>{{ section.settings.step_4_text }}</p></div></li>
-    </ol>
+  <div class="ncs-about-manifesto" data-nc-reveal>
+    <p class="ncs-about-manifesto-lead">{{ section.settings.manifesto_lead }}</p>
+    <p>{{ section.settings.manifesto_text }}</p>
   </div>
 
   <div class="ncs-about-cta ncs-about-cta--dual" data-nc-reveal>
@@ -61,7 +51,7 @@
     </div>
     <div class="ncs-about-cta-actions">
       <a class="ncs-btn" href="{% render 'nc-collections-index-url' %}">Shop collections ↗</a>
-      <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">Trade enquiry ↗</a>
+      <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B ↗</a>
     </div>
   </div>
 </section>
@@ -74,18 +64,18 @@
       "type": "text",
       "id": "hero_heading",
       "label": "Hero heading",
-      "default": "Real stone. Made by us. Priced for you."
+      "default": "Marble for every home"
     },
     {
       "type": "textarea",
       "id": "hero_lead",
       "label": "Hero lead",
-      "default": "NeroCasa makes marble furniture for people who feel the material but refuse showroom markups. We produce what we sell. Every slab is genuine. Every piece is made to order."
+      "default": "We believe everyone should live with real stone. NeroCasa makes marble furniture and objects from our own workshop, priced so ownership feels possible, finished so it feels personal."
     },
     {
       "type": "image_picker",
       "id": "hero_image",
-      "label": "Hero image"
+      "label": "Hero image override"
     },
     {
       "type": "header",
@@ -95,13 +85,13 @@
       "type": "text",
       "id": "block_1_title",
       "label": "Block 1 title",
-      "default": "Our own factory"
+      "default": "Our own production"
     },
     {
       "type": "textarea",
       "id": "block_1_text",
       "label": "Block 1 text",
-      "default": "We are not a reseller. NeroCasa sells online and makes in our own workshop. That removes importer, distributor and boutique margins from your price."
+      "default": "We are makers, not middlemen. What you order is what we craft, without layers of margin between the slab and your home."
     },
     {
       "type": "text",
@@ -113,89 +103,47 @@
       "type": "textarea",
       "id": "block_2_text",
       "label": "Block 2 text",
-      "default": "We work with natural materials only. Veining, tone and texture vary from slab to slab. That is not a flaw. It is the beauty of real stone."
+      "default": "Natural materials only. Veining, tone and texture vary from slab to slab. That is the signature of real stone."
     },
     {
       "type": "text",
       "id": "block_3_title",
       "label": "Block 3 title",
-      "default": "Client first"
+      "default": "Made when you order"
     },
     {
       "type": "textarea",
       "id": "block_3_text",
       "label": "Block 3 text",
-      "default": "We listen, we advise, and we finish each order with care. Your satisfaction is how we grow."
+      "default": "Your piece enters production after you order. We cut, finish and inspect it with the same care we would expect as clients ourselves."
     },
     {
       "type": "text",
       "id": "block_4_title",
       "label": "Block 4 title",
-      "default": "Marble for every home"
+      "default": "You are the priority"
     },
     {
       "type": "textarea",
       "id": "block_4_text",
       "label": "Block 4 text",
-      "default": "Beautiful stone should not belong to a few. We price fairly so more homes can live with marble: in the living room, the hallway, the spaces you actually use."
+      "default": "We listen, advise and stay close through production. Your satisfaction is how we build trust, one home at a time."
     },
     {
       "type": "header",
-      "content": "Process"
+      "content": "Manifesto"
     },
     {
-      "type": "text",
-      "id": "process_heading",
-      "label": "Process heading",
-      "default": "How it works"
+      "type": "textarea",
+      "id": "manifesto_lead",
+      "label": "Manifesto lead",
+      "default": "Marble is not a privilege. It is part of how a home feels."
     },
     {
-      "type": "text",
-      "id": "step_1_title",
-      "label": "Step 1 title",
-      "default": "Choose a design"
-    },
-    {
-      "type": "text",
-      "id": "step_1_text",
-      "label": "Step 1 text",
-      "default": "Browse our collections and find the form that fits your space."
-    },
-    {
-      "type": "text",
-      "id": "step_2_title",
-      "label": "Step 2 title",
-      "default": "Select your stone"
-    },
-    {
-      "type": "text",
-      "id": "step_2_text",
-      "label": "Step 2 text",
-      "default": "Pick a marble or stone finish on the product page, or tell us what you have in mind."
-    },
-    {
-      "type": "text",
-      "id": "step_3_title",
-      "label": "Step 3 title",
-      "default": "We craft your piece"
-    },
-    {
-      "type": "text",
-      "id": "step_3_text",
-      "label": "Step 3 text",
-      "default": "Your table is cut, finished and quality checked in our workshop."
-    },
-    {
-      "type": "text",
-      "id": "step_4_title",
-      "label": "Step 4 title",
-      "default": "Delivered to you"
-    },
-    {
-      "type": "text",
-      "id": "step_4_text",
-      "label": "Step 4 text",
-      "default": "We confirm timing after your order and keep you updated until it arrives."
+      "type": "textarea",
+      "id": "manifesto_text",
+      "label": "Manifesto text",
+      "default": "Our catalog will grow. Our commitment will not. Real stone, honest craft, and a brand that treats every client as someone we want in our world for years."
     },
     {
       "type": "header",
@@ -205,13 +153,13 @@
       "type": "text",
       "id": "cta_heading",
       "label": "CTA heading",
-      "default": "Ready to live with real stone?"
+      "default": "Begin with stone"
     },
     {
       "type": "textarea",
       "id": "cta_text",
       "label": "CTA text",
-      "default": "Explore the collections or reach out for trade and project work."
+      "default": "Explore the collections or speak with us about trade and project work."
     }
   ],
   "presets": [{ "name": "Why Nerocasa" }]

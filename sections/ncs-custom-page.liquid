@@ -1,42 +1,151 @@
 <section class="ncs-custom-page">
   <header class="ncs-page-hero" data-nc-reveal>
-    <span class="ncs-page-kicker">Custom</span>
-    <h1>Your vision in <em>stone</em></h1>
-    <p>Start from one of our designs or bring your own dimensions. Every piece is cut and finished to order in our workshop.</p>
-    <a class="ncs-btn ncs-btn--ghost" href="{% render 'nc-collections-index-url' %}">Browse ready designs ↗</a>
+    <span class="ncs-page-kicker">Water cutting</span>
+    <h1>Custom in <em>stone</em></h1>
+    <p>{{ section.settings.hero_lead }}</p>
   </header>
 
-  <div class="ncs-custom-form-wrap">
-    <div class="ncs-custom-form-panel" data-nc-reveal>
-      <h2 class="ncs-form-title">Custom request</h2>
-      <p class="ncs-form-lead">Share your dimensions, stone preference and any reference. We will reply with a quote and lead time.</p>
+  <div class="ncs-custom-split">
+    <div class="ncs-custom-designs" data-nc-reveal>
+      <div class="ncs-custom-designs-panel">
+        <span class="ncs-page-kicker">NeroCasa designs</span>
+        <h2>{{ section.settings.designs_heading }}</h2>
+        <p>{{ section.settings.designs_text }}</p>
+        <div class="ncs-custom-designs-visual ncs-brand-visual-frame">
+          <img src="{% render 'nc-brand-visual' %}" alt="{{ settings.brand_name | default: 'NeroCasa' }} custom designs" width="900" height="700" loading="lazy">
+        </div>
+        <p class="ncs-custom-soon">{{ section.settings.designs_note }}</p>
+      </div>
+    </div>
 
-      {% form 'contact', class: 'ncs-b2b-form', id: 'NerocasaCustomForm' %}
-        {% if form.posted_successfully? %}
-          <p class="ncs-form-success">Thank you. Your custom request has been received.</p>
-        {% else %}
-          <input type="hidden" name="contact[tags]" value="custom-enquiry">
-          <div class="ncs-form-row">
-            <label>Name<input type="text" name="contact[name]" required autocomplete="name"></label>
-            <label>Email<input type="email" name="contact[email]" required autocomplete="email"></label>
-          </div>
-          <div class="ncs-form-row">
-            <label>Phone<input type="tel" name="contact[phone]" autocomplete="tel"></label>
-            <label>Marble or stone preference<input type="text" name="contact[marble_preference]" placeholder="White marble, travertine, or describe what you want"></label>
-          </div>
+    <div class="ncs-custom-form-wrap">
+      <div class="ncs-custom-form-panel" data-nc-reveal>
+        <span class="ncs-page-kicker">Your commission</span>
+        <h2 class="ncs-custom-form-heading">{{ section.settings.form_heading }}</h2>
+        <p class="ncs-form-lead">{{ section.settings.form_lead }}</p>
 
-          <div class="ncs-custom-dimension-grid ncs-custom-dimension-grid--4">
-            <label>H (cm)<input type="number" min="1" step="0.1" name="contact[height_cm]" required placeholder="cm"></label>
-            <label>L (cm)<input type="number" min="1" step="0.1" name="contact[length_cm]" required placeholder="cm"></label>
-            <label>W (cm)<input type="number" min="1" step="0.1" name="contact[width_cm]" required placeholder="cm"></label>
-            <label>D (cm)<input type="number" min="1" step="0.1" name="contact[depth_cm]" placeholder="cm"></label>
-          </div>
-          <label class="ncs-form-full">Additional details<textarea name="contact[body]" rows="6" placeholder="Design notes, finish, room context, or anything else we should know."></textarea></label>
-          <button type="submit" class="ncs-btn">Submit request ↗</button>
-        {% endif %}
-      {% endform %}
+        {% form 'contact', class: 'ncs-b2b-form', id: 'NerocasaCustomForm' %}
+          {% if form.posted_successfully? %}
+            <p class="ncs-form-success">Thank you. Your custom request has been received.</p>
+          {% else %}
+            <input type="hidden" name="contact[tags]" value="custom-enquiry">
+            <div class="ncs-form-row">
+              <label>Name<input type="text" name="contact[name]" required autocomplete="name"></label>
+              <label>Email<input type="email" name="contact[email]" required autocomplete="email"></label>
+            </div>
+            <div class="ncs-form-row">
+              <label>Phone<input type="tel" name="contact[phone]" autocomplete="tel"></label>
+              <label>Marble or stone preference<input type="text" name="contact[marble_preference]" placeholder="White marble, travertine, or describe what you want"></label>
+            </div>
+
+            <div class="ncs-custom-dimension-grid ncs-custom-dimension-grid--4">
+              <label>H (cm)<input type="number" min="1" step="0.1" name="contact[height_cm]" placeholder="cm"></label>
+              <label>L (cm)<input type="number" min="1" step="0.1" name="contact[length_cm]" placeholder="cm"></label>
+              <label>W (cm)<input type="number" min="1" step="0.1" name="contact[width_cm]" placeholder="cm"></label>
+              <label>D (cm)<input type="number" min="1" step="0.1" name="contact[depth_cm]" placeholder="cm"></label>
+            </div>
+
+            <label class="ncs-form-full ncs-dropzone" data-nc-dropzone>
+              <span class="ncs-dropzone-label">Reference image</span>
+              <span class="ncs-dropzone-hint">Drop an image here or click to upload</span>
+              <input type="file" accept="image/*" hidden data-nc-file-input>
+              <img class="ncs-dropzone-preview" data-nc-file-preview alt="" hidden>
+            </label>
+
+            <label class="ncs-form-full">Tell us about your piece<textarea name="contact[body]" rows="6" data-nc-custom-body placeholder="Shape, room, finish, inspiration, or anything else we should know."></textarea></label>
+            <button type="submit" class="ncs-btn">Submit request ↗</button>
+          {% endif %}
+        {% endform %}
+      </div>
     </div>
   </div>
 </section>
 
-{% schema %}{"name":"Ready Designs","presets":[{"name":"Ready Designs"}]}{% endschema %}
+<script>
+(function(){
+  var form=document.getElementById('NerocasaCustomForm');
+  if(!form)return;
+  var dropzone=form.querySelector('[data-nc-dropzone]');
+  var input=form.querySelector('[data-nc-file-input]');
+  var preview=form.querySelector('[data-nc-file-preview]');
+  var body=form.querySelector('[data-nc-custom-body]');
+  var fileName='';
+
+  function setFile(file){
+    if(!file||!file.type.match(/^image\//))return;
+    fileName=file.name;
+    var reader=new FileReader();
+    reader.onload=function(e){
+      if(preview){
+        preview.src=e.target.result;
+        preview.hidden=false;
+      }
+      if(dropzone)dropzone.classList.add('has-file');
+    };
+    reader.readAsDataURL(file);
+  }
+
+  if(dropzone&&input){
+    dropzone.addEventListener('click',function(){input.click();});
+    input.addEventListener('change',function(){if(input.files[0])setFile(input.files[0]);});
+    dropzone.addEventListener('dragover',function(e){e.preventDefault();dropzone.classList.add('is-dragover');});
+    dropzone.addEventListener('dragleave',function(){dropzone.classList.remove('is-dragover');});
+    dropzone.addEventListener('drop',function(e){
+      e.preventDefault();
+      dropzone.classList.remove('is-dragover');
+      if(e.dataTransfer.files[0])setFile(e.dataTransfer.files[0]);
+    });
+  }
+
+  form.addEventListener('submit',function(){
+    if(!body||!fileName)return;
+    var note='\n\nReference image: '+fileName+'. If needed, send the file via WhatsApp as well.';
+    if(body.value.indexOf(fileName)===-1)body.value=(body.value||'').trim()+note;
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Custom Water Cutting",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "hero_lead",
+      "label": "Hero lead",
+      "default": "This is not the collections catalog. Here we water-cut marble to your vision: bespoke shapes, surfaces and objects made in our workshop."
+    },
+    {
+      "type": "text",
+      "id": "designs_heading",
+      "label": "Designs heading",
+      "default": "Our designs"
+    },
+    {
+      "type": "textarea",
+      "id": "designs_text",
+      "label": "Designs text",
+      "default": "A curated line of water-cut NeroCasa pieces, separate from the main collections, is on its way."
+    },
+    {
+      "type": "text",
+      "id": "designs_note",
+      "label": "Designs note",
+      "default": "Coming soon"
+    },
+    {
+      "type": "text",
+      "id": "form_heading",
+      "label": "Form heading",
+      "default": "Share your vision"
+    },
+    {
+      "type": "textarea",
+      "id": "form_lead",
+      "label": "Form lead",
+      "default": "Send dimensions, stone preference and a reference image. We reply with feasibility, timing and next steps."
+    }
+  ],
+  "presets": [{ "name": "Custom Water Cutting" }]
+}
+{% endschema %}

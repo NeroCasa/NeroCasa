@@ -15,12 +15,8 @@
   </nav>
 
   <div class="nc-actions">
-    {% if settings.whatsapp_url != blank %}
-      <a class="nc-action-link" href="{{ settings.whatsapp_url }}" target="_blank" rel="noopener">WhatsApp</a>
-    {% endif %}
-    {% if settings.contact_phone != blank %}
-      <a class="nc-action-link" href="tel:{{ settings.contact_phone | replace: ' ', '' }}">{{ settings.contact_phone }}</a>
-    {% endif %}
+    <a class="nc-action-link" href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="nc-action-link" href="tel:{% render 'nc-contact-phone' % | strip | replace: ' ', '' %}">{% render 'nc-contact-phone' %}</a>
     <button type="button" class="nc-icon-link" data-search-open aria-label="Search" aria-expanded="false">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5L21 21"></path></svg>
     </button>
@@ -36,12 +32,8 @@
   <a href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}">Custom</a>
   <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B</a>
   <a href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}">Why</a>
-  {% if settings.whatsapp_url != blank %}
-    <a href="{{ settings.whatsapp_url }}" target="_blank" rel="noopener">WhatsApp</a>
-  {% endif %}
-  {% if settings.contact_phone != blank %}
-    <a href="tel:{{ settings.contact_phone | replace: ' ', '' }}">Call</a>
-  {% endif %}
+  <a href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">WhatsApp</a>
+  <a href="tel:{% render 'nc-contact-phone' % | strip | replace: ' ', '' %}">Call</a>
   <button type="button" class="nc-icon-link" data-search-open aria-label="Search">
     <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5L21 21"></path></svg>
   </button>
