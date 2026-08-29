@@ -65,7 +65,7 @@ Create **9 products** in **Products → Add product**. Each needs a **URL handle
 - **Travertine** (Trav)
 - **Rosso Levanto** (Red — Coffee Table 3 only)
 
-For each variant, set its **price** in Shopify. The theme switches image + price when the customer picks a marble color. Product photos are bundled in the theme under `assets/products/` — assign variant images in Shopify admin if you prefer, or the theme uses the bundled images automatically.
+For each variant, set its **price** in Shopify. The theme switches image + price when the customer picks a marble color. Product photos are bundled in the theme `assets/` folder — assign variant images in Shopify admin if you prefer, or the theme uses the bundled images automatically.
 
 Add each product to its collection (3 per collection).
 

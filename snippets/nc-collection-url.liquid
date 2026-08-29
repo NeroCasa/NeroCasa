@@ -7,6 +7,9 @@
   if coll != blank
     echo coll.url
   else
-    echo routes.collections_url
+    capture collections_index
+      render 'nc-collections-index-url'
+    endcapture
+    echo collections_index | strip
   endif
 -%}

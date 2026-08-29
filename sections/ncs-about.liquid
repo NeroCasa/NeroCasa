@@ -5,7 +5,8 @@
       <p class="ncs-about-hero-lead">Natural stone, considered form, precise finishing — objects shaped for quiet, architectural interiors.</p>
     </div>
     <div class="ncs-about-hero-visual">
-      <img src="{% render 'nc-showcase-image', pool: 'about' %}" alt="NeroCasa marble furniture" width="1200" height="900" loading="eager">
+      {% capture about_image %}{% render 'nc-showcase-image', pool: 'about' %}{% endcapture %}
+      <img src="{{ about_image | strip }}" alt="NeroCasa marble furniture" width="1200" height="900" loading="eager">
     </div>
   </div>
 

@@ -8,7 +8,9 @@
   assign page_obj = pages[handle]
   if page_obj != blank
     echo page_obj.url
-  else
+  elsif view != blank
     echo routes.root_url | append: '?view=' | append: view
+  else
+    echo routes.root_url
   endif
 -%}

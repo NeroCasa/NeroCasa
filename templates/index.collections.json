@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "ncs-collections-index",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

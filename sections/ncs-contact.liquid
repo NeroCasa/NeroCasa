@@ -7,7 +7,8 @@
     </header>
 
     <div class="ncs-contact-visual" data-nc-reveal aria-hidden="true">
-      <img src="{% render 'nc-showcase-image', pool: 'about' %}" alt="" width="1200" height="900" loading="lazy">
+      {% capture contact_image %}{% render 'nc-showcase-image', pool: 'about' %}{% endcapture %}
+      <img src="{{ contact_image | strip }}" alt="" width="1200" height="900" loading="lazy">
     </div>
 
     <div class="ncs-contact-grid">

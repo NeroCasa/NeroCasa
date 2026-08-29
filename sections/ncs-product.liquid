@@ -3,7 +3,7 @@
 <section class="ncs-product-page" data-ncs-product data-product-handle="{{ product.handle }}">
   <div class="ncs-product-gallery">
     <div class="ncs-main-product-image">
-      {%- assign catalog_default = 'products/' | append: product.handle | append: '-ibiza-white.jpg' -%}
+      {%- assign catalog_default = product.handle | append: '-ibiza-white.jpg' -%}
       <img src="{% if product.featured_image %}{{ product.featured_image | image_url: width: 1800 }}{% else %}{{ catalog_default | asset_url }}{% endif %}"
            alt="{{ product.featured_image.alt | default: product.title | escape }}"
            data-ncs-main width="1800" height="1900" loading="eager">

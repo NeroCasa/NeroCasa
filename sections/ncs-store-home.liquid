@@ -3,7 +3,8 @@
     {% if settings.hero_image != blank %}
       <img src="{{ settings.hero_image | image_url: width: 2400 }}" alt="{{ settings.brand_name | default: 'NeroCasa' }} marble furniture" width="2400" height="1600" fetchpriority="high">
     {% else %}
-      <img src="{% render 'nc-showcase-image', pool: 'hero' %}" alt="{{ settings.brand_name | default: 'NeroCasa' }} marble furniture" width="2400" height="1600" fetchpriority="high">
+      {% capture hero_image %}{% render 'nc-showcase-image', pool: 'hero' %}{% endcapture %}
+      <img src="{{ hero_image | strip }}" alt="{{ settings.brand_name | default: 'NeroCasa' }} marble furniture" width="2400" height="1600" fetchpriority="high">
     {% endif %}
     <div class="ncs-hero-overlay"></div>
   </div>
@@ -15,25 +16,31 @@
 
 <section class="ncs-home-accent" aria-hidden="true">
   <div class="ncs-home-accent-grid">
-    <img src="{% render 'nc-showcase-image', pool: 'accent' %}" alt="" width="900" height="1125" loading="lazy">
-    <img src="{% render 'nc-showcase-image', pool: 'accent' %}" alt="" width="900" height="1125" loading="lazy">
-    <img src="{% render 'nc-showcase-image', pool: 'accent' %}" alt="" width="900" height="1125" loading="lazy">
+    {% capture accent_one %}{% render 'nc-showcase-image', pool: 'accent' %}{% endcapture %}
+    {% capture accent_two %}{% render 'nc-showcase-image', pool: 'accent' %}{% endcapture %}
+    {% capture accent_three %}{% render 'nc-showcase-image', pool: 'accent' %}{% endcapture %}
+    <img src="{{ accent_one | strip }}" alt="" width="900" height="1125" loading="lazy">
+    <img src="{{ accent_two | strip }}" alt="" width="900" height="1125" loading="lazy">
+    <img src="{{ accent_three | strip }}" alt="" width="900" height="1125" loading="lazy">
   </div>
 </section>
 
 <section class="ncs-collections">
   <div class="ncs-section-head" data-nc-reveal><h2>Collections</h2></div>
   <div class="ncs-collection-grid">
+    {% capture coffee_image %}{% render 'nc-showcase-image', pool: 'coffee' %}{% endcapture %}
+    {% capture side_image %}{% render 'nc-showcase-image', pool: 'side' %}{% endcapture %}
+    {% capture console_image %}{% render 'nc-showcase-image', pool: 'console' %}{% endcapture %}
     <a href="{% render 'nc-collection-url', handle: settings.collection_coffee %}" data-nc-reveal>
-      <img src="{% render 'nc-showcase-image', pool: 'coffee' %}" alt="Coffee Tables" width="1600" height="1100" loading="lazy">
+      <img src="{{ coffee_image | strip }}" alt="Coffee Tables" width="1600" height="1100" loading="lazy">
       <div><strong>Coffee Tables</strong></div>
     </a>
     <a href="{% render 'nc-collection-url', handle: settings.collection_side %}" data-nc-reveal>
-      <img src="{% render 'nc-showcase-image', pool: 'side' %}" alt="Side Tables" width="1600" height="1100" loading="lazy">
+      <img src="{{ side_image | strip }}" alt="Side Tables" width="1600" height="1100" loading="lazy">
       <div><strong>Side Tables</strong></div>
     </a>
     <a href="{% render 'nc-collection-url', handle: settings.collection_console %}" data-nc-reveal>
-      <img src="{% render 'nc-showcase-image', pool: 'console' %}" alt="Console Tables" width="1600" height="1100" loading="lazy">
+      <img src="{{ console_image | strip }}" alt="Console Tables" width="1600" height="1100" loading="lazy">
       <div><strong>Console Tables</strong></div>
     </a>
   </div>
@@ -55,9 +62,10 @@
     <div class="ncs-product-rail" data-nc-carousel tabindex="0" role="region" aria-label="Selected Nerocasa objects">
       {% if best_collection != blank and best_collection.products_count > 0 %}
         {% for product in best_collection.products limit: 8 %}
+          {% capture product_thumb %}{% render 'nc-product-thumb', product: product %}{% endcapture %}
           <a class="ncs-best-card" href="{{ product.url }}">
             <div class="ncs-best-image">
-              <img src="{% render 'nc-product-thumb', product: product %}" alt="{{ product.title | escape }}" width="900" height="1125" loading="lazy">
+              <img src="{{ product_thumb | strip }}" alt="{{ product.title | escape }}" width="900" height="1125" loading="lazy">
             </div>
             <div class="ncs-best-meta"><span>{{ product.title }}</span><b>{{ product.price | money }}</b></div>
           </a>

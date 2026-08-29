@@ -18,7 +18,7 @@
     </div>
     <nav class="nc-footer-nav" aria-label="Footer navigation">
       <div>
-        <a href="{{ routes.collections_url }}">Collections</a>
+        <a href="{% render 'nc-collections-index-url' %}">Collections</a>
         <a href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}">Custom</a>
         <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B</a>
       </div>

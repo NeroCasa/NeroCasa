@@ -8,16 +8,27 @@
   </header>
 
   <div class="ncs-grid-products">
-    {% for product in collection.products limit: 3 %}
-      <a class="ncs-card" href="{{ product.url }}" data-nc-reveal>
-        <div class="ncs-card-media">
-          <img src="{% render 'nc-product-thumb', product: product %}" alt="{{ product.title | escape }}" loading="lazy" width="800" height="1000">
-        </div>
-        <div class="ncs-card-info"><span>{{ product.title }}</span><b>{{ product.price | money }}</b></div>
-      </a>
+    {% if collection.products_count > 0 %}
+      {% for product in collection.products limit: 3 %}
+        {% capture product_thumb %}{% render 'nc-product-thumb', product: product %}{% endcapture %}
+        <a class="ncs-card" href="{{ product.url }}" data-nc-reveal>
+          <div class="ncs-card-media">
+            <img src="{{ product_thumb | strip }}" alt="{{ product.title | escape }}" loading="lazy" width="800" height="1000">
+          </div>
+          <div class="ncs-card-info"><span>{{ product.title }}</span><b>{{ product.price | money }}</b></div>
+        </a>
+      {% endfor %}
     {% else %}
-      <div class="ncs-empty">No products are currently available in this collection.</div>
-    {% endfor %}
+      {% liquid
+        assign showcase_pool = 'coffee'
+        if collection.handle == settings.collection_side or collection.handle == 'side-tables'
+          assign showcase_pool = 'side'
+        elsif collection.handle == settings.collection_console or collection.handle == 'console-tables'
+          assign showcase_pool = 'console'
+        endif
+      %}
+      {% render 'nc-showcase-best', limit: 3, category: showcase_pool %}
+    {% endif %}
   </div>
 </section>
 

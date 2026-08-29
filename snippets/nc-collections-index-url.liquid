@@ -1,0 +1,12 @@
+{%- comment -%}
+  URL for the all-collections index page.
+  Prefers Shopify page, then alternate home template, then /collections.
+{%- endcomment -%}
+{%- liquid
+  assign collections_page = pages.collections
+  if collections_page != blank
+    echo collections_page.url
+  else
+    echo routes.root_url | append: '?view=collections'
+  endif
+-%}

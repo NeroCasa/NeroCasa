@@ -8,7 +8,7 @@
   </a>
 
   <nav class="nc-nav" aria-label="Primary navigation">
-    <a href="{{ routes.collections_url }}">Collections</a>
+    <a href="{% render 'nc-collections-index-url' %}">Collections</a>
     <a href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}">Custom</a>
     <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B</a>
     <a href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}">Why Nerocasa</a>
@@ -32,7 +32,7 @@
 </header>
 
 <div class="nc-mobile-nav" aria-label="Mobile navigation">
-  <a href="{{ routes.collections_url }}">Collections</a>
+  <a href="{% render 'nc-collections-index-url' %}">Collections</a>
   <a href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}">Custom</a>
   <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B</a>
   <a href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}">Why</a>
