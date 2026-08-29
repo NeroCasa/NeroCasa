@@ -41,9 +41,23 @@ document.addEventListener('DOMContentLoaded', function () {
     var interval = parseInt(root.dataset.interval || '6000', 10);
     var timer;
 
+    function slideWidth() {
+      return root.getBoundingClientRect().width;
+    }
+
+    function layoutSlides() {
+      var w = slideWidth();
+      Array.prototype.forEach.call(slides, function (slide) {
+        slide.style.flexBasis = w + 'px';
+        slide.style.width = w + 'px';
+        slide.style.minWidth = w + 'px';
+        slide.style.maxWidth = w + 'px';
+      });
+    }
+
     function goTo(i) {
       index = (i + slides.length) % slides.length;
-      track.style.transform = 'translate3d(-' + (index * 100) + '%, 0, 0)';
+      track.style.transform = 'translate3d(-' + (index * slideWidth()) + 'px, 0, 0)';
     }
 
     function start() {
@@ -51,8 +65,13 @@ document.addEventListener('DOMContentLoaded', function () {
       timer = setInterval(function () { goTo(index + 1); }, interval);
     }
 
+    layoutSlides();
     root.addEventListener('mouseenter', function () { clearInterval(timer); });
     root.addEventListener('mouseleave', start);
+    window.addEventListener('resize', function () {
+      layoutSlides();
+      goTo(index);
+    }, { passive: true });
     goTo(0);
     start();
   });
