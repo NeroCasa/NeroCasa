@@ -1,24 +1,21 @@
 <section class="ncs-collections-page">
   <header class="ncs-page-hero" data-nc-reveal>
-    <h1>Explore by <em>category</em></h1>
-    <p>Architectural marble tables and objects, grouped by form and function.</p>
+    <h1>Collections</h1>
+    <p>Architectural marble tables, grouped by form and function.</p>
   </header>
 
   <div class="ncs-collections-list">
-    {% capture coffee_image %}{% render 'nc-showcase-image', pool: 'coffee' %}{% endcapture %}
-    {% capture side_image %}{% render 'nc-showcase-image', pool: 'side' %}{% endcapture %}
-    {% capture console_image %}{% render 'nc-showcase-image', pool: 'console' %}{% endcapture %}
-    <a href="{% render 'nc-collection-url', handle: settings.collection_coffee %}" data-nc-reveal>
-      <img src="{{ coffee_image | strip }}" alt="Coffee Tables" width="1600" height="1100" loading="lazy">
-      <div><h2>Coffee Tables</h2><b>Explore ↗</b></div>
+    <a class="ncs-collection-tile" href="{% render 'nc-collection-url', handle: settings.collection_coffee %}" data-nc-reveal>
+      <img src="{% render 'nc-collection-cover', handle: settings.collection_coffee %}" alt="Coffee Tables" width="1600" height="1200" loading="lazy">
+      <div class="ncs-collection-tile-label"><h2>Coffee Tables</h2></div>
     </a>
-    <a href="{% render 'nc-collection-url', handle: settings.collection_side %}" data-nc-reveal>
-      <img src="{{ side_image | strip }}" alt="Side Tables" width="1600" height="1100" loading="lazy">
-      <div><h2>Side Tables</h2><b>Explore ↗</b></div>
+    <a class="ncs-collection-tile" href="{% render 'nc-collection-url', handle: settings.collection_side %}" data-nc-reveal>
+      <img src="{% render 'nc-collection-cover', handle: settings.collection_side %}" alt="Side Tables" width="1600" height="1200" loading="lazy">
+      <div class="ncs-collection-tile-label"><h2>Side Tables</h2></div>
     </a>
-    <a href="{% render 'nc-collection-url', handle: settings.collection_console %}" data-nc-reveal>
-      <img src="{{ console_image | strip }}" alt="Console Tables" width="1600" height="1100" loading="lazy">
-      <div><h2>Console Tables</h2><b>Explore ↗</b></div>
+    <a class="ncs-collection-tile" href="{% render 'nc-collection-url', handle: settings.collection_console %}" data-nc-reveal>
+      <img src="{% render 'nc-collection-cover', handle: settings.collection_console %}" alt="Console Tables" width="1600" height="1200" loading="lazy">
+      <div class="ncs-collection-tile-label"><h2>Console Tables</h2></div>
     </a>
   </div>
 </section>

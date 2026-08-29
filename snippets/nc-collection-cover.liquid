@@ -1,0 +1,18 @@
+{%- comment -%}
+  Collection cover image URL — Shopify collection image or theme fallback.
+  @param handle {String} collection handle
+{%- endcomment -%}
+{%- liquid
+  assign coll = collections[handle]
+  if coll.image != blank
+    echo coll.image | image_url: width: 1800
+  elsif handle == settings.collection_coffee or handle == 'coffee-tables'
+    echo 'collection-coffee.jpg' | asset_url
+  elsif handle == settings.collection_side or handle == 'side-tables'
+    echo 'collection-side.jpg' | asset_url
+  elsif handle == settings.collection_console or handle == 'console-tables'
+    echo 'collection-console.jpg' | asset_url
+  else
+    echo 'collection-coffee.jpg' | asset_url
+  endif
+-%}

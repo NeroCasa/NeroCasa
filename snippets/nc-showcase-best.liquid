@@ -1,8 +1,7 @@
 {%- comment -%}
-  Renders best-seller cards from the theme catalog (random pick each load).
-  Used when the Shopify best-sellers collection is empty or thin.
+  Fallback best-seller cards when Shopify collection is empty.
   @param limit {Number} optional, default 6
-  @param category {String} optional coffee | side | console — limits cards to one collection
+  @param category {String} optional coffee | side | console
 {%- endcomment -%}
 {%- liquid
   assign card_limit = limit | default: 6 | plus: 0
@@ -30,28 +29,13 @@
   {%- assign item_handle = parts[0] -%}
   {%- assign item_title = parts[1] -%}
   {%- assign item_image = parts[2] -%}
-  {%- assign item_category = parts[3] -%}
   {%- assign shop_product = all_products[item_handle] -%}
   {%- if shop_product != blank -%}
     {%- assign item_url = shop_product.url -%}
     {%- assign item_price = shop_product.price | money -%}
   {%- else -%}
-    {%- case item_category -%}
-      {%- when 'coffee' -%}
-        {%- assign col_handle = settings.collection_coffee -%}
-      {%- when 'console' -%}
-        {%- assign col_handle = settings.collection_console -%}
-      {%- when 'side' -%}
-        {%- assign col_handle = settings.collection_side -%}
-    {%- endcase -%}
-    {%- assign item_collection = collections[col_handle] -%}
-    {%- if item_collection != blank -%}
-      {%- assign item_url = item_collection.url -%}
-    {%- else -%}
-      {%- capture item_url -%}{%- render 'nc-collections-index-url' -%}{%- endcapture -%}
-      {%- assign item_url = item_url | strip -%}
-    {%- endif -%}
-    {%- assign item_price = 'Explore ↗' -%}
+    {%- assign item_url = '/products/' | append: item_handle -%}
+    {%- assign item_price = '' -%}
   {%- endif -%}
   <a class="ncs-best-card{% if category != blank %} ncs-card{% endif %}" href="{{ item_url }}">
     <div class="ncs-best-image{% if category != blank %} ncs-card-media{% endif %}">
@@ -59,7 +43,7 @@
     </div>
     <div class="ncs-best-meta{% if category != blank %} ncs-card-info{% endif %}">
       <span>{{ item_title }}</span>
-      <b>{{ item_price }}</b>
+      {%- if item_price != blank -%}<b>{{ item_price }}</b>{%- endif -%}
     </div>
   </a>
 {%- endfor -%}
