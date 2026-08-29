@@ -3,6 +3,9 @@
  * Upload catalog JPGs from theme assets/ to Shopify product media and link variants.
  * Place files as assets/{handle}-{marble-slug}.jpg before running.
  *
+ * Storefront catalog PDPs use theme assets, not Shopify media. Do not crop theme
+ * assets for Admin; crop or adjust images inside Shopify Admin if needed.
+ *
  * Usage: node scripts/upload-catalog-images.mjs zhjbdz-yw.myshopify.com
  */
 

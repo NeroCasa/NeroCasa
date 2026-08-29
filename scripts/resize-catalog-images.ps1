@@ -1,4 +1,6 @@
 # Resize catalog product JPGs to exactly 1024x1024 (center crop).
+# WARNING: Do not use for NeroCasa storefront assets. Catalog PDPs use original
+# theme asset aspect ratios. Crop product media in Shopify Admin instead.
 # Usage: powershell -ExecutionPolicy Bypass -File scripts/resize-catalog-images.ps1
 
 Add-Type -AssemblyName System.Drawing
