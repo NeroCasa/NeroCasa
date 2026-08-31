@@ -14,11 +14,7 @@
       <p class="ncs-about-hero-lead">{{ section.settings.hero_lead }}</p>
     </div>
     <div class="ncs-about-hero-visual ncs-brand-visual-frame">
-      {% if section.settings.hero_image != blank %}
-        <img src="{{ section.settings.hero_image | image_url: width: 1200 }}" alt="{{ section.settings.hero_image.alt | default: settings.brand_name | escape }}" width="1200" height="900" loading="eager">
-      {% else %}
-        <img src="{% render 'nc-brand-visual' %}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="900" loading="eager">
-      {% endif %}
+      <img src="{% render 'nc-brand-visual' %}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="1200" loading="eager">
     </div>
   </div>
 
@@ -85,11 +81,6 @@
       "id": "hero_lead",
       "label": "Hero lead",
       "default": "NeroCasa imports marble and manufactures in its own workshop. We do not buy ready-made products from outside. Every piece is made when you order, with the attention we would want in our own home."
-    },
-    {
-      "type": "image_picker",
-      "id": "hero_image",
-      "label": "Hero image override"
     },
     {
       "type": "header",
