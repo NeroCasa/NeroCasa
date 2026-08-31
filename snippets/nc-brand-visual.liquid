@@ -1,9 +1,5 @@
 {%- comment -%}
-  Brand mark for editorial sections (home story, Why Nerocasa hero).
-  Always uses bundled nerocasa-brand-mark.png unless a theme-wide override is set.
+  Brand mark for home story + Why Nerocasa hero.
+  Always uses the bundled transparent PNG (ignores theme editor override).
 {%- endcomment -%}
-{%- if settings.brand_visual != blank -%}
-  {{ settings.brand_visual | image_url: width: 1400 }}
-{%- else -%}
-  {{ 'nerocasa-brand-mark.png' | asset_url }}
-{%- endif -%}
+{{ 'nerocasa-brand-mark-clear.png' | asset_url }}

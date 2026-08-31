@@ -37,7 +37,7 @@
     <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}">Our story ↗</a>
   </div>
   <div class="ncs-home-story-visual ncs-brand-visual-frame">
-    <img src="{% render 'nc-brand-visual' %}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="1200" loading="lazy">
+    <img src="{{ 'nerocasa-brand-mark-clear.png' | asset_url }}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="1200" loading="lazy">
   </div>
 </section>
 
