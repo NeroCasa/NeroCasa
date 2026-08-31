@@ -1319,6 +1319,33 @@ body {
   box-shadow: 0 8px 28px rgba(165, 123, 0, 0.4);
 }
 
+.ncs-custom-whatsapp-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 18px;
+  padding: 18px;
+  background: var(--nc-gold);
+  color: #080807;
+  border: 1px solid var(--nc-gold);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(165, 123, 0, 0.28);
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.ncs-custom-whatsapp-box:hover {
+  background: #c49200;
+  border-color: #c49200;
+  color: #080807;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(165, 123, 0, 0.4);
+}
+
 .ncs-btn--outline {
   background: transparent !important;
   color: var(--nc-ink) !important;
@@ -1722,16 +1749,6 @@ body {
 .ncs-custom-upload strong {
   font-size: 11px !important;
   letter-spacing: 0.16em !important;
-}
-
-.ncs-custom-dimension-grid label {
-  font-size: 11px !important;
-  letter-spacing: 0.14em !important;
-}
-
-.ncs-custom-dimension-grid input {
-  margin-top: 10px !important;
-  padding: 14px 12px !important;
 }
 
 .ncs-upload-note {
@@ -2317,16 +2334,6 @@ body {
   color: var(--nc-muted);
 }
 
-.ncs-custom-dimension-grid--4 {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-@media (min-width: 720px) {
-  .ncs-custom-dimension-grid--4 {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
 .ncs-hero-cta {
   margin-top: 28px;
 }
@@ -2654,17 +2661,6 @@ body {
 }
 
 .ncs-form-route a {
-  color: var(--nc-gold);
-}
-
-.ncs-custom-dimensions .ncs-custom-whatsapp-note {
-  margin-top: 14px;
-  font-size: 12px;
-  line-height: 1.6;
-  color: rgba(242, 238, 230, 0.62);
-}
-
-.ncs-custom-dimensions .ncs-custom-whatsapp-note a {
   color: var(--nc-gold);
 }
 

@@ -158,13 +158,8 @@ img{max-width:100%}
 .ncs-fixed-dimensions-values{display:flex;gap:7px;flex-wrap:wrap}
 .ncs-fixed-dimensions-values span{padding:11px 13px;border:1px solid var(--nc-line);font-size:10px}
 .ncs-fixed-dimensions-values b{color:var(--nc-gold);margin-right:4px}
-.ncs-custom-dimensions p{font-size:10px;color:var(--nc-muted);margin:0 0 13px}
-.ncs-custom-dimension-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.ncs-custom-dimension-grid--4{grid-template-columns:repeat(2,1fr)}
-@media (min-width:720px){.ncs-custom-dimension-grid--4{grid-template-columns:repeat(4,1fr)}}
-.ncs-custom-dimension-grid label{font-size:8px;letter-spacing:.14em;color:var(--nc-muted)}
-.ncs-custom-dimension-grid input{display:block;width:100%;margin-top:7px;padding:12px 9px;background:transparent;border:1px solid var(--nc-line);outline:0}
-.ncs-custom-dimension-grid input:focus{border-color:var(--nc-gold)}
+.ncs-custom-whatsapp-box{display:flex;align-items:center;justify-content:center;width:100%;margin-top:18px;padding:18px;border:1px solid var(--nc-gold);background:var(--nc-gold);color:#080807;font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;cursor:pointer;box-shadow:0 4px 20px rgba(165,123,0,.28);transition:background .25s,transform .2s,box-shadow .25s}
+.ncs-custom-whatsapp-box:hover{background:#c49200;border-color:#c49200;color:#080807;transform:translateY(-2px);box-shadow:0 8px 28px rgba(165,123,0,.4)}
 .ncs-buy{border-top:1px solid var(--nc-line);padding-top:22px;margin-top:38px}
 .ncs-buy>div span{display:block;font-size:7px;letter-spacing:.2em;color:var(--nc-muted)}
 .ncs-buy>div b{display:block;font-size:10px;font-weight:400;margin-top:7px}
@@ -274,7 +269,7 @@ img{max-width:100%}
 }
 @media(max-width:600px){
   .ncs-grid-products{grid-template-columns:1fr}.ncs-best-card{flex-basis:84vw}.ncs-material-grid{grid-template-columns:1fr}.ncs-material-grid div{border-right:0!important;border-bottom:1px solid var(--nc-line)}.ncs-material-grid div:last-child{border-bottom:0}
-  .ncs-custom-dimension-grid{grid-template-columns:1fr}.ncs-size-mode-row{grid-template-columns:1fr}.ncs-dims{gap:18px}
+  .ncs-size-mode-row{grid-template-columns:1fr}.ncs-dims{gap:18px}
   .nc-mobile-nav{overflow-x:auto;justify-content:flex-start}.nc-mobile-nav>a{white-space:nowrap}
 }
 
