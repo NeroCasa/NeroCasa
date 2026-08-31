@@ -866,8 +866,24 @@ body {
 
 .ncs-about-hero-visual {
   position: relative;
-  overflow: hidden;
-  background: #060605;
+  overflow: visible;
+  background: transparent;
+}
+
+.ncs-about-hero-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 3vw, 32px);
+  background: transparent;
+  border: 0;
+}
+
+.ncs-about-hero-logo img {
+  width: min(100%, 420px);
+  height: auto;
+  object-fit: contain;
+  filter: none !important;
 }
 
 .ncs-about-hero-visual:not(.nc-brand-visual-frame) img {
@@ -2543,6 +2559,10 @@ body {
 
 .ncs-about-hero-visual.nc-brand-visual-frame {
   min-height: clamp(320px, 42vw, 520px);
+}
+
+.ncs-about-hero-visual.nc-about-hero-logo {
+  min-height: clamp(280px, 36vw, 460px);
 }
 
 .ncs-about-hero-visual.nc-brand-visual-frame img,
