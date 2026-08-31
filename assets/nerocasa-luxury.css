@@ -213,75 +213,43 @@ body {
 .ncs-page-hero--marble,
 .ncs-collection-header--marble,
 .ncs-search-hero--marble,
-.ncs-info-hero--marble,
-.ncs-about-hero-split--marble {
+.ncs-about-hero-split--marble,
+.ncs-b2b-layout--marble,
+.ncs-info-page--marble {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
-  max-width: none;
 }
 
 .ncs-hero-marble-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-}
-
-.ncs-page-hero--marble .ncs-hero-marble-bg,
-.ncs-collection-header--marble .ncs-hero-marble-bg,
-.ncs-search-hero--marble .ncs-hero-marble-bg,
-.ncs-info-hero--marble .ncs-hero-marble-bg,
-.ncs-about-hero-split--marble .ncs-hero-marble-bg {
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
+  pointer-events: none;
 }
 
 .ncs-page-hero--marble > :not(.ncs-hero-marble-bg),
 .ncs-collection-header--marble > :not(.ncs-hero-marble-bg),
 .ncs-search-hero--marble > :not(.ncs-hero-marble-bg),
-.ncs-info-hero--marble > :not(.ncs-hero-marble-bg),
-.ncs-about-hero-split--marble > :not(.ncs-hero-marble-bg) {
+.ncs-about-hero-split--marble > :not(.ncs-hero-marble-bg),
+.ncs-b2b-layout--marble > :not(.ncs-hero-marble-bg),
+.ncs-info-page--marble > :not(.ncs-hero-marble-bg) {
+  position: relative;
+  z-index: 1;
+}
+
+.ncs-b2b-layout--marble {
+  overflow: hidden;
+}
+
+.ncs-b2b-layout--marble .ncs-b2b-form-panel {
   position: relative;
   z-index: 2;
+  background: var(--nc-panel);
 }
 
-.ncs-info-hero--marble,
-.ncs-search-hero--marble {
-  margin-left: -8vw;
-  margin-right: -8vw;
-  margin-top: calc(-1 * (var(--nc-header-h) + 5.5vw));
-  padding: calc(var(--nc-header-h) + 5.5vw) 8vw clamp(48px, 8vw, 80px);
-  min-height: clamp(280px, 38vh, 420px);
-}
-
-.ncs-collection-page .ncs-collection-header--marble {
-  margin: calc(-1 * (var(--nc-header-h) + var(--nc-space-md))) -8vw var(--nc-space-md);
-  padding: calc(var(--nc-header-h) + var(--nc-space-md)) 8vw 0;
-  min-height: clamp(260px, 34vh, 380px);
-}
-
-.ncs-collections-page .ncs-page-hero--marble {
-  margin-left: -8vw;
-  margin-right: -8vw;
-  margin-top: calc(-1 * (var(--nc-header-h) + 5.5vw));
-  padding: calc(var(--nc-header-h) + 5.5vw) 8vw var(--nc-space-lg);
-  min-height: clamp(280px, 36vh, 400px);
-}
-
-.ncs-custom-page .ncs-page-hero--marble,
-.ncs-cart-page .ncs-page-hero--marble,
-.ncs-b2b-page .ncs-page-hero--marble {
-  margin-left: -8vw;
-  margin-right: -8vw;
-  min-height: clamp(260px, 34vh, 380px);
-}
-
-.ncs-contact-page .ncs-page-hero--marble {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-top: calc(var(--nc-header-h) + 5.5vw);
+.ncs-info-page--marble .ncs-hero-marble-bg {
+  height: clamp(220px, 32vh, 360px);
+  bottom: auto;
 }
 
 .ncs-hero-overlay {

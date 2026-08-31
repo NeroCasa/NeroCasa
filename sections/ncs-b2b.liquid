@@ -1,7 +1,7 @@
 <section class="ncs-b2b-page">
-  <div class="ncs-b2b-layout ncs-b2b-layout--split">
-    <header class="ncs-b2b-header ncs-page-hero ncs-page-hero--marble" data-nc-reveal>
-      {% render 'nc-hero-marble-bg', slab_left: 'hero-slab-grey.jpg', slab_right: 'hero-slab-black.jpg' %}
+  <div class="ncs-b2b-layout ncs-b2b-layout--split ncs-b2b-layout--marble">
+    {% render 'nc-hero-marble-bg', slab_left: 'hero-slab-grey.jpg', slab_right: 'hero-slab-black.jpg' %}
+    <header class="ncs-b2b-header ncs-page-hero" data-nc-reveal>
       <span class="ncs-page-kicker">{{ section.settings.kicker }}</span>
       <h1>{% render 'nc-title-gold', title: section.settings.heading %}</h1>
       <p class="ncs-b2b-lead">{{ section.settings.lead }}</p>

@@ -1,8 +1,6 @@
-<section class="ncs-info-page ncs-legal-page">
-  <div class="ncs-info-hero ncs-info-hero--marble">
-    {% render 'nc-hero-marble-bg', slab_left: 'hero-slab-grey.jpg', slab_right: 'hero-slab-travertine.jpg' %}
-    <h1>{% render 'nc-title-gold', title: page.title | default: 'Terms and Conditions' %}</h1>
-  </div>
+<section class="ncs-info-page ncs-legal-page ncs-info-page--marble">
+  {% render 'nc-hero-marble-bg', slab_left: 'hero-slab-grey.jpg', slab_right: 'hero-slab-travertine.jpg' %}
+  <h1>{% render 'nc-title-gold', title: page.title | default: 'Terms and Conditions' %}</h1>
   <div class="ncs-legal-body">
     {% if page.content != blank %}
       {{ page.content }}
