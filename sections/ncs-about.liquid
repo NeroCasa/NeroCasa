@@ -1,6 +1,13 @@
 <section class="ncs-about-page">
-  <div class="ncs-about-hero-split ncs-about-hero-split--marble" data-nc-reveal>
-    {% render 'nc-hero-marble-bg', slab_left: 'hero-slab-green.jpg', slab_right: 'hero-slab-grey.jpg' %}
+  <div class="ncs-about-hero-split ncs-page-hero-shell" data-nc-reveal>
+    <div class="ncs-hero-media" aria-hidden="true">
+      {% render 'nc-hero-marble-bg',
+        mode: 'triple',
+        slab_left: 'hero-slab-green.jpg',
+        slab_center: 'hero-slab-grey.jpg',
+        slab_right: 'hero-slab-travertine.jpg'
+      %}
+    </div>
     <div class="ncs-about-hero-copy">
       <span class="ncs-page-kicker">Why Nerocasa</span>
       <h1>{% render 'nc-title-gold', title: section.settings.hero_heading | default: page.title %}</h1>

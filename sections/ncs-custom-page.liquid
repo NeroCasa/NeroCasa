@@ -1,10 +1,15 @@
 <section class="ncs-custom-page">
-  <header class="ncs-page-hero ncs-page-hero--marble" data-nc-reveal>
-    {% render 'nc-hero-marble-bg', slab_left: 'hero-slab-red.jpg', slab_right: 'hero-slab-white.jpg' %}
+  {% render 'nc-page-hero-shell-open',
+    slab_left: 'hero-slab-red.jpg',
+    slab_center: 'hero-slab-white.jpg',
+    slab_right: 'hero-slab-grey.jpg'
+  %}
+  <header class="ncs-page-hero" data-nc-reveal>
     <span class="ncs-page-kicker">{{ section.settings.hero_kicker }}</span>
     <h1>{% render 'nc-title-gold', title: section.settings.hero_heading %}</h1>
     <p>{{ section.settings.hero_lead }}</p>
   </header>
+  {% render 'nc-page-hero-shell-close' %}
 
   <section class="ncs-custom-block ncs-custom-block--whatsapp" data-nc-reveal>
     <span class="ncs-page-kicker">Your commission</span>

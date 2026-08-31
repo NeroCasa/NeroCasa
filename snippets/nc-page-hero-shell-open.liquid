@@ -1,0 +1,14 @@
+{% comment %}
+  Opens a full-bleed page hero shell (same marble treatment as home).
+  Params: slab_left, slab_center, slab_right
+  Close with nc-page-hero-shell-close.liquid
+{% endcomment %}
+<div class="ncs-page-hero-shell">
+  <div class="ncs-hero-media" aria-hidden="true">
+    {% render 'nc-hero-marble-bg',
+      mode: 'triple',
+      slab_left: slab_left,
+      slab_center: slab_center,
+      slab_right: slab_right
+    %}
+  </div>

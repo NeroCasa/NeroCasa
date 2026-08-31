@@ -1,12 +1,17 @@
 <section class="ncs-contact-page">
   <div class="ncs-contact-layout">
-    <header class="ncs-page-hero ncs-contact-hero ncs-page-hero--marble" data-nc-reveal>
-      {% render 'nc-hero-marble-bg', slab_left: 'hero-slab-green.jpg', slab_right: 'hero-slab-travertine.jpg' %}
+    {% render 'nc-page-hero-shell-open',
+      slab_left: 'hero-slab-green.jpg',
+      slab_center: 'hero-slab-travertine.jpg',
+      slab_right: 'hero-slab-grey.jpg'
+    %}
+    <header class="ncs-page-hero ncs-contact-hero" data-nc-reveal>
       <h1>{% render 'nc-title-gold', title: 'Get in touch' %}</h1>
       <p>We respond to every enquiry within one business day. Custom ideas and commissions are handled on WhatsApp. Trade and project enquiries go to info@nerocasa.com via our B2B page.</p>
       <a class="ncs-btn ncs-btn--ghost" href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B Enquiry ↗</a>
       <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">WhatsApp for custom ↗</a>
     </header>
+    {% render 'nc-page-hero-shell-close' %}
 
     <div class="ncs-contact-visual" data-nc-reveal aria-hidden="true">
       {% capture contact_image %}{% render 'nc-showcase-image', pool: 'about' %}{% endcapture %}

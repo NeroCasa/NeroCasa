@@ -1,6 +1,13 @@
 <section class="ncs-b2b-page">
-  <div class="ncs-b2b-layout ncs-b2b-layout--split ncs-b2b-layout--marble">
-    {% render 'nc-hero-marble-bg', slab_left: 'hero-slab-grey.jpg', slab_right: 'hero-slab-black.jpg' %}
+  <div class="ncs-b2b-layout ncs-b2b-layout--split ncs-page-hero-shell">
+    <div class="ncs-hero-media" aria-hidden="true">
+      {% render 'nc-hero-marble-bg',
+        mode: 'triple',
+        slab_left: 'hero-slab-grey.jpg',
+        slab_center: 'hero-slab-black.jpg',
+        slab_right: 'hero-slab-red.jpg'
+      %}
+    </div>
     <header class="ncs-b2b-header ncs-page-hero" data-nc-reveal>
       <span class="ncs-page-kicker">{{ section.settings.kicker }}</span>
       <h1>{% render 'nc-title-gold', title: section.settings.heading %}</h1>

@@ -210,46 +210,50 @@ body {
     linear-gradient(0deg, rgba(8, 8, 7, 0.88) 0%, rgba(8, 8, 7, 0.28) 50%, rgba(8, 8, 7, 0.82) 100%);
 }
 
-.ncs-page-hero--marble,
-.ncs-collection-header--marble,
-.ncs-search-hero--marble,
-.ncs-about-hero-split--marble,
-.ncs-b2b-layout--marble,
-.ncs-info-page--marble {
+.ncs-page-hero-shell {
   position: relative;
   isolation: isolate;
 }
 
-.ncs-hero-marble-bg {
+.ncs-page-hero-shell .ncs-hero-media {
   position: absolute;
-  inset: 0;
   z-index: 0;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  min-height: 100%;
   pointer-events: none;
 }
 
-.ncs-page-hero--marble > :not(.ncs-hero-marble-bg),
-.ncs-collection-header--marble > :not(.ncs-hero-marble-bg),
-.ncs-search-hero--marble > :not(.ncs-hero-marble-bg),
-.ncs-about-hero-split--marble > :not(.ncs-hero-marble-bg),
-.ncs-b2b-layout--marble > :not(.ncs-hero-marble-bg),
-.ncs-info-page--marble > :not(.ncs-hero-marble-bg) {
-  position: relative;
-  z-index: 1;
+.ncs-page-hero-shell .ncs-hero-media .ncs-hero-marble-bg,
+.ncs-page-hero-shell .ncs-hero-media .ncs-hero-slabs {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.ncs-b2b-layout--marble {
-  overflow: hidden;
-}
-
-.ncs-b2b-layout--marble .ncs-b2b-form-panel {
+.ncs-page-hero-shell .ncs-page-hero,
+.ncs-page-hero-shell .ncs-collection-header,
+.ncs-page-hero-shell .ncs-search-hero,
+.ncs-page-hero-shell .ncs-b2b-header,
+.ncs-page-hero-shell .ncs-about-hero-copy,
+.ncs-page-hero-shell .ncs-about-hero-visual,
+.ncs-page-hero-shell .ncs-b2b-form-wrap,
+.ncs-page-hero-shell > h1 {
   position: relative;
   z-index: 2;
+}
+
+.ncs-page-hero-shell .ncs-b2b-form-panel {
   background: var(--nc-panel);
 }
 
-.ncs-info-page--marble .ncs-hero-marble-bg {
-  height: clamp(220px, 32vh, 360px);
-  bottom: auto;
+.ncs-b2b-layout.ncs-page-hero-shell,
+.ncs-about-hero-split.ncs-page-hero-shell {
+  overflow: hidden;
 }
 
 .ncs-hero-overlay {
