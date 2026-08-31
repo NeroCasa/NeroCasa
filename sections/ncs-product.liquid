@@ -101,10 +101,8 @@
       </div>
 
       <div class="ncs-custom-dimensions" data-custom-size hidden>
-        {%- capture wa_url -%}{% render 'nc-contact-whatsapp' %}{%- endcapture -%}
-        {%- assign wa_url = wa_url | strip -%}
         {%- capture wa_text -%}Hello NeroCasa, I would like a custom size for {{ display_name }}.{%- endcapture -%}
-        <a class="ncs-custom-whatsapp-box" href="{{ wa_url }}{% if wa_url contains '?' %}&{% else %}?{% endif %}text={{ wa_text | url_encode }}" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="ncs-custom-whatsapp-box" href="{% render 'nc-whatsapp-link', message: wa_text %}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
       </div>
     </div>
 
