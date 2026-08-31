@@ -1,6 +1,11 @@
 {% render 'nc-catalog-search-index' %}
 
 <section class="ncs-search-page">
+  {% render 'nc-page-hero-shell-open',
+    slab_left: 'hero-slab-white.jpg',
+    slab_center: 'hero-slab-green.jpg',
+    slab_right: 'hero-slab-grey.jpg'
+  %}
   <header class="ncs-search-hero" data-nc-reveal>
     {% if search.performed %}
       {%- liquid
@@ -17,6 +22,7 @@
       <p>Search by design name, collection, or marble.</p>
     {% endif %}
   </header>
+  {% render 'nc-page-hero-shell-close' %}
 
   <form action="{{ routes.search_url }}" method="get" role="search" class="ncs-search-page-form" data-nc-reveal data-nc-search-form>
     <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Soglia, Equilibrio, coffee tables…" aria-label="Search" data-nc-search-input>

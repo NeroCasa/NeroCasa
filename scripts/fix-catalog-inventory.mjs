@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
  * Set all catalog variants to always available (made-to-order).
- * - inventoryPolicy: CONTINUE
- * - inventory tracking: disabled
+ * - inventoryPolicy: CONTINUE (sell when out of stock)
+ * - inventory tracking: enabled on all variants
  *
  * Usage: node scripts/fix-catalog-inventory.mjs zhjbdz-yw.myshopify.com
  */
@@ -78,10 +78,10 @@ async function main() {
     const variants = product.variants?.nodes || [];
     if (!variants.length) continue;
 
-    execute(
+    const bulkResult = execute(
       `mutation UpdateVariants($productId: ID!, $variants: [ProductVariantsBulkInput!]!) {
         productVariantsBulkUpdate(productId: $productId, variants: $variants) {
-          productVariants { id inventoryPolicy availableForSale }
+          productVariants { id inventoryPolicy availableForSale inventoryItem { tracked } }
           userErrors { field message }
         }
       }`,
@@ -90,10 +90,12 @@ async function main() {
         variants: variants.map((v) => ({
           id: v.id,
           inventoryPolicy: 'CONTINUE',
+          inventoryItem: { tracked: true },
         })),
       },
       true,
     );
+    errors(bulkResult, 'productVariantsBulkUpdate');
 
     const refreshed = execute(
       `query Product($id: ID!) {
@@ -107,12 +109,34 @@ async function main() {
     );
 
     const summary = (refreshed.product?.variants?.nodes || [])
-      .map((v) => `${v.title}:${v.availableForSale ? 'available' : 'unavailable'}`)
+      .map((v) => `${v.title}:${v.availableForSale ? 'available' : 'unavailable'}${v.inventoryItem?.tracked ? '' : ' (untracked)'}`)
       .join(', ');
     console.log(`  ✓ ${product.handle} — ${summary}`);
   }
 
-  console.log('\nDone. All marble variants should show as available to order.\n');
+  const tracked = execute(`
+    query {
+      products(first: 50) {
+        nodes {
+          handle
+          variants(first: 10) {
+            nodes { inventoryItem { tracked } }
+          }
+        }
+      }
+    }
+  `);
+
+  let total = 0;
+  let on = 0;
+  for (const product of (tracked.products?.nodes || []).filter((p) => HANDLES.includes(p.handle))) {
+    for (const variant of product.variants?.nodes || []) {
+      total += 1;
+      if (variant.inventoryItem?.tracked) on += 1;
+    }
+  }
+
+  console.log(`\nDone. ${on}/${total} catalog variants have inventory tracking enabled.\n`);
 }
 
 main().catch((err) => {

@@ -101,23 +101,14 @@
       </div>
 
       <div class="ncs-custom-dimensions" data-custom-size hidden>
-        {%- assign dim_fields = 0 -%}
-        {%- if dim_h != blank -%}{%- assign dim_fields = dim_fields | plus: 1 -%}{%- endif -%}
-        {%- if dim_l != blank -%}{%- assign dim_fields = dim_fields | plus: 1 -%}{%- endif -%}
-        {%- if dim_w != blank -%}{%- assign dim_fields = dim_fields | plus: 1 -%}{%- endif -%}
-        {%- if dim_d != blank -%}{%- assign dim_fields = dim_fields | plus: 1 -%}{%- endif -%}
-        <p>{% if dim_fields > 0 %}Enter your measurements in centimetres.{% else %}Enter the measurements you need in centimetres.{% endif %}</p>
-        <div class="ncs-custom-dimension-grid{% if dim_fields == 4 %} ncs-custom-dimension-grid--4{% endif %}">
-          {%- if dim_h != blank -%}<label>H<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="cm" data-custom-height></label>{%- endif -%}
-          {%- if dim_l != blank -%}<label>L<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="cm" data-custom-length></label>{%- endif -%}
-          {%- if dim_w != blank -%}<label>W<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="cm" data-custom-width></label>{%- endif -%}
-          {%- if dim_d != blank -%}<label>D<input type="number" min="1" step="0.1" inputmode="decimal" placeholder="cm" data-custom-depth></label>{%- endif -%}
-        </div>
-        <p class="ncs-custom-whatsapp-note">Different design, marble, or shape? <a href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">Talk to us on WhatsApp ↗</a></p>
+        {%- capture wa_url -%}{% render 'nc-contact-whatsapp' %}{%- endcapture -%}
+        {%- assign wa_url = wa_url | strip -%}
+        {%- capture wa_text -%}Hello NeroCasa, I would like a custom size for {{ display_name }}.{%- endcapture -%}
+        <a class="ncs-custom-whatsapp-box" href="{{ wa_url }}{% if wa_url contains '?' %}&{% else %}?{% endif %}text={{ wa_text | url_encode }}" target="_blank" rel="noopener">WhatsApp</a>
       </div>
     </div>
 
-    <div class="ncs-buy">
+    <div class="ncs-buy" data-ncs-buy>
       <div>
         <span>YOUR CONFIGURATION</span>
         <b data-ncs-summary>{{ product.selected_or_first_available_variant.title }}</b>
@@ -126,12 +117,7 @@
       {% form 'product', product %}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-ncs-variant>
         <input type="hidden" name="properties[Color / Marble]" value="" data-ncs-color-property>
-        <input type="hidden" name="properties[Height]" value="" data-ncs-height-property>
-        <input type="hidden" name="properties[Length]" value="" data-ncs-length-property>
-        <input type="hidden" name="properties[Width]" value="" data-ncs-width-property>
-        <input type="hidden" name="properties[Depth]" value="" data-ncs-depth-property>
         <input type="hidden" name="properties[Size Type]" value="Standard" data-ncs-size-type-property>
-        <input type="hidden" name="properties[Custom Size]" value="" data-ncs-custom-size-property>
         <button type="submit" name="add" data-ncs-add-btn {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
           {% if product.selected_or_first_available_variant.available %}ADD TO CART <b>↗</b>{% else %}SOLD OUT{% endif %}
         </button>
@@ -217,10 +203,9 @@
   var price=root.querySelector('[data-ncs-price]'), summary=root.querySelector('[data-ncs-summary]');
   var variantInput=root.querySelector('[data-ncs-variant]'), add=root.querySelector('[data-ncs-add-btn]');
   var colorProp=root.querySelector('[data-ncs-color-property]');
-  var hProp=root.querySelector('[data-ncs-height-property]'), lProp=root.querySelector('[data-ncs-length-property]'), wProp=root.querySelector('[data-ncs-width-property]'), dProp=root.querySelector('[data-ncs-depth-property]');
-  var typeProp=root.querySelector('[data-ncs-size-type-property]'), customProp=root.querySelector('[data-ncs-custom-size-property]');
+  var typeProp=root.querySelector('[data-ncs-size-type-property]');
   var mode=root.querySelector('[data-size-mode]'), fixed=root.querySelector('[data-fixed-size]'), custom=root.querySelector('[data-custom-size]');
-  var h=root.querySelector('[data-custom-height]'), l=root.querySelector('[data-custom-length]'), w=root.querySelector('[data-custom-width]'), d=root.querySelector('[data-custom-depth]');
+  var buy=root.querySelector('[data-ncs-buy]');
 
   function isColorGroup(g){var n=(g.dataset.optionName||'').toLowerCase();return n.indexOf('color')>-1||n.indexOf('colour')>-1||n.indexOf('marble')>-1||n.indexOf('finish')>-1;}
   function normalizeColor(v){
@@ -272,20 +257,19 @@
     if(storyEl&&entry.story)storyEl.innerHTML=entry.story;
     if(materialsEl&&entry.materials)materialsEl.innerHTML=entry.materials;
   }
-  function setProps(color,type,dh,dl,dw,dd){
+  function setProps(color){
     if(colorProp)colorProp.value=color||'';
-    if(typeProp)typeProp.value=type;
-    if(hProp)hProp.value=dh||''; if(lProp)lProp.value=dl||''; if(wProp)wProp.value=dw||''; if(dProp)dProp.value=dd||'';
-    if(customProp)customProp.value=type==='Custom'?formatDims({h:dh,l:dl,w:dw,d:dd}):'';
+    if(typeProp)typeProp.value='Standard';
   }
   function updateCustomProps(){
     var isCustom=mode&&mode.querySelector('[data-size-mode-button="custom"].is-active');
-    var dims=isCustom?{h:h?h.value:'',l:l?l.value:'',w:w?w.value:'',d:d?d.value:''}:fixedDims();
     if(fixed)fixed.hidden=!!isCustom; if(custom)custom.hidden=!isCustom;
+    if(buy)buy.hidden=!!isCustom;
     var values=selectedValues(), color='';
     groups.forEach(function(g,i){if(isColorGroup(g))color=normalizeColor(values[i]||'');});
-    setProps(color,isCustom?'Custom':'Standard',dims.h,dims.l,dims.w,dims.d);
-    var dim=root.querySelector('[data-ncs-selected-dimensions]'); if(dim)dim.textContent=formatDims(dims);
+    setProps(color);
+    var dim=root.querySelector('[data-ncs-selected-dimensions]');
+    if(dim)dim.textContent=isCustom?'':formatDims(fixedDims());
   }
   function findVariant(selected){
     return variants.find(function(item){
@@ -357,7 +341,6 @@
   groups.forEach(bindChoiceGroup);
   injectMarblePicker();
   if(mode)mode.querySelectorAll('[data-size-mode-button]').forEach(function(btn){btn.addEventListener('click',function(){mode.querySelectorAll('[data-size-mode-button]').forEach(function(x){x.classList.remove('is-active')});btn.classList.add('is-active');updateCustomProps()})});
-  [h,l,w,d].forEach(function(x){if(x)x.addEventListener('input',updateCustomProps)});
   syncVariant();
 })();
 </script>

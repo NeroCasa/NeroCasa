@@ -1,16 +1,20 @@
 <section class="ncs-about-page">
-  <div class="ncs-about-hero-split" data-nc-reveal>
+  <div class="ncs-about-hero-split ncs-page-hero-shell" data-nc-reveal>
+    <div class="ncs-hero-media" aria-hidden="true">
+      {% render 'nc-hero-marble-bg',
+        mode: 'triple',
+        slab_left: 'hero-slab-green.jpg',
+        slab_center: 'hero-slab-grey.jpg',
+        slab_right: 'hero-slab-travertine.jpg'
+      %}
+    </div>
     <div class="ncs-about-hero-copy">
       <span class="ncs-page-kicker">Why Nerocasa</span>
       <h1>{% render 'nc-title-gold', title: section.settings.hero_heading | default: page.title %}</h1>
       <p class="ncs-about-hero-lead">{{ section.settings.hero_lead }}</p>
     </div>
-    <div class="ncs-about-hero-visual ncs-brand-visual-frame">
-      {% if section.settings.hero_image != blank %}
-        <img src="{{ section.settings.hero_image | image_url: width: 1200 }}" alt="{{ section.settings.hero_image.alt | default: settings.brand_name | escape }}" width="1200" height="900" loading="eager">
-      {% else %}
-        <img src="{% render 'nc-brand-visual' %}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="900" loading="eager">
-      {% endif %}
+    <div class="ncs-about-hero-visual ncs-about-hero-logo">
+      <img src="{{ 'nerocasa-wordmark-why.png' | asset_url }}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="1200" loading="eager">
     </div>
   </div>
 
@@ -76,12 +80,7 @@
       "type": "textarea",
       "id": "hero_lead",
       "label": "Hero lead",
-      "default": "We believe everyone should live with real stone. NeroCasa imports marble from around the world, makes every piece in its own factory, and prices it so ownership feels possible."
-    },
-    {
-      "type": "image_picker",
-      "id": "hero_image",
-      "label": "Hero image override"
+      "default": "NeroCasa imports marble and manufactures in its own workshop. We do not buy ready-made products from outside. Every piece is made when you order, with the attention we would want in our own home."
     },
     {
       "type": "header",

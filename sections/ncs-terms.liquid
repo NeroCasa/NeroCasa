@@ -1,5 +1,11 @@
 <section class="ncs-info-page ncs-legal-page">
+  {% render 'nc-page-hero-shell-open',
+    slab_left: 'hero-slab-grey.jpg',
+    slab_center: 'hero-slab-travertine.jpg',
+    slab_right: 'hero-slab-white.jpg'
+  %}
   <h1>{% render 'nc-title-gold', title: page.title | default: 'Terms and Conditions' %}</h1>
+  {% render 'nc-page-hero-shell-close' %}
   <div class="ncs-legal-body">
     {% if page.content != blank %}
       {{ page.content }}

@@ -148,6 +148,122 @@ body {
   height: 100vh;
   overflow: hidden;
   isolation: isolate;
+  background: #050504;
+}
+
+.ncs-hero-slabs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.ncs-hero-slab {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.48) saturate(0.72) contrast(1.05);
+}
+
+.ncs-hero-slab--1 {
+  left: 0;
+  width: 46%;
+  -webkit-mask-image: linear-gradient(to right, #000 62%, transparent);
+  mask-image: linear-gradient(to right, #000 62%, transparent);
+}
+
+.ncs-hero-slab--2 {
+  left: 27%;
+  width: 46%;
+  opacity: 0.92;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent);
+}
+
+.ncs-hero-slab--3 {
+  right: 0;
+  width: 46%;
+  -webkit-mask-image: linear-gradient(to left, #000 62%, transparent);
+  mask-image: linear-gradient(to left, #000 62%, transparent);
+}
+
+.ncs-hero-slabs--dual .ncs-hero-slab--1 {
+  left: 0;
+  width: 58%;
+  -webkit-mask-image: linear-gradient(to right, #000 50%, transparent);
+  mask-image: linear-gradient(to right, #000 50%, transparent);
+}
+
+.ncs-hero-slabs--dual .ncs-hero-slab--dual {
+  right: 0;
+  left: auto;
+  width: 58%;
+  opacity: 0.94;
+  -webkit-mask-image: linear-gradient(to left, #000 50%, transparent);
+  mask-image: linear-gradient(to left, #000 50%, transparent);
+}
+
+.ncs-hero-overlay--page {
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.42) 42%, rgba(0, 0, 0, 0.55) 100%),
+    linear-gradient(0deg, rgba(8, 8, 7, 0.88) 0%, rgba(8, 8, 7, 0.28) 50%, rgba(8, 8, 7, 0.82) 100%);
+}
+
+.ncs-page-hero-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+.ncs-page-hero-shell .ncs-hero-media {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  min-height: 100%;
+  pointer-events: none;
+}
+
+.ncs-page-hero-shell .ncs-hero-media .ncs-hero-marble-bg,
+.ncs-page-hero-shell .ncs-hero-media .ncs-hero-slabs {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ncs-page-hero-shell .ncs-page-hero,
+.ncs-page-hero-shell .ncs-collection-header,
+.ncs-page-hero-shell .ncs-search-hero,
+.ncs-page-hero-shell .ncs-b2b-header,
+.ncs-page-hero-shell .ncs-about-hero-copy,
+.ncs-page-hero-shell .ncs-about-hero-visual,
+.ncs-page-hero-shell .ncs-b2b-form-wrap,
+.ncs-page-hero-shell > h1 {
+  position: relative;
+  z-index: 2;
+}
+
+.ncs-page-hero-shell .ncs-b2b-form-panel {
+  background: var(--nc-panel);
+}
+
+.ncs-b2b-layout.ncs-page-hero-shell,
+.ncs-about-hero-split.ncs-page-hero-shell {
+  overflow: hidden;
+}
+
+.ncs-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.55), transparent 70%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.62), transparent 52%),
+    radial-gradient(ellipse at center, rgba(8, 8, 7, 0.18), rgba(8, 8, 7, 0.55));
 }
 
 .ncs-home-collections {
@@ -750,8 +866,24 @@ body {
 
 .ncs-about-hero-visual {
   position: relative;
-  overflow: hidden;
-  background: #060605;
+  overflow: visible;
+  background: transparent;
+}
+
+.ncs-about-hero-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 3vw, 32px);
+  background: transparent;
+  border: 0;
+}
+
+.ncs-about-hero-logo img {
+  width: min(100%, 420px);
+  height: auto;
+  object-fit: contain;
+  filter: none !important;
 }
 
 .ncs-about-hero-visual:not(.nc-brand-visual-frame) img {
@@ -1319,6 +1451,33 @@ body {
   box-shadow: 0 8px 28px rgba(165, 123, 0, 0.4);
 }
 
+.ncs-custom-whatsapp-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 18px;
+  padding: 18px;
+  background: var(--nc-gold);
+  color: #080807;
+  border: 1px solid var(--nc-gold);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(165, 123, 0, 0.28);
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.ncs-custom-whatsapp-box:hover {
+  background: #c49200;
+  border-color: #c49200;
+  color: #080807;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(165, 123, 0, 0.4);
+}
+
 .ncs-btn--outline {
   background: transparent !important;
   color: var(--nc-ink) !important;
@@ -1722,16 +1881,6 @@ body {
 .ncs-custom-upload strong {
   font-size: 11px !important;
   letter-spacing: 0.16em !important;
-}
-
-.ncs-custom-dimension-grid label {
-  font-size: 11px !important;
-  letter-spacing: 0.14em !important;
-}
-
-.ncs-custom-dimension-grid input {
-  margin-top: 10px !important;
-  padding: 14px 12px !important;
 }
 
 .ncs-upload-note {
@@ -2317,16 +2466,6 @@ body {
   color: var(--nc-muted);
 }
 
-.ncs-custom-dimension-grid--4 {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-@media (min-width: 720px) {
-  .ncs-custom-dimension-grid--4 {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
 .ncs-hero-cta {
   margin-top: 28px;
 }
@@ -2420,6 +2559,10 @@ body {
 
 .ncs-about-hero-visual.nc-brand-visual-frame {
   min-height: clamp(320px, 42vw, 520px);
+}
+
+.ncs-about-hero-visual.nc-about-hero-logo {
+  min-height: clamp(280px, 36vw, 460px);
 }
 
 .ncs-about-hero-visual.nc-brand-visual-frame img,
@@ -2654,17 +2797,6 @@ body {
 }
 
 .ncs-form-route a {
-  color: var(--nc-gold);
-}
-
-.ncs-custom-dimensions .ncs-custom-whatsapp-note {
-  margin-top: 14px;
-  font-size: 12px;
-  line-height: 1.6;
-  color: rgba(242, 238, 230, 0.62);
-}
-
-.ncs-custom-dimensions .ncs-custom-whatsapp-note a {
   color: var(--nc-gold);
 }
 

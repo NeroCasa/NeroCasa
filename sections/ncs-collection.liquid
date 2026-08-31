@@ -1,4 +1,26 @@
 <section class="ncs-collection-page">
+  {% liquid
+    assign catalog_category = 'coffee'
+    assign hero_left = 'hero-slab-red.jpg'
+    assign hero_center = 'hero-slab-white.jpg'
+    assign hero_right = 'hero-slab-travertine.jpg'
+    if collection.handle == settings.collection_side or collection.handle == 'side-tables'
+      assign catalog_category = 'side'
+      assign hero_left = 'hero-slab-green.jpg'
+      assign hero_center = 'hero-slab-grey.jpg'
+      assign hero_right = 'hero-slab-white.jpg'
+    elsif collection.handle == settings.collection_console or collection.handle == 'console-tables'
+      assign catalog_category = 'console'
+      assign hero_left = 'hero-slab-black.jpg'
+      assign hero_center = 'hero-slab-travertine.jpg'
+      assign hero_right = 'hero-slab-grey.jpg'
+    endif
+  %}
+  {% render 'nc-page-hero-shell-open',
+    slab_left: hero_left,
+    slab_center: hero_center,
+    slab_right: hero_right
+  %}
   <header class="ncs-collection-header" data-nc-reveal>
     <h1>{% render 'nc-title-gold', title: collection.title %}</h1>
     <p class="ncs-collection-lead">{{ section.settings.lead }}</p>
@@ -6,16 +28,9 @@
       <p class="ncs-collection-desc">{{ collection.description | strip_html }}</p>
     {% endif %}
   </header>
+  {% render 'nc-page-hero-shell-close' %}
 
   <div class="ncs-grid-products">
-    {% liquid
-      assign catalog_category = 'coffee'
-      if collection.handle == settings.collection_side or collection.handle == 'side-tables'
-        assign catalog_category = 'side'
-      elsif collection.handle == settings.collection_console or collection.handle == 'console-tables'
-        assign catalog_category = 'console'
-      endif
-    %}
     {% render 'nc-catalog-cards', category: catalog_category, collection: collection %}
   </div>
 </section>

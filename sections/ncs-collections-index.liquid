@@ -1,9 +1,15 @@
 <section class="ncs-collections-page">
+  {% render 'nc-page-hero-shell-open',
+    slab_left: 'hero-slab-red.jpg',
+    slab_center: 'hero-slab-green.jpg',
+    slab_right: 'hero-slab-travertine.jpg'
+  %}
   <header class="ncs-page-hero" data-nc-reveal>
     <span class="ncs-page-kicker">Collections</span>
     <h1>{% render 'nc-title-gold', title: section.settings.heading %}</h1>
     <p>{{ section.settings.lead }}</p>
   </header>
+  {% render 'nc-page-hero-shell-close' %}
 
   <div class="ncs-collections-list ncs-collections-list--grid">
     <a class="ncs-collection-tile" href="{% render 'nc-collection-url', handle: settings.collection_coffee %}" data-nc-reveal>

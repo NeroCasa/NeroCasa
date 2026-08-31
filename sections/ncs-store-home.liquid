@@ -1,12 +1,11 @@
 <section class="ncs-home-hero">
   <div class="ncs-hero-media">
-    {% if settings.hero_image != blank %}
-      <img src="{{ settings.hero_image | image_url: width: 2400 }}" alt="{{ settings.brand_name | default: 'NeroCasa' }} marble furniture" width="2400" height="1600" fetchpriority="high">
-    {% else %}
-      {% capture hero_image %}{% render 'nc-showcase-image', pool: 'hero' %}{% endcapture %}
-      <img src="{{ hero_image | strip }}" alt="{{ settings.brand_name | default: 'NeroCasa' }} marble furniture" width="2400" height="1600" fetchpriority="high">
-    {% endif %}
-    <div class="ncs-hero-overlay"></div>
+    {% render 'nc-hero-marble-bg',
+      mode: 'triple',
+      slab_left: 'hero-slab-white.jpg',
+      slab_center: 'hero-slab-red.jpg',
+      slab_right: 'hero-slab-green.jpg'
+    %}
   </div>
   <div class="ncs-hero-content">
     <h1><span>NE<span>RO</span></span><span class="nc-gold">CASA</span></h1>
@@ -38,7 +37,7 @@
     <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}">Our story ↗</a>
   </div>
   <div class="ncs-home-story-visual ncs-brand-visual-frame">
-    <img src="{% render 'nc-brand-visual' %}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="900" loading="lazy">
+    <img src="{{ 'nerocasa-brand-mark-clear.png' | asset_url }}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="1200" loading="lazy">
   </div>
 </section>
 
