@@ -1,5 +1,6 @@
 <section class="ncs-cart-page">
-  <header class="ncs-page-hero" data-nc-reveal>
+  <header class="ncs-page-hero ncs-page-hero--marble" data-nc-reveal>
+    {% render 'nc-hero-marble-bg', slab_left: 'hero-slab-travertine.jpg', slab_right: 'hero-slab-red.jpg' %}
     <h1>{% render 'nc-title-gold', title: 'Your cart' %}</h1>
     {% if cart.item_count > 0 %}
       <p>{{ cart.item_count }} piece{% if cart.item_count != 1 %}s{% endif %} selected</p>

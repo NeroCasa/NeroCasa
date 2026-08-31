@@ -1,9 +1,11 @@
 <section class="ncs-home-hero">
-  <div class="ncs-hero-media ncs-hero-slabs" aria-hidden="true">
-    <img class="ncs-hero-slab ncs-hero-slab--1" src="{{ 'hero-slab-white.jpg' | asset_url }}" alt="" width="1024" height="1536" fetchpriority="high">
-    <img class="ncs-hero-slab ncs-hero-slab--2" src="{{ 'hero-slab-grey.jpg' | asset_url }}" alt="" width="1024" height="1536" fetchpriority="high">
-    <img class="ncs-hero-slab ncs-hero-slab--3" src="{{ 'hero-slab-travertine.jpg' | asset_url }}" alt="" width="1024" height="1536" loading="eager">
-    <div class="ncs-hero-overlay"></div>
+  <div class="ncs-hero-media">
+    {% render 'nc-hero-marble-bg',
+      mode: 'triple',
+      slab_left: 'hero-slab-white.jpg',
+      slab_center: 'hero-slab-red.jpg',
+      slab_right: 'hero-slab-green.jpg'
+    %}
   </div>
   <div class="ncs-hero-content">
     <h1><span>NE<span>RO</span></span><span class="nc-gold">CASA</span></h1>

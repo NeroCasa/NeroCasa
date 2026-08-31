@@ -1,5 +1,8 @@
 <section class="ncs-info-page ncs-legal-page">
-  <h1>{% render 'nc-title-gold', title: page.title | default: 'Refunds and Returns' %}</h1>
+  <div class="ncs-info-hero ncs-info-hero--marble">
+    {% render 'nc-hero-marble-bg', slab_left: 'hero-slab-green.jpg', slab_right: 'hero-slab-white.jpg' %}
+    <h1>{% render 'nc-title-gold', title: page.title | default: 'Refunds and Returns' %}</h1>
+  </div>
   <div class="ncs-legal-body">
     {% if page.content != blank %}
       {{ page.content }}

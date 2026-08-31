@@ -1,7 +1,8 @@
 {% render 'nc-catalog-search-index' %}
 
 <section class="ncs-search-page">
-  <header class="ncs-search-hero" data-nc-reveal>
+  <header class="ncs-search-hero ncs-search-hero--marble" data-nc-reveal>
+    {% render 'nc-hero-marble-bg', slab_left: 'hero-slab-white.jpg', slab_right: 'hero-slab-green.jpg' %}
     {% if search.performed %}
       {%- liquid
         if search.results_count == 1
