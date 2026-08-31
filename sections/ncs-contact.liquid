@@ -21,11 +21,7 @@
     <div class="ncs-contact-grid">
       <div class="ncs-contact-card" data-nc-reveal>
         <span class="ncs-contact-label">WhatsApp</span>
-        {% if settings.whatsapp_url != blank %}
-          <a href="{{ settings.whatsapp_url }}">Message us ↗</a>
-        {% else %}
-          <span class="ncs-contact-value">Available on request</span>
-        {% endif %}
+        <a class="ncs-contact-value" href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener noreferrer">{{ settings.whatsapp_phone | default: '+971 56 878 8789' }}</a>
         <p class="ncs-contact-note">Fastest for custom pieces, catalog variations, reference images, and order updates.</p>
       </div>
       <div class="ncs-contact-card" data-nc-reveal>

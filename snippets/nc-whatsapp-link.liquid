@@ -1,0 +1,18 @@
+{%- comment -%}
+  Builds a wa.me link from theme settings.
+  @param message {String} Optional pre-filled WhatsApp message
+{%- endcomment -%}
+{%- liquid
+  assign wa_base = settings.whatsapp_url | strip
+  if wa_base == blank
+    assign wa_phone = settings.whatsapp_phone | default: '+971 56 878 8789' | strip
+    assign wa_digits = wa_phone | remove: ' ' | remove: '+' | remove: '-' | remove: '(' | remove: ')' | remove: '.'
+    assign wa_base = 'https://wa.me/' | append: wa_digits
+  endif
+  if message != blank
+    assign encoded_message = message | url_encode
+    echo wa_base | append: '?text=' | append: encoded_message
+  else
+    echo wa_base
+  endif
+-%}
