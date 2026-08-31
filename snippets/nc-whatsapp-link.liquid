@@ -10,7 +10,8 @@
     assign wa_base = 'https://wa.me/' | append: wa_digits
   endif
   if message != blank
-    echo wa_base | append: '?text=' | append: message | url_encode
+    assign encoded_message = message | url_encode
+    echo wa_base | append: '?text=' | append: encoded_message
   else
     echo wa_base
   endif
