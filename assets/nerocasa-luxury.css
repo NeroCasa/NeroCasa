@@ -148,6 +148,54 @@ body {
   height: 100vh;
   overflow: hidden;
   isolation: isolate;
+  background: #050504;
+}
+
+.ncs-hero-slabs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.ncs-hero-slab {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.48) saturate(0.72) contrast(1.05);
+}
+
+.ncs-hero-slab--1 {
+  left: 0;
+  width: 46%;
+  -webkit-mask-image: linear-gradient(to right, #000 62%, transparent);
+  mask-image: linear-gradient(to right, #000 62%, transparent);
+}
+
+.ncs-hero-slab--2 {
+  left: 27%;
+  width: 46%;
+  opacity: 0.92;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent);
+}
+
+.ncs-hero-slab--3 {
+  right: 0;
+  width: 46%;
+  -webkit-mask-image: linear-gradient(to left, #000 62%, transparent);
+  mask-image: linear-gradient(to left, #000 62%, transparent);
+}
+
+.ncs-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.55), transparent 70%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.62), transparent 52%),
+    radial-gradient(ellipse at center, rgba(8, 8, 7, 0.18), rgba(8, 8, 7, 0.55));
 }
 
 .ncs-home-collections {

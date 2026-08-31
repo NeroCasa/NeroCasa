@@ -1,11 +1,8 @@
 <section class="ncs-home-hero">
-  <div class="ncs-hero-media">
-    {% if settings.hero_image != blank %}
-      <img src="{{ settings.hero_image | image_url: width: 2400 }}" alt="{{ settings.brand_name | default: 'NeroCasa' }} marble furniture" width="2400" height="1600" fetchpriority="high">
-    {% else %}
-      {% capture hero_image %}{% render 'nc-showcase-image', pool: 'hero' %}{% endcapture %}
-      <img src="{{ hero_image | strip }}" alt="{{ settings.brand_name | default: 'NeroCasa' }} marble furniture" width="2400" height="1600" fetchpriority="high">
-    {% endif %}
+  <div class="ncs-hero-media ncs-hero-slabs" aria-hidden="true">
+    <img class="ncs-hero-slab ncs-hero-slab--1" src="{{ 'hero-slab-white.jpg' | asset_url }}" alt="" width="1024" height="1536" fetchpriority="high">
+    <img class="ncs-hero-slab ncs-hero-slab--2" src="{{ 'hero-slab-grey.jpg' | asset_url }}" alt="" width="1024" height="1536" fetchpriority="high">
+    <img class="ncs-hero-slab ncs-hero-slab--3" src="{{ 'hero-slab-travertine.jpg' | asset_url }}" alt="" width="1024" height="1536" loading="eager">
     <div class="ncs-hero-overlay"></div>
   </div>
   <div class="ncs-hero-content">
