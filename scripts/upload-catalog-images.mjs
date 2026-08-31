@@ -6,7 +6,7 @@
  * Storefront catalog PDPs use theme assets, not Shopify media. Do not crop theme
  * assets for Admin; crop or adjust images inside Shopify Admin if needed.
  *
- * Usage: node scripts/upload-catalog-images.mjs zhjbdz-yw.myshopify.com
+ * Usage: node scripts/upload-catalog-images.mjs zhjbdz-yw.myshopify.com [handle]
  */
 
 import { execFileSync } from 'node:child_process';
@@ -18,6 +18,7 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const assetsDir = join(__dirname, '..', 'assets');
 const store = process.argv[2] || 'zhjbdz-yw.myshopify.com';
+const onlyHandle = process.argv[3] || '';
 const isWin = platform() === 'win32';
 const shopifyCmd = isWin ? 'shopify.cmd' : 'shopify';
 
@@ -97,10 +98,19 @@ async function uploadFile(filename, fileBuffer) {
 }
 
 async function main() {
-  console.log(`Upload catalog images — ${store}\n`);
+  const targets = onlyHandle
+    ? PRODUCTS.filter((p) => p.handle === onlyHandle)
+    : PRODUCTS;
+
+  if (onlyHandle && !targets.length) {
+    console.error(`Unknown handle: ${onlyHandle}`);
+    process.exit(1);
+  }
+
+  console.log(`Upload catalog images — ${store}${onlyHandle ? ` (${onlyHandle} only)` : ''}\n`);
 
   const missing = [];
-  for (const product of PRODUCTS) {
+  for (const product of targets) {
     for (const marble of product.marbles) {
       const file = join(assetsDir, `${product.handle}-${marble}.jpg`);
       if (!existsSync(file)) missing.push(`${product.handle}-${marble}.jpg`);
@@ -133,7 +143,7 @@ async function main() {
 
   const productMap = new Map((catalog.products?.nodes || []).map((p) => [p.handle, p]));
 
-  for (const spec of PRODUCTS) {
+  for (const spec of targets) {
     const product = productMap.get(spec.handle);
     if (!product) {
       console.log(`  ! ${spec.handle} not found`);
