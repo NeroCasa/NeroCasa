@@ -1,0 +1,54 @@
+<section class="ncs-article-page">
+  {% render 'nc-page-hero-shell-open',
+    slab_left: 'hero-slab-white.jpg',
+    slab_center: 'hero-slab-grey.jpg',
+    slab_right: 'hero-slab-travertine.jpg'
+  %}
+  <header class="ncs-page-hero ncs-article-hero" data-nc-reveal>
+    <a class="ncs-article-back" href="{{ blog.url }}">← Journal</a>
+    <span class="ncs-page-kicker">{{ blog.title | default: 'Journal' }}</span>
+    <h1>{% render 'nc-title-gold', title: article.title %}</h1>
+    <p class="ncs-article-meta">
+      <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%d %B %Y' }}</time>
+      {%- if article.tags.size > 0 -%}
+        <span class="ncs-article-tags">
+          {%- for tag in article.tags -%}
+            <span>{{ tag }}</span>
+          {%- endfor -%}
+        </span>
+      {%- endif -%}
+    </p>
+  </header>
+  {% render 'nc-page-hero-shell-close' %}
+
+  {%- if article.image -%}
+    <figure class="ncs-article-featured" data-nc-reveal>
+      <img
+        src="{{ article.image | image_url: width: 1600 }}"
+        alt="{{ article.image.alt | default: article.title | escape }}"
+        width="1600"
+        height="900"
+        loading="eager"
+      >
+    </figure>
+  {%- endif -%}
+
+  <div class="ncs-article-content ncs-legal-body" data-nc-reveal>
+    {{ article.content }}
+  </div>
+
+  <div class="ncs-article-cta" data-nc-reveal>
+    <p>Explore luxury marble furniture crafted in Italian stone.</p>
+    <div class="ncs-article-cta-actions">
+      <a class="ncs-btn ncs-btn--compact" href="{% render 'nc-collections-index-url' %}">Shop collections ↗</a>
+      <a class="ncs-btn ncs-btn--outline ncs-btn--compact" href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}">Bespoke commissions ↗</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Journal article",
+  "presets": [{ "name": "Journal article" }]
+}
+{% endschema %}

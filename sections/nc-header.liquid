@@ -26,6 +26,7 @@
     <a href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}" class="{% if request.page_type == 'page' and page.handle == settings.page_custom_handle %}is-active{% endif %}">Custom</a>
     <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}" class="{% if request.page_type == 'page' and page.handle == settings.page_b2b_handle %}is-active{% endif %}">B2B</a>
     <a href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}" class="{% if request.page_type == 'page' and page.handle == settings.page_about_handle %}is-active{% endif %}">Why Nerocasa</a>
+    <a href="{% render 'nc-blog-url' %}" class="{% if request.page_type == 'blog' or request.page_type == 'article' %}is-active{% endif %}">Journal</a>
   </nav>
 
   <div class="nc-actions">
@@ -45,6 +46,7 @@
   <a href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}" class="{% if request.page_type == 'page' and page.handle == settings.page_custom_handle %}is-active{% endif %}">Custom</a>
   <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}" class="{% if request.page_type == 'page' and page.handle == settings.page_b2b_handle %}is-active{% endif %}">B2B</a>
   <a href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}" class="{% if request.page_type == 'page' and page.handle == settings.page_about_handle %}is-active{% endif %}">Why Nerocasa</a>
+  <a href="{% render 'nc-blog-url' %}" class="{% if request.page_type == 'blog' or request.page_type == 'article' %}is-active{% endif %}">Journal</a>
 </nav>
 
 <div class="nc-search-overlay" data-search-overlay hidden>

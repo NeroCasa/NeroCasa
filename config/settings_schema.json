@@ -186,6 +186,13 @@
         "id": "page_track_handle",
         "label": "Track order page handle",
         "default": "track-order"
+      },
+      {
+        "type": "text",
+        "id": "blog_handle",
+        "label": "Journal blog handle",
+        "default": "journal",
+        "info": "Create a blog in Shopify Admin with this handle (Online Store → Blog posts). Theme links to /blogs/journal automatically."
       }
     ]
   }

@@ -1,0 +1,7 @@
+{%- assign blog_handle = settings.blog_handle | default: 'journal' -%}
+{%- assign nc_blog = blogs[blog_handle] -%}
+{%- if nc_blog -%}
+  {{- nc_blog.url -}}
+{%- else -%}
+  /blogs/{{ blog_handle }}
+{%- endif -%}

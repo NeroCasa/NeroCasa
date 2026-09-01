@@ -39,6 +39,25 @@
         assign seo_description = page.content | strip_html | strip_newlines | truncate: 160
       endif
     endif
+  elsif request.page_type == 'article' and article
+    assign og_type = 'article'
+    if article.image
+      assign og_image = article.image | image_url: width: 1200
+    endif
+    if seo_description == blank
+      if article.excerpt != blank
+        assign seo_description = article.excerpt | strip_html | strip_newlines | truncate: 160
+      else
+        assign seo_description = article.content | strip_html | strip_newlines | truncate: 160
+      endif
+    endif
+  elsif request.page_type == 'blog' and blog
+    if seo_description == blank
+      assign seo_description = 'Guides on luxury marble furniture, Italian stone finishes and interior design from ' | append: brand | append: '.'
+    endif
+    if page_title == blank
+      assign seo_title = brand | append: ' Journal | Marble & Design'
+    endif
   elsif request.page_type == 'index'
     if page_title == blank
       assign seo_title = brand | append: ' | Luxury Marble Furniture'
@@ -108,6 +127,32 @@
     "offerCount": {{ product.variants.size }},
     "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}"
   }
+}
+</script>
+{%- endif -%}
+
+{%- if request.page_type == 'article' and article -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ article.title | json }},
+  "description": {{ seo_description | json }},
+  "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
+  "dateModified": {{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
+  "author": {
+    "@type": "Organization",
+    "name": {{ brand | json }}
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ shop.name | json }}
+  },
+  "mainEntityOfPage": {{ page_url | json }},
+  {%- if og_image != blank -%}
+  "image": [{{ og_image | prepend: 'https:' | json }}],
+  {%- endif -%}
+  "url": {{ page_url | json }}
 }
 </script>
 {%- endif -%}
