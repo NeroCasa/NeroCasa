@@ -11,12 +11,12 @@
     if product.featured_image
       assign og_image = product.featured_image | image_url: width: 1200
     endif
-    if seo_description == blank
-      if product.seo.description != blank
-        assign seo_description = product.seo.description
-      elsif product.description != blank
-        assign seo_description = product.description | strip_html | strip_newlines | truncate: 160
-      endif
+    if product.seo.description != blank
+      assign seo_description = product.seo.description
+    elsif page_description != blank
+      assign seo_description = page_description
+    elsif product.description != blank
+      assign seo_description = product.description | strip_html | strip_newlines
     endif
   elsif request.page_type == 'collection' and collection
     if collection.image
@@ -43,6 +43,8 @@
     assign og_type = 'article'
     if article.image
       assign og_image = article.image | image_url: width: 1200
+    else
+      assign og_image = 'nerocasa-brand-logo.jpg' | asset_url
     endif
     if seo_description == blank
       if article.excerpt != blank

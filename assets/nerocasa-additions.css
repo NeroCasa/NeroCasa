@@ -170,6 +170,7 @@ body.nc-menu-open{overflow:hidden}
 .ncs-price small{display:block;color:#777269;font-size:7px;letter-spacing:.18em;margin-top:7px}
 .ncs-compare-price{color:var(--nc-muted);font-size:12px;margin-left:10px}
 .ncs-short-desc{color:var(--nc-muted);font-size:13px;line-height:1.8}
+.ncs-short-desc p{margin:0}
 .ncs-choice,.ncs-size-mode{margin:30px 0}
 .ncs-choice>label,.ncs-size-mode>label{display:block;font-size:8px;letter-spacing:.2em;color:var(--nc-muted);margin-bottom:12px}
 .ncs-choice-row{display:flex;flex-wrap:wrap;gap:7px}
@@ -411,6 +412,8 @@ body.nc-menu-open{overflow:hidden}
 .ncs-blog-card-link{display:block;color:inherit;text-decoration:none;height:100%}
 .ncs-blog-card-media{aspect-ratio:4/3;overflow:hidden;background:#111}
 .ncs-blog-card-media img{width:100%;height:100%;object-fit:cover;filter:brightness(.78) saturate(.85)}
+.ncs-blog-card-media--logo{background:#0a0a09}
+.ncs-blog-card-media--logo img{object-fit:contain;padding:28px;filter:none}
 .ncs-blog-card-media--placeholder{background:linear-gradient(135deg,#1a1a18,#0d0d0c)}
 .ncs-blog-card-body{padding:22px 22px 26px}
 .ncs-blog-card-body time{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--nc-gold)}
@@ -425,6 +428,8 @@ body.nc-menu-open{overflow:hidden}
 .ncs-article-tags span{font-size:9px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--nc-line);padding:4px 8px;color:var(--nc-muted)}
 .ncs-article-featured{max-width:980px;margin:48px auto 0;border:1px solid var(--nc-line)}
 .ncs-article-featured img{display:block;width:100%;height:auto;filter:brightness(.82) saturate(.88)}
+.ncs-article-featured--logo{background:#0a0a09}
+.ncs-article-featured--logo img{object-fit:contain;max-height:420px;margin:0 auto;padding:40px;filter:none}
 .ncs-article-content{max-width:760px;margin:48px auto 0}
 .ncs-article-content h2,.ncs-article-content h3{font-family:var(--nc-display);font-weight:400;color:var(--nc-ink);margin:36px 0 14px;line-height:1.15}
 .ncs-article-content h2{font-size:clamp(28px,3vw,42px)}

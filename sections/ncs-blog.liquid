@@ -28,7 +28,15 @@
                 >
               </div>
             {%- else -%}
-              <div class="ncs-blog-card-media ncs-blog-card-media--placeholder" aria-hidden="true"></div>
+              <div class="ncs-blog-card-media ncs-blog-card-media--logo">
+                <img
+                  src="{{ 'nerocasa-brand-logo.jpg' | asset_url }}"
+                  alt="{{ settings.brand_name | default: 'NEROCASA' }}"
+                  width="900"
+                  height="600"
+                  loading="lazy"
+                >
+              </div>
             {%- endif -%}
             <div class="ncs-blog-card-body">
               <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%d %b %Y' }}</time>
