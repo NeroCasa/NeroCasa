@@ -56,9 +56,9 @@ if (!store) {
 const SCOPES = 'write_products,read_products,write_content,read_content';
 
 const COLLECTIONS = [
-  { title: 'Coffee Tables', handle: 'coffee-tables', description: 'Architectural marble coffee tables.' },
-  { title: 'Side Tables', handle: 'side-tables', description: 'Side tables in Ibiza White, Armani Grey, and Travertine.' },
-  { title: 'Console Tables', handle: 'console-tables', description: 'Console tables for refined interiors.' },
+  { title: 'Coffee Tables', handle: 'coffee-tables', description: 'Luxury marble coffee tables in Ibiza White, Armani Grey, Travertine and Rosso Levanto.' },
+  { title: 'Side Tables', handle: 'side-tables', description: 'Premium marble side tables in Ibiza White, Armani Grey and Travertine.' },
+  { title: 'Console Tables', handle: 'console-tables', description: 'Architectural marble console tables for refined entryways and interiors.' },
 ];
 
 const PAGES = [
@@ -252,7 +252,7 @@ async function ensureProducts(productMap, collectionMap) {
         handle: product.handle,
         productType: product.type,
         status: 'ACTIVE',
-        descriptionHtml: '<p>Architectural marble furniture, made to order.</p>',
+        descriptionHtml: '<p>Luxury marble furniture, hand-finished in premium Italian stone.</p>',
         productOptions: [{
           name: 'Marble',
           values: product.colors.map((name) => ({ name })),
