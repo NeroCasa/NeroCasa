@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "ncs-blog",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

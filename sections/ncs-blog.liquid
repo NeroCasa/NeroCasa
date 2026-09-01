@@ -1,0 +1,97 @@
+<section class="ncs-blog-page">
+  {% render 'nc-page-hero-shell-open',
+    slab_left: 'hero-slab-grey.jpg',
+    slab_center: 'hero-slab-travertine.jpg',
+    slab_right: 'hero-slab-white.jpg'
+  %}
+  <header class="ncs-page-hero ncs-blog-hero" data-nc-reveal>
+    <span class="ncs-page-kicker">{{ section.settings.kicker | default: 'Journal' }}</span>
+    <h1>{% render 'nc-title-gold', title: section.settings.heading | default: blog.title | default: 'Journal' %}</h1>
+    <p class="ncs-blog-intro">{{ section.settings.intro | default: 'Guides on marble, design and living with natural stone. Curated by NEROCASA.' }}</p>
+  </header>
+  {% render 'nc-page-hero-shell-close' %}
+
+  {%- paginate blog.articles by 12 -%}
+  {%- if blog.articles_count > 0 -%}
+    <div class="ncs-blog-grid">
+      {%- for article in blog.articles -%}
+        <article class="ncs-blog-card" data-nc-reveal>
+          <a href="{{ article.url }}" class="ncs-blog-card-link">
+            {%- if article.image -%}
+              <div class="ncs-blog-card-media">
+                <img
+                  src="{{ article.image | image_url: width: 900 }}"
+                  alt="{{ article.image.alt | default: article.title | escape }}"
+                  width="900"
+                  height="600"
+                  loading="lazy"
+                >
+              </div>
+            {%- else -%}
+              <div class="ncs-blog-card-media ncs-blog-card-media--logo">
+                <img
+                  src="{{ 'nerocasa-brand-logo.jpg' | asset_url }}"
+                  alt="{{ settings.brand_name | default: 'NEROCASA' }}"
+                  width="900"
+                  height="600"
+                  loading="lazy"
+                >
+              </div>
+            {%- endif -%}
+            <div class="ncs-blog-card-body">
+              <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%d %b %Y' }}</time>
+              <h2>{{ article.title }}</h2>
+              {%- if article.excerpt != blank -%}
+                <p>{{ article.excerpt | strip_html | truncate: 140 }}</p>
+              {%- else -%}
+                <p>{{ article.content | strip_html | truncate: 140 }}</p>
+              {%- endif -%}
+              <span class="ncs-blog-read">Read article ↗</span>
+            </div>
+          </a>
+        </article>
+      {%- endfor -%}
+    </div>
+
+    {%- if paginate.pages > 1 -%}
+      <nav class="ncs-blog-pagination" aria-label="Blog pagination">
+        {%- if paginate.previous -%}
+          <a class="ncs-btn ncs-btn--outline ncs-btn--compact" href="{{ paginate.previous.url }}">← Newer</a>
+        {%- endif -%}
+        {%- if paginate.next -%}
+          <a class="ncs-btn ncs-btn--outline ncs-btn--compact" href="{{ paginate.next.url }}">Older →</a>
+        {%- endif -%}
+      </nav>
+    {%- endif -%}
+  {%- else -%}
+    <p class="ncs-blog-empty" data-nc-reveal>Journal articles are coming soon.</p>
+  {%- endif -%}
+  {%- endpaginate -%}
+</section>
+
+{% schema %}
+{
+  "name": "Journal",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Journal"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Journal"
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro",
+      "default": "Guides on marble, design and living with natural stone. Curated by NEROCASA."
+    }
+  ],
+  "presets": [{ "name": "Journal" }]
+}
+{% endschema %}

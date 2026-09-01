@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "ncs-article",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}
