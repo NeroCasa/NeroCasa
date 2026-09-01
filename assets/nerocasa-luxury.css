@@ -1718,8 +1718,8 @@ body {
   height: 16px !important;
 }
 
-.nc-mobile-nav > a {
-  font-size: 9px !important;
+.nc-mobile-menu > a {
+  font-size: 11px !important;
   letter-spacing: 0.12em !important;
 }
 
@@ -2106,7 +2106,11 @@ body {
   }
 
   .nc-header {
-    grid-template-columns: 1fr auto !important;
+    grid-template-columns: 40px 1fr auto !important;
+  }
+
+  .nc-actions {
+    display: flex !important;
   }
 
   .nc-footer-contact {

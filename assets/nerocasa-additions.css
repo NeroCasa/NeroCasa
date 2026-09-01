@@ -20,12 +20,21 @@ img{max-width:100%}
 .nc-nav{display:flex;justify-content:center;gap:28px;text-transform:uppercase;font-size:9px;letter-spacing:.16em}
 .nc-nav a{opacity:.72;transition:opacity .25s,color .25s}
 .nc-nav a:hover,.nc-nav a.is-active{opacity:1;color:var(--nc-gold)}
-.nc-mobile-nav a.is-active{color:var(--nc-gold);opacity:1}
+.nc-mobile-menu a.is-active{color:var(--nc-gold);opacity:1}
 .nc-actions{display:flex;justify-content:flex-end;gap:10px}
 .nc-icon-link{width:35px;height:35px;display:inline-flex;align-items:center;justify-content:center;border:0;background:none;position:relative;cursor:pointer}
 .nc-icon-link svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.35}
 .nc-cart-count{position:absolute;top:0;right:-2px;min-width:14px;height:14px;padding:0 3px;border-radius:50%;background:var(--nc-gold);color:#080807;font-size:7px;display:flex;align-items:center;justify-content:center}
 .nc-mobile-nav{display:none}
+.nc-menu-toggle{display:none;align-items:center;justify-content:center;width:40px;height:40px;padding:0;border:0;background:none;cursor:pointer;flex-direction:column;gap:5px}
+.nc-menu-toggle span{display:block;width:18px;height:1px;background:var(--nc-ink);transition:transform .25s,opacity .25s}
+.nc-menu-toggle[aria-expanded=true] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nc-menu-toggle[aria-expanded=true] span:nth-child(2){opacity:0}
+.nc-menu-toggle[aria-expanded=true] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.nc-mobile-menu{display:none;position:fixed;top:var(--nc-header-h,82px);left:0;right:0;bottom:0;z-index:95;padding:28px 24px 40px;background:rgba(8,8,7,.97);backdrop-filter:blur(12px);flex-direction:column;gap:0;overflow-y:auto}
+.nc-mobile-menu a{display:block;padding:18px 0;border-bottom:1px solid var(--nc-line);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--nc-ink);opacity:.82}
+.nc-mobile-menu a.is-active,.nc-mobile-menu a:hover{color:var(--nc-gold);opacity:1}
+body.nc-menu-open{overflow:hidden}
 
 .nc-search-overlay{position:fixed;inset:0;z-index:200;background:rgba(8,8,7,.88);backdrop-filter:blur(10px)}
 .nc-search-overlay[hidden]{display:none!important;pointer-events:none}
@@ -262,9 +271,7 @@ img{max-width:100%}
 .nc-footer-bottom a:first-of-type{margin-left:auto}
 
 @media(max-width:900px){
-  .nc-header{grid-template-columns:1fr auto;height:68px;padding:0 20px}.nc-header .nc-nav{display:none}.nc-logo-brand{width:120px}.nc-actions{gap:2px}
-  .nc-mobile-nav{position:fixed;display:flex;z-index:90;bottom:0;left:0;right:0;background:rgba(8,8,7,.95);border-top:1px solid var(--nc-line);padding:11px 12px;justify-content:space-between;align-items:center;gap:7px}
-  .nc-mobile-nav>a{font-size:7px;letter-spacing:.11em;text-transform:uppercase}.nc-mobile-nav .nc-icon-link{width:27px;height:27px}
+  .nc-header{grid-template-columns:40px 1fr auto;height:68px;padding:0 16px;gap:12px}.nc-header .nc-nav{display:none}.nc-logo-brand{width:120px;justify-self:center}.nc-actions{display:flex;gap:6px}.nc-menu-toggle{display:flex}.nc-mobile-menu{display:flex}
   .ncs-home-hero{min-height:600px;height:90vh}.ncs-hero-content h1{font-size:clamp(62px,18vw,130px)}
   .ncs-hero-slab--1{width:50%}
   .ncs-hero-slab--2{left:24%;width:52%}
@@ -286,7 +293,6 @@ img{max-width:100%}
 @media(max-width:600px){
   .ncs-grid-products{grid-template-columns:1fr}.ncs-best-card{flex-basis:84vw}.ncs-material-grid{grid-template-columns:1fr}.ncs-material-grid div{border-right:0!important;border-bottom:1px solid var(--nc-line)}.ncs-material-grid div:last-child{border-bottom:0}
   .ncs-size-mode-row{grid-template-columns:1fr}.ncs-dims{gap:18px}
-  .nc-mobile-nav{overflow-x:auto;justify-content:flex-start}.nc-mobile-nav>a{white-space:nowrap}
 }
 
 .ncs-hero-content h1 .nc-gold{color:#A57B00}
@@ -383,10 +389,10 @@ img{max-width:100%}
 .ncs-info-page:has(h1:empty){display:none}
 .ncs-collection-header:empty{display:none}
 /* Never allow page content to slide underneath the fixed header. */
-.nc-header + .nc-mobile-nav + .nc-search-overlay ~ #MainContent{padding-bottom:72px}
+.nc-header + .nc-search-overlay ~ #MainContent{padding-bottom:0}
 @media(max-width:900px){
   :root{--nc-header-h:68px}
-  #MainContent{padding-bottom:76px}
+  #MainContent{padding-bottom:0}
   .ncs-collections-page,.ncs-collection-page,.ncs-search-page,.ncs-b2b-page,.ncs-contact-page{padding-top:calc(68px + 10vw)}
   .ncs-custom-ready{padding-top:calc(68px + 10vw)}
   .ncs-about-editorial{padding-top:calc(68px + 4vw)}
