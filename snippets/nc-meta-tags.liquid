@@ -1,0 +1,113 @@
+{%- liquid
+  assign brand = settings.brand_name | default: 'NEROCASA'
+  assign tagline = settings.brand_tagline | default: 'Luxury marble furniture. Italian stone, crafted in our workshop.'
+  assign seo_title = page_title | default: brand
+  assign seo_description = page_description
+  assign og_type = 'website'
+  assign og_image = blank
+  assign page_url = canonical_url | default: request.origin | append: request.path
+  if request.page_type == 'product' and product
+    assign og_type = 'product'
+    if product.featured_image
+      assign og_image = product.featured_image | image_url: width: 1200
+    endif
+    if seo_description == blank
+      if product.seo.description != blank
+        assign seo_description = product.seo.description
+      elsif product.description != blank
+        assign seo_description = product.description | strip_html | strip_newlines | truncate: 160
+      endif
+    endif
+  elsif request.page_type == 'collection' and collection
+    if collection.image
+      assign og_image = collection.image | image_url: width: 1200
+    endif
+    if seo_description == blank
+      if collection.seo.description != blank
+        assign seo_description = collection.seo.description
+      elsif collection.description != blank
+        assign seo_description = collection.description | strip_html | strip_newlines | truncate: 160
+      endif
+    endif
+  elsif request.page_type == 'page' and page
+    if seo_description == blank
+      if page.seo.description != blank
+        assign seo_description = page.seo.description
+      elsif page.excerpt != blank
+        assign seo_description = page.excerpt | strip_html | strip_newlines | truncate: 160
+      elsif page.content != blank
+        assign seo_description = page.content | strip_html | strip_newlines | truncate: 160
+      endif
+    endif
+  elsif request.page_type == 'index'
+    if page_title == blank
+      assign seo_title = brand | append: ' | Luxury Marble Furniture'
+    endif
+    if seo_description == blank
+      assign seo_description = tagline
+    endif
+  elsif request.page_type == 'search'
+    if page_title == blank
+      assign seo_title = 'Search | ' | append: brand
+    endif
+    if seo_description == blank
+      assign seo_description = 'Search luxury marble coffee tables, console tables, side tables and bespoke stone furniture from ' | append: brand | append: '.'
+    endif
+  endif
+
+  if seo_description == blank
+    assign seo_description = brand | append: '. ' | append: tagline
+  endif
+
+  if og_image == blank and settings.logo != blank
+    assign og_image = settings.logo | image_url: width: 1200
+  endif
+-%}
+
+<title>{{ seo_title | escape }}</title>
+<meta name="description" content="{{ seo_description | escape }}">
+<link rel="canonical" href="{{ page_url }}">
+
+<meta property="og:site_name" content="{{ shop.name | escape }}">
+<meta property="og:url" content="{{ page_url }}">
+<meta property="og:title" content="{{ seo_title | escape }}">
+<meta property="og:description" content="{{ seo_description | escape }}">
+<meta property="og:type" content="{{ og_type }}">
+{%- if og_image != blank -%}
+<meta property="og:image" content="https:{{ og_image }}">
+<meta property="og:image:secure_url" content="https:{{ og_image }}">
+{%- endif -%}
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ seo_title | escape }}">
+<meta name="twitter:description" content="{{ seo_description | escape }}">
+{%- if og_image != blank -%}
+<meta name="twitter:image" content="https:{{ og_image }}">
+{%- endif -%}
+
+{%- if request.page_type == 'product' and product -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "description": {{ seo_description | json }},
+  "brand": {
+    "@type": "Brand",
+    "name": {{ brand | json }}
+  },
+  "url": {{ page_url | json }},
+  {%- if og_image != blank -%}
+  "image": [{{ og_image | prepend: 'https:' | json }}],
+  {%- endif -%}
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": {{ cart.currency.iso_code | default: shop.currency | json }},
+    "lowPrice": {{ product.price_min | divided_by: 100.0 }},
+    "highPrice": {{ product.price_max | divided_by: 100.0 }},
+    "offerCount": {{ product.variants.size }},
+    "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}"
+  }
+}
+</script>
+{%- endif -%}
