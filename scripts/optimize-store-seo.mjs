@@ -23,9 +23,9 @@ const PRODUCTS = {
   'cft-1': {
     seoTitle: 'Soglia Marble Coffee Table | Luxury Italian Stone | NEROCASA',
     seoDescription:
-      'Soglia is a sculptural marble coffee table in Ibiza White, Armani Grey or Travertine. Hand-finished natural stone for refined living spaces.',
+      'Soglia is a pair of sculptural marble coffee tables in Ibiza White, Armani Grey or Travertine. Price shown is for both tables. Hand-finished natural stone from NEROCASA.',
     descriptionHtml:
-      '<p>Soglia is a sculptural marble coffee table defined by clean lines and the quiet drama of natural stone. Available in Ibiza White, Armani Grey and Travertine, each piece is hand-finished in premium Italian marble for refined, architectural living spaces.</p>',
+      '<p>Soglia is a sculptural marble coffee table sold as a matching pair. Available in Ibiza White, Armani Grey and Travertine, each piece is hand-finished in premium Italian marble for refined, architectural living spaces.</p>',
   },
   'cft-2': {
     seoTitle: 'Equilibrio Marble Coffee Table | Premium Natural Stone | NEROCASA',
@@ -118,12 +118,12 @@ const PAGES = {
   contact: {
     seoTitle: 'Contact NEROCASA | Luxury Marble Furniture',
     seoDescription:
-      'Contact NEROCASA for luxury marble furniture, bespoke stone pieces and project enquiries. WhatsApp, email and showroom appointments available.',
+      'Contact NEROCASA for luxury marble furniture, custom stone pieces and project enquiries. WhatsApp, email and showroom appointments available.',
   },
   custom: {
-    seoTitle: 'Bespoke Marble Furniture | Custom Stone Design | NEROCASA',
+    seoTitle: 'Custom Marble Furniture | Made to Your Design | NEROCASA',
     seoDescription:
-      'Commission bespoke marble furniture in any stone, size or design. Custom tables and surfaces crafted from premium natural stone by NEROCASA.',
+      'Commission custom marble furniture in any stone, size or design. Custom tables and surfaces crafted from premium natural stone by NEROCASA.',
   },
   b2b: {
     seoTitle: 'B2B Marble Furniture | Trade & Hospitality | NEROCASA',
@@ -156,6 +156,13 @@ function runShopify(args, { parseJson = true } = {}) {
 }
 
 function ensureAuth() {
+  if (process.env.NC_SKIP_SHOPIFY_AUTH === '1') return;
+  try {
+    runShopify(['store', 'execute', '--store', store, '--query', 'query { shop { name } }']);
+    return;
+  } catch {
+    /* needs auth */
+  }
   console.log(`→ Authenticating with ${store} ...`);
   runShopify(['store', 'auth', '--store', store, '--scopes', SCOPES], { parseJson: false });
 }

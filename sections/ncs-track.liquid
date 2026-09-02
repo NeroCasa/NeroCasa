@@ -12,7 +12,7 @@
     {% else %}
       <p>Track your order using the link in your order confirmation email. That email is also your receipt (order number, items, and total paid).</p>
       <p>Enter your order number and email on the status page linked from the email, or contact us with those details.</p>
-      <p>For warranty or questions about what you bought, email <a href="mailto:{{ settings.contact_email | default: 'info@nerocasa.com' }}">{{ settings.contact_email | default: 'info@nerocasa.com' }}</a> or <a href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">WhatsApp</a> with your order number.</p>
+      <p>For warranty or questions about what you bought, email <a href="mailto:{% render 'nc-contact-email' %}">{% render 'nc-contact-email' %}</a> or <a href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">WhatsApp</a> with your order number.</p>
     {% endif %}
   </div>
 </section>

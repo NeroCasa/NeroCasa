@@ -66,7 +66,7 @@
         "type": "text",
         "id": "contact_email",
         "label": "Email",
-        "default": "info@nerocasa.com"
+        "default": "nerocasamarbles@gmail.com"
       },
       {
         "type": "text",
@@ -92,7 +92,7 @@
         "type": "text",
         "id": "trade_email",
         "label": "Trade / B2B email",
-        "default": "trade@nerocasa.com"
+        "default": "nerocasamarbles@gmail.com"
       }
     ]
   },

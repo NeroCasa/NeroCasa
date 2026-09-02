@@ -67,6 +67,9 @@
         <s class="ncs-compare-price">{{ product.selected_or_first_available_variant.compare_at_price | money }}</s>
       {% endif %}
       <small>INCLUDING STANDARD VAT</small>
+      {%- if product.handle == 'cft-1' -%}
+        <p class="ncs-product-note">Sold as a pair. The price shown is for both tables together.</p>
+      {%- endif -%}
     </div>
 
     {% if product.description != blank %}<div class="ncs-short-desc">{{ product.description }}</div>{% endif %}
@@ -154,6 +157,9 @@
         <summary>DIMENSIONS</summary>
         <div class="ncs-story-body" data-ncs-dimensions>
           {%- if dim_h != blank or dim_l != blank or dim_w != blank or dim_d != blank -%}
+            {%- if product.handle == 'cft-1' -%}
+              <p class="ncs-dimension-note">Dimensions shown are for each table. Soglia is a set of two matching pieces.</p>
+            {%- endif -%}
             <ul class="ncs-dims">
               {%- if dim_h != blank -%}<li><span>H</span><b>{{ dim_h }} cm</b></li>{%- endif -%}
               {%- if dim_l != blank -%}<li><span>L</span><b>{{ dim_l }} cm</b></li>{%- endif -%}

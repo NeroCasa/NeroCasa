@@ -7,7 +7,7 @@
     %}
     <header class="ncs-page-hero ncs-contact-hero" data-nc-reveal>
       <h1>{% render 'nc-title-gold', title: 'Get in touch' %}</h1>
-      <p>We respond to every enquiry within one business day. Custom ideas and commissions are handled on WhatsApp. Trade and project enquiries go to info@nerocasa.com via our B2B page.</p>
+      <p>We respond to every enquiry within one business day. Custom ideas and commissions are handled on WhatsApp. Trade and project enquiries go to {% render 'nc-contact-email' %} via our B2B page.</p>
       <a class="ncs-btn ncs-btn--ghost" href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B Enquiry ↗</a>
       <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">WhatsApp for custom ↗</a>
     </header>
@@ -26,7 +26,7 @@
       </div>
       <div class="ncs-contact-card" data-nc-reveal>
         <span class="ncs-contact-label">Email</span>
-        <a class="ncs-contact-value" href="mailto:{{ settings.contact_email | default: 'info@nerocasa.com' }}">{{ settings.contact_email | default: 'info@nerocasa.com' }}</a>
+        <a class="ncs-contact-value" href="mailto:{% render 'nc-contact-email' %}">{% render 'nc-contact-email' %}</a>
         <p class="ncs-contact-note">For B2B and formal project enquiries. Custom commissions are best on WhatsApp.</p>
       </div>
       <div class="ncs-contact-card" data-nc-reveal>
@@ -38,6 +38,13 @@
         {% endif %}
         <p class="ncs-contact-note">Studio hours, Monday to Friday.</p>
       </div>
+      {% if settings.instagram_url != blank %}
+        <div class="ncs-contact-card" data-nc-reveal>
+          <span class="ncs-contact-label">Instagram</span>
+          <a class="ncs-contact-value" href="{{ settings.instagram_url }}" target="_blank" rel="noopener">@ncmarbles ↗</a>
+          <p class="ncs-contact-note">Follow our workshop, new pieces and stone in progress.</p>
+        </div>
+      {% endif %}
     </div>
 
     <div class="ncs-contact-form-wrap" data-nc-reveal>

@@ -22,10 +22,10 @@
 
     <div class="ncs-b2b-form-wrap" data-nc-reveal>
       <div class="ncs-b2b-form-panel">
-        <p class="ncs-form-route">Enquiries are sent to <a href="mailto:{{ settings.contact_email | default: 'info@nerocasa.com' }}">{{ settings.contact_email | default: 'info@nerocasa.com' }}</a>. We respond within one business day.</p>
+        <p class="ncs-form-route">Enquiries are sent to <a href="mailto:{% render 'nc-contact-email' %}">{% render 'nc-contact-email' %}</a>. We respond within one business day.</p>
         {% form 'contact', class: 'ncs-b2b-form' %}
           {% if form.posted_successfully? %}
-            <p class="ncs-form-success">Thank you. Your enquiry has been received at info@nerocasa.com. We will respond within one business day.</p>
+            <p class="ncs-form-success">Thank you. Your enquiry has been received at {% render 'nc-contact-email' %}. We will respond within one business day.</p>
           {% else %}
             {% if form.errors %}<p class="ncs-form-error">Please check the form and try again.</p>{% endif %}
             <input type="hidden" name="contact[tags]" value="b2b-enquiry">

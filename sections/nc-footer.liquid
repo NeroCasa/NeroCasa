@@ -35,7 +35,7 @@
         <span class="nc-footer-nav-label">Contact</span>
         <a href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">WhatsApp</a>
         <a href="tel:{% render 'nc-contact-phone' % | strip | replace: ' ', '' %}">{% render 'nc-contact-phone' %}</a>
-        <a href="mailto:{{ settings.contact_email | default: 'info@nerocasa.com' }}">{{ settings.contact_email | default: 'info@nerocasa.com' }}</a>
+        <a href="mailto:{% render 'nc-contact-email' %}">{% render 'nc-contact-email' %}</a>
       </div>
     </nav>
   </div>

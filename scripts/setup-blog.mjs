@@ -94,20 +94,20 @@ const ARTICLES = [
   },
   {
     handle: 'bespoke-marble-furniture-guide',
-    title: 'Bespoke Marble Furniture: From Brief to Delivery',
-    tags: ['Bespoke', 'Custom', 'Marble'],
-    seoTitle: 'Bespoke Marble Furniture Guide | NEROCASA Journal',
+    title: 'Custom Marble Furniture: From Brief to Delivery',
+    tags: ['Custom', 'Marble', 'Commissions'],
+    seoTitle: 'Custom Marble Furniture Guide | NEROCASA Journal',
     seoDescription:
-      'Commission bespoke marble furniture with NEROCASA: stone selection, dimensions, design adaptation and white-glove delivery explained.',
+      'Commission custom marble furniture with NEROCASA: stone selection, dimensions, design adaptation and white-glove delivery explained.',
     summary:
-      'How bespoke marble commissions work, from first conversation to installation.',
-    bodyHtml: `<p>Beyond our catalog, NEROCASA creates bespoke marble furniture for private clients, designers and hospitality projects. Commissions may adapt an existing design, resize a piece for a specific room or develop something entirely new in stone.</p>
+      'How custom marble commissions work, from first conversation to installation.',
+    bodyHtml: `<p>Beyond our catalog, NEROCASA creates custom marble furniture for private clients, designers and hospitality projects. Commissions may adapt an existing design, resize a piece for a specific room or develop something entirely new in stone.</p>
 <h2>Start with the space</h2>
 <p>Share floor plans, reference images and the mood you want the piece to create. If you love a catalog silhouette, designs such as <a href="/products/cft-1">Soglia</a> or <a href="/products/cs-3">Atrio</a> can often be reinterpreted in a different marble or dimension.</p>
 <h2>Stone selection</h2>
-<p>We source premium marbles from Italy and beyond. Ibiza White, Armani Grey, Travertine and Rosso Levanto are among our most requested finishes, but bespoke projects can explore other slabs based on availability and your brief.</p>
+<p>We source premium marbles from Italy and beyond. Ibiza White, Armani Grey, Travertine and Rosso Levanto are among our most requested finishes, but custom projects can explore other slabs based on availability and your brief.</p>
 <h2>Process and delivery</h2>
-<p>Once the configuration is confirmed, our workshop handles cutting, finishing and quality control in house. Delivery is coordinated with white-glove care. For custom enquiries, visit our <a href="/pages/custom">bespoke page</a> or reach us on WhatsApp to begin.</p>`,
+<p>Once the configuration is confirmed, our workshop handles cutting, finishing and quality control in house. Delivery is coordinated with white-glove care. For custom enquiries, visit our <a href="/pages/custom">custom page</a> or reach us on WhatsApp to begin.</p>`,
   },
   {
     handle: 'italian-marble-in-modern-interiors',
@@ -398,7 +398,7 @@ const blogSeo = execute(
         key: 'description_tag',
         type: 'single_line_text_field',
         value:
-          'Guides on luxury marble furniture, Italian stone finishes, interior styling and bespoke commissions from NEROCASA.',
+          'Guides on luxury marble furniture, Italian stone finishes, interior styling and custom commissions from NEROCASA.',
       },
     ],
   },
