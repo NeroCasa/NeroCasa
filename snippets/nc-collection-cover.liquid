@@ -6,14 +6,14 @@
   assign coll = collections[handle]
 
   if handle == settings.collection_coffee or handle == 'coffee-tables'
-    echo 'cft-3-rosso-levanto.jpg' | asset_url
+    echo 'cft-3-rosso-levanto-v2.jpg' | asset_url
   elsif handle == settings.collection_side or handle == 'side-tables'
-    echo 'sd-2-travertine.jpg' | asset_url
+    echo 'sd-2-travertine-v2.jpg' | asset_url
   elsif handle == settings.collection_console or handle == 'console-tables'
-    echo 'cs-3-armani-grey.jpg' | asset_url
+    echo 'cs-3-armani-grey-v2.jpg' | asset_url
   elsif coll.image != blank
     echo coll.image | image_url: width: 1800
   else
-    echo 'cft-3-rosso-levanto.jpg' | asset_url
+    echo 'cft-3-rosso-levanto-v2.jpg' | asset_url
   endif
 -%}

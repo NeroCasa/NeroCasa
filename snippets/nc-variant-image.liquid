@@ -13,7 +13,7 @@
   endif
 
   if is_catalog
-    assign asset_name = product.handle | append: '-' | append: marble_slug | append: '.jpg'
+    assign asset_name = product.handle | append: '-' | append: marble_slug | append: '-v2.jpg'
     echo asset_name | asset_url
   else
     assign image_url = blank
@@ -36,7 +36,7 @@
     if image_url != blank
       echo image_url
     else
-      assign asset_name = product.handle | append: '-' | append: marble_slug | append: '.jpg'
+      assign asset_name = product.handle | append: '-' | append: marble_slug | append: '-v2.jpg'
       echo asset_name | asset_url
     endif
   endif
