@@ -24,9 +24,16 @@
       {%- capture default_marble -%}{% render 'nc-catalog-default-marble', handle: product.handle %}{%- endcapture -%}
       {%- assign main_img = main_img | strip -%}
       {%- assign default_marble = default_marble | strip -%}
-      <img src="{{ main_img }}"
-           alt="{{ product.featured_image.alt | default: product.title | escape }}"
-           data-ncs-main width="1800" height="1900" loading="eager">
+      {%- if main_img != blank -%}
+        <img src="{{ main_img }}"
+             alt="{{ display_name | escape }}"
+             data-ncs-main
+             data-ncs-alt="{{ display_name | escape }}"
+             width="1800" height="1900" loading="eager">
+      {%- else -%}
+        <div class="ncs-main-product-image-empty" data-ncs-main-empty aria-hidden="true"></div>
+        <img src="" alt="{{ display_name | escape }}" data-ncs-main data-ncs-alt="{{ display_name | escape }}" width="1800" height="1900" hidden>
+      {%- endif -%}
       <p class="ncs-shown-in" data-ncs-shown-in>
         {%- liquid
           assign shown_marble = default_marble
@@ -150,14 +157,29 @@
             {%- if product.handle == 'cft-1' -%}
               <p class="ncs-dimension-note">Dimensions shown are for each table. Soglia is a set of two matching pieces.</p>
             {%- elsif product.handle == 'cft-3' -%}
-              <p class="ncs-dimension-note">Dimensions shown are for each table. Monolite is a set of two matching pieces.</p>
+              <p class="ncs-dimension-note">Monolite is a set of two pieces. Dimensions for each table:</p>
             {%- endif -%}
-            <ul class="ncs-dims">
-              {%- if dim_h != blank -%}<li><span>H</span><b>{{ dim_h }} cm</b></li>{%- endif -%}
-              {%- if dim_l != blank -%}<li><span>L</span><b>{{ dim_l }} cm</b></li>{%- endif -%}
-              {%- if dim_w != blank -%}<li><span>W</span><b>{{ dim_w }} cm</b></li>{%- endif -%}
-              {%- if dim_d != blank -%}<li><span>D</span><b>{{ dim_d }} cm</b></li>{%- endif -%}
-            </ul>
+            {%- if product.handle == 'cft-3' -%}
+              <p class="ncs-dim-set-label">Piece 1</p>
+              <ul class="ncs-dims">
+                <li><span>H</span><b>45 cm</b></li>
+                <li><span>L</span><b>190 cm</b></li>
+                <li><span>W</span><b>60 cm</b></li>
+              </ul>
+              <p class="ncs-dim-set-label">Piece 2</p>
+              <ul class="ncs-dims">
+                <li><span>H</span><b>30 cm</b></li>
+                <li><span>L</span><b>190 cm</b></li>
+                <li><span>W</span><b>60 cm</b></li>
+              </ul>
+            {%- else -%}
+              <ul class="ncs-dims">
+                {%- if dim_h != blank -%}<li><span>H</span><b>{{ dim_h }} cm</b></li>{%- endif -%}
+                {%- if dim_l != blank -%}<li><span>L</span><b>{{ dim_l }} cm</b></li>{%- endif -%}
+                {%- if dim_w != blank -%}<li><span>W</span><b>{{ dim_w }} cm</b></li>{%- endif -%}
+                {%- if dim_d != blank -%}<li><span>D</span><b>{{ dim_d }} cm</b></li>{%- endif -%}
+              </ul>
+            {%- endif -%}
           {%- else -%}
             <p>Dimensions are controlled by the selected configuration.</p>
           {%- endif -%}
@@ -214,6 +236,7 @@
   }
   function fixedDims(){return {h:'{{ dim_h | escape }}',l:'{{ dim_l | escape }}',w:'{{ dim_w | escape }}',d:'{{ dim_d | escape }}'};}
   function formatDims(dims){
+    if(handle==='cft-3') return 'Piece 1 H 45 × L 190 × W 60 cm · Piece 2 H 30 × L 190 × W 60 cm';
     var parts=[];
     if(dims.h)parts.push('H '+dims.h);
     if(dims.l)parts.push('L '+dims.l);
@@ -228,13 +251,19 @@
     return normalizeColor(color);
   }
   function resolveImage(v){
+    if(v&&v.image)return v.image;
     var color=getSelectedColor();
     if(catalog&&catalog.images&&color&&catalog.images[color])return catalog.images[color];
-    if(v&&v.image)return v.image;
     return null;
   }
   function setImage(src){
     if(!main||!src)return;
+    main.hidden=false;
+    var emptyEl=root.querySelector('[data-ncs-main-empty]');
+    if(emptyEl)emptyEl.hidden=true;
+    var baseAlt=main.getAttribute('data-ncs-alt')||main.alt||'';
+    var color=getSelectedColor();
+    main.alt=color? (baseAlt+' — '+color) : baseAlt;
     main.style.opacity='.35';
     setTimeout(function(){main.src=src;main.style.opacity='1';},120);
   }
