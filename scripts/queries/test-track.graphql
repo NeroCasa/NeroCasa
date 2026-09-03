@@ -1,0 +1,15 @@
+mutation TestTrack($productId: ID!, $variants: [ProductVariantsBulkInput!]!) {
+  productVariantsBulkUpdate(productId: $productId, variants: $variants) {
+    productVariants {
+      id
+      title
+      inventoryItem {
+        tracked
+      }
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

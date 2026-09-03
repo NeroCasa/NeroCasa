@@ -1,0 +1,12 @@
+{
+  "productId": "gid://shopify/Product/54558141513952",
+  "variants": [
+    {
+      "id": "gid://shopify/ProductVariant/54558141546720",
+      "inventoryPolicy": "CONTINUE",
+      "inventoryItem": {
+        "tracked": true
+      }
+    }
+  ]
+}

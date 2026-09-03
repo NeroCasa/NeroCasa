@@ -1,8 +1,0 @@
-{%- comment -%}
-  Product thumbnail — Shopify Admin media only.
-{%- endcomment -%}
-{%- if product.featured_image -%}
-  {{ product.featured_image | image_url: width: 2400 }}
-{%- elsif product.images.size > 0 -%}
-  {{ product.images.first | image_url: width: 2400 }}
-{%- endif -%}

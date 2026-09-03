@@ -59,7 +59,8 @@
           </svg>
           WhatsApp
         </a>
-        <a href="tel:{% render 'nc-contact-phone' % | strip | replace: ' ', '' %}">{% render 'nc-contact-phone' %}</a>
+        {%- capture nc_footer_phone -%}{% render 'nc-contact-phone' %}{%- endcapture -%}
+        <a href="tel:{{ nc_footer_phone | strip | replace: ' ', '' }}">{{ nc_footer_phone | strip }}</a>
         <a href="mailto:{% render 'nc-contact-email' %}">{% render 'nc-contact-email' %}</a>
       </div>
     </nav>
