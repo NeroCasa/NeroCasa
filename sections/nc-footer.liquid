@@ -16,18 +16,19 @@
         </div>
       {% endif %}
     </div>
+
     <nav class="nc-footer-nav" aria-label="Footer navigation">
       <div>
+        <span class="nc-footer-nav-label">Explore</span>
         <a href="{% render 'nc-collections-index-url' %}">Collections</a>
         <a href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}">Custom</a>
         <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B</a>
         <a href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}">Why Nerocasa</a>
         <a href="{% render 'nc-blog-url' %}">Journal</a>
-        <a href="{% render 'nc-page-url', handle: settings.page_contact_handle, view: 'contact' %}">Contact</a>
       </div>
       <div>
-        <a href="{% render 'nc-page-url', handle: settings.page_terms_handle, view: 'terms' %}">Terms</a>
-        <a href="{% render 'nc-page-url', handle: settings.page_refunds_handle, view: 'refunds' %}">Refunds</a>
+        <span class="nc-footer-nav-label">Support</span>
+        <a href="{% render 'nc-page-url', handle: settings.page_contact_handle, view: 'contact' %}">Contact</a>
         <a href="{% render 'nc-page-url', handle: settings.page_track_handle, view: 'track' %}">Track Order</a>
         <a href="{{ routes.search_url }}">Search</a>
       </div>
@@ -41,9 +42,15 @@
   </div>
 
   <div class="nc-footer-bottom">
-    <span>© {{ 'now' | date: '%Y' }} {{ settings.brand_name | default: 'NEROCASA' }}</span>
-    <a href="{{ routes.privacy_policy_url }}">Privacy</a>
-    <a href="{{ routes.terms_of_service_url }}">Terms</a>
+    <span class="nc-footer-copy">© {{ 'now' | date: '%Y' }} {{ settings.brand_name | default: 'NEROCASA' }}</span>
+    <div class="nc-footer-legal">
+      <span class="nc-footer-legal-pair">
+        <a href="{% render 'nc-page-url', handle: settings.page_terms_handle, view: 'terms' %}">Terms</a>
+        <span class="nc-footer-legal-sep" aria-hidden="true">&amp;</span>
+        <a href="{{ routes.privacy_policy_url }}">Privacy</a>
+      </span>
+      <a href="{% render 'nc-page-url', handle: settings.page_refunds_handle, view: 'refunds' %}">Returns</a>
+    </div>
   </div>
 </footer>
 {% schema %}{"name":"Nerocasa Footer"}{% endschema %}

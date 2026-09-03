@@ -49,19 +49,24 @@
   </div>
 
   <div class="ncs-about-closer" data-nc-reveal>
+    <div class="ncs-about-closer-intro">
+      <span class="ncs-page-kicker">Continue</span>
+      <h2 class="ncs-about-closer-heading">{% render 'nc-title-gold', title: 'Begin with stone' %}</h2>
+      <p class="ncs-about-closer-lead">Explore the collection, or speak with us about a project made for your space.</p>
+    </div>
     <div class="ncs-about-closer-grid">
       <article>
-        <h2>{% render 'nc-title-gold', title: section.settings.advantage_1_title %}</h2>
+        <h3>{% render 'nc-title-gold', title: section.settings.advantage_1_title %}</h3>
         <p>{{ section.settings.advantage_1_text }}</p>
       </article>
       <article>
-        <h2>{% render 'nc-title-gold', title: section.settings.advantage_2_title %}</h2>
+        <h3>{% render 'nc-title-gold', title: section.settings.advantage_2_title %}</h3>
         <p>{{ section.settings.advantage_2_text }}</p>
       </article>
     </div>
     <div class="ncs-about-closer-actions">
       <a class="ncs-btn ncs-btn--compact" href="{% render 'nc-collections-index-url' %}">Shop collections ↗</a>
-      <a class="ncs-btn ncs-btn--outline ncs-btn--compact" href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B ↗</a>
+      <a class="ncs-btn ncs-btn--outline ncs-btn--compact" href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B enquiry ↗</a>
     </div>
   </div>
 </section>
