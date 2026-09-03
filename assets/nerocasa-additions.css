@@ -175,6 +175,8 @@ body.nc-menu-open{overflow:hidden}
 .ncs-short-desc p{margin:0}
 .ncs-product-note,.ncs-dimension-note{color:var(--nc-muted);font-size:12px;line-height:1.7;margin:10px 0 0;letter-spacing:.02em}
 .ncs-dimension-note{margin:0 0 14px}
+.ncs-fixed-dimensions .ncs-product-note{margin-top:12px}
+.ncs-dimension-note{margin:0 0 14px}
 .ncs-choice,.ncs-size-mode{margin:30px 0}
 .ncs-choice>label,.ncs-size-mode>label{display:block;font-size:8px;letter-spacing:.2em;color:var(--nc-muted);margin-bottom:12px}
 .ncs-choice-row{display:flex;flex-wrap:wrap;gap:7px}

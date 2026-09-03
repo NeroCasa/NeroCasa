@@ -1126,8 +1126,10 @@ body {
 
 .ncs-contact-value,
 .ncs-contact-card a {
-  font-size: 18px;
-  font-family: var(--nc-display);
+  font-size: 15px;
+  font-family: inherit;
+  font-weight: 400;
+  letter-spacing: 0.02em;
   color: var(--nc-ink);
   transition: color 0.2s;
 }
@@ -2421,8 +2423,11 @@ body {
 }
 
 .ncs-contact-form-wrap {
-  margin-top: 48px;
+  margin: 48px auto 0;
   max-width: 720px;
+  padding: 0 8vw;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .ncs-about-page-content {
@@ -2444,6 +2449,10 @@ body {
 
   .ncs-cart-summary {
     position: static;
+  }
+
+  .ncs-contact-form-wrap {
+    padding: 0 6vw;
   }
 }
 
