@@ -24,9 +24,11 @@ const ARTICLES = [
     handle: 'how-to-choose-luxury-marble-coffee-table',
     title: 'How to Choose a Luxury Marble Coffee Table',
     tags: ['Coffee Tables', 'Buying Guide', 'Marble'],
-    seoTitle: 'How to Choose a Luxury Marble Coffee Table | NEROCASA Journal',
+    // Keep these in sync with ARTICLES in scripts/optimize-store-seo.mjs,
+    // which is the owner of every SEO title and meta description.
+    seoTitle: 'How to Choose a Marble Coffee Table | NEROCASA',
     seoDescription:
-      'A practical guide to choosing a luxury marble coffee table: scale, stone finishes, room placement and Italian design from NEROCASA.',
+      'Scale, stone and silhouette: what to look for when choosing a marble coffee table for a refined living room.',
     summary:
       'Scale, stone and silhouette: what to look for when choosing a luxury marble coffee table for a refined living room.',
     bodyHtml: `<p>A marble coffee table should feel inevitable in the room: sculptural, calm and unmistakably premium. Before choosing a design, consider three things: proportion, stone character and how the piece will be used day to day.</p>
@@ -41,12 +43,12 @@ const ARTICLES = [
     handle: 'ibiza-white-vs-armani-grey-vs-travertine',
     title: 'Ibiza White vs Armani Grey vs Travertine: A Buyer\'s Guide',
     tags: ['Marble', 'Materials', 'Buying Guide'],
-    seoTitle: 'Ibiza White vs Armani Grey vs Travertine | NEROCASA Journal',
+    seoTitle: 'Ibiza White vs Armani Grey vs Travertine | NEROCASA',
     seoDescription:
-      'Compare Ibiza White, Armani Grey and Travertine marble finishes for luxury furniture. Tone, veining and interior pairings explained by NEROCASA.',
+      'Three signature marbles, three distinct moods. Compare colour, veining and character to find the finish that suits your interior.',
     summary:
       'Three signature marbles, three distinct moods. Learn which finish suits your interior.',
-    bodyHtml: `<p>Every NEROCASA piece is available in a curated selection of Italian marbles. These three finishes appear across our <a href="/collections/coffee-tables">coffee tables</a>, <a href="/collections/console-tables">console tables</a> and <a href="/collections/side-tables">side tables</a>, each bringing a different atmosphere to the room.</p>
+    bodyHtml: `<p>Every NEROCASA piece is available in a curated selection of natural marbles. These three finishes appear across our <a href="/collections/coffee-tables">coffee tables</a>, <a href="/collections/console-tables">console tables</a> and <a href="/collections/side-tables">side tables</a>, each bringing a different atmosphere to the room.</p>
 <h2>Ibiza White</h2>
 <p>Clean, bright and quietly luxurious. Ibiza White suits contemporary interiors, neutral palettes and spaces where you want stone to feel fresh rather than heavy. Ideal for open-plan living rooms and light-filled apartments.</p>
 <h2>Armani Grey</h2>
@@ -60,9 +62,9 @@ const ARTICLES = [
     handle: 'marble-console-tables-entryway-guide',
     title: 'Marble Console Tables for Entryways and Hallways',
     tags: ['Console Tables', 'Interior Design', 'Marble'],
-    seoTitle: 'Marble Console Tables for Entryways | NEROCASA Journal',
+    seoTitle: 'Marble Console Tables for Entryways | NEROCASA',
     seoDescription:
-      'How to style luxury marble console tables in entryways and hallways. Galleria, Passaggio and Atrio by NEROCASA explained.',
+      'How to choose and style a marble console table for an entryway or hallway, from proportion to finish.',
     summary:
       'The right console table sets the tone from the moment you arrive home.',
     bodyHtml: `<p>An entryway console is the first impression of your home. In marble, it signals taste, permanence and attention to material quality before a guest reaches the living room.</p>
@@ -77,9 +79,9 @@ const ARTICLES = [
     handle: 'caring-for-marble-furniture-at-home',
     title: 'Caring for Marble Furniture at Home',
     tags: ['Care Guide', 'Marble', 'Luxury Living'],
-    seoTitle: 'How to Care for Marble Furniture | NEROCASA Journal',
+    seoTitle: 'How to Care for Marble Furniture at Home | NEROCASA',
     seoDescription:
-      'Expert tips for caring for luxury marble furniture at home. Cleaning, protection and everyday use from the NEROCASA workshop.',
+      'Natural stone rewards simple, consistent care. A practical guide to keeping marble furniture looking its best at home.',
     summary:
       'Natural stone rewards simple, consistent care. Here is how to keep marble looking its best.',
     bodyHtml: `<p>Marble is a living material. Light veining, subtle variation and a fine patina over time are signs of authenticity, not imperfection. With straightforward care, your table will look exceptional for decades.</p>
@@ -90,22 +92,22 @@ const ARTICLES = [
 <h2>Protection</h2>
 <p>Professional sealing can reduce porosity depending on the finish. In high-use settings, consider felt pads under decorative objects and rotate styling pieces occasionally to avoid uneven wear.</p>
 <h2>Embrace character</h2>
-<p>Small marks and a gentle evolution of the surface are part of living with real stone. That honesty is what separates mass-produced furniture from premium marble pieces crafted in our workshop.</p>`,
+<p>Small marks and a gentle evolution of the surface are part of living with real stone. That honesty is what separates mass-produced furniture from premium marble pieces crafted in our workshop. Browse our <a href="/collections/coffee-tables">marble coffee tables</a> and <a href="/collections/side-tables">side tables</a>, or <a href="/pages/custom">commission a custom piece</a> in the stone of your choice.</p>`,
   },
   {
     handle: 'bespoke-marble-furniture-guide',
     title: 'Custom Marble Furniture: From Brief to Delivery',
     tags: ['Custom', 'Marble', 'Commissions'],
-    seoTitle: 'Custom Marble Furniture Guide | NEROCASA Journal',
+    seoTitle: 'Custom Marble Furniture: Brief to Delivery | NEROCASA',
     seoDescription:
-      'Commission custom marble furniture with NEROCASA: stone selection, dimensions, design adaptation and white-glove delivery explained.',
+      'How a bespoke marble commission works, from the first conversation through to installation in your home.',
     summary:
       'How custom marble commissions work, from first conversation to installation.',
     bodyHtml: `<p>Beyond our catalog, NEROCASA creates custom marble furniture for private clients, designers and hospitality projects. Commissions may adapt an existing design, resize a piece for a specific room or develop something entirely new in stone.</p>
 <h2>Start with the space</h2>
 <p>Share floor plans, reference images and the mood you want the piece to create. If you love a catalog silhouette, designs such as <a href="/products/cft-1">Soglia</a> or <a href="/products/cs-3">Atrio</a> can often be reinterpreted in a different marble or dimension.</p>
 <h2>Stone selection</h2>
-<p>We source premium marbles from Italy and beyond. Ibiza White, Armani Grey, Travertine and Rosso Levanto are among our most requested finishes, but custom projects can explore other slabs based on availability and your brief.</p>
+<p>We source premium marbles from quarries worldwide. Ibiza White, Armani Grey, Travertine and Rosso Levanto are among our most requested finishes, but custom projects can explore other slabs based on availability and your brief.</p>
 <h2>Process and delivery</h2>
 <p>Once the configuration is confirmed, our workshop handles cutting, finishing and quality control in house. Delivery is coordinated with white-glove care. For custom enquiries, visit our <a href="/pages/custom">custom page</a> or reach us on WhatsApp to begin.</p>`,
   },
@@ -113,9 +115,9 @@ const ARTICLES = [
     handle: 'italian-marble-in-modern-interiors',
     title: 'Why Italian Marble Belongs in Modern Interiors',
     tags: ['Interior Design', 'Marble', 'Luxury Living'],
-    seoTitle: 'Italian Marble in Modern Interiors | NEROCASA Journal',
+    seoTitle: 'Italian Marble in Modern Interiors | NEROCASA',
     seoDescription:
-      'Why Italian marble remains the ultimate luxury material for modern interiors. Design ideas for coffee tables, consoles and side tables by NEROCASA.',
+      'Marble is ancient, yet in contemporary rooms it feels more relevant than ever. A look at stone in modern design.',
     summary:
       'Marble is ancient. In modern rooms, it feels more relevant than ever.',
     bodyHtml: `<p>Modern interiors often chase novelty. Marble does the opposite. It connects a room to permanence, craft and the natural world, which is exactly why it continues to define luxury furniture.</p>
@@ -124,7 +126,7 @@ const ARTICLES = [
 <h2>Sculptural furniture</h2>
 <p>Contemporary design favours strong silhouettes. Marble adds gravity to those forms. A monolithic coffee table such as <a href="/products/cft-3">Monolite</a> can anchor an entire seating area, while side tables like <a href="/products/sd-2">Punto</a> provide precise accents without clutter.</p>
 <h2>Layering stone through a home</h2>
-<p>Consider marble at multiple scales: a console in the entry, a coffee table in the living room and side tables beside seating. Repeating the material creates cohesion while varying the design keeps the story interesting. Explore the full <a href="/pages/collections">NEROCASA collections</a> to build a coherent stone palette throughout your home.</p>`,
+<p>Consider marble at multiple scales: a console in the entry, a coffee table in the living room and side tables beside seating. Repeating the material creates cohesion while varying the design keeps the story interesting. Explore the full <a href="/collections">NEROCASA collections</a> to build a coherent stone palette throughout your home.</p>`,
   },
 ];
 
@@ -140,6 +142,14 @@ function runShopify(args, { parseJson = true } = {}) {
 }
 
 function ensureAuth() {
+  try {
+    // shell: isWin means the query has to arrive quoted, or cmd.exe splits it
+    // on the braces and the CLI rejects it as stray arguments.
+    runShopify(['store', 'execute', '--store', store, '--query', '"query { shop { name } }"']);
+    return;
+  } catch {
+    /* needs auth */
+  }
   console.log(`→ Authenticating with ${store} ...`);
   runShopify(['store', 'auth', '--store', store, '--scopes', SCOPES], { parseJson: false });
 }
@@ -282,6 +292,13 @@ const articleImageMutation = `mutation ArticleImage($id: ID!, $article: ArticleU
   }
 }`;
 
+const articleContentMutation = `mutation ArticleContent($id: ID!, $article: ArticleUpdateInput!) {
+  articleUpdate(id: $id, article: $article) {
+    article { handle }
+    userErrors { message }
+  }
+}`;
+
 const logoAssetUrl = getLogoAssetUrl();
 let articleImageUrl = logoAssetUrl;
 try {
@@ -304,7 +321,27 @@ for (const article of ARTICLES) {
   const found = existingArticles.find((a) => a.handle === article.handle);
   if (found) {
     articleId = found.id;
-    console.log(`  ✓ article "${article.handle}" already exists`);
+    // Re-sync the body so copy corrections in this file reach articles that
+    // already exist, instead of only applying on first creation.
+    const synced = execute(
+      articleContentMutation,
+      {
+        id: articleId,
+        article: {
+          title: article.title,
+          body: article.bodyHtml,
+          summary: article.summary,
+          tags: article.tags,
+        },
+      },
+      true,
+    );
+    const syncErrors = synced.articleUpdate?.userErrors || [];
+    if (syncErrors.length) {
+      console.log(`  ✗ sync ${article.handle}: ${syncErrors.map((e) => e.message).join('; ')}`);
+    } else {
+      console.log(`  ~ article "${article.handle}" content synced`);
+    }
   } else {
     const created = execute(
       articleCreateMutation,
@@ -398,7 +435,7 @@ const blogSeo = execute(
         key: 'description_tag',
         type: 'single_line_text_field',
         value:
-          'Guides on luxury marble furniture, Italian stone finishes, interior styling and custom commissions from NEROCASA.',
+          'Guides on luxury marble furniture, natural stone finishes, interior styling and custom commissions from NEROCASA.',
       },
     ],
   },

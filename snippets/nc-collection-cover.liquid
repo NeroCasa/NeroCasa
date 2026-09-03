@@ -2,16 +2,18 @@
   Collection cover — Admin collection image, Theme Editor override, or first product image.
   @param handle {String} collection handle
   @param image {Image} optional Theme Editor override
+  @param width {Number} optional, default 1200 — covers the index tiles at 2x.
 {%- endcomment -%}
 {%- liquid
+  assign img_width = width | default: 1200
   if image != blank
-    echo image | image_url: width: 1800
+    echo image | image_url: width: img_width
   else
     assign coll = collections[handle]
     if coll != blank and coll.image != blank
-      echo coll.image | image_url: width: 1800
+      echo coll.image | image_url: width: img_width
     elsif coll != blank and coll.products_count > 0 and coll.products.first.featured_image != blank
-      echo coll.products.first.featured_image | image_url: width: 1800
+      echo coll.products.first.featured_image | image_url: width: img_width
     endif
   endif
 -%}

@@ -1,6 +1,0 @@
-{
-  "sections": {
-    "main": {"type": "ncs-refunds", "settings": {}}
-  },
-  "order": ["main"]
-}

@@ -11,10 +11,36 @@
 {%- assign item_price_min = shop_product.price_min | money -%}
 {%- capture item_src -%}{% render 'nc-catalog-default-img', handle: item_handle, product: shop_product %}{%- endcapture -%}
 {%- assign item_src = item_src | strip -%}
+{%- capture item_src_400 -%}{% render 'nc-catalog-default-img', handle: item_handle, product: shop_product, width: 400 %}{%- endcapture -%}
+{%- capture item_src_600 -%}{% render 'nc-catalog-default-img', handle: item_handle, product: shop_product, width: 600 %}{%- endcapture -%}
+{%- assign item_src_400 = item_src_400 | strip -%}
+{%- assign item_src_600 = item_src_600 | strip -%}
+{%- comment -%}
+  The grid is 3 columns above 900px, 2 columns above 600px, 1 below — so a card
+  never renders much beyond 450 CSS px. Serving the full-size original here was
+  costing roughly 3x the bytes needed.
+{%- endcomment -%}
+{%- capture item_alt -%}
+  {%- if item_category != blank -%}
+    {{ item_name }} marble {{ item_category | downcase }}
+  {%- else -%}
+    {{ item_name }}
+  {%- endif -%}
+{%- endcapture -%}
+{%- assign item_alt = item_alt | strip -%}
 <a class="ncs-card ncs-marble-card" href="{{ item_url }}" data-nc-marble-card data-nc-reveal>
   <div class="ncs-fit-img ncs-fit-img--tile ncs-card-media">
     {% if item_src != blank %}
-      <img src="{{ item_src }}" alt="{{ item_name | escape }}" width="900" height="1125" loading="lazy" data-nc-card-img data-default-src="{{ item_src }}">
+      <img
+        src="{{ item_src }}"
+        srcset="{{ item_src_400 }} 400w, {{ item_src_600 }} 600w, {{ item_src }} 900w"
+        sizes="(min-width: 901px) 30vw, (min-width: 601px) 45vw, 92vw"
+        alt="{{ item_alt | escape }}"
+        width="900"
+        height="1125"
+        loading="lazy"
+        data-nc-card-img
+        data-default-src="{{ item_src }}">
     {% endif %}
   </div>
   <div class="ncs-card-info">
@@ -38,7 +64,7 @@
         {%- if marble_option != blank -%}
           {%- for marble_name in marble_option.values -%}
             {%- capture marble_slug -%}{% render 'nc-marble-slug', name: marble_name %}{%- endcapture -%}
-            {%- capture marble_img -%}{% render 'nc-variant-image', product: shop_product, marble_name: marble_name %}{%- endcapture -%}
+            {%- capture marble_img -%}{% render 'nc-variant-image', product: shop_product, marble_name: marble_name, width: 900 %}{%- endcapture -%}
             {%- assign marble_slug = marble_slug | strip -%}
             {%- assign marble_img = marble_img | strip -%}
             <span
@@ -58,7 +84,7 @@
             {%- assign parts = entry | split: ':' -%}
             {%- assign marble_name = parts[0] -%}
             {%- assign marble_slug = parts[1] -%}
-            {%- capture marble_img -%}{% render 'nc-variant-image', product: shop_product, marble_name: marble_name %}{%- endcapture -%}
+            {%- capture marble_img -%}{% render 'nc-variant-image', product: shop_product, marble_name: marble_name, width: 900 %}{%- endcapture -%}
             {%- assign marble_img = marble_img | strip -%}
             <span
               class="ncs-marble-swatch ncs-marble-swatch--{{ marble_slug }}"

@@ -11,16 +11,35 @@
   assign right_asset = slab_right | default: 'hero-slab-grey.jpg'
   assign center_asset = slab_center | default: 'hero-slab-travertine.jpg'
 %}
-{%- capture left_src -%}{% render 'nc-media-src', image: left_image, asset: left_asset, width: 1200 %}{%- endcapture -%}
-{%- capture right_src -%}{% render 'nc-media-src', image: right_image, asset: right_asset, width: 1200 %}{%- endcapture -%}
-{%- capture center_src -%}{% render 'nc-media-src', image: center_image, asset: center_asset, width: 1200 %}{%- endcapture -%}
+{%- capture left_src -%}{% render 'nc-media-src', image: left_image, asset: left_asset, width: 1024 %}{%- endcapture -%}
+{%- capture right_src -%}{% render 'nc-media-src', image: right_image, asset: right_asset, width: 1024 %}{%- endcapture -%}
+{%- capture center_src -%}{% render 'nc-media-src', image: center_image, asset: center_asset, width: 1024 %}{%- endcapture -%}
 {%- assign left_src = left_src | strip -%}
 {%- assign right_src = right_src | strip -%}
 {%- assign center_src = center_src | strip -%}
+{%- comment -%}
+  Each slab covers roughly half the viewport width, so a phone needs nowhere
+  near the 1024px original. These are heavily dimmed, masked backgrounds, so
+  the smaller variants are visually indistinguishable.
+{%- endcomment -%}
+{%- capture left_src_small -%}{% render 'nc-media-src', image: left_image, asset: left_asset, width: 512 %}{%- endcapture -%}
+{%- capture right_src_small -%}{% render 'nc-media-src', image: right_image, asset: right_asset, width: 512 %}{%- endcapture -%}
+{%- capture center_src_small -%}{% render 'nc-media-src', image: center_image, asset: center_asset, width: 512 %}{%- endcapture -%}
+{%- capture left_src_mid -%}{% render 'nc-media-src', image: left_image, asset: left_asset, width: 768 %}{%- endcapture -%}
+{%- capture right_src_mid -%}{% render 'nc-media-src', image: right_image, asset: right_asset, width: 768 %}{%- endcapture -%}
+{%- capture center_src_mid -%}{% render 'nc-media-src', image: center_image, asset: center_asset, width: 768 %}{%- endcapture -%}
+{%- assign left_src_small = left_src_small | strip -%}
+{%- assign right_src_small = right_src_small | strip -%}
+{%- assign center_src_small = center_src_small | strip -%}
+{%- assign left_src_mid = left_src_mid | strip -%}
+{%- assign right_src_mid = right_src_mid | strip -%}
+{%- assign center_src_mid = center_src_mid | strip -%}
 <div class="ncs-hero-marble-bg ncs-hero-slabs ncs-hero-slabs--{{ marble_mode }}" aria-hidden="true">
   <img
     class="ncs-hero-slab ncs-hero-slab--1"
     src="{{ left_src }}"
+    srcset="{{ left_src_small }} 512w, {{ left_src_mid }} 768w, {{ left_src }} 1024w"
+    sizes="50vw"
     alt=""
     width="1024"
     height="1536"
@@ -30,6 +49,8 @@
     <img
       class="ncs-hero-slab ncs-hero-slab--2"
       src="{{ center_src }}"
+      srcset="{{ center_src_small }} 512w, {{ center_src_mid }} 768w, {{ center_src }} 1024w"
+      sizes="50vw"
       alt=""
       width="1024"
       height="1536"
@@ -38,6 +59,8 @@
     <img
       class="ncs-hero-slab ncs-hero-slab--3"
       src="{{ right_src }}"
+      srcset="{{ right_src_small }} 512w, {{ right_src_mid }} 768w, {{ right_src }} 1024w"
+      sizes="50vw"
       alt=""
       width="1024"
       height="1536"
@@ -47,6 +70,8 @@
     <img
       class="ncs-hero-slab ncs-hero-slab--dual"
       src="{{ right_src }}"
+      srcset="{{ right_src_small }} 512w, {{ right_src_mid }} 768w, {{ right_src }} 1024w"
+      sizes="60vw"
       alt=""
       width="1024"
       height="1536"

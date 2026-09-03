@@ -1,12 +1,12 @@
 {%- comment -%}
   URL for the all-collections index page.
-  Prefers Shopify page, then alternate home template, then /collections.
+
+  /collections (templates/list-collections.json) and /pages/collections
+  (templates/page.collections.json) render the same ncs-collections-index
+  section. Linking to both split the same content across two indexable URLs,
+  so every internal link now points at Shopify's native /collections route and
+  nc-meta-tags canonicalises the page template to match.
 {%- endcomment -%}
 {%- liquid
-  assign collections_page = pages.collections
-  if collections_page != blank
-    echo collections_page.url
-  else
-    echo routes.root_url | append: '?view=collections'
-  endif
+  echo routes.collections_url
 -%}

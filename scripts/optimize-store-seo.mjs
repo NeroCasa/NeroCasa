@@ -21,63 +21,63 @@ if (!store) {
 
 const PRODUCTS = {
   'cft-1': {
-    seoTitle: 'Soglia Marble Coffee Table | Luxury Italian Stone | NEROCASA',
+    seoTitle: 'Soglia Marble Coffee Table | Natural Stone Pair | NEROCASA',
     seoDescription:
-      'Soglia is a pair of sculptural marble coffee tables in Ibiza White, Armani Grey or Travertine. Price shown is for both tables. Hand-finished natural stone from NEROCASA.',
+      'A pair of sculptural marble coffee tables in Ibiza White, Armani Grey or Travertine. Price shown is for both tables, hand-finished in our workshop.',
     descriptionHtml:
-      '<p>Soglia is a sculptural marble coffee table sold as a matching pair. Available in Ibiza White, Armani Grey and Travertine, each piece is hand-finished in premium Italian marble for refined, architectural living spaces.</p>',
+      '<p>Soglia is a sculptural marble coffee table sold as a matching pair. Available in Ibiza White, Armani Grey and Travertine, each piece is hand-finished in our workshop for refined, architectural living spaces.</p>',
   },
   'cft-2': {
-    seoTitle: 'Equilibrio Marble Coffee Table | Premium Natural Stone | NEROCASA',
+    seoTitle: 'Equilibrio Marble Coffee Table | Natural Stone | NEROCASA',
     seoDescription:
       'Equilibrio balances mass and lightness in Ibiza White, Armani Grey or Travertine. A luxury marble coffee table crafted for architectural interiors.',
     descriptionHtml:
       '<p>Equilibrio is a premium marble coffee table that balances mass and lightness with architectural precision. Choose Ibiza White, Armani Grey or Travertine for a centrepiece that elevates contemporary and classic interiors alike.</p>',
   },
   'cft-3': {
-    seoTitle: 'Monolite Marble Coffee Table | Rosso Levanto & Italian Stone | NEROCASA',
+    seoTitle: 'Monolite Marble Coffee Table | Rosso Levanto | NEROCASA',
     seoDescription:
-      'Monolite marble coffee table in Ibiza White, Travertine or Rosso Levanto. Bold monolithic form in premium Italian stone for luxury interiors.',
+      'Monolite marble coffee table in Ibiza White, Travertine or Rosso Levanto. A bold monolithic form in premium natural stone for luxury interiors.',
     descriptionHtml:
-      '<p>Monolite commands attention with a bold monolithic form carved from premium Italian marble. Available in Ibiza White, Travertine and Rosso Levanto, it brings sculptural presence and natural stone character to luxury living rooms.</p>',
+      '<p>Monolite commands attention with a bold monolithic form carved from premium marble. Available in Ibiza White, Travertine and Rosso Levanto, it brings sculptural presence and natural stone character to luxury living rooms.</p>',
   },
   'cs-1': {
-    seoTitle: 'Galleria Marble Console Table | Luxury Entry Furniture | NEROCASA',
+    seoTitle: 'Galleria Marble Console Table | Entry Furniture | NEROCASA',
     seoDescription:
       'Galleria is an architectural marble console in Ibiza White, Armani Grey or Travertine. Premium stone furniture for refined hallways and living spaces.',
     descriptionHtml:
       '<p>Galleria is an architectural marble console table designed for entryways, galleries and refined living spaces. Finished in Ibiza White, Armani Grey or Travertine, it pairs gallery-worthy presence with everyday elegance.</p>',
   },
   'cs-2': {
-    seoTitle: 'Passaggio Marble Console Table | Italian Stone | NEROCASA',
+    seoTitle: 'Passaggio Marble Console Table | Natural Stone | NEROCASA',
     seoDescription:
       'Passaggio marble console table in Ibiza White, Armani Grey or Travertine. Slim, sculptural luxury furniture for hallways and curated interiors.',
     descriptionHtml:
       '<p>Passaggio is a slim, sculptural marble console that frames transitions between rooms with quiet luxury. Hand-finished in Ibiza White, Armani Grey or Travertine for discerning residential and hospitality projects.</p>',
   },
   'cs-3': {
-    seoTitle: 'Atrio Marble Console Table | Premium Natural Stone | NEROCASA',
+    seoTitle: 'Atrio Marble Console Table | Natural Stone | NEROCASA',
     seoDescription:
       'Atrio marble console table in Ibiza White, Armani Grey or Travertine. Statement stone furniture for luxury foyers, corridors and living areas.',
     descriptionHtml:
       '<p>Atrio is a statement marble console table crafted for luxury foyers and curated interiors. Available in Ibiza White, Armani Grey and Travertine, it combines generous surface area with the enduring beauty of natural stone.</p>',
   },
   'sd-1': {
-    seoTitle: 'Nodo Marble Side Table | Luxury Accent Furniture | NEROCASA',
+    seoTitle: 'Nodo Marble Side Table | Accent Furniture | NEROCASA',
     seoDescription:
       'Nodo marble side table in Ibiza White, Armani Grey or Travertine. Compact luxury stone accent for sofas, bedsides and curated seating areas.',
     descriptionHtml:
       '<p>Nodo is a compact marble side table that anchors seating arrangements with sculptural simplicity. Finished in Ibiza White, Armani Grey or Travertine, it is ideal beside sofas, beds and lounge chairs.</p>',
   },
   'sd-2': {
-    seoTitle: 'Punto Marble Side Table | Italian Stone Accent | NEROCASA',
+    seoTitle: 'Punto Marble Side Table | Natural Stone Accent | NEROCASA',
     seoDescription:
       'Punto marble side table in Ibiza White, Armani Grey or Travertine. Refined natural stone accent furniture for premium interiors.',
     descriptionHtml:
       '<p>Punto is a refined marble side table designed as a precise accent in premium interiors. Select Ibiza White, Armani Grey or Travertine to complement upholstery, lighting and architectural details.</p>',
   },
   'sd-3': {
-    seoTitle: 'Scalino Marble Side Table | Premium Stone Furniture | NEROCASA',
+    seoTitle: 'Scalino Marble Side Table | Stone Furniture | NEROCASA',
     seoDescription:
       'Scalino marble side table in Ibiza White, Armani Grey or Travertine. Layered stone form for luxury living rooms and boutique hospitality spaces.',
     descriptionHtml:
@@ -87,25 +87,25 @@ const PRODUCTS = {
 
 const COLLECTIONS = {
   'coffee-tables': {
-    seoTitle: 'Luxury Marble Coffee Tables | Italian Stone | NEROCASA',
+    seoTitle: 'Marble Coffee Tables | Sculptural Natural Stone | NEROCASA',
     seoDescription:
-      'Shop luxury marble coffee tables in Ibiza White, Armani Grey, Travertine and Rosso Levanto. Sculptural Italian stone furniture for premium interiors.',
+      'Marble coffee tables in Ibiza White, Armani Grey, Travertine and Rosso Levanto. Sculptural natural stone furniture for premium interiors.',
     descriptionHtml:
-      '<p>Explore architect-designed marble coffee tables crafted from premium Italian stone. From Soglia and Equilibrio to Monolite in Rosso Levanto, each design is hand-finished for luxury living spaces.</p>',
+      '<p>Architect-designed marble coffee tables in Ibiza White, Armani Grey, Travertine and Rosso Levanto. From the paired Soglia to the monolithic Monolite, each design is cut and finished in our workshop for architectural living spaces.</p>',
   },
   'side-tables': {
-    seoTitle: 'Luxury Marble Side Tables | Premium Accent Furniture | NEROCASA',
+    seoTitle: 'Marble Side Tables | Accent Furniture | NEROCASA',
     seoDescription:
       'Marble side tables in Ibiza White, Armani Grey and Travertine. Compact luxury stone accent pieces for refined sofas, bedsides and lounge settings.',
     descriptionHtml:
       '<p>Discover marble side tables designed as sculptural accents for premium interiors. Nodo, Punto and Scalino are available in Ibiza White, Armani Grey and Travertine with hand-finished natural stone surfaces.</p>',
   },
   'console-tables': {
-    seoTitle: 'Luxury Marble Console Tables | Entry & Hall Furniture | NEROCASA',
+    seoTitle: 'Marble Console Tables | Entry & Hall Furniture | NEROCASA',
     seoDescription:
       'Architectural marble console tables in Ibiza White, Armani Grey and Travertine. Premium stone furniture for foyers, corridors and curated interiors.',
     descriptionHtml:
-      '<p>Browse luxury marble console tables for entryways, hallways and gallery walls. Galleria, Passaggio and Atrio combine architectural proportion with the enduring character of Italian stone.</p>',
+      '<p>Browse luxury marble console tables for entryways, hallways and gallery walls. Galleria, Passaggio and Atrio combine architectural proportion with the enduring character of natural stone.</p>',
   },
 };
 
@@ -113,7 +113,7 @@ const PAGES = {
   'why-nerocasa': {
     seoTitle: 'Why NEROCASA | Luxury Marble Furniture Workshop',
     seoDescription:
-      'NEROCASA imports premium marble and crafts luxury furniture in its own workshop. Italian stone, architectural design and white-glove delivery.',
+      'NEROCASA imports premium marble from quarries worldwide and crafts luxury furniture in its own workshop. Architectural design and white-glove delivery.',
   },
   contact: {
     seoTitle: 'Contact NEROCASA | Luxury Marble Furniture',
@@ -128,7 +128,7 @@ const PAGES = {
   b2b: {
     seoTitle: 'B2B Marble Furniture | Trade & Hospitality | NEROCASA',
     seoDescription:
-      'Trade and hospitality marble furniture from NEROCASA. Volume pricing, project support and premium Italian stone for architects and designers.',
+      'Trade and hospitality marble furniture from NEROCASA. Production at volume, project support and premium natural stone for architects and designers.',
   },
   terms: {
     seoTitle: 'Terms & Conditions | NEROCASA',
@@ -143,9 +143,47 @@ const PAGES = {
     seoDescription: 'Track your NEROCASA marble furniture order. Delivery updates for luxury stone furniture across the UAE and internationally.',
   },
   collections: {
-    seoTitle: 'Marble Furniture Collections | Coffee, Console & Side Tables | NEROCASA',
+    seoTitle: 'Marble Furniture Collections | NEROCASA',
     seoDescription:
-      'Browse all NEROCASA marble furniture collections. Luxury coffee tables, console tables and side tables in premium Italian stone finishes.',
+      'Browse all NEROCASA marble furniture collections. Coffee tables, console tables and side tables in premium natural stone finishes.',
+  },
+  privacy: {
+    seoTitle: 'Privacy Policy | NEROCASA',
+    seoDescription:
+      'How NEROCASA collects, uses and discloses your personal information when you shop for marble furniture online or contact us.',
+  },
+};
+
+const ARTICLES = {
+  'how-to-choose-luxury-marble-coffee-table': {
+    seoTitle: 'How to Choose a Marble Coffee Table | NEROCASA',
+    seoDescription:
+      'Scale, stone and silhouette: what to look for when choosing a marble coffee table for a refined living room.',
+  },
+  'ibiza-white-vs-armani-grey-vs-travertine': {
+    seoTitle: 'Ibiza White vs Armani Grey vs Travertine | NEROCASA',
+    seoDescription:
+      'Three signature marbles, three distinct moods. Compare colour, veining and character to find the finish that suits your interior.',
+  },
+  'marble-console-tables-entryway-guide': {
+    seoTitle: 'Marble Console Tables for Entryways | NEROCASA',
+    seoDescription:
+      'How to choose and style a marble console table for an entryway or hallway, from proportion to finish.',
+  },
+  'caring-for-marble-furniture-at-home': {
+    seoTitle: 'How to Care for Marble Furniture at Home | NEROCASA',
+    seoDescription:
+      'Natural stone rewards simple, consistent care. A practical guide to keeping marble furniture looking its best at home.',
+  },
+  'bespoke-marble-furniture-guide': {
+    seoTitle: 'Custom Marble Furniture: Brief to Delivery | NEROCASA',
+    seoDescription:
+      'How a bespoke marble commission works, from the first conversation through to installation in your home.',
+  },
+  'italian-marble-in-modern-interiors': {
+    seoTitle: 'Italian Marble in Modern Interiors | NEROCASA',
+    seoDescription:
+      'Marble is ancient, yet in contemporary rooms it feels more relevant than ever. A look at stone in modern design.',
   },
 };
 
@@ -300,6 +338,47 @@ for (const page of pages) {
     console.log(`  ✗ page ${page.handle}: ${errors.map((e) => e.message).join('; ')}`);
   } else {
     console.log(`  + page ${page.handle}`);
+  }
+}
+
+const blogs = execute(`query {
+  blogs(first: 10) {
+    nodes { handle articles(first: 50) { nodes { id handle } } }
+  }
+}`).blogs.nodes;
+
+for (const blog of blogs) {
+  for (const article of blog.articles.nodes) {
+    const seo = ARTICLES[article.handle];
+    if (!seo) continue;
+    const result = execute(
+      pageMetafieldMutation,
+      {
+        metafields: [
+          {
+            ownerId: article.id,
+            namespace: 'global',
+            key: 'title_tag',
+            type: 'single_line_text_field',
+            value: seo.seoTitle,
+          },
+          {
+            ownerId: article.id,
+            namespace: 'global',
+            key: 'description_tag',
+            type: 'single_line_text_field',
+            value: seo.seoDescription,
+          },
+        ],
+      },
+      true,
+    );
+    const errors = result.metafieldsSet?.userErrors || [];
+    if (errors.length) {
+      console.log(`  ✗ article ${article.handle}: ${errors.map((e) => e.message).join('; ')}`);
+    } else {
+      console.log(`  + article ${article.handle}`);
+    }
   }
 }
 

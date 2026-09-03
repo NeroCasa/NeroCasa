@@ -2,16 +2,19 @@
   Default product image — Shopify Admin media only.
   @param handle {String} product handle
   @param product {Product} optional
+  @param width {Number} optional, default 900 — cards and thumbnails never
+    render wider than ~450 CSS px, so 900 covers 2x displays.
 {%- endcomment -%}
 {%- liquid
+  assign img_width = width | default: 900
   assign p = product
   if p == blank and handle != blank
     assign p = all_products[handle]
   endif
 
   if p != blank and p.featured_image != blank
-    echo p.featured_image | image_url: width: 1800
+    echo p.featured_image | image_url: width: img_width
   elsif p != blank and p.images.size > 0
-    echo p.images.first | image_url: width: 1800
+    echo p.images.first | image_url: width: img_width
   endif
 -%}
