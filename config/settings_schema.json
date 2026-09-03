@@ -177,10 +177,17 @@
       },
       {
         "type": "text",
+        "id": "page_privacy_handle",
+        "label": "Privacy page handle",
+        "default": "privacy"
+      },
+      {
+        "type": "text",
         "id": "page_refunds_handle",
         "label": "Refunds page handle",
         "default": "refunds"
       },
+
       {
         "type": "text",
         "id": "page_track_handle",

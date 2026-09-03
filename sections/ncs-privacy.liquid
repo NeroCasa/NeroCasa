@@ -1,0 +1,17 @@
+<section class="ncs-info-page ncs-legal-page">
+  {% render 'nc-page-hero-shell-open',
+    slab_left: 'hero-slab-white.jpg',
+    slab_center: 'hero-slab-grey.jpg',
+    slab_right: 'hero-slab-green.jpg'
+  %}
+  <h1>{% render 'nc-title-gold', title: page.title | default: 'Privacy Policy' %}</h1>
+  {% render 'nc-page-hero-shell-close' %}
+  <div class="ncs-legal-body">
+    {% if page.content != blank %}
+      {{ page.content }}
+    {% else %}
+      <p>Add your privacy policy in <strong>Online Store → Pages → Privacy Policy</strong>. Content entered there will appear here automatically.</p>
+    {% endif %}
+  </div>
+</section>
+{% schema %}{"name":"PRIVACY","presets":[{"name":"PRIVACY"}]}{% endschema %}

@@ -9,7 +9,12 @@
       <h1>{% render 'nc-title-gold', title: 'Get in touch' %}</h1>
       <p>We respond to every enquiry within one business day. Custom pieces are handled on WhatsApp. Trade and project enquiries go to {% render 'nc-contact-email' %} via our B2B page.</p>
       <a class="ncs-btn ncs-btn--ghost" href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B Enquiry ↗</a>
-      <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">WhatsApp for custom ↗</a>
+      <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">
+        <svg class="nc-social-icon nc-social-icon--inline" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:-2px;margin-right:8px">
+          <path fill="currentColor" d="M12.04 2C6.58 2 2.15 6.4 2.15 11.83c0 1.97.52 3.89 1.51 5.58L2 22l4.76-1.55a10.1 10.1 0 0 0 5.28 1.48h.01c5.46 0 9.89-4.4 9.89-9.83C21.94 6.4 17.5 2 12.04 2zm5.76 13.94c-.24.67-1.4 1.23-1.94 1.31-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.66-.61-2.92-1.26-4.82-4.2-4.97-4.39-.14-.19-1.2-1.6-1.2-3.05 0-1.45.76-2.16 1.03-2.45.27-.29.59-.36.79-.36h.57c.18 0 .42-.07.66.5.24.58.82 2 .89 2.14.07.14.12.31.02.5-.1.19-.15.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.29-.12.57.16.28.73 1.2 1.56 1.94 1.08.96 1.98 1.26 2.26 1.4.28.14.44.12.6-.07.17-.19.7-.81.88-1.09.19-.28.37-.23.62-.14.26.1 1.63.77 1.91.91.28.14.47.21.54.33.07.12.07.69-.17 1.36z"/>
+        </svg>
+        WhatsApp for custom ↗
+      </a>
     </header>
     {% render 'nc-page-hero-shell-close' %}
 

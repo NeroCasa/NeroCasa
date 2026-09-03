@@ -9,12 +9,31 @@
         {% endif %}
       </a>
       <p>{{ settings.brand_tagline | default: 'Real marble furniture. From our factory to your home.' }}</p>
-      {% if settings.instagram_url != blank or settings.pinterest_url != blank %}
-        <div class="nc-footer-social">
-          {% if settings.instagram_url != blank %}<a href="{{ settings.instagram_url }}" rel="noopener" target="_blank">Instagram ↗</a>{% endif %}
-          {% if settings.pinterest_url != blank %}<a href="{{ settings.pinterest_url }}" rel="noopener" target="_blank">Pinterest ↗</a>{% endif %}
-        </div>
-      {% endif %}
+      <div class="nc-footer-social" aria-label="Social links">
+        <a class="nc-social-link" href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+          <svg class="nc-social-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M12.04 2C6.58 2 2.15 6.4 2.15 11.83c0 1.97.52 3.89 1.51 5.58L2 22l4.76-1.55a10.1 10.1 0 0 0 5.28 1.48h.01c5.46 0 9.89-4.4 9.89-9.83C21.94 6.4 17.5 2 12.04 2zm5.76 13.94c-.24.67-1.4 1.23-1.94 1.31-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.66-.61-2.92-1.26-4.82-4.2-4.97-4.39-.14-.19-1.2-1.6-1.2-3.05 0-1.45.76-2.16 1.03-2.45.27-.29.59-.36.79-.36h.57c.18 0 .42-.07.66.5.24.58.82 2 .89 2.14.07.14.12.31.02.5-.1.19-.15.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.29-.12.57.16.28.73 1.2 1.56 1.94 1.08.96 1.98 1.26 2.26 1.4.28.14.44.12.6-.07.17-.19.7-.81.88-1.09.19-.28.37-.23.62-.14.26.1 1.63.77 1.91.91.28.14.47.21.54.33.07.12.07.69-.17 1.36z"/>
+          </svg>
+          <span class="nc-social-label">WhatsApp</span>
+        </a>
+        {% if settings.instagram_url != blank %}
+          <a class="nc-social-link" href="{{ settings.instagram_url }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg class="nc-social-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M12 7.2A4.8 4.8 0 1 0 12 16.8 4.8 4.8 0 0 0 12 7.2zm0 7.92a3.12 3.12 0 1 1 0-6.24 3.12 3.12 0 0 1 0 6.24zM17.52 6.96a1.12 1.12 0 1 1-2.24 0 1.12 1.12 0 0 1 2.24 0z"/>
+              <path fill="currentColor" d="M12 2.4c-2.61 0-2.94.01-3.97.06-1.02.05-1.72.21-2.33.45a4.7 4.7 0 0 0-1.7 1.1 4.7 4.7 0 0 0-1.1 1.7c-.24.61-.4 1.31-.45 2.33C2.41 9.06 2.4 9.39 2.4 12s.01 2.94.06 3.97c.05 1.02.21 1.72.45 2.33a4.7 4.7 0 0 0 1.1 1.7 4.7 4.7 0 0 0 1.7 1.1c.61.24 1.31.4 2.33.45 1.03.05 1.36.06 3.97.06s2.94-.01 3.97-.06c1.02-.05 1.72-.21 2.33-.45a4.7 4.7 0 0 0 1.7-1.1 4.7 4.7 0 0 0 1.1-1.7c.24-.61.4-1.31.45-2.33.05-1.03.06-1.36.06-3.97s-.01-2.94-.06-3.97c-.05-1.02-.21-1.72-.45-2.33a4.7 4.7 0 0 0-1.1-1.7 4.7 4.7 0 0 0-1.7-1.1c-.61-.24-1.31-.4-2.33-.45C14.94 2.41 14.61 2.4 12 2.4zm0 1.68c2.57 0 2.87.01 3.88.06.94.04 1.45.2 1.79.33.45.17.77.38 1.11.72.34.34.55.66.72 1.11.13.34.29.85.33 1.79.05 1.01.06 1.31.06 3.88s-.01 2.87-.06 3.88c-.04.94-.2 1.45-.33 1.79-.17.45-.38.77-.72 1.11a3 3 0 0 1-1.11.72c-.34.13-.85.29-1.79.33-1.01.05-1.31.06-3.88.06s-2.87-.01-3.88-.06c-.94-.04-1.45-.2-1.79-.33a3 3 0 0 1-1.11-.72 3 3 0 0 1-.72-1.11c-.13-.34-.29-.85-.33-1.79-.05-1.01-.06-1.31-.06-3.88s.01-2.87.06-3.88c.04-.94.2-1.45.33-1.79.17-.45.38-.77.72-1.11.34-.34.66-.55 1.11-.72.34-.13.85-.29 1.79-.33 1.01-.05 1.31-.06 3.88-.06z"/>
+            </svg>
+            <span class="nc-social-label">Instagram</span>
+          </a>
+        {% endif %}
+        {% if settings.pinterest_url != blank %}
+          <a class="nc-social-link" href="{{ settings.pinterest_url }}" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+            <svg class="nc-social-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M12 2C6.48 2 2 6.27 2 11.5c0 3.84 2.36 7.14 5.73 8.45-.08-.72-.15-1.82.03-2.6.16-.7 1.05-4.46 1.05-4.46s-.27-.54-.27-1.33c0-1.25.72-2.18 1.62-2.18.76 0 1.13.57 1.13 1.26 0 .77-.49 1.91-.74 2.97-.21.89.45 1.62 1.32 1.62 1.59 0 2.81-1.67 2.81-4.09 0-2.14-1.54-3.63-3.74-3.63-2.55 0-4.05 1.91-4.05 3.89 0 .77.3 1.6.67 2.05.07.09.08.16.06.25l-.25.98c-.04.16-.13.19-.3.12-1.12-.52-1.82-2.15-1.82-3.46 0-2.82 2.05-5.41 5.91-5.41 3.1 0 5.51 2.21 5.51 5.16 0 3.08-1.94 5.56-4.64 5.56-.9 0-1.76-.47-2.05-1.03l-.56 2.12c-.2.78-.75 1.76-1.12 2.36A10.4 10.4 0 0 0 12 21c5.52 0 10-4.27 10-9.5S17.52 2 12 2z"/>
+            </svg>
+            <span class="nc-social-label">Pinterest</span>
+          </a>
+        {% endif %}
+      </div>
     </div>
 
     <nav class="nc-footer-nav" aria-label="Footer navigation">
@@ -34,7 +53,12 @@
       </div>
       <div class="nc-footer-contact-col">
         <span class="nc-footer-nav-label">Contact</span>
-        <a href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="nc-footer-contact-link" href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener noreferrer">
+          <svg class="nc-social-icon nc-social-icon--inline" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M12.04 2C6.58 2 2.15 6.4 2.15 11.83c0 1.97.52 3.89 1.51 5.58L2 22l4.76-1.55a10.1 10.1 0 0 0 5.28 1.48h.01c5.46 0 9.89-4.4 9.89-9.83C21.94 6.4 17.5 2 12.04 2zm5.76 13.94c-.24.67-1.4 1.23-1.94 1.31-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.66-.61-2.92-1.26-4.82-4.2-4.97-4.39-.14-.19-1.2-1.6-1.2-3.05 0-1.45.76-2.16 1.03-2.45.27-.29.59-.36.79-.36h.57c.18 0 .42-.07.66.5.24.58.82 2 .89 2.14.07.14.12.31.02.5-.1.19-.15.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.29-.12.57.16.28.73 1.2 1.56 1.94 1.08.96 1.98 1.26 2.26 1.4.28.14.44.12.6-.07.17-.19.7-.81.88-1.09.19-.28.37-.23.62-.14.26.1 1.63.77 1.91.91.28.14.47.21.54.33.07.12.07.69-.17 1.36z"/>
+          </svg>
+          WhatsApp
+        </a>
         <a href="tel:{% render 'nc-contact-phone' % | strip | replace: ' ', '' %}">{% render 'nc-contact-phone' %}</a>
         <a href="mailto:{% render 'nc-contact-email' %}">{% render 'nc-contact-email' %}</a>
       </div>
@@ -47,7 +71,7 @@
       <span class="nc-footer-legal-pair">
         <a href="{% render 'nc-page-url', handle: settings.page_terms_handle, view: 'terms' %}">Terms</a>
         <span class="nc-footer-legal-sep" aria-hidden="true">&amp;</span>
-        <a href="{{ routes.privacy_policy_url }}">Privacy</a>
+        <a href="{% render 'nc-page-url', handle: settings.page_privacy_handle, view: 'privacy' %}">Privacy</a>
       </span>
       <a href="{% render 'nc-page-url', handle: settings.page_refunds_handle, view: 'refunds' %}">Returns</a>
     </div>
