@@ -12,6 +12,10 @@
 {%- assign dim_l = dim_l | strip -%}
 {%- assign dim_w = dim_w | strip -%}
 {%- assign dim_d = dim_d | strip -%}
+{%- assign is_catalog_product = false -%}
+{%- if product.handle contains 'cft-' or product.handle contains 'cs-' or product.handle contains 'sd-' -%}
+  {%- assign is_catalog_product = true -%}
+{%- endif -%}
 
 <section class="ncs-product-page" data-ncs-product data-product-handle="{{ product.handle }}">
   <div class="ncs-product-gallery">
@@ -37,15 +41,6 @@
         Shown in {{ shown_marble }}
       </p>
     </div>
-    {% if product.images.size > 1 %}
-      <div class="ncs-thumbs">
-        {% for image in product.images %}
-          <button type="button" data-ncs-thumb="{{ image | image_url: width: 1800 }}" aria-label="Show image {{ forloop.index }}">
-            <img src="{{ image | image_url: width: 300 }}" alt="{{ image.alt | default: product.title | escape }}" loading="lazy" width="150" height="150">
-          </button>
-        {% endfor %}
-      </div>
-    {% endif %}
   </div>
 
   <div class="ncs-product-config">
@@ -197,7 +192,6 @@
   var materialsEl=root.querySelector('[data-ncs-materials]');
   var main=root.querySelector('[data-ncs-main]');
   var optionsWrap=root.querySelector('[data-nc-product-options]');
-  root.querySelectorAll('[data-ncs-thumb]').forEach(function(t){t.addEventListener('click',function(){if(main){main.style.opacity='.35';setTimeout(function(){main.src=t.dataset.ncsThumb;main.style.opacity='1'},120)}})});
   var variantsEl=root.querySelector('[data-ncs-variants]'), variants=[];
   try{variants=JSON.parse(variantsEl.textContent)}catch(e){}
   var groups=[].slice.call(root.querySelectorAll('.ncs-choice[data-option-index]'));
