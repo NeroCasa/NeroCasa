@@ -115,13 +115,14 @@
         <b data-ncs-summary>{{ product.selected_or_first_available_variant.title }}</b>
         <small class="ncs-selected-dimensions" data-ncs-selected-dimensions></small>
       </div>
-      {% form 'product', product %}
+      {% form 'product', product, data-nc-ajax-cart: 'true' %}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-ncs-variant>
         <input type="hidden" name="properties[Color / Marble]" value="" data-ncs-color-property>
         <input type="hidden" name="properties[Size Type]" value="Standard" data-ncs-size-type-property>
         <button type="submit" name="add" data-ncs-add-btn {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
-          {% if product.selected_or_first_available_variant.available %}ADD TO CART <b>↗</b>{% else %}SOLD OUT{% endif %}
+          {% if product.selected_or_first_available_variant.available %}ADD TO CART{% else %}SOLD OUT{% endif %}
         </button>
+        <p class="ncs-cart-added" data-nc-cart-added hidden>Added to cart. Open the cart icon when you are ready to checkout.</p>
       {% endform %}
     </div>
 
@@ -305,7 +306,7 @@
     }
     if(variantInput)variantInput.value=v.id;
     if(price)price.textContent=v.price;
-    if(add){add.disabled=!v.available;add.innerHTML=v.available?'ADD TO CART <b>↗</b>':'SOLD OUT';}
+    if(add){add.disabled=!v.available;add.innerHTML=v.available?'ADD TO CART':'SOLD OUT';}
     if(summary)summary.textContent=v.title;
     var img=resolveImage(v);
     if(img)setImage(img);

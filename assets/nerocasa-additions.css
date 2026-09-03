@@ -25,6 +25,8 @@ img{max-width:100%}
 .nc-icon-link{width:35px;height:35px;display:inline-flex;align-items:center;justify-content:center;border:0;background:none;position:relative;cursor:pointer}
 .nc-icon-link svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.35}
 .nc-cart-count{position:absolute;top:0;right:-2px;min-width:14px;height:14px;padding:0 3px;border-radius:50%;background:var(--nc-gold);color:#080807;font-size:7px;display:flex;align-items:center;justify-content:center}
+.ncs-cart-added{margin:10px 0 0;font-size:11px;letter-spacing:.04em;color:var(--nc-gold)}
+.ncs-cart-line-sku{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.55;margin-top:4px}
 .nc-mobile-nav{display:none}
 .nc-menu-toggle{display:none;align-items:center;justify-content:center;width:40px;height:40px;padding:0;border:0;background:none;cursor:pointer;flex-direction:column;gap:5px}
 .nc-menu-toggle span{display:block;width:18px;height:1px;background:var(--nc-ink);transition:transform .25s,opacity .25s}
