@@ -3076,3 +3076,94 @@ body {
   }
 }
 
+/* ── Hero slab seam repair ──
+   Every hero pairs a dark slab (red/green/black) with a light one
+   (travertine/white/grey). The old masks cut off too abruptly and the
+   light slabs weren't dimmed enough, so the two photos read as spliced
+   together instead of one continuous stone wall. Wider/softer masks +
+   extra dimming on the bright stones fixes the seam everywhere this
+   component is used (home, collections, about, contact, terms, etc). */
+.ncs-hero-slab--1 {
+  -webkit-mask-image: linear-gradient(to right, #000 40%, transparent 96%);
+  mask-image: linear-gradient(to right, #000 40%, transparent 96%);
+}
+
+.ncs-hero-slab--2 {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 32%, #000 68%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 32%, #000 68%, transparent);
+}
+
+.ncs-hero-slab--3 {
+  -webkit-mask-image: linear-gradient(to left, #000 40%, transparent 96%);
+  mask-image: linear-gradient(to left, #000 40%, transparent 96%);
+}
+
+.ncs-hero-slab[src*="hero-slab-travertine"],
+.ncs-hero-slab[src*="hero-slab-white"],
+.ncs-hero-slab[src*="hero-slab-grey"] {
+  filter: brightness(0.32) saturate(0.52) contrast(1.08);
+}
+
+/* ── Product gallery — turn the dead space under a short product photo
+   into a deliberate display panel instead of an empty void. Desktop only;
+   mobile already stacks the gallery above the config, so no change there. */
+@media (min-width: 901px) {
+  .ncs-product-gallery {
+    background: var(--nc-panel);
+    padding: clamp(28px, 4vw, 56px);
+    min-height: calc(100vh - var(--nc-header-h, 82px) - 56px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ncs-product-gallery .ncs-main-product-image {
+    width: 100%;
+  }
+}
+
+/* ── Home "stone you live with" brand-mark frame — the mark was floating
+   in a frame that was nearly the same colour as the page background, so
+   it read as empty space rather than a deliberate panel. Lift it onto the
+   lighter panel tone used elsewhere (cart summary, contact cards) and
+   give the mark a touch more presence. */
+.ncs-home-story-visual.nc-brand-visual-frame {
+  background: var(--nc-panel);
+  border-color: rgba(165, 123, 0, 0.16);
+}
+
+.ncs-home-story-visual.nc-brand-visual-frame img {
+  width: min(82%, 460px);
+}
+
+/* ── Why NeroCasa pillar grid — add a small gold numeral to each pillar
+   (same "01 / 02 / 03" language already used in the home value strip) so
+   the grid reads as an intentional editorial system instead of four bare
+   bordered boxes. Pure CSS counters — no markup changes needed. */
+.ncs-about-values {
+  counter-reset: nc-pillar;
+}
+
+.ncs-about-value {
+  position: relative;
+}
+
+.ncs-about-value::before {
+  counter-increment: nc-pillar;
+  content: "0" counter(nc-pillar);
+  display: block;
+  font-family: var(--nc-ui);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--nc-gold);
+  opacity: 0.85;
+  margin-bottom: 18px;
+}
+
+/* ── Why NeroCasa closing CTA — the gap before the footer was oversized
+   relative to the short CTA row above it. Tighten just this section's
+   bottom margin; global section spacing (--nc-space-*) is untouched. */
+.ncs-about-closer {
+  margin-bottom: clamp(40px, 6vw, 64px);
+}
+

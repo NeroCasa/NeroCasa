@@ -49,22 +49,10 @@ body.nc-menu-open{overflow:hidden}
 .nc-search-close{font-size:28px}
 
 .ncs-home-hero{height:100vh;min-height:650px;position:relative;overflow:hidden;background:#050504}
-.ncs-hero-media,.ncs-hero-overlay{position:absolute;inset:0;width:100%;height:100%}
-.ncs-hero-slabs{z-index:0}
-.ncs-hero-slab{position:absolute;top:0;bottom:0;height:100%;object-fit:cover;filter:brightness(.48) saturate(.72) contrast(1.05)}
-.ncs-hero-slab--1{left:0;width:46%;mask-image:linear-gradient(to right,#000 62%,transparent);-webkit-mask-image:linear-gradient(to right,#000 62%,transparent)}
-.ncs-hero-slab--2{left:27%;width:46%;opacity:.92;mask-image:linear-gradient(to right,transparent,#000 18%,#000 82%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,#000 18%,#000 82%,transparent)}
-.ncs-hero-slab--3{right:0;width:46%;mask-image:linear-gradient(to left,#000 62%,transparent);-webkit-mask-image:linear-gradient(to left,#000 62%,transparent)}
-.ncs-hero-slabs--dual .ncs-hero-slab--1{left:0;width:58%;mask-image:linear-gradient(to right,#000 50%,transparent);-webkit-mask-image:linear-gradient(to right,#000 50%,transparent)}
-.ncs-hero-slabs--dual .ncs-hero-slab--dual{right:0;left:auto;width:58%;opacity:.94;mask-image:linear-gradient(to left,#000 50%,transparent);-webkit-mask-image:linear-gradient(to left,#000 50%,transparent)}
-.ncs-hero-overlay{z-index:1;background:linear-gradient(90deg,rgba(0,0,0,.55),transparent 70%),linear-gradient(0deg,rgba(0,0,0,.62),transparent 52%),radial-gradient(ellipse at center,rgba(8,8,7,.18),rgba(8,8,7,.55))}
-.ncs-hero-overlay--page{background:linear-gradient(90deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.42) 42%,rgba(0,0,0,.55) 100%),linear-gradient(0deg,rgba(8,8,7,.88) 0%,rgba(8,8,7,.28) 50%,rgba(8,8,7,.82) 100%)}
-.ncs-page-hero-shell{position:relative;isolation:isolate}
-.ncs-page-hero-shell .ncs-hero-media{position:absolute;z-index:0;top:0;left:50%;transform:translateX(-50%);width:100vw;height:100%;min-height:100%;pointer-events:none}
-.ncs-page-hero-shell .ncs-hero-media .ncs-hero-marble-bg,.ncs-page-hero-shell .ncs-hero-media .ncs-hero-slabs{position:absolute;inset:0;width:100%;height:100%}
-.ncs-page-hero-shell .ncs-page-hero,.ncs-page-hero-shell .ncs-collection-header,.ncs-page-hero-shell .ncs-search-hero,.ncs-page-hero-shell .ncs-b2b-header,.ncs-page-hero-shell .ncs-about-hero-copy,.ncs-page-hero-shell .ncs-about-hero-visual,.ncs-page-hero-shell .ncs-b2b-form-wrap,.ncs-page-hero-shell>h1{position:relative;z-index:2}
-.ncs-page-hero-shell .ncs-b2b-form-panel{background:var(--nc-panel)}
-.ncs-b2b-layout.ncs-page-hero-shell,.ncs-about-hero-split.ncs-page-hero-shell{overflow:hidden}
+/* Hero slab / overlay / page-hero-shell rules removed from here — they were
+   byte-for-byte duplicated (and fully superseded) by nerocasa-luxury.css,
+   which loads after this file. Keeping one authoritative copy avoids two
+   files drifting out of sync. See nerocasa-luxury.css for the live rules. */
 .ncs-hero-content{position:absolute;inset:0;display:grid;place-items:center;z-index:2}
 .ncs-hero-content h1{font-family:var(--nc-display);font-weight:400;font-size:clamp(70px,13vw,210px);line-height:.72;letter-spacing:-.055em;margin:0}
 
