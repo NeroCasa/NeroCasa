@@ -1,6 +1,6 @@
 {%- liquid
   assign brand = settings.brand_name | default: 'NEROCASA'
-  assign tagline = settings.brand_tagline | default: 'Luxury marble furniture. Italian stone, crafted in our workshop.'
+  assign tagline = settings.brand_tagline | default: 'Luxury marble furniture. Stone from quarries worldwide, crafted in our workshop.'
   assign seo_title = page_title | default: brand
   assign seo_description = page_description
   assign og_type = 'website'
@@ -55,7 +55,7 @@
     endif
   elsif request.page_type == 'blog' and blog
     if seo_description == blank
-      assign seo_description = 'Guides on luxury marble furniture, Italian stone finishes and interior design from ' | append: brand | append: '.'
+      assign seo_description = 'Guides on luxury marble furniture, natural stone finishes and interior design from ' | append: brand | append: '.'
     endif
     if page_title == blank
       assign seo_title = brand | append: ' Journal | Marble & Design'

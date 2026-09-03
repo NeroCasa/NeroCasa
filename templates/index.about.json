@@ -1,6 +1,15 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "main": {"type": "ncs-about", "settings": {}}
+    "main": {"type": "ncs-about", "settings": {"hero_lead": "NEROCASA imports premium marble from quarries worldwide and crafts luxury furniture in its own workshop. Real stone, architectural design and the finish we would choose for our own homes."}}
   },
   "order": ["main"]
 }

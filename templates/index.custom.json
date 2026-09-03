@@ -1,6 +1,15 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "main": {"type": "ncs-custom-page", "settings": {}}
+    "main": {"type": "ncs-custom-page", "settings": {"hero_lead": "Beyond our collections, NeroCasa creates custom marble furniture in any stone, size or design. We source marble from quarries worldwide. From an existing piece in a new finish to a fully original brief, our workshop crafts natural stone to your specification. Start on WhatsApp."}}
   },
   "order": ["main"]
 }
