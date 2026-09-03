@@ -56,7 +56,11 @@
             {%- assign parts = entry | split: ':' -%}
             {%- assign marble_name = parts[0] -%}
             {%- assign marble_slug = parts[1] -%}
-            {%- assign marble_img = item_handle | append: '-' | append: marble_slug | append: '.jpg' | asset_url -%}
+            {%- if marble_slug == 'ibiza-white' -%}
+              {%- assign marble_img = item_handle | append: '-ibiza-white-n2.jpg' | asset_url -%}
+            {%- else -%}
+              {%- assign marble_img = item_handle | append: '-' | append: marble_slug | append: '.jpg' | asset_url -%}
+            {%- endif -%}
             <span
               class="ncs-marble-swatch ncs-marble-swatch--{{ marble_slug }}"
               data-nc-marble-preview
