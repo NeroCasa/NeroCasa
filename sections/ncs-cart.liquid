@@ -45,9 +45,6 @@
                   {% unless item.variant.title == 'Default Title' %}
                     <span class="ncs-cart-line-variant">{{ item.variant.title }}</span>
                   {% endunless %}
-                  {% if item.sku != blank %}
-                    <span class="ncs-cart-line-sku">SKU {{ item.sku }}</span>
-                  {% endif %}
                 </div>
                 <span class="ncs-cart-line-price">{{ item.final_line_price | money }}</span>
               </div>
