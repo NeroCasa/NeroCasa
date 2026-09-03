@@ -1,6 +1,7 @@
 {% comment %}
   Opens a full-bleed page hero shell (same marble treatment as home).
-  Params: slab_left, slab_center, slab_right
+  Params: slab_left, slab_center, slab_right (asset filenames)
+           left_image, center_image, right_image (optional Theme Editor images)
   Close with nc-page-hero-shell-close.liquid
 {% endcomment %}
 <div class="ncs-page-hero-shell">
@@ -9,6 +10,9 @@
       mode: 'triple',
       slab_left: slab_left,
       slab_center: slab_center,
-      slab_right: slab_right
+      slab_right: slab_right,
+      left_image: left_image,
+      center_image: center_image,
+      right_image: right_image
     %}
   </div>

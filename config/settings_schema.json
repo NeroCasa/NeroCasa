@@ -26,19 +26,19 @@
         "type": "image_picker",
         "id": "logo",
         "label": "Logo image",
-        "info": "Optional. Leave empty to use the bundled nerocasa-logo-user.png asset."
+        "info": "Used in header and footer. Leave empty to use the bundled logo asset."
       },
       {
         "type": "image_picker",
         "id": "brand_visual",
         "label": "Brand mark image",
-        "info": "Used on home story and Why Nerocasa. Leave empty to use nerocasa-brand-logo.jpg."
+        "info": "Used on the home story and Why Nerocasa when set. Upload in Theme settings → Brand."
       },
       {
         "type": "image_picker",
         "id": "hero_image",
         "label": "Home hero image",
-        "info": "Optional. Leave empty to use the default marble placeholder."
+        "info": "Optional full-bleed home hero. When set, replaces the three marble slabs."
       }
     ]
   },

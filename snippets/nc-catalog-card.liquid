@@ -9,7 +9,7 @@
 {%- assign item_category = item_category | strip -%}
 {%- assign item_url = shop_product.url -%}
 {%- assign item_price_min = shop_product.price_min | money -%}
-{%- capture item_src -%}{% render 'nc-catalog-default-img', handle: item_handle %}{%- endcapture -%}
+{%- capture item_src -%}{% render 'nc-catalog-default-img', handle: item_handle, product: shop_product %}{%- endcapture -%}
 {%- assign item_src = item_src | strip -%}
 <a class="ncs-card ncs-marble-card" href="{{ item_url }}" data-nc-marble-card data-nc-reveal>
   <div class="ncs-fit-img ncs-fit-img--tile ncs-card-media">
@@ -56,7 +56,8 @@
             {%- assign parts = entry | split: ':' -%}
             {%- assign marble_name = parts[0] -%}
             {%- assign marble_slug = parts[1] -%}
-            {%- assign marble_img = item_handle | append: '-' | append: marble_slug | append: '.jpg' | asset_url -%}
+            {%- capture marble_img -%}{% render 'nc-variant-image', product: shop_product, marble_name: marble_name %}{%- endcapture -%}
+            {%- assign marble_img = marble_img | strip -%}
             <span
               class="ncs-marble-swatch ncs-marble-swatch--{{ marble_slug }}"
               data-nc-marble-preview

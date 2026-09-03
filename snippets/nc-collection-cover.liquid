@@ -1,19 +1,25 @@
 {%- comment -%}
-  Collection cover image — distinct theme asset per catalog collection.
+  Collection cover image — Admin collection image first, then first product, then asset.
   @param handle {String} collection handle
+  @param image {Image} optional Theme Editor override
 {%- endcomment -%}
 {%- liquid
-  assign coll = collections[handle]
-
-  if handle == settings.collection_coffee or handle == 'coffee-tables'
-    echo 'cft-3-rosso-levanto.jpg' | asset_url
-  elsif handle == settings.collection_side or handle == 'side-tables'
-    echo 'sd-2-travertine.jpg' | asset_url
-  elsif handle == settings.collection_console or handle == 'console-tables'
-    echo 'cs-3-armani-grey.jpg' | asset_url
-  elsif coll.image != blank
-    echo coll.image | image_url: width: 1800
+  if image != blank
+    echo image | image_url: width: 1800
   else
-    echo 'cft-3-rosso-levanto.jpg' | asset_url
+    assign coll = collections[handle]
+    if coll != blank and coll.image != blank
+      echo coll.image | image_url: width: 1800
+    elsif coll != blank and coll.products_count > 0 and coll.products.first.featured_image != blank
+      echo coll.products.first.featured_image | image_url: width: 1800
+    elsif handle == settings.collection_coffee or handle == 'coffee-tables'
+      echo 'cft-3-rosso-levanto.jpg' | asset_url
+    elsif handle == settings.collection_side or handle == 'side-tables'
+      echo 'sd-2-travertine.jpg' | asset_url
+    elsif handle == settings.collection_console or handle == 'console-tables'
+      echo 'cs-3-armani-grey.jpg' | asset_url
+    else
+      echo 'cft-3-rosso-levanto.jpg' | asset_url
+    endif
   endif
 -%}

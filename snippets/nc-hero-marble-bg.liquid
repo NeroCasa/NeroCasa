@@ -2,6 +2,8 @@
   Marble slab hero background.
   Dual (default): slab_left + slab_right
   Triple: slab_left + slab_center + slab_right (set mode: 'triple')
+  Prefers Theme Editor images (left_image / center_image / right_image),
+  then theme asset filenames (slab_left / slab_center / slab_right).
 {% endcomment %}
 {% liquid
   assign marble_mode = mode | default: 'dual'
@@ -9,10 +11,16 @@
   assign right_asset = slab_right | default: 'hero-slab-grey.jpg'
   assign center_asset = slab_center | default: 'hero-slab-travertine.jpg'
 %}
+{%- capture left_src -%}{% render 'nc-media-src', image: left_image, asset: left_asset, width: 1200 %}{%- endcapture -%}
+{%- capture right_src -%}{% render 'nc-media-src', image: right_image, asset: right_asset, width: 1200 %}{%- endcapture -%}
+{%- capture center_src -%}{% render 'nc-media-src', image: center_image, asset: center_asset, width: 1200 %}{%- endcapture -%}
+{%- assign left_src = left_src | strip -%}
+{%- assign right_src = right_src | strip -%}
+{%- assign center_src = center_src | strip -%}
 <div class="ncs-hero-marble-bg ncs-hero-slabs ncs-hero-slabs--{{ marble_mode }}" aria-hidden="true">
   <img
     class="ncs-hero-slab ncs-hero-slab--1"
-    src="{{ left_asset | asset_url }}"
+    src="{{ left_src }}"
     alt=""
     width="1024"
     height="1536"
@@ -21,7 +29,7 @@
   {% if marble_mode == 'triple' %}
     <img
       class="ncs-hero-slab ncs-hero-slab--2"
-      src="{{ center_asset | asset_url }}"
+      src="{{ center_src }}"
       alt=""
       width="1024"
       height="1536"
@@ -29,7 +37,7 @@
     >
     <img
       class="ncs-hero-slab ncs-hero-slab--3"
-      src="{{ right_asset | asset_url }}"
+      src="{{ right_src }}"
       alt=""
       width="1024"
       height="1536"
@@ -38,7 +46,7 @@
   {% else %}
     <img
       class="ncs-hero-slab ncs-hero-slab--dual"
-      src="{{ right_asset | asset_url }}"
+      src="{{ right_src }}"
       alt=""
       width="1024"
       height="1536"

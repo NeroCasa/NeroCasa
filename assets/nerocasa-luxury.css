@@ -199,6 +199,16 @@ body {
   background: #050504;
 }
 
+.ncs-home-hero-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.48) saturate(0.72) contrast(1.05);
+}
+
 .ncs-hero-slabs {
   position: absolute;
   inset: 0;

@@ -5,7 +5,10 @@
         mode: 'triple',
         slab_left: 'hero-slab-grey.jpg',
         slab_center: 'hero-slab-black.jpg',
-        slab_right: 'hero-slab-red.jpg'
+        slab_right: 'hero-slab-red.jpg',
+        left_image: section.settings.hero_slab_left,
+        center_image: section.settings.hero_slab_center,
+        right_image: section.settings.hero_slab_right
       %}
     </div>
     <header class="ncs-b2b-header ncs-page-hero" data-nc-reveal>
@@ -80,6 +83,25 @@
       "id": "lead",
       "label": "Lead",
       "default": "Hotels, residences, restaurants and retail spaces. We partner with designers, architects and developers who need real stone at volume, with production they can trust. We source marble from quarries worldwide. Any catalog design can be adapted in different marbles, sizes, or finishes for your project."
+    },
+    {
+      "type": "header",
+      "content": "Hero images"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_slab_left",
+      "label": "Hero slab — left"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_slab_center",
+      "label": "Hero slab — center"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_slab_right",
+      "label": "Hero slab — right"
     },
     {
       "type": "textarea",

@@ -1,11 +1,27 @@
 <section class="ncs-home-hero">
   <div class="ncs-hero-media">
-    {% render 'nc-hero-marble-bg',
-      mode: 'triple',
-      slab_left: 'hero-slab-white.jpg',
-      slab_center: 'hero-slab-red.jpg',
-      slab_right: 'hero-slab-green.jpg'
-    %}
+    {% if section.settings.hero_image != blank or settings.hero_image != blank %}
+      {%- assign home_hero = section.settings.hero_image | default: settings.hero_image -%}
+      <img
+        class="ncs-home-hero-photo"
+        src="{{ home_hero | image_url: width: 2400 }}"
+        alt=""
+        width="2400"
+        height="1600"
+        fetchpriority="high"
+      >
+      <div class="ncs-hero-overlay"></div>
+    {% else %}
+      {% render 'nc-hero-marble-bg',
+        mode: 'triple',
+        slab_left: 'hero-slab-white.jpg',
+        slab_center: 'hero-slab-red.jpg',
+        slab_right: 'hero-slab-green.jpg',
+        left_image: section.settings.hero_slab_left,
+        center_image: section.settings.hero_slab_center,
+        right_image: section.settings.hero_slab_right
+      %}
+    {% endif %}
   </div>
   <div class="ncs-hero-content">
     <h1><span>NE<span>RO</span></span><span class="nc-gold">CASA</span></h1>
@@ -37,7 +53,7 @@
     <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}">Our story ↗</a>
   </div>
   <div class="ncs-home-story-visual ncs-brand-visual-frame">
-    <img src="{{ 'nerocasa-brand-mark-clear.png' | asset_url }}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="1200" loading="lazy">
+    <img src="{% render 'nc-brand-visual' %}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="1200" loading="lazy">
   </div>
 </section>
 
@@ -50,6 +66,31 @@
       "id": "hero_tagline",
       "label": "Hero tagline",
       "default": "Real marble furniture. From our factory to your home."
+    },
+    {
+      "type": "header",
+      "content": "Hero images"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Full-bleed hero photo",
+      "info": "Optional. Replaces the three marble slabs when set. You can also set Brand → Home hero image."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_slab_left",
+      "label": "Hero slab — left"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_slab_center",
+      "label": "Hero slab — center"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_slab_right",
+      "label": "Hero slab — right"
     },
     {
       "type": "header",

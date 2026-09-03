@@ -1,0 +1,14 @@
+{%- comment -%}
+  Resolve a media URL from an optional Theme Editor image, else a theme asset filename.
+  @param image {Image} optional image_picker value
+  @param asset {String} optional asset filename e.g. hero-slab-white.jpg
+  @param width {Number} optional, default 1600
+{%- endcomment -%}
+{%- liquid
+  assign media_width = width | default: 1600
+  if image != blank
+    echo image | image_url: width: media_width
+  elsif asset != blank
+    echo asset | asset_url
+  endif
+-%}

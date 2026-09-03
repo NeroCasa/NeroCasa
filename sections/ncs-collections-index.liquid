@@ -2,7 +2,10 @@
   {% render 'nc-page-hero-shell-open',
     slab_left: 'hero-slab-red.jpg',
     slab_center: 'hero-slab-green.jpg',
-    slab_right: 'hero-slab-travertine.jpg'
+    slab_right: 'hero-slab-travertine.jpg',
+    left_image: section.settings.hero_slab_left,
+    center_image: section.settings.hero_slab_center,
+    right_image: section.settings.hero_slab_right
   %}
   <header class="ncs-page-hero" data-nc-reveal>
     <span class="ncs-page-kicker">Collections</span>
@@ -14,7 +17,7 @@
   <div class="ncs-collections-list ncs-collections-list--grid">
     <a class="ncs-collection-tile" href="{% render 'nc-collection-url', handle: settings.collection_coffee %}" data-nc-reveal>
       <div class="ncs-fit-img ncs-fit-img--tile ncs-fit-img--compact">
-        <img src="{% render 'nc-collection-cover', handle: settings.collection_coffee %}" alt="Coffee Tables" width="1600" height="1200" loading="lazy">
+        <img src="{% render 'nc-collection-cover', handle: settings.collection_coffee, image: section.settings.cover_coffee %}" alt="Coffee Tables" width="1600" height="1200" loading="lazy">
       </div>
       <div class="ncs-collection-tile-label">
         <h2>{% render 'nc-title-gold', title: 'Coffee Tables' %}</h2>
@@ -23,7 +26,7 @@
     </a>
     <a class="ncs-collection-tile" href="{% render 'nc-collection-url', handle: settings.collection_side %}" data-nc-reveal>
       <div class="ncs-fit-img ncs-fit-img--tile ncs-fit-img--compact">
-        <img src="{% render 'nc-collection-cover', handle: settings.collection_side %}" alt="Side Tables" width="1600" height="1200" loading="lazy">
+        <img src="{% render 'nc-collection-cover', handle: settings.collection_side, image: section.settings.cover_side %}" alt="Side Tables" width="1600" height="1200" loading="lazy">
       </div>
       <div class="ncs-collection-tile-label">
         <h2>{% render 'nc-title-gold', title: 'Side Tables' %}</h2>
@@ -32,7 +35,7 @@
     </a>
     <a class="ncs-collection-tile" href="{% render 'nc-collection-url', handle: settings.collection_console %}" data-nc-reveal>
       <div class="ncs-fit-img ncs-fit-img--tile ncs-fit-img--compact">
-        <img src="{% render 'nc-collection-cover', handle: settings.collection_console %}" alt="Console Tables" width="1600" height="1200" loading="lazy">
+        <img src="{% render 'nc-collection-cover', handle: settings.collection_console, image: section.settings.cover_console %}" alt="Console Tables" width="1600" height="1200" loading="lazy">
       </div>
       <div class="ncs-collection-tile-label">
         <h2>{% render 'nc-title-gold', title: 'Console Tables' %}</h2>
@@ -57,6 +60,45 @@
       "id": "lead",
       "label": "Lead",
       "default": "Marble furniture shaped for living. Explore the collections, preview finishes on each piece, and choose your stone on the product page."
+    },
+    {
+      "type": "header",
+      "content": "Hero images"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_slab_left",
+      "label": "Hero slab — left"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_slab_center",
+      "label": "Hero slab — center"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_slab_right",
+      "label": "Hero slab — right"
+    },
+    {
+      "type": "header",
+      "content": "Collection covers"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_coffee",
+      "label": "Coffee Tables cover",
+      "info": "Optional. Else uses the collection image in Admin, then the first product image."
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_side",
+      "label": "Side Tables cover"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_console",
+      "label": "Console Tables cover"
     },
     {
       "type": "text",

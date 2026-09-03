@@ -2,7 +2,10 @@
   {% render 'nc-page-hero-shell-open',
     slab_left: 'hero-slab-red.jpg',
     slab_center: 'hero-slab-white.jpg',
-    slab_right: 'hero-slab-grey.jpg'
+    slab_right: 'hero-slab-grey.jpg',
+    left_image: section.settings.hero_slab_left,
+    center_image: section.settings.hero_slab_center,
+    right_image: section.settings.hero_slab_right
   %}
   <header class="ncs-page-hero" data-nc-reveal>
     <span class="ncs-page-kicker">{{ section.settings.hero_kicker }}</span>
@@ -61,6 +64,25 @@
       "id": "hero_lead",
       "label": "Hero lead",
       "default": "Beyond our collections, NeroCasa creates custom marble furniture in any stone, size or design. We source marble from quarries worldwide. From an existing piece in a new finish to a fully original brief, our workshop crafts natural stone to your specification. Start on WhatsApp."
+    },
+    {
+      "type": "header",
+      "content": "Hero images"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_slab_left",
+      "label": "Hero slab — left"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_slab_center",
+      "label": "Hero slab — center"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_slab_right",
+      "label": "Hero slab — right"
     },
     {
       "type": "text",

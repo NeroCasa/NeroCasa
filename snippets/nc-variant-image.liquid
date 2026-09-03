@@ -1,43 +1,33 @@
 {%- comment -%}
   Image URL for a product + marble finish.
-  Catalog products use theme assets (distinct image per finish).
-  Other products fall back to Shopify variant media.
+  1) Matching Shopify variant media (Admin)
+  2) Theme asset {handle}-{marble}.jpg
+  3) Product featured image
   @param product {Product}
   @param marble_name {String}
 {%- endcomment -%}
 {%- liquid
   assign marble_slug = marble_name | downcase | replace: ' ', '-'
-  assign is_catalog = false
-  if product.handle contains 'cft-' or product.handle contains 'cs-' or product.handle contains 'sd-'
-    assign is_catalog = true
-  endif
+  assign image_url = blank
 
-  if is_catalog
-    assign asset_name = product.handle | append: '-' | append: marble_slug | append: '.jpg'
-    echo asset_name | asset_url
-  else
-    assign image_url = blank
-    for variant in product.variants
-      assign matches = false
-      for option in variant.options
-        if option == marble_name
-          assign matches = true
-          break
-        endif
-      endfor
-      if matches and variant.featured_image
-        assign image_url = variant.featured_image | image_url: width: 1800
+  for variant in product.variants
+    assign matches = false
+    for option in variant.options
+      if option == marble_name
+        assign matches = true
         break
       endif
     endfor
-    if image_url == blank and product.featured_image
-      assign image_url = product.featured_image | image_url: width: 1800
+    if matches and variant.featured_image
+      assign image_url = variant.featured_image | image_url: width: 1800
+      break
     endif
-    if image_url != blank
-      echo image_url
-    else
-      assign asset_name = product.handle | append: '-' | append: marble_slug | append: '.jpg'
-      echo asset_name | asset_url
-    endif
+  endfor
+
+  if image_url != blank
+    echo image_url
+  else
+    assign asset_name = product.handle | append: '-' | append: marble_slug | append: '.jpg'
+    echo asset_name | asset_url
   endif
 -%}

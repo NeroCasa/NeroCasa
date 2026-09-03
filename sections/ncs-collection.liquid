@@ -19,7 +19,10 @@
   {% render 'nc-page-hero-shell-open',
     slab_left: hero_left,
     slab_center: hero_center,
-    slab_right: hero_right
+    slab_right: hero_right,
+    left_image: section.settings.hero_slab_left,
+    center_image: section.settings.hero_slab_center,
+    right_image: section.settings.hero_slab_right
   %}
   <header class="ncs-collection-header" data-nc-reveal>
     <h1>{% render 'nc-title-gold', title: collection.title %}</h1>
@@ -44,6 +47,25 @@
       "id": "lead",
       "label": "Lead copy",
       "default": "Signature designs in natural stone. Each piece is available in multiple finishes. Hover to preview, then select your marble on the product page."
+    },
+    {
+      "type": "header",
+      "content": "Hero images"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_slab_left",
+      "label": "Hero slab — left"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_slab_center",
+      "label": "Hero slab — center"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_slab_right",
+      "label": "Hero slab — right"
     }
   ],
   "presets": [{ "name": "Nerocasa Collection" }]

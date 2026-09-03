@@ -5,7 +5,10 @@
         mode: 'triple',
         slab_left: 'hero-slab-green.jpg',
         slab_center: 'hero-slab-grey.jpg',
-        slab_right: 'hero-slab-travertine.jpg'
+        slab_right: 'hero-slab-travertine.jpg',
+        left_image: section.settings.hero_slab_left,
+        center_image: section.settings.hero_slab_center,
+        right_image: section.settings.hero_slab_right
       %}
     </div>
     <div class="ncs-about-hero-copy">
@@ -14,7 +17,13 @@
       <p class="ncs-about-hero-lead">{{ section.settings.hero_lead }}</p>
     </div>
     <div class="ncs-about-hero-visual ncs-about-hero-logo">
-      <img src="{{ 'nerocasa-wordmark-why.png' | asset_url }}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="1200" loading="eager">
+      {%- if section.settings.hero_brand_image != blank -%}
+        <img src="{{ section.settings.hero_brand_image | image_url: width: 1600 }}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="1200" loading="eager">
+      {%- elsif settings.brand_visual != blank -%}
+        <img src="{{ settings.brand_visual | image_url: width: 1600 }}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="1200" loading="eager">
+      {%- else -%}
+        <img src="{{ 'nerocasa-wordmark-why.png' | asset_url }}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="1200" loading="eager">
+      {%- endif -%}
     </div>
   </div>
 
@@ -86,6 +95,31 @@
       "id": "hero_lead",
       "label": "Hero lead",
       "default": "NEROCASA imports premium marble from quarries worldwide and crafts luxury furniture in its own workshop. Real stone, architectural design and the finish we would choose for our own homes."
+    },
+    {
+      "type": "header",
+      "content": "Hero images"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_brand_image",
+      "label": "Hero brand image",
+      "info": "Optional. Defaults to Brand → Brand mark, then the built-in wordmark."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_slab_left",
+      "label": "Hero slab — left"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_slab_center",
+      "label": "Hero slab — center"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_slab_right",
+      "label": "Hero slab — right"
     },
     {
       "type": "header",

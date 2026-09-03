@@ -3,7 +3,10 @@
     {% render 'nc-page-hero-shell-open',
       slab_left: 'hero-slab-green.jpg',
       slab_center: 'hero-slab-travertine.jpg',
-      slab_right: 'hero-slab-grey.jpg'
+      slab_right: 'hero-slab-grey.jpg',
+      left_image: section.settings.hero_slab_left,
+      center_image: section.settings.hero_slab_center,
+      right_image: section.settings.hero_slab_right
     %}
     <header class="ncs-page-hero ncs-contact-hero" data-nc-reveal>
       <h1>{% render 'nc-title-gold', title: 'Get in touch' %}</h1>
@@ -70,4 +73,30 @@
   </div>
 </section>
 
-{% schema %}{"name":"Contact","presets":[{"name":"Contact"}]}{% endschema %}
+{% schema %}
+{
+  "name": "Contact",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero images"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_slab_left",
+      "label": "Hero slab — left"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_slab_center",
+      "label": "Hero slab — center"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_slab_right",
+      "label": "Hero slab — right"
+    }
+  ],
+  "presets": [{ "name": "Contact" }]
+}
+{% endschema %}

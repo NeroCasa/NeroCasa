@@ -1,5 +1,11 @@
 {%- comment -%}
-  Brand mark for home story + Why Nerocasa hero.
-  Always uses the bundled transparent PNG (ignores theme editor override).
+  Brand mark for home story + Why Nerocasa.
+  Prefers Theme settings brand_visual, then bundled PNG.
 {%- endcomment -%}
-{{ 'nerocasa-brand-mark-clear.png' | asset_url }}
+{%- liquid
+  if settings.brand_visual != blank
+    echo settings.brand_visual | image_url: width: 1600
+  else
+    echo 'nerocasa-brand-mark-clear.png' | asset_url
+  endif
+-%}

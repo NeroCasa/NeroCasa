@@ -1,17 +1,31 @@
 {%- comment -%}
-  Local catalog index for client-side search fallback (Italian names + handles).
+  Lightweight client search index. Images prefer Shopify Admin product/collection media.
 {%- endcomment -%}
+{%- liquid
+  assign coffee_handle = settings.collection_coffee | default: 'coffee-tables'
+  assign side_handle = settings.collection_side | default: 'side-tables'
+  assign console_handle = settings.collection_console | default: 'console-tables'
+  assign coffee = collections[coffee_handle]
+  assign side = collections[side_handle]
+  assign console = collections[console_handle]
+-%}
 <script type="application/json" data-nc-catalog-search>[
-  {"handle":"cft-1","name":"Soglia","category":"Coffee Table","url":"/products/cft-1","image":{{ 'cft-1-ibiza-white.jpg' | asset_url | json }},"keywords":"soglia coffee table cft-1 ibiza armani travertine"},
-  {"handle":"cft-2","name":"Equilibrio","category":"Coffee Table","url":"/products/cft-2","image":{{ 'cft-2-armani-grey.jpg' | asset_url | json }},"keywords":"equilibrio coffee table cft-2 ibiza armani travertine"},
-  {"handle":"cft-3","name":"Monolite","category":"Coffee Table","url":"/products/cft-3","image":{{ 'cft-3-rosso-levanto.jpg' | asset_url | json }},"keywords":"monolite coffee table cft-3 ibiza travertine rosso levanto"},
-  {"handle":"cs-1","name":"Galleria","category":"Console Table","url":"/products/cs-1","image":{{ 'cs-1-travertine.jpg' | asset_url | json }},"keywords":"galleria console table cs-1 ibiza armani travertine"},
-  {"handle":"cs-2","name":"Passaggio","category":"Console Table","url":"/products/cs-2","image":{{ 'cs-2-ibiza-white.jpg' | asset_url | json }},"keywords":"passaggio console table cs-2 ibiza armani travertine"},
-  {"handle":"cs-3","name":"Atrio","category":"Console Table","url":"/products/cs-3","image":{{ 'cs-3-armani-grey.jpg' | asset_url | json }},"keywords":"atrio console table cs-3 ibiza armani travertine"},
-  {"handle":"sd-1","name":"Nodo","category":"Side Table","url":"/products/sd-1","image":{{ 'sd-1-armani-grey.jpg' | asset_url | json }},"keywords":"nodo side table sd-1 ibiza armani travertine"},
-  {"handle":"sd-2","name":"Punto","category":"Side Table","url":"/products/sd-2","image":{{ 'sd-2-travertine.jpg' | asset_url | json }},"keywords":"punto side table sd-2 ibiza armani travertine"},
-  {"handle":"sd-3","name":"Scalino","category":"Side Table","url":"/products/sd-3","image":{{ 'sd-3-ibiza-white.jpg' | asset_url | json }},"keywords":"scalino side table sd-3 ibiza armani travertine"},
-  {"handle":"coffee-tables","name":"Coffee Tables","category":"Collection","url":"/collections/coffee-tables","image":{{ 'cft-3-rosso-levanto.jpg' | asset_url | json }},"keywords":"coffee tables collection cft"},
-  {"handle":"console-tables","name":"Console Tables","category":"Collection","url":"/collections/console-tables","image":{{ 'cs-3-armani-grey.jpg' | asset_url | json }},"keywords":"console tables collection cs"},
-  {"handle":"side-tables","name":"Side Tables","category":"Collection","url":"/collections/side-tables","image":{{ 'sd-2-travertine.jpg' | asset_url | json }},"keywords":"side tables collection sd"}
-]</script>
+{%- assign catalog_handles = 'cft-1,cft-2,cft-3,cs-1,cs-2,cs-3,sd-1,sd-2,sd-3' | split: ',' -%}
+{%- for handle in catalog_handles -%}
+  {%- assign p = all_products[handle] -%}
+  {%- capture img_src -%}{% render 'nc-catalog-default-img', handle: handle, product: p %}{%- endcapture -%}
+  {%- capture pname -%}{% if p != blank %}{{ p.title }}{% else %}{{ handle }}{% endif %}{%- endcapture -%}
+  {%- capture pcat -%}{% render 'nc-product-field', product: p, handle: handle, field: 'category' %}{%- endcapture -%}
+  {%- assign pname = pname | strip -%}
+  {%- assign pcat = pcat | strip -%}
+  {%- assign img_src = img_src | strip -%}
+  {"handle":{{ handle | json }},"name":{{ pname | json }},"category":{{ pcat | json }},"url":{% if p != blank %}{{ p.url | json }}{% else %}{{ handle | prepend: '/products/' | json }}{% endif %},"image":{{ img_src | json }},"keywords":{{ handle | append: ' ' | append: pname | append: ' ' | append: pcat | downcase | json }}}{% unless forloop.last %},{% endunless %}
+{%- endfor -%}
+,{%- capture coffee_img -%}{% render 'nc-collection-cover', handle: coffee_handle %}{%- endcapture -%}
+{%- capture side_img -%}{% render 'nc-collection-cover', handle: side_handle %}{%- endcapture -%}
+{%- capture console_img -%}{% render 'nc-collection-cover', handle: console_handle %}{%- endcapture -%}
+{"handle":"coffee-tables","name":"Coffee Tables","category":"Collection","url":{% if coffee != blank %}{{ coffee.url | json }}{% else %}"/collections/coffee-tables"{% endif %},"image":{{ coffee_img | strip | json }},"keywords":"coffee tables collection cft"},
+{"handle":"side-tables","name":"Side Tables","category":"Collection","url":{% if side != blank %}{{ side.url | json }}{% else %}"/collections/side-tables"{% endif %},"image":{{ side_img | strip | json }},"keywords":"side tables collection sd"},
+{"handle":"console-tables","name":"Console Tables","category":"Collection","url":{% if console != blank %}{{ console.url | json }}{% else %}"/collections/console-tables"{% endif %},"image":{{ console_img | strip | json }},"keywords":"console tables collection cs"}
+]
+</script>
