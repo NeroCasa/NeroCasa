@@ -76,21 +76,35 @@ document.addEventListener('DOMContentLoaded', function () {
     var img = card.querySelector('[data-nc-card-img]');
     if (!img) return;
     var defaultSrc = img.dataset.defaultSrc || img.getAttribute('src');
+    // srcset wins over src, so it has to come off before a preview can show
+    // and go back on when the pointer leaves.
+    var defaultSrcset = img.getAttribute('srcset') || '';
+    var defaultSizes = img.getAttribute('sizes') || '';
+
+    function showPreview(swatch) {
+      var next = swatch.dataset.img;
+      if (!next || !next.length) return;
+      img.removeAttribute('srcset');
+      img.removeAttribute('sizes');
+      img.src = next;
+    }
+
+    function restoreDefault() {
+      if (!defaultSrc) return;
+      img.src = defaultSrc;
+      if (defaultSrcset) img.setAttribute('srcset', defaultSrcset);
+      if (defaultSizes) img.setAttribute('sizes', defaultSizes);
+    }
+
     card.querySelectorAll('[data-nc-marble-preview]').forEach(function (swatch) {
       swatch.addEventListener('mouseenter', function () {
-        var next = swatch.dataset.img;
-        if (next && next.length) img.src = next;
+        showPreview(swatch);
       });
-      swatch.addEventListener('mouseleave', function () {
-        if (defaultSrc) img.src = defaultSrc;
-      });
+      swatch.addEventListener('mouseleave', restoreDefault);
       swatch.addEventListener('focus', function () {
-        var next = swatch.dataset.img;
-        if (next && next.length) img.src = next;
+        showPreview(swatch);
       });
-      swatch.addEventListener('blur', function () {
-        if (defaultSrc) img.src = defaultSrc;
-      });
+      swatch.addEventListener('blur', restoreDefault);
     });
   });
 });

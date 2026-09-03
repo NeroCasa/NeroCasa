@@ -24,15 +24,33 @@
       {%- capture default_marble -%}{% render 'nc-catalog-default-marble', handle: product.handle %}{%- endcapture -%}
       {%- assign main_img = main_img | strip -%}
       {%- assign default_marble = default_marble | strip -%}
+      {%- assign main_image_obj = product.featured_image -%}
+      {%- if main_image_obj == blank -%}
+        {%- assign main_image_obj = product.images.first -%}
+      {%- endif -%}
+      {%- comment -%}
+        The gallery renders at the image's own ratio (width:100%; height:auto),
+        so the width/height attributes must be the real dimensions. Hardcoded
+        values reserve the wrong box and shift the layout on load.
+        The marble selector appends the finish to this alt in JS.
+      {%- endcomment -%}
+      {%- capture main_alt -%}
+        {%- if catalog_category != blank -%}
+          {{ display_name }} marble {{ catalog_category | downcase }}
+        {%- else -%}
+          {{ display_name }}
+        {%- endif -%}
+      {%- endcapture -%}
+      {%- assign main_alt = main_alt | strip -%}
       {%- if main_img != blank -%}
         <img src="{{ main_img }}"
-             alt="{{ display_name | escape }}"
+             alt="{{ main_alt | escape }}"
              data-ncs-main
-             data-ncs-alt="{{ display_name | escape }}"
-             width="1800" height="1900" loading="eager">
+             data-ncs-alt="{{ main_alt | escape }}"
+             width="{{ main_image_obj.width | default: 1264 }}" height="{{ main_image_obj.height | default: 843 }}" loading="eager" fetchpriority="high">
       {%- else -%}
         <div class="ncs-main-product-image-empty" data-ncs-main-empty aria-hidden="true"></div>
-        <img src="" alt="{{ display_name | escape }}" data-ncs-main data-ncs-alt="{{ display_name | escape }}" width="1800" height="1900" hidden>
+        <img src="" alt="{{ main_alt | escape }}" data-ncs-main data-ncs-alt="{{ main_alt | escape }}" width="1264" height="843" hidden>
       {%- endif -%}
       <p class="ncs-shown-in" data-ncs-shown-in>
         {%- liquid

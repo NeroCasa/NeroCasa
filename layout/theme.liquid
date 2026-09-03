@@ -9,7 +9,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   {{ content_for_header }}
-  {{ 'nerocasa.css' | asset_url | stylesheet_tag }}
+  {%- comment -%}
+    Base reset, inlined. It was a separate 130-byte stylesheet, which cost a
+    full render-blocking request for three declarations.
+  {%- endcomment -%}
+  <style>
+    html { background: {{ settings.background | default: '#080807' }}; }
+    body { background: {{ settings.background | default: '#080807' }}; color: #f2eee6; }
+    * { box-sizing: border-box; }
+  </style>
   {{ 'nerocasa-additions.css' | asset_url | stylesheet_tag }}
   {{ 'nerocasa-luxury.css' | asset_url | stylesheet_tag }}
   <style>

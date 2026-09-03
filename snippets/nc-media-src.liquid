@@ -9,6 +9,10 @@
   if image != blank
     echo image | image_url: width: media_width
   elsif asset != blank
-    echo asset | asset_url
+    # asset_url serves the file at full size. asset_img_url runs it through the
+    # CDN resizer so hero slabs can ship a mobile-sized variant instead of the
+    # full 1024x1536 original.
+    assign asset_size = media_width | append: 'x'
+    echo asset | asset_img_url: asset_size
   endif
 -%}

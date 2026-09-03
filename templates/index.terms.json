@@ -1,6 +1,0 @@
-{
-  "sections": {
-    "main": {"type": "ncs-terms", "settings": {}}
-  },
-  "order": ["main"]
-}

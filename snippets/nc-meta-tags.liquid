@@ -5,7 +5,12 @@
   assign seo_description = page_description
   assign og_type = 'website'
   assign og_image = blank
-  assign page_url = canonical_url | default: request.origin | append: request.path
+  # `canonical_url | default: x | append: request.path` appended the path even
+  # when canonical_url was set, producing /products/cft-1/products/cft-1.
+  assign page_url = canonical_url
+  if page_url == blank
+    assign page_url = request.origin | append: request.path
+  endif
   if request.page_type == 'product' and product
     assign og_type = 'product'
     if product.featured_image
@@ -60,8 +65,21 @@
     if page_title == blank
       assign seo_title = brand | append: ' Journal | Marble & Design'
     endif
+  elsif request.page_type == 'list-collections'
+    # /collections is the canonical collections index, but list-collections has
+    # no SEO fields in Admin, so it rendered as bare "Collections" with the
+    # generic brand description. The descriptive metadata previously lived on
+    # the /pages/collections duplicate that now canonicalises here.
+    assign seo_title = 'Marble Furniture Collections | ' | append: brand
+    if seo_description == blank
+      assign seo_description = 'Coffee tables, side tables and console tables in natural marble. Explore the NEROCASA collections and preview each stone on the piece.'
+    endif
   elsif request.page_type == 'index'
-    if page_title == blank
+    # On the homepage Shopify falls back to the shop name, so page_title is
+    # never blank and the descriptor below never applied — the most valuable
+    # title on the site rendered as bare "NeroCasa". Only an explicit homepage
+    # title set in Online Store > Preferences should win over the descriptor.
+    if page_title == blank or page_title == shop.name
       assign seo_title = brand | append: ' | Luxury Marble Furniture'
     endif
     if seo_description == blank
@@ -83,11 +101,33 @@
   if og_image == blank and settings.logo != blank
     assign og_image = settings.logo | image_url: width: 1200
   endif
+
+  # /pages/collections and the native /collections route render the same
+  # ncs-collections-index section. Canonicalise the page template to
+  # /collections so the two do not compete as duplicates.
+  if request.page_type == 'page' and page.template_suffix == 'collections'
+    assign page_url = shop.url | append: routes.collections_url
+  endif
+
+  if settings.logo != blank
+    assign brand_logo = settings.logo | image_url: width: 600 | prepend: 'https:'
+  else
+    assign brand_logo = 'nerocasa-logo-user.png' | asset_url | prepend: 'https:'
+  endif
 -%}
 
 <title>{{ seo_title | escape }}</title>
 <meta name="description" content="{{ seo_description | escape }}">
 <link rel="canonical" href="{{ page_url }}">
+{%- comment -%}
+  Search, cart and account pages canonicalise to themselves, so every ?q=
+  permutation was a separate indexable URL with no unique content. Keep them
+  crawlable (follow) so link equity still reaches the products.
+{%- endcomment -%}
+{%- assign noindex_types = 'search,cart,gift_card' | split: ',' -%}
+{%- if noindex_types contains request.page_type or request.path contains '/account' -%}
+<meta name="robots" content="noindex,follow">
+{%- endif -%}
 
 <meta property="og:site_name" content="{{ shop.name | escape }}">
 <meta property="og:url" content="{{ page_url }}">
@@ -107,6 +147,35 @@
 {%- endif -%}
 
 {%- if request.page_type == 'product' and product -%}
+{%- liquid
+  capture schema_h
+    render 'nc-product-field', product: product, handle: product.handle, field: 'height'
+  endcapture
+  capture schema_l
+    render 'nc-product-field', product: product, handle: product.handle, field: 'length'
+  endcapture
+  capture schema_w
+    render 'nc-product-field', product: product, handle: product.handle, field: 'width'
+  endcapture
+  capture schema_d
+    render 'nc-product-field', product: product, handle: product.handle, field: 'depth'
+  endcapture
+  assign schema_h = schema_h | strip
+  assign schema_l = schema_l | strip
+  assign schema_w = schema_w | strip
+  assign schema_d = schema_d | strip
+
+  # Catalog records either height/length/width (tables) or height/width/depth
+  # (side tables). Schema.org wants width as the horizontal span and depth as
+  # front-to-back, so length maps to width when it is present.
+  if schema_l != blank
+    assign schema_span = schema_l
+    assign schema_front = schema_w
+  else
+    assign schema_span = schema_w
+    assign schema_front = schema_d
+  endif
+-%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -118,17 +187,47 @@
     "name": {{ brand | json }}
   },
   "url": {{ page_url | json }},
-  {%- if og_image != blank -%}
-  "image": [{{ og_image | prepend: 'https:' | json }}],
-  {%- endif -%}
-  "offers": {
-    "@type": "AggregateOffer",
-    "priceCurrency": {{ cart.currency.iso_code | default: shop.currency | json }},
-    "lowPrice": {{ product.price_min | divided_by: 100.0 }},
-    "highPrice": {{ product.price_max | divided_by: 100.0 }},
-    "offerCount": {{ product.variants.size }},
-    "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}"
-  }
+  "material": "Natural stone",
+  {%- if product.type != blank %}
+  "category": {{ product.type | json }},
+  {%- endif %}
+  {%- if product.selected_or_first_available_variant.sku != blank %}
+  "sku": {{ product.selected_or_first_available_variant.sku | json }},
+  {%- endif %}
+  {%- if schema_h != blank %}
+  "height": { "@type": "QuantitativeValue", "value": {{ schema_h | times: 1 }}, "unitCode": "CMT" },
+  {%- endif %}
+  {%- if schema_span != blank %}
+  "width": { "@type": "QuantitativeValue", "value": {{ schema_span | times: 1 }}, "unitCode": "CMT" },
+  {%- endif %}
+  {%- if schema_front != blank %}
+  "depth": { "@type": "QuantitativeValue", "value": {{ schema_front | times: 1 }}, "unitCode": "CMT" },
+  {%- endif %}
+  {%- if product.images.size > 0 %}
+  "image": [
+    {%- for product_image in product.images limit: 4 -%}
+    {{ product_image | image_url: width: 1200 | prepend: 'https:' | json }}{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ],
+  {%- endif %}
+  "offers": [
+    {%- for variant in product.variants -%}
+    {
+      "@type": "Offer",
+      "url": {{ variant.url | prepend: shop.url | json }},
+      "priceCurrency": {{ shop.currency | json }},
+      "price": {{ variant.price | divided_by: 100.0 }},
+      "itemCondition": "https://schema.org/NewCondition",
+      "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}"
+      {%- if variant.sku != blank -%},
+      "sku": {{ variant.sku | json }}
+      {%- endif -%}
+      {%- if variant.title != blank -%},
+      "name": {{ variant.title | json }}
+      {%- endif -%}
+    }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
 }
 </script>
 {%- endif -%}
@@ -148,13 +247,160 @@
   },
   "publisher": {
     "@type": "Organization",
-    "name": {{ shop.name | json }}
+    "name": {{ shop.name | json }},
+    "logo": {
+      "@type": "ImageObject",
+      "url": {{ brand_logo | json }}
+    }
   },
-  "mainEntityOfPage": {{ page_url | json }},
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ page_url | json }}
+  },
   {%- if og_image != blank -%}
   "image": [{{ og_image | prepend: 'https:' | json }}],
   {%- endif -%}
   "url": {{ page_url | json }}
 }
 </script>
+{%- endif -%}
+
+{%- comment -%}
+  Organization and WebSite describe the brand entity itself, so they belong on
+  the home page only. Repeating them on every template would declare the same
+  entity dozens of times over.
+{%- endcomment -%}
+{%- if request.page_type == 'index' -%}
+{%- comment -%}
+  The {search_term_string} placeholder has to sit in plain text — Liquid's
+  lexer treats the closing brace as the end of an output tag if it is inside
+  a filter argument.
+{%- endcomment -%}
+{%- assign search_target = routes.search_url | prepend: shop.url -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ shop.name | json }},
+  "alternateName": {{ brand | json }},
+  "url": {{ shop.url | json }},
+  "logo": {{ brand_logo | json }},
+  "description": {{ tagline | json }},
+  {%- assign social_profiles = '' -%}
+  {%- if settings.instagram_url != blank -%}
+    {%- assign social_profiles = settings.instagram_url -%}
+  {%- endif -%}
+  {%- if settings.pinterest_url != blank -%}
+    {%- if social_profiles != blank -%}
+      {%- assign social_profiles = social_profiles | append: '|' | append: settings.pinterest_url -%}
+    {%- else -%}
+      {%- assign social_profiles = settings.pinterest_url -%}
+    {%- endif -%}
+  {%- endif -%}
+  {%- if social_profiles != blank %}
+  "sameAs": [
+    {%- assign social_list = social_profiles | split: '|' -%}
+    {%- for profile in social_list -%}
+    {{ profile | json }}{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ],
+  {%- endif %}
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service"
+    {%- if settings.contact_phone != blank -%},
+    "telephone": {{ settings.contact_phone | json }}
+    {%- endif -%}
+    {%- if settings.contact_email != blank -%},
+    "email": {{ settings.contact_email | json }}
+    {%- endif -%}
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ shop.name | json }},
+  "url": {{ shop.url | json }},
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{{ search_target }}?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+{%- endif -%}
+
+{%- comment -%}
+  BreadcrumbList is emitted for every inner page type. It is invisible to
+  visitors — there is no breadcrumb UI in this theme — but it gives search
+  engines the site hierarchy the navigation implies.
+{%- endcomment -%}
+{%- if request.page_type == 'product' or request.page_type == 'collection' or request.page_type == 'page' or request.page_type == 'article' or request.page_type == 'blog' or request.page_type == 'list-collections' -%}
+{%- liquid
+  assign crumb_names = ''
+  assign crumb_urls = ''
+
+  case request.page_type
+    when 'product'
+      assign parent_collection = product.collections.first
+      if parent_collection != blank
+        assign crumb_names = parent_collection.title
+        assign crumb_urls = shop.url | append: parent_collection.url
+      endif
+      if crumb_names != blank
+        assign crumb_names = crumb_names | append: '|' | append: product.title
+        assign crumb_urls = crumb_urls | append: '|' | append: shop.url | append: product.url
+      else
+        assign crumb_names = product.title
+        assign crumb_urls = shop.url | append: product.url
+      endif
+    when 'collection'
+      assign crumb_names = 'Collections|' | append: collection.title
+      assign crumb_urls = shop.url | append: routes.collections_url | append: '|' | append: shop.url | append: collection.url
+    when 'list-collections'
+      assign crumb_names = 'Collections'
+      assign crumb_urls = shop.url | append: routes.collections_url
+    when 'page'
+      assign crumb_names = page.title
+      assign crumb_urls = page_url
+    when 'blog'
+      assign crumb_names = blog.title
+      assign crumb_urls = shop.url | append: blog.url
+    when 'article'
+      assign crumb_names = blog.title | append: '|' | append: article.title
+      assign crumb_urls = shop.url | append: blog.url | append: '|' | append: shop.url | append: article.url
+  endcase
+
+  assign crumb_name_list = crumb_names | split: '|'
+  assign crumb_url_list = crumb_urls | split: '|'
+-%}
+{%- if crumb_name_list.size > 0 -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": {{ shop.url | append: routes.root_url | json }}
+    },
+    {%- for crumb_name in crumb_name_list -%}
+    {
+      "@type": "ListItem",
+      "position": {{ forloop.index | plus: 1 }},
+      "name": {{ crumb_name | json }},
+      "item": {{ crumb_url_list[forloop.index0] | json }}
+    }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+}
+</script>
+{%- endif -%}
 {%- endif -%}

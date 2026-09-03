@@ -14,9 +14,13 @@
 
   <a class="nc-logo-brand" href="{{ routes.root_url }}" aria-label="{{ settings.brand_name | default: 'Nerocasa' }} home">
     {% if settings.logo != blank %}
-      <img src="{{ settings.logo | image_url: width: 300 }}" alt="{{ settings.brand_name | default: 'NEROCASA' }}" width="120" height="48" loading="eager">
+      <img src="{{ settings.logo | image_url: width: 300 }}" alt="{{ settings.brand_name | default: 'NEROCASA' }}" width="{{ settings.logo.width }}" height="{{ settings.logo.height }}" loading="eager">
     {% else %}
-      <img src="{{ 'nerocasa-logo-user.png' | asset_url }}" alt="{{ settings.brand_name | default: 'NEROCASA' }}" width="120" height="48" loading="eager">
+      {%- comment -%}
+        CSS renders this at 44px tall. asset_url would ship the full 1600x1600
+        source, so route the bundled logo through the CDN resizer instead.
+      {%- endcomment -%}
+      <img src="{{ 'nerocasa-logo-user.png' | asset_img_url: '240x' }}" alt="{{ settings.brand_name | default: 'NEROCASA' }}" width="240" height="240" loading="eager">
     {% endif %}
   </a>
 

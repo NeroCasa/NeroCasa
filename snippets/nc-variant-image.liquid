@@ -5,8 +5,11 @@
   3) Product featured image
   @param product {Product}
   @param marble_name {String}
+  @param width {Number} optional, default 1800 for the product page gallery.
+    Card hover previews pass a smaller width.
 {%- endcomment -%}
 {%- liquid
+  assign img_width = width | default: 1800
   assign marble_lower = marble_name | downcase | strip
   assign image_url = blank
 
@@ -20,7 +23,7 @@
       endif
     endfor
     if matches and variant.featured_image
-      assign image_url = variant.featured_image | image_url: width: 1800
+      assign image_url = variant.featured_image | image_url: width: img_width
       break
     endif
   endfor
@@ -29,16 +32,16 @@
     for image in product.images
       assign alt_lower = image.alt | downcase
       if marble_lower != blank and alt_lower contains marble_lower
-        assign image_url = image | image_url: width: 1800
+        assign image_url = image | image_url: width: img_width
         break
       endif
     endfor
   endif
 
   if image_url == blank and product.featured_image
-    assign image_url = product.featured_image | image_url: width: 1800
+    assign image_url = product.featured_image | image_url: width: img_width
   elsif image_url == blank and product.images.size > 0
-    assign image_url = product.images.first | image_url: width: 1800
+    assign image_url = product.images.first | image_url: width: img_width
   endif
 
   if image_url != blank

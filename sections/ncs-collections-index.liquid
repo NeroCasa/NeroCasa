@@ -18,9 +18,20 @@
     <a class="ncs-collection-tile" href="{% render 'nc-collection-url', handle: settings.collection_coffee %}" data-nc-reveal>
       <div class="ncs-fit-img ncs-fit-img--tile ncs-fit-img--compact">
         {%- capture cover_coffee -%}{% render 'nc-collection-cover', handle: settings.collection_coffee, image: section.settings.cover_coffee %}{%- endcapture -%}
+        {%- capture cover_coffee_sm -%}{% render 'nc-collection-cover', handle: settings.collection_coffee, image: section.settings.cover_coffee, width: 500 %}{%- endcapture -%}
+        {%- capture cover_coffee_md -%}{% render 'nc-collection-cover', handle: settings.collection_coffee, image: section.settings.cover_coffee, width: 800 %}{%- endcapture -%}
         {%- assign cover_coffee = cover_coffee | strip -%}
+        {%- assign cover_coffee_sm = cover_coffee_sm | strip -%}
+        {%- assign cover_coffee_md = cover_coffee_md | strip -%}
         {% if cover_coffee != blank %}
-          <img src="{{ cover_coffee }}" alt="Coffee Tables" width="1600" height="1200" loading="lazy">
+          <img
+            src="{{ cover_coffee }}"
+            srcset="{{ cover_coffee_sm }} 500w, {{ cover_coffee_md }} 800w, {{ cover_coffee }} 1200w"
+            sizes="(min-width: 901px) 32vw, 92vw"
+            alt="Marble coffee tables"
+            width="1600"
+            height="1200"
+            loading="lazy">
         {% endif %}
       </div>
       <div class="ncs-collection-tile-label">
@@ -31,9 +42,20 @@
     <a class="ncs-collection-tile" href="{% render 'nc-collection-url', handle: settings.collection_side %}" data-nc-reveal>
       <div class="ncs-fit-img ncs-fit-img--tile ncs-fit-img--compact">
         {%- capture cover_side -%}{% render 'nc-collection-cover', handle: settings.collection_side, image: section.settings.cover_side %}{%- endcapture -%}
+        {%- capture cover_side_sm -%}{% render 'nc-collection-cover', handle: settings.collection_side, image: section.settings.cover_side, width: 500 %}{%- endcapture -%}
+        {%- capture cover_side_md -%}{% render 'nc-collection-cover', handle: settings.collection_side, image: section.settings.cover_side, width: 800 %}{%- endcapture -%}
         {%- assign cover_side = cover_side | strip -%}
+        {%- assign cover_side_sm = cover_side_sm | strip -%}
+        {%- assign cover_side_md = cover_side_md | strip -%}
         {% if cover_side != blank %}
-          <img src="{{ cover_side }}" alt="Side Tables" width="1600" height="1200" loading="lazy">
+          <img
+            src="{{ cover_side }}"
+            srcset="{{ cover_side_sm }} 500w, {{ cover_side_md }} 800w, {{ cover_side }} 1200w"
+            sizes="(min-width: 901px) 32vw, 92vw"
+            alt="Marble side tables"
+            width="1600"
+            height="1200"
+            loading="lazy">
         {% endif %}
       </div>
       <div class="ncs-collection-tile-label">
@@ -44,9 +66,20 @@
     <a class="ncs-collection-tile" href="{% render 'nc-collection-url', handle: settings.collection_console %}" data-nc-reveal>
       <div class="ncs-fit-img ncs-fit-img--tile ncs-fit-img--compact">
         {%- capture cover_console -%}{% render 'nc-collection-cover', handle: settings.collection_console, image: section.settings.cover_console %}{%- endcapture -%}
+        {%- capture cover_console_sm -%}{% render 'nc-collection-cover', handle: settings.collection_console, image: section.settings.cover_console, width: 500 %}{%- endcapture -%}
+        {%- capture cover_console_md -%}{% render 'nc-collection-cover', handle: settings.collection_console, image: section.settings.cover_console, width: 800 %}{%- endcapture -%}
         {%- assign cover_console = cover_console | strip -%}
+        {%- assign cover_console_sm = cover_console_sm | strip -%}
+        {%- assign cover_console_md = cover_console_md | strip -%}
         {% if cover_console != blank %}
-          <img src="{{ cover_console }}" alt="Console Tables" width="1600" height="1200" loading="lazy">
+          <img
+            src="{{ cover_console }}"
+            srcset="{{ cover_console_sm }} 500w, {{ cover_console_md }} 800w, {{ cover_console }} 1200w"
+            sizes="(min-width: 901px) 32vw, 92vw"
+            alt="Marble console tables"
+            width="1600"
+            height="1200"
+            loading="lazy">
         {% endif %}
       </div>
       <div class="ncs-collection-tile-label">

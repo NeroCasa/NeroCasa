@@ -44,7 +44,7 @@
                 {% if item.handle contains 'cft-' or item.handle contains 'cs-' or item.handle contains 'sd-' %}
                   <img src="{{ search_img | strip }}" alt="{{ item.title | escape }}" loading="lazy" width="700" height="875">
                 {% elsif item.featured_image %}
-                  <img src="{{ item.featured_image | image_url: width: 1400 }}" alt="{{ item.title | escape }}" loading="lazy" width="700" height="875">
+                  <img src="{{ item.featured_image | image_url: width: 900 }}" alt="{{ item.featured_image.alt | default: item.title | escape }}" loading="lazy" width="700" height="875">
                 {% else %}
                   <img src="{{ search_img | strip }}" alt="{{ item.title | escape }}" loading="lazy" width="700" height="875">
                 {% endif %}
@@ -64,7 +64,7 @@
           {% elsif item.object_type == 'collection' %}
             <a class="ncs-card ncs-card-page" href="{{ item.url }}" data-nc-reveal>
               <div class="ncs-card-media ncs-fit-img ncs-fit-img--tile ncs-fit-img--compact">
-                <img src="{% render 'nc-collection-cover', handle: item.handle %}" alt="{{ item.title | escape }}" loading="lazy" width="700" height="525">
+                <img src="{% render 'nc-collection-cover', handle: item.handle, width: 900 %}" alt="{{ item.title | escape }}" loading="lazy" width="700" height="525">
               </div>
               <div class="ncs-card-info">
                 <span class="ncs-card-name">{{ item.title }}</span>
