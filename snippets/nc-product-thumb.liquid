@@ -1,10 +1,8 @@
 {%- comment -%}
-  Product thumbnail — Shopify image or theme catalog fallback.
-  Expects product handle: cft-1, cft-2, cft-3, cs-1, cs-2, cs-3, sd-1, sd-2, sd-3
+  Product thumbnail — Shopify Admin media only.
 {%- endcomment -%}
-{%- assign fallback_asset = product.handle | append: '-ibiza-white.jpg' -%}
 {%- if product.featured_image -%}
   {{ product.featured_image | image_url: width: 2400 }}
-{%- else -%}
-  {{ fallback_asset | asset_url }}
+{%- elsif product.images.size > 0 -%}
+  {{ product.images.first | image_url: width: 2400 }}
 {%- endif -%}

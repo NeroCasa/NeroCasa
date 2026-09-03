@@ -28,9 +28,13 @@
           <article class="ncs-cart-line">
             <a class="ncs-cart-line-media" href="{{ item.url }}">
               {% if item.image %}
-                <img src="{{ item.image | image_url: width: 400 }}" alt="{{ item.title | escape }}" width="200" height="220" loading="lazy">
+                <img src="{{ item.image | image_url: width: 400 }}" alt="{{ display_name | escape }}" width="200" height="220" loading="lazy">
               {% else %}
-                <img src="{% render 'nc-catalog-default-img', handle: item.product.handle %}" alt="{{ item.title | escape }}" width="200" height="220" loading="lazy">
+                {%- capture cart_img -%}{% render 'nc-catalog-default-img', handle: item.product.handle, product: item.product %}{%- endcapture -%}
+                {%- assign cart_img = cart_img | strip -%}
+                {% if cart_img != blank %}
+                  <img src="{{ cart_img }}" alt="{{ display_name | escape }}" width="200" height="220" loading="lazy">
+                {% endif %}
               {% endif %}
             </a>
             <div class="ncs-cart-line-body">

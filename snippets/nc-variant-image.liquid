@@ -1,19 +1,20 @@
 {%- comment -%}
-  Image URL for a product + marble finish.
-  1) Matching Shopify variant media (Admin)
-  2) Theme asset {handle}-{marble}.jpg
+  Image URL for a product + marble finish — Shopify Admin media only.
+  1) Matching variant featured image
+  2) Product image whose alt mentions the marble
   3) Product featured image
   @param product {Product}
   @param marble_name {String}
 {%- endcomment -%}
 {%- liquid
-  assign marble_slug = marble_name | downcase | replace: ' ', '-'
+  assign marble_lower = marble_name | downcase | strip
   assign image_url = blank
 
   for variant in product.variants
     assign matches = false
     for option in variant.options
-      if option == marble_name
+      assign option_lower = option | downcase | strip
+      if option == marble_name or option_lower == marble_lower
         assign matches = true
         break
       endif
@@ -24,10 +25,23 @@
     endif
   endfor
 
+  if image_url == blank and product.images.size > 0
+    for image in product.images
+      assign alt_lower = image.alt | downcase
+      if marble_lower != blank and alt_lower contains marble_lower
+        assign image_url = image | image_url: width: 1800
+        break
+      endif
+    endfor
+  endif
+
+  if image_url == blank and product.featured_image
+    assign image_url = product.featured_image | image_url: width: 1800
+  elsif image_url == blank and product.images.size > 0
+    assign image_url = product.images.first | image_url: width: 1800
+  endif
+
   if image_url != blank
     echo image_url
-  else
-    assign asset_name = product.handle | append: '-' | append: marble_slug | append: '.jpg'
-    echo asset_name | asset_url
   endif
 -%}

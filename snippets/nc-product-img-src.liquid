@@ -1,5 +1,5 @@
 {%- comment -%}
-  Product image URL — prefers Shopify Admin media, then theme asset fallback.
+  Product image URL — Shopify Admin media only.
   @param product {Product}
   @param width {Number} optional, default 1800
 {%- endcomment -%}
@@ -10,7 +10,5 @@
     echo product.featured_image | image_url: width: img_width
   elsif product.images.size > 0
     echo product.images.first | image_url: width: img_width
-  else
-    render 'nc-catalog-default-img', handle: product.handle
   endif
 -%}

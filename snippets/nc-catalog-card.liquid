@@ -13,7 +13,9 @@
 {%- assign item_src = item_src | strip -%}
 <a class="ncs-card ncs-marble-card" href="{{ item_url }}" data-nc-marble-card data-nc-reveal>
   <div class="ncs-fit-img ncs-fit-img--tile ncs-card-media">
-    <img src="{{ item_src }}" alt="{{ item_name | escape }}" width="900" height="1125" loading="lazy" data-nc-card-img data-default-src="{{ item_src }}">
+    {% if item_src != blank %}
+      <img src="{{ item_src }}" alt="{{ item_name | escape }}" width="900" height="1125" loading="lazy" data-nc-card-img data-default-src="{{ item_src }}">
+    {% endif %}
   </div>
   <div class="ncs-card-info">
     <span class="ncs-card-name">{{ item_name }}</span>
@@ -42,7 +44,7 @@
             <span
               class="ncs-marble-swatch ncs-marble-swatch--{{ marble_slug }}"
               data-nc-marble-preview
-              data-img="{{ marble_img }}"
+              {% if marble_img != blank %}data-img="{{ marble_img }}"{% endif %}
               title="{{ marble_name }}"
               aria-label="{{ marble_name }}"
               tabindex="0"
@@ -61,7 +63,7 @@
             <span
               class="ncs-marble-swatch ncs-marble-swatch--{{ marble_slug }}"
               data-nc-marble-preview
-              data-img="{{ marble_img }}"
+              {% if marble_img != blank %}data-img="{{ marble_img }}"{% endif %}
               title="{{ marble_name }}"
               aria-label="{{ marble_name }}"
               tabindex="0"

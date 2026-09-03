@@ -1,5 +1,5 @@
 {%- comment -%}
-  PDP variant image map from Shopify product (variants + media), asset fallback.
+  PDP image map from Shopify Admin product media / variant images.
   @param product {Product}
 {%- endcomment -%}
 {%- capture marbles_pipe -%}{% render 'nc-catalog-marbles', handle: product.handle %}{%- endcapture -%}
@@ -28,17 +28,28 @@ window.NC_CATALOG[{{ product.handle | json }}] = {
     {%- endif -%}
   ],
   "images": {
+    {%- assign img_first = true -%}
     {%- if marble_option != blank -%}
       {%- for marble_name in marble_option.values -%}
         {%- capture marble_img -%}{% render 'nc-variant-image', product: product, marble_name: marble_name %}{%- endcapture -%}
-        {{ marble_name | json }}: {{ marble_img | strip | json }}{% unless forloop.last %},{% endunless %}
+        {%- assign marble_img = marble_img | strip -%}
+        {%- if marble_img != blank -%}
+          {%- unless img_first -%},{%- endunless -%}
+          {{ marble_name | json }}: {{ marble_img | json }}
+          {%- assign img_first = false -%}
+        {%- endif -%}
       {%- endfor -%}
     {%- else -%}
       {%- for part in marbles_parts -%}
         {%- assign pair = part | split: ':' -%}
         {%- assign marble_name = pair[0] | strip -%}
         {%- capture marble_img -%}{% render 'nc-variant-image', product: product, marble_name: marble_name %}{%- endcapture -%}
-        {{ marble_name | json }}: {{ marble_img | strip | json }}{% unless forloop.last %},{% endunless %}
+        {%- assign marble_img = marble_img | strip -%}
+        {%- if marble_img != blank -%}
+          {%- unless img_first -%},{%- endunless -%}
+          {{ marble_name | json }}: {{ marble_img | json }}
+          {%- assign img_first = false -%}
+        {%- endif -%}
       {%- endfor -%}
     {%- endif -%}
   }

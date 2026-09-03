@@ -1,7 +1,6 @@
 {%- comment -%}
-  Default hero image per catalog product handle.
-  Prefers Shopify Admin featured image when a product object is available.
-  @param handle {String} product handle e.g. cft-1
+  Default product image — Shopify Admin media only.
+  @param handle {String} product handle
   @param product {Product} optional
 {%- endcomment -%}
 {%- liquid
@@ -12,28 +11,7 @@
 
   if p != blank and p.featured_image != blank
     echo p.featured_image | image_url: width: 1800
-  else
-    case handle
-      when 'cft-1'
-        echo 'cft-1-ibiza-white.jpg' | asset_url
-      when 'cft-2'
-        echo 'cft-2-armani-grey.jpg' | asset_url
-      when 'cft-3'
-        echo 'cft-3-rosso-levanto.jpg' | asset_url
-      when 'cs-1'
-        echo 'cs-1-travertine.jpg' | asset_url
-      when 'cs-2'
-        echo 'cs-2-ibiza-white.jpg' | asset_url
-      when 'cs-3'
-        echo 'cs-3-armani-grey.jpg' | asset_url
-      when 'sd-1'
-        echo 'sd-1-armani-grey.jpg' | asset_url
-      when 'sd-2'
-        echo 'sd-2-travertine.jpg' | asset_url
-      when 'sd-3'
-        echo 'sd-3-ibiza-white.jpg' | asset_url
-      else
-        echo handle | append: '-ibiza-white.jpg' | asset_url
-    endcase
+  elsif p != blank and p.images.size > 0
+    echo p.images.first | image_url: width: 1800
   endif
 -%}

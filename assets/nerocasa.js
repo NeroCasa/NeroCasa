@@ -79,17 +79,17 @@ document.addEventListener('DOMContentLoaded', function () {
     card.querySelectorAll('[data-nc-marble-preview]').forEach(function (swatch) {
       swatch.addEventListener('mouseenter', function () {
         var next = swatch.dataset.img;
-        if (next) img.src = next;
+        if (next && next.length) img.src = next;
       });
       swatch.addEventListener('mouseleave', function () {
-        img.src = defaultSrc;
+        if (defaultSrc) img.src = defaultSrc;
       });
       swatch.addEventListener('focus', function () {
         var next = swatch.dataset.img;
-        if (next) img.src = next;
+        if (next && next.length) img.src = next;
       });
       swatch.addEventListener('blur', function () {
-        img.src = defaultSrc;
+        if (defaultSrc) img.src = defaultSrc;
       });
     });
   });
