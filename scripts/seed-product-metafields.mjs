@@ -16,8 +16,8 @@ const SCOPES = 'write_products,read_products';
 
 const DIMENSIONS = {
   'cft-1': { height: '35', length: '160', width: '90' },
-  'cft-2': { height: '60', length: '100', depth: '40' },
-  'cft-3': { height: '45', length: '100', width: '40' },
+  'cft-2': { height: '42', length: '120', width: '120' },
+  'cft-3': { height: '45', length: '190', width: '60' },
   'cs-1': { height: '160', width: '35', length: '90' },
   'cs-2': { height: '40', width: '30', length: '140' },
   'cs-3': { height: '90', width: '35', length: '175' },
