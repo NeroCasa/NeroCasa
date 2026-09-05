@@ -29,7 +29,7 @@ if (!store) {
 }
 
 const PRICES = {
-  'cft-1': { 'Ibiza White': '5800', 'Armani Grey': '5500', Travertine: '5200' },
+  'cft-1': { 'Ibiza White': '5800', 'Armani Grey': '5500', Travertine: '5200', 'Rosso Levanto': '8800' },
   'cft-2': { 'Ibiza White': '4000', 'Armani Grey': '3700', Travertine: '3400' },
   'cft-3': { 'Ibiza White': '5300', Travertine: '4900', 'Rosso Levanto': '8200' },
   'cs-1': { 'Ibiza White': '3900', 'Armani Grey': '3300', Travertine: '3100' },

@@ -23,9 +23,9 @@ const PRODUCTS = {
   'cft-1': {
     seoTitle: 'Soglia Marble Coffee Table | Natural Stone Pair | NEROCASA',
     seoDescription:
-      'A pair of sculptural marble coffee tables in Ibiza White, Armani Grey or Travertine. Price shown is for both tables, hand-finished in our workshop.',
+      'A pair of sculptural marble coffee tables in Ibiza White, Armani Grey, Travertine or Rosso Levanto. Price shown is for both tables, hand-finished in our workshop.',
     descriptionHtml:
-      '<p>Soglia is a sculptural marble coffee table sold as a matching pair. Available in Ibiza White, Armani Grey and Travertine, each piece is hand-finished in our workshop for refined, architectural living spaces.</p>',
+      '<p>Soglia is a sculptural marble coffee table sold as a matching pair. Available in Ibiza White, Armani Grey, Travertine and Rosso Levanto, each piece is hand-finished in our workshop for refined, architectural living spaces.</p>',
   },
   'cft-2': {
     seoTitle: 'Equilibrio Marble Coffee Table | Natural Stone | NEROCASA',

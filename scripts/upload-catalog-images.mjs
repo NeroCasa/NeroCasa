@@ -23,7 +23,7 @@ const isWin = platform() === 'win32';
 const shopifyCmd = isWin ? 'shopify.cmd' : 'shopify';
 
 const PRODUCTS = [
-  { handle: 'cft-1', marbles: ['ibiza-white', 'armani-grey', 'travertine'] },
+  { handle: 'cft-1', marbles: ['ibiza-white', 'armani-grey', 'travertine', 'rosso-levanto'] },
   { handle: 'cft-2', marbles: ['ibiza-white', 'armani-grey', 'travertine'] },
   { handle: 'cft-3', marbles: ['ibiza-white', 'travertine', 'rosso-levanto'] },
   { handle: 'cs-1', marbles: ['ibiza-white', 'armani-grey', 'travertine'] },
