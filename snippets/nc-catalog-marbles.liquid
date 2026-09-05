@@ -5,7 +5,9 @@
 {%- endcomment -%}
 {%- liquid
   case handle
-    when 'cft-1', 'cft-2', 'cs-1', 'cs-2', 'cs-3', 'sd-1', 'sd-2', 'sd-3'
+    when 'cft-1'
+      echo 'Ibiza White:ibiza-white|Armani Grey:armani-grey|Travertine:travertine|Rosso Levanto:rosso-levanto'
+    when 'cft-2', 'cs-1', 'cs-2', 'cs-3', 'sd-1', 'sd-2', 'sd-3'
       echo 'Ibiza White:ibiza-white|Armani Grey:armani-grey|Travertine:travertine'
     when 'cft-3'
       echo 'Ibiza White:ibiza-white|Travertine:travertine|Rosso Levanto:rosso-levanto'
