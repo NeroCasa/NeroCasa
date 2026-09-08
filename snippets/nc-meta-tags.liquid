@@ -101,6 +101,9 @@
   if og_image == blank and settings.logo != blank
     assign og_image = settings.logo | image_url: width: 1200
   endif
+  if og_image == blank
+    assign og_image = 'nerocasa-brand-logo.jpg' | asset_url
+  endif
 
   # /pages/collections and the native /collections route render the same
   # ncs-collections-index section. Canonicalise the page template to
@@ -112,7 +115,7 @@
   if settings.logo != blank
     assign brand_logo = settings.logo | image_url: width: 600 | prepend: 'https:'
   else
-    assign brand_logo = 'nerocasa-logo-user.png' | asset_url | prepend: 'https:'
+    assign brand_logo = 'nerocasa-brand-logo.jpg' | asset_url | prepend: 'https:'
   endif
 -%}
 
@@ -331,6 +334,29 @@
     },
     "query-input": "required name=search_term_string"
   }
+}
+</script>
+{%- liquid
+  assign nav_collections = routes.collections_url | prepend: shop.url
+  assign nav_custom = pages[settings.page_custom_handle].url | default: '/pages/custom' | prepend: shop.url
+  assign nav_b2b = pages[settings.page_b2b_handle].url | default: '/pages/b2b' | prepend: shop.url
+  assign nav_about = pages[settings.page_about_handle].url | default: '/pages/why-nerocasa' | prepend: shop.url
+  assign nav_journal_path = blogs[settings.blog_handle].url | default: '/blogs/journal'
+  assign nav_journal = nav_journal_path | prepend: shop.url
+-%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "NEROCASA",
+  "itemListElement": [
+    { "@type": "SiteNavigationElement", "position": 1, "name": "Home", "url": {{ shop.url | append: routes.root_url | json }} },
+    { "@type": "SiteNavigationElement", "position": 2, "name": "Collections", "url": {{ nav_collections | json }} },
+    { "@type": "SiteNavigationElement", "position": 3, "name": "Custom", "url": {{ nav_custom | json }} },
+    { "@type": "SiteNavigationElement", "position": 4, "name": "B2B", "url": {{ nav_b2b | json }} },
+    { "@type": "SiteNavigationElement", "position": 5, "name": "Why Nerocasa", "url": {{ nav_about | json }} },
+    { "@type": "SiteNavigationElement", "position": 6, "name": "Journal", "url": {{ nav_journal | json }} }
+  ]
 }
 </script>
 {%- endif -%}
