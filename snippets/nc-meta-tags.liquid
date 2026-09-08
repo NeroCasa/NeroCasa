@@ -75,16 +75,12 @@
       assign seo_description = 'Coffee tables, side tables and console tables in natural marble. Explore the NEROCASA collections and preview each stone on the piece.'
     endif
   elsif request.page_type == 'index'
-    # On the homepage Shopify falls back to the shop name, so page_title is
-    # never blank and the descriptor below never applied — the most valuable
-    # title on the site rendered as bare "NeroCasa". Only an explicit homepage
-    # title set in Online Store > Preferences should win over the descriptor.
-    if page_title == blank or page_title == shop.name
-      assign seo_title = brand | append: ' | Luxury Marble Furniture'
-    endif
-    if seo_description == blank
-      assign seo_description = tagline
-    endif
+    # Homepage SEO lives in Online Store → Preferences and was overriding
+    # the theme with a generic decor description. Always publish the marble
+    # listing copy so Google and social previews match the brand.
+    assign seo_title = brand | append: ' | Luxury Marble Furniture'
+    assign seo_description = 'Luxury marble furniture, cut in our workshop. Coffee tables, side tables and console tables in natural stone, from quarries worldwide.'
+    assign og_image = 'nerocasa-brand-mark-clear.png' | asset_url
   elsif request.page_type == 'search'
     if page_title == blank
       assign seo_title = 'Search | ' | append: brand
@@ -109,10 +105,9 @@
     assign page_url = shop.url | append: routes.collections_url
   endif
 
+  assign brand_logo = 'nerocasa-brand-mark-clear.png' | asset_url | prepend: 'https:'
   if settings.logo != blank
     assign brand_logo = settings.logo | image_url: width: 600 | prepend: 'https:'
-  else
-    assign brand_logo = 'nerocasa-logo-user.png' | asset_url | prepend: 'https:'
   endif
 -%}
 
