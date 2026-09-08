@@ -2767,8 +2767,10 @@ body {
 .ncs-product-page h1 .nc-gold,
 .ncs-home-story h2 .nc-gold,
 .ncs-home-value h2 .nc-gold,
+.ncs-home-family-head h2 .nc-gold,
 .ncs-about-value h2 .nc-gold,
 .ncs-about-closer h2 .nc-gold,
+.ncs-about-closer h3 .nc-gold,
 .ncs-custom-block h2 .nc-gold,
 .ncs-collection-tile-label h2 .nc-gold,
 .ncs-form-title .nc-gold,
@@ -3136,34 +3138,372 @@ body {
   width: min(82%, 460px);
 }
 
-/* ── Why NeroCasa pillar grid — add a small gold numeral to each pillar
-   (same "01 / 02 / 03" language already used in the home value strip) so
-   the grid reads as an intentional editorial system instead of four bare
-   bordered boxes. Pure CSS counters — no markup changes needed. */
-.ncs-about-values {
-  counter-reset: nc-pillar;
-}
-
-.ncs-about-value {
-  position: relative;
-}
-
-.ncs-about-value::before {
-  counter-increment: nc-pillar;
-  content: "0" counter(nc-pillar);
-  display: block;
-  font-family: var(--nc-ui);
-  font-size: 9px;
-  letter-spacing: 0.22em;
-  color: var(--nc-gold);
-  opacity: 0.85;
-  margin-bottom: 18px;
-}
-
 /* ── Why NeroCasa closing CTA — the gap before the footer was oversized
    relative to the short CTA row above it. Tighten just this section's
    bottom margin; global section spacing (--nc-space-*) is untouched. */
 .ncs-about-closer {
   margin-bottom: clamp(40px, 6vw, 64px);
+}
+
+/* ══════════════════════════════════════════════
+   Atelier layer — house-level luxury system
+   Last in this file so it wins over earlier rules.
+   ══════════════════════════════════════════════ */
+
+.nc-gold {
+  color: var(--nc-gold) !important;
+}
+
+.ncs-btn,
+.ncs-buy form button,
+.ncs-custom-whatsapp-box {
+  background: var(--nc-gold) !important;
+  color: #080807 !important;
+  border: 1px solid var(--nc-gold) !important;
+  box-shadow: 0 4px 20px rgba(165, 123, 0, 0.28) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.08em !important;
+  transform: scale(1);
+  transition: transform 0.28s var(--nc-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+    box-shadow 0.28s ease, background 0.25s ease !important;
+}
+
+.ncs-btn--outline,
+.ncs-btn--ghost {
+  background: var(--nc-gold) !important;
+  color: #080807 !important;
+  box-shadow: 0 4px 20px rgba(165, 123, 0, 0.28) !important;
+}
+
+.ncs-btn:hover,
+.ncs-btn--outline:hover,
+.ncs-btn--ghost:hover,
+.ncs-buy form button:hover:not(:disabled),
+.ncs-custom-whatsapp-box:hover {
+  transform: scale(1.07);
+  background: #c49200 !important;
+  border-color: #c49200 !important;
+  color: #080807 !important;
+  box-shadow: 0 10px 32px rgba(165, 123, 0, 0.45) !important;
+}
+
+.ncs-buy form button {
+  justify-content: center;
+  font-size: 13px !important;
+}
+
+[data-nc-reveal] {
+  opacity: 1;
+  transform: none;
+  -webkit-clip-path: inset(0 0 18% 0);
+  clip-path: inset(0 0 18% 0);
+  transition: clip-path 1.05s var(--nc-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+    -webkit-clip-path 1.05s var(--nc-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+    opacity 0.7s var(--nc-ease, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+[data-nc-reveal].is-visible {
+  -webkit-clip-path: inset(0 0 0 0);
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+  transform: none;
+}
+
+.ncs-page-hero-shell--quiet {
+  background: transparent;
+}
+
+.ncs-home-hero {
+  overflow: hidden;
+}
+
+.ncs-hero-content h1 {
+  font-weight: 400;
+  color: var(--nc-ink);
+}
+
+.ncs-hero-content h1 .nc-gold {
+  color: var(--nc-gold);
+}
+
+.ncs-hero-content {
+  align-items: center !important;
+  justify-content: flex-start !important;
+  text-align: center !important;
+  padding: calc(var(--nc-header-h, 82px) + 88px) 6vw 48px !important;
+  gap: 28px !important;
+}
+
+.ncs-hero-content h1 {
+  font-size: clamp(56px, 10vw, 148px) !important;
+  letter-spacing: -0.04em !important;
+  line-height: 0.95 !important;
+  font-weight: 400;
+  color: var(--nc-ink);
+}
+
+.ncs-hero-content h1 .nc-gold {
+  color: var(--nc-gold) !important;
+}
+
+.ncs-hero-tagline {
+  font-size: clamp(18px, 2.2vw, 26px) !important;
+  max-width: 420px;
+  margin: 0;
+}
+
+.ncs-home-hero .ncs-hero-cta {
+  align-self: center;
+  margin-top: 8px !important;
+}
+
+.nc-header {
+  height: 76px;
+  background: transparent !important;
+  border-bottom: 0 !important;
+}
+
+.nc-header.is-scrolled {
+  background: rgba(8, 8, 7, 0.9) !important;
+  border-bottom: 1px solid rgba(165, 123, 0, 0.2) !important;
+}
+
+.nc-nav {
+  font-size: 11px !important;
+  letter-spacing: 0.26em !important;
+  gap: 40px !important;
+}
+
+.ncs-home-maison {
+  padding: 0 6vw 4vw;
+}
+
+.ncs-home-family {
+  padding: clamp(80px, 11vw, 140px) 0 0;
+}
+
+.ncs-home-family + .ncs-home-family {
+  border-top: 1px solid var(--nc-line);
+  margin-top: clamp(72px, 9vw, 120px);
+}
+
+.ncs-home-family-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px 32px;
+  margin-bottom: clamp(28px, 4vw, 48px);
+}
+
+.ncs-home-family-head h2 {
+  margin: 0;
+  font-family: var(--nc-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(40px, 7vw, 92px);
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+.ncs-home-family-head a {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--nc-gold);
+}
+
+.ncs-home-values {
+  gap: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  margin: 6vw 6vw 0;
+  padding: 6vw 0 0;
+  border-top: 1px solid var(--nc-line) !important;
+}
+
+.ncs-home-value {
+  padding: clamp(36px, 5vw, 64px) clamp(20px, 3vw, 40px) clamp(36px, 5vw, 64px) 0;
+  border-right: 1px solid var(--nc-line);
+}
+
+.ncs-home-value:last-child {
+  border-right: 0;
+}
+
+.ncs-home-value::before {
+  content: none !important;
+  display: none !important;
+}
+
+.ncs-about-value::before {
+  content: none !important;
+  display: none !important;
+}
+
+.ncs-home-value h2 {
+  font-style: italic;
+  font-weight: 300;
+}
+
+.ncs-home-story {
+  padding: 10vw 7vw !important;
+  background: #050504;
+}
+
+.ncs-home-story .ncs-page-kicker {
+  display: block !important;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--nc-gold);
+  margin-bottom: 16px;
+}
+
+.ncs-product-page {
+  padding-left: 4vw;
+  padding-right: 4vw;
+}
+
+.ncs-product-config h1 {
+  font-size: clamp(48px, 5.5vw, 88px) !important;
+}
+
+.ncs-collections-list .ncs-fit-img--compact,
+.ncs-collection-tile .ncs-fit-img--compact {
+  aspect-ratio: 3 / 4;
+}
+
+.nc-footer {
+  padding-top: 8vw;
+}
+
+@media (max-width: 900px) {
+  .ncs-hero-content {
+    padding: calc(var(--nc-header-h, 82px) + 64px) 6vw 48px !important;
+  }
+
+  .ncs-home-value {
+    border-right: 0;
+    border-bottom: 1px solid var(--nc-line);
+    padding-right: 0;
+  }
+
+  .ncs-home-value:last-child {
+    border-bottom: 0;
+  }
+}
+
+.nc-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 4000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--nc-bg, #080807);
+  pointer-events: none;
+  opacity: 1;
+  animation: nc-loader-hold 1.6s var(--nc-ease, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
+}
+
+@keyframes nc-loader-hold {
+  0%, 55% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+.nc-loader.is-done {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.nc-loader-mark {
+  font-family: var(--nc-display);
+  font-size: clamp(18px, 2.4vw, 28px);
+  letter-spacing: 0.42em;
+  color: var(--nc-ink);
+  padding-left: 0.42em;
+}
+
+.nc-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border: 1px solid var(--nc-gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 5000;
+  opacity: 0.85;
+  transition: width 0.28s var(--nc-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+    height 0.28s var(--nc-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+    margin 0.28s var(--nc-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+    background 0.28s, opacity 0.2s;
+  will-change: transform;
+}
+
+.nc-cursor.is-active {
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+  background: rgba(165, 123, 0, 0.12);
+}
+
+html.nc-has-cursor,
+html.nc-has-cursor body,
+html.nc-has-cursor a,
+html.nc-has-cursor button {
+  cursor: none;
+}
+
+html.nc-has-cursor input,
+html.nc-has-cursor textarea,
+html.nc-has-cursor select {
+  cursor: text;
+}
+
+.ncs-card {
+  transition: opacity 0.45s var(--nc-ease, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.ncs-grid-products:hover .ncs-card:not(:hover) {
+  opacity: 0.55;
+}
+
+@media (max-width: 900px) {
+  .ncs-grid-products:hover .ncs-card:not(:hover) {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-nc-reveal],
+  [data-nc-reveal].is-visible {
+    clip-path: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .nc-loader {
+    display: none !important;
+  }
+
+  .nc-cursor {
+    display: none !important;
+  }
+
+  html.nc-has-cursor,
+  html.nc-has-cursor body,
+  html.nc-has-cursor a,
+  html.nc-has-cursor button {
+    cursor: auto;
+  }
 }
 

@@ -1,5 +1,6 @@
 <section class="ncs-custom-page">
   {% render 'nc-page-hero-shell-open',
+    quiet: true,
     slab_left: 'hero-slab-red.jpg',
     slab_center: 'hero-slab-white.jpg',
     slab_right: 'hero-slab-grey.jpg',
@@ -28,11 +29,11 @@
 
     <div class="ncs-custom-whatsapp-panel">
       <p class="ncs-custom-whatsapp-note">{{ section.settings.whatsapp_note }}</p>
-      <a class="ncs-btn" href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">Talk to us on WhatsApp ↗</a>
+      <a class="ncs-btn" href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">Talk to us on WhatsApp</a>
       <p class="ncs-custom-whatsapp-hint">{{ section.settings.whatsapp_hint }}</p>
     </div>
 
-    <p class="ncs-custom-b2b-note">{{ section.settings.b2b_note }} <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B enquiry ↗</a></p>
+    <p class="ncs-custom-b2b-note">{{ section.settings.b2b_note }} <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B</a></p>
   </section>
 
   <section class="ncs-custom-block ncs-custom-block--waterjet" data-nc-reveal>

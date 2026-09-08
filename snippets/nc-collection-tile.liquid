@@ -1,0 +1,33 @@
+{%- comment -%}
+  Collection index / home tile.
+  @param collection {Collection}
+  @param cover {Image} optional Theme Editor override
+  @param subtitle {String} optional
+{%- endcomment -%}
+{%- assign tile_handle = collection.handle -%}
+<a class="ncs-collection-tile" href="{{ collection.url }}" data-nc-reveal>
+  <div class="ncs-fit-img ncs-fit-img--tile ncs-fit-img--compact">
+    {%- capture cover_src -%}{% render 'nc-collection-cover', handle: tile_handle, image: cover %}{%- endcapture -%}
+    {%- capture cover_sm -%}{% render 'nc-collection-cover', handle: tile_handle, image: cover, width: 500 %}{%- endcapture -%}
+    {%- capture cover_md -%}{% render 'nc-collection-cover', handle: tile_handle, image: cover, width: 800 %}{%- endcapture -%}
+    {%- assign cover_src = cover_src | strip -%}
+    {%- assign cover_sm = cover_sm | strip -%}
+    {%- assign cover_md = cover_md | strip -%}
+    {% if cover_src != blank %}
+      <img
+        src="{{ cover_src }}"
+        srcset="{{ cover_sm }} 500w, {{ cover_md }} 800w, {{ cover_src }} 1200w"
+        sizes="(min-width: 901px) 32vw, 92vw"
+        alt="{{ collection.title | escape }}"
+        width="1600"
+        height="1200"
+        loading="lazy">
+    {% endif %}
+  </div>
+  <div class="ncs-collection-tile-label">
+    <h2>{% render 'nc-title-gold', title: collection.title %}</h2>
+    {%- if subtitle != blank -%}
+      <small>{{ subtitle }}</small>
+    {%- endif -%}
+  </div>
+</a>

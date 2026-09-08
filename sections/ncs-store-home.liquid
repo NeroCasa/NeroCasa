@@ -24,10 +24,33 @@
     {% endif %}
   </div>
   <div class="ncs-hero-content">
-    <h1><span>NE<span>RO</span></span><span class="nc-gold">CASA</span></h1>
-    <p class="ncs-hero-tagline">{{ section.settings.hero_tagline | default: settings.brand_tagline }}</p>
-    <a class="ncs-btn ncs-btn--ghost ncs-hero-cta" href="{% render 'nc-collections-index-url' %}">Explore collections ↗</a>
+    <h1>NERO<span class="nc-gold">CASA</span></h1>
+    <p class="ncs-hero-tagline">{{ section.settings.hero_tagline | default: 'Furniture in stone.' }}</p>
+    <a class="ncs-btn ncs-btn--ghost ncs-hero-cta" href="{% render 'nc-collections-index-url' %}">The collection</a>
   </div>
+</section>
+
+<section class="ncs-home-maison">
+  <article class="ncs-home-family">
+    <header class="ncs-home-family-head">
+      <h2>{% render 'nc-title-gold', title: 'The collection' %}</h2>
+      <a href="{% render 'nc-collections-index-url' %}">View all</a>
+    </header>
+    <div class="ncs-grid-products">
+      {%- assign home_coffee = all_products['cft-3'] -%}
+      {%- assign home_side = all_products['sd-1'] -%}
+      {%- assign home_console = all_products['cs-1'] -%}
+      {%- if home_coffee != blank -%}
+        {% render 'nc-catalog-card', shop_product: home_coffee %}
+      {%- endif -%}
+      {%- if home_side != blank -%}
+        {% render 'nc-catalog-card', shop_product: home_side %}
+      {%- endif -%}
+      {%- if home_console != blank -%}
+        {% render 'nc-catalog-card', shop_product: home_console %}
+      {%- endif -%}
+    </div>
+  </article>
 </section>
 
 <section class="ncs-home-values" data-nc-reveal>
@@ -50,7 +73,7 @@
     <span class="ncs-page-kicker">Why Nerocasa</span>
     <h2>{% render 'nc-title-gold', title: section.settings.story_heading %}</h2>
     <p>{{ section.settings.story_text }}</p>
-    <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}">Our story ↗</a>
+    <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}">The house</a>
   </div>
   <div class="ncs-home-story-visual ncs-brand-visual-frame">
     <img src="{% render 'nc-brand-visual' %}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="1200" loading="lazy">
@@ -65,7 +88,7 @@
       "type": "textarea",
       "id": "hero_tagline",
       "label": "Hero tagline",
-      "default": "Real marble furniture. From our factory to your home."
+      "default": "Furniture in stone."
     },
     {
       "type": "header",
@@ -100,37 +123,37 @@
       "type": "text",
       "id": "value_1_title",
       "label": "Value 1 title",
-      "default": "From our workshop"
+      "default": "Under one roof"
     },
     {
       "type": "textarea",
       "id": "value_1_text",
       "label": "Value 1 text",
-      "default": "We design, cut and finish under one roof. When you order, we begin work on your piece with the care it deserves."
+      "default": "We design, cut and finish in our own workshop. When you order, work on your piece begins here."
     },
     {
       "type": "text",
       "id": "value_2_title",
       "label": "Value 2 title",
-      "default": "Stone from anywhere"
+      "default": "Quarried, then cut here"
     },
     {
       "type": "textarea",
       "id": "value_2_text",
       "label": "Value 2 text",
-      "default": "We import marble from quarries worldwide and can source the stone you want, from any origin on earth. Every piece is then cut and finished in our own factory."
+      "default": "Marble from quarries worldwide, cut and finished in our workshop. The origin you want, made under our roof."
     },
     {
       "type": "text",
       "id": "value_3_title",
       "label": "Value 3 title",
-      "default": "Marble for every home"
+      "default": "Made to be lived with"
     },
     {
       "type": "textarea",
       "id": "value_3_text",
       "label": "Value 3 text",
-      "default": "Living with stone should not be reserved for a few. We exist so more people can own real marble, beautifully made and fairly priced."
+      "default": "Stone for rooms that are used, not staged. Pieces made to hold a life around them."
     },
     {
       "type": "header",

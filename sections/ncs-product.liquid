@@ -73,14 +73,14 @@
     {%- if catalog_category != blank -%}
       <p class="ncs-product-category">{{ catalog_category }}</p>
     {%- endif -%}
-    <div class="ncs-availability">{% if product.available %}Available to order{% else %}Currently unavailable{% endif %}</div>
+    <div class="ncs-availability">{% if product.available %}Made to order{% else %}Not available{% endif %}</div>
 
     <div class="ncs-price">
       <span data-ncs-price>{{ product.selected_or_first_available_variant.price | money }}</span>
       {% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
         <s class="ncs-compare-price">{{ product.selected_or_first_available_variant.compare_at_price | money }}</s>
       {% endif %}
-      <small>INCLUDING STANDARD VAT</small>
+      <small>Includes VAT</small>
     </div>
 
     {% if product.description != blank %}<div class="ncs-short-desc">{{ product.description }}</div>{% endif %}
@@ -89,7 +89,7 @@
       {% if product.has_only_default_variant == false %}
         {% for option in product.options_with_values %}
           <div class="ncs-choice" data-option-index="{{ forloop.index0 }}" data-option-name="{{ option.name | escape }}">
-            <label>{{ option.name | upcase }}</label>
+            <label>{{ option.name }}</label>
             <div class="ncs-choice-row">
               {% for value in option.values %}
                 <button type="button" data-value="{{ value | escape }}" class="{% if option.selected_value == value %}is-active{% endif %}">{{ value }}</button>
@@ -101,14 +101,14 @@
     </div>
 
     <div class="ncs-size-mode" data-size-mode>
-      <label>SIZE</label>
+      <label>Size</label>
       <div class="ncs-size-mode-row">
-        <button type="button" class="is-active" data-size-mode-button="fixed">STANDARD</button>
-        <button type="button" data-size-mode-button="custom">CUSTOM</button>
+        <button type="button" class="is-active" data-size-mode-button="fixed">Standard</button>
+        <button type="button" data-size-mode-button="custom">Custom</button>
       </div>
 
       <div class="ncs-fixed-dimensions" data-fixed-size>
-        <div class="ncs-fixed-size-title">STANDARD DIMENSIONS</div>
+        <div class="ncs-fixed-size-title">Standard dimensions</div>
         <div class="ncs-fixed-dimensions-values">
           {% render 'nc-catalog-dimensions', product: product, handle: product.handle %}
         </div>
@@ -125,7 +125,7 @@
 
     <div class="ncs-buy" data-ncs-buy>
       <div>
-        <span>YOUR CONFIGURATION</span>
+        <span>This piece</span>
         <b data-ncs-summary>{{ product.selected_or_first_available_variant.title }}</b>
         <small class="ncs-selected-dimensions" data-ncs-selected-dimensions></small>
       </div>
@@ -134,15 +134,15 @@
         <input type="hidden" name="properties[Color / Marble]" value="" data-ncs-color-property>
         <input type="hidden" name="properties[Size Type]" value="Standard" data-ncs-size-type-property>
         <button type="submit" name="add" data-ncs-add-btn {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
-          {% if product.selected_or_first_available_variant.available %}ADD TO CART{% else %}SOLD OUT{% endif %}
+          {% if product.selected_or_first_available_variant.available %}Add to cart{% else %}Not available{% endif %}
         </button>
-        <p class="ncs-cart-added" data-nc-cart-added hidden>Added to cart. Open the cart icon when you are ready to checkout.</p>
+        <p class="ncs-cart-added" data-nc-cart-added hidden>Added to cart.</p>
       {% endform %}
     </div>
 
     <div class="ncs-accordion" data-ncs-accordion>
       <details class="ncs-story-detail" open>
-        <summary>THE STORY</summary>
+        <summary>Story</summary>
         <div class="ncs-story-body" data-ncs-story>
           {%- if is_catalog_product -%}
             {%- assign initial_marble = default_marble -%}
@@ -157,7 +157,7 @@
         </div>
       </details>
       <details class="ncs-story-detail">
-        <summary>MATERIALS &amp; FINISH</summary>
+        <summary>Stone</summary>
         <div class="ncs-story-body" data-ncs-materials>
           {%- if is_catalog_product -%}
             {% render 'nc-marble-profile', marble: default_marble, part: 'materials' %}
@@ -169,7 +169,7 @@
         </div>
       </details>
       <details class="ncs-story-detail">
-        <summary>DIMENSIONS</summary>
+        <summary>Measure</summary>
         <div class="ncs-story-body" data-ncs-dimensions>
           {%- if dim_h != blank or dim_l != blank or dim_w != blank or dim_d != blank -%}
             {%- if product.handle == 'cft-1' -%}
@@ -204,12 +204,12 @@
         </div>
       </details>
       <details class="ncs-story-detail">
-        <summary>PRODUCTION &amp; DELIVERY</summary>
+        <summary>Making</summary>
         <div class="ncs-story-body" data-ncs-production>
           {%- if product.metafields.custom.production_info != blank -%}
             {{ product.metafields.custom.production_info }}
           {%- else -%}
-            <p>Each NeroCasa piece is crafted in our workshop from natural stone sourced directly from quarries worldwide. We cut, finish and assemble every design in-house, ensuring museum-grade quality without third-party markups.</p>
+            <p>Each NeroCasa piece is cut, finished and assembled in our workshop from natural stone sourced at quarries worldwide.</p>
             <p>White-glove delivery typically within <strong>3 to 7 working days</strong> after order confirmation. We confirm timing for your selected marble and configuration before dispatch.</p>
           {%- endif -%}
         </div>
@@ -334,7 +334,7 @@
     var selected=selectedValues();
     var v=findVariant(selected);
     if(!v){
-      if(add){add.disabled=true;add.innerHTML='UNAVAILABLE';}
+      if(add){add.disabled=true;add.innerHTML='Not available';}
       var imgOnly=resolveImage(null);
       if(imgOnly)setImage(imgOnly);
       updateShownIn();
@@ -343,7 +343,7 @@
     }
     if(variantInput)variantInput.value=v.id;
     if(price)price.textContent=v.price;
-    if(add){add.disabled=!v.available;add.innerHTML=v.available?'ADD TO CART':'SOLD OUT';}
+    if(add){add.disabled=!v.available;add.innerHTML=v.available?'Add to cart':'Not available';}
     if(summary)summary.textContent=v.title;
     var img=resolveImage(v);
     if(img)setImage(img);
@@ -366,7 +366,7 @@
     wrap.dataset.optionIndex='0';
     wrap.dataset.optionName='Marble';
     wrap.dataset.ncInjectedMarble='1';
-    wrap.innerHTML='<label>MARBLE</label><div class="ncs-choice-row"></div>';
+    wrap.innerHTML='<label>Marble</label><div class="ncs-choice-row"></div>';
     var row=wrap.querySelector('.ncs-choice-row');
     catalog.colors.forEach(function(color,i){
       var btn=document.createElement('button');

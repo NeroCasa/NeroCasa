@@ -1,5 +1,6 @@
 <section class="ncs-blog-page">
   {% render 'nc-page-hero-shell-open',
+    quiet: true,
     slab_left: 'hero-slab-grey.jpg',
     slab_center: 'hero-slab-travertine.jpg',
     slab_right: 'hero-slab-white.jpg'
@@ -46,7 +47,7 @@
               {%- else -%}
                 <p>{{ article.content | strip_html | truncate: 140 }}</p>
               {%- endif -%}
-              <span class="ncs-blog-read">Read article ↗</span>
+              <span class="ncs-blog-read">Read</span>
             </div>
           </a>
         </article>

@@ -1,16 +1,5 @@
 <section class="ncs-b2b-page">
-  <div class="ncs-b2b-layout ncs-b2b-layout--split ncs-page-hero-shell">
-    <div class="ncs-hero-media" aria-hidden="true">
-      {% render 'nc-hero-marble-bg',
-        mode: 'triple',
-        slab_left: 'hero-slab-grey.jpg',
-        slab_center: 'hero-slab-black.jpg',
-        slab_right: 'hero-slab-red.jpg',
-        left_image: section.settings.hero_slab_left,
-        center_image: section.settings.hero_slab_center,
-        right_image: section.settings.hero_slab_right
-      %}
-    </div>
+  <div class="ncs-b2b-layout ncs-b2b-layout--split ncs-page-hero-shell ncs-page-hero-shell--quiet">
     <header class="ncs-b2b-header ncs-page-hero" data-nc-reveal>
       <span class="ncs-page-kicker">{{ section.settings.kicker }}</span>
       <h1>{% render 'nc-title-gold', title: section.settings.heading %}</h1>
@@ -54,7 +43,7 @@
             </div>
             <label class="ncs-form-full">Marble or stone preference<input type="text" name="contact[marble_preference]" placeholder="Describe the finish you want, or leave open for our suggestion"></label>
             <label class="ncs-form-full">Project details<textarea name="contact[body]" rows="7" placeholder="Space, pieces required, location, timeline, anything else we should know."></textarea></label>
-            <button type="submit" class="ncs-btn">Send enquiry ↗</button>
+            <button type="submit" class="ncs-btn">Send</button>
           {% endif %}
         {% endform %}
       </div>
@@ -82,7 +71,7 @@
       "type": "textarea",
       "id": "lead",
       "label": "Lead",
-      "default": "Hotels, residences, restaurants and retail spaces. We partner with designers, architects and developers who need real stone at volume, with production they can trust. We source marble from quarries worldwide. Any catalog design can be adapted in different marbles, sizes, or finishes for your project."
+      "default": "Hotels, residences, restaurants and retail. We work with designers, architects and developers who need real stone, with production they can trust. Marble from quarries worldwide. Any catalog design can be adapted in different stones, sizes, or finishes."
     },
     {
       "type": "header",
@@ -113,7 +102,7 @@
       "type": "text",
       "id": "trust_1",
       "label": "Trust point 1",
-      "default": "Direct workshop pricing"
+      "default": "Cut in our workshop"
     },
     {
       "type": "text",

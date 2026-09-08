@@ -12,8 +12,10 @@
     "main": {
       "type": "ncs-about",
       "settings": {
-        "hero_lead": "NEROCASA imports premium marble from quarries worldwide and crafts luxury furniture in its own workshop. Real stone, architectural design and the finish we would choose for our own homes.",
-        "manifesto_text": "It is part of how a home feels. As our collection grows, our standards stay the same. Real stone, honest craft, and a brand that treats every client as someone we want in our world for years."
+        "hero_lead": "NEROCASA imports marble from quarries worldwide and cuts furniture in its own workshop. Real stone, architectural design, and the finish we would choose for our own homes.",
+        "manifesto_text": "It is part of how a home feels. As our collection grows, our standards stay the same. Real stone, honest craft, and a house that treats every client as someone we want in our world for years.",
+        "advantage_1_title": "The stone, without a showroom tax",
+        "advantage_1_text": "We import the stone and cut it in our own workshop. The piece is not marked up by a showroom in between."
       }
     }
   },

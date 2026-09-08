@@ -107,4 +107,60 @@ document.addEventListener('DOMContentLoaded', function () {
       swatch.addEventListener('blur', restoreDefault);
     });
   });
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = window.matchMedia('(pointer: fine)').matches;
+
+  var loader = document.querySelector('[data-nc-loader]');
+  function dismissLoader() {
+    if (loader) loader.classList.add('is-done');
+  }
+  if (reduceMotion) {
+    dismissLoader();
+  } else {
+    window.addEventListener('load', dismissLoader);
+    window.setTimeout(dismissLoader, 1400);
+  }
+
+  var cursor = document.querySelector('[data-nc-cursor]');
+  if (cursor && finePointer && !reduceMotion) {
+    cursor.hidden = false;
+    document.documentElement.classList.add('nc-has-cursor');
+    var cursorX = 0;
+    var cursorY = 0;
+    var pending = false;
+    function drawCursor() {
+      pending = false;
+      cursor.style.transform = 'translate(' + cursorX + 'px,' + cursorY + 'px)';
+    }
+    document.addEventListener(
+      'mousemove',
+      function (e) {
+        cursorX = e.clientX;
+        cursorY = e.clientY;
+        if (!pending) {
+          pending = true;
+          window.requestAnimationFrame(drawCursor);
+        }
+      },
+      { passive: true }
+    );
+    document.addEventListener('mouseover', function (e) {
+      var hit = e.target.closest('a, button, [role="button"], summary, input, textarea, select');
+      cursor.classList.toggle('is-active', Boolean(hit));
+    });
+  }
+
+  if (finePointer && !reduceMotion) {
+    var heroMedia = document.querySelector('.ncs-home-hero .ncs-hero-media');
+    if (heroMedia) {
+      window.addEventListener(
+        'scroll',
+        function () {
+          heroMedia.style.transform = 'translate3d(0,' + window.scrollY * 0.12 + 'px,0)';
+        },
+        { passive: true }
+      );
+    }
+  }
 });

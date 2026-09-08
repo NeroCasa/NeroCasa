@@ -1,5 +1,6 @@
 <section class="ncs-cart-page">
   {% render 'nc-page-hero-shell-open',
+    quiet: true,
     slab_left: 'hero-slab-travertine.jpg',
     slab_center: 'hero-slab-red.jpg',
     slab_right: 'hero-slab-black.jpg'
@@ -15,7 +16,7 @@
   {% if cart.item_count == 0 %}
     <div class="ncs-cart-empty" data-nc-reveal>
       <p>Your cart is empty.</p>
-      <a class="ncs-btn" href="{% render 'nc-collections-index-url' %}">Browse collections ↗</a>
+      <a class="ncs-btn" href="{% render 'nc-collections-index-url' %}">Browse collections</a>
     </div>
   {% else %}
     <form action="{{ routes.cart_url }}" method="post" class="ncs-cart-form" data-nc-reveal>
@@ -94,13 +95,25 @@
         <p class="ncs-cart-note">At checkout you will enter your <strong>email</strong> for order confirmation and your <strong>phone number</strong> (WhatsApp) so we can reach you. Delivery address is entered there too.</p>
 
         <div class="ncs-cart-summary-actions">
-          <button type="submit" name="update" class="ncs-btn ncs-btn--outline">Update cart</button>
-          <button type="submit" name="checkout" class="ncs-btn">Proceed to checkout ↗</button>
+          <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-collections-index-url' %}">Continue shopping</a>
+          <button type="submit" name="checkout" class="ncs-btn">Proceed to checkout</button>
         </div>
-        <a class="ncs-cart-continue" href="{% render 'nc-collections-index-url' %}">Continue shopping</a>
       </aside>
     </form>
   {% endif %}
 </section>
+
+<script>
+(function(){
+  var form=document.querySelector('.ncs-cart-form');
+  if(!form)return;
+  form.querySelectorAll('input[name="updates[]"]').forEach(function(input){
+    input.addEventListener('change',function(){
+      fetch('/cart/update.js',{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}})
+        .then(function(res){if(res.ok)window.location.reload();});
+    });
+  });
+})();
+</script>
 
 {% schema %}{"name":"Cart","presets":[{"name":"Cart"}]}{% endschema %}

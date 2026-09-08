@@ -1,10 +1,12 @@
 {% comment %}
-  Opens a full-bleed page hero shell (same marble treatment as home).
+  Opens a page hero shell.
   Params: slab_left, slab_center, slab_right (asset filenames)
            left_image, center_image, right_image (optional Theme Editor images)
+           quiet (boolean) — no marble wallpaper; for cart, search, legal, 404
   Close with nc-page-hero-shell-close.liquid
 {% endcomment %}
-<div class="ncs-page-hero-shell">
+<div class="ncs-page-hero-shell{% if quiet %} ncs-page-hero-shell--quiet{% endif %}">
+  {%- unless quiet -%}
   <div class="ncs-hero-media" aria-hidden="true">
     {% render 'nc-hero-marble-bg',
       mode: 'triple',
@@ -16,3 +18,4 @@
       right_image: right_image
     %}
   </div>
+  {%- endunless -%}

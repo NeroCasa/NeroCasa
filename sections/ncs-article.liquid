@@ -1,5 +1,6 @@
 <section class="ncs-article-page">
   {% render 'nc-page-hero-shell-open',
+    quiet: true,
     slab_left: 'hero-slab-white.jpg',
     slab_center: 'hero-slab-grey.jpg',
     slab_right: 'hero-slab-travertine.jpg'
@@ -48,10 +49,10 @@
   </div>
 
   <div class="ncs-article-cta" data-nc-reveal>
-    <p>Explore luxury marble furniture, sourced from quarries worldwide and made in our workshop.</p>
+    <p>Stone from quarries worldwide, cut in our workshop.</p>
     <div class="ncs-article-cta-actions">
-      <a class="ncs-btn ncs-btn--compact" href="{% render 'nc-collections-index-url' %}">Shop collections ↗</a>
-      <a class="ncs-btn ncs-btn--outline ncs-btn--compact" href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}">Custom pieces ↗</a>
+      <a class="ncs-btn ncs-btn--compact" href="{% render 'nc-collections-index-url' %}">The collection</a>
+      <a class="ncs-btn ncs-btn--outline ncs-btn--compact" href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}">Custom pieces</a>
     </div>
   </div>
 </section>

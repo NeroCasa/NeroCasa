@@ -2,6 +2,7 @@
 
 <section class="ncs-search-page">
   {% render 'nc-page-hero-shell-open',
+    quiet: true,
     slab_left: 'hero-slab-white.jpg',
     slab_center: 'hero-slab-green.jpg',
     slab_right: 'hero-slab-grey.jpg'
@@ -26,7 +27,7 @@
 
   <form action="{{ routes.search_url }}" method="get" role="search" class="ncs-search-page-form" data-nc-reveal data-nc-search-form>
     <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Soglia, Equilibrio, coffee tables…" aria-label="Search" data-nc-search-input>
-    <button type="submit" class="ncs-btn">Search ↗</button>
+    <button type="submit" class="ncs-btn">Search</button>
   </form>
 
   {% if search.performed %}
@@ -108,7 +109,7 @@
   });
 
   if(!matches.length){
-    emptyEl.textContent='No results found. Try Soglia, Monolite, coffee tables, or a marble name.';
+    emptyEl.textContent='Nothing under that name.';
     return;
   }
 

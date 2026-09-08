@@ -1,5 +1,6 @@
 <section class="ncs-collections-page">
   {% render 'nc-page-hero-shell-open',
+    quiet: true,
     slab_left: 'hero-slab-red.jpg',
     slab_center: 'hero-slab-green.jpg',
     slab_right: 'hero-slab-travertine.jpg',
@@ -15,78 +16,33 @@
   {% render 'nc-page-hero-shell-close' %}
 
   <div class="ncs-collections-list ncs-collections-list--grid">
-    <a class="ncs-collection-tile" href="{% render 'nc-collection-url', handle: settings.collection_coffee %}" data-nc-reveal>
-      <div class="ncs-fit-img ncs-fit-img--tile ncs-fit-img--compact">
-        {%- capture cover_coffee -%}{% render 'nc-collection-cover', handle: settings.collection_coffee, image: section.settings.cover_coffee %}{%- endcapture -%}
-        {%- capture cover_coffee_sm -%}{% render 'nc-collection-cover', handle: settings.collection_coffee, image: section.settings.cover_coffee, width: 500 %}{%- endcapture -%}
-        {%- capture cover_coffee_md -%}{% render 'nc-collection-cover', handle: settings.collection_coffee, image: section.settings.cover_coffee, width: 800 %}{%- endcapture -%}
-        {%- assign cover_coffee = cover_coffee | strip -%}
-        {%- assign cover_coffee_sm = cover_coffee_sm | strip -%}
-        {%- assign cover_coffee_md = cover_coffee_md | strip -%}
-        {% if cover_coffee != blank %}
-          <img
-            src="{{ cover_coffee }}"
-            srcset="{{ cover_coffee_sm }} 500w, {{ cover_coffee_md }} 800w, {{ cover_coffee }} 1200w"
-            sizes="(min-width: 901px) 32vw, 92vw"
-            alt="Marble coffee tables"
-            width="1600"
-            height="1200"
-            loading="lazy">
-        {% endif %}
-      </div>
-      <div class="ncs-collection-tile-label">
-        <h2>{% render 'nc-title-gold', title: 'Coffee Tables' %}</h2>
-        <small>{{ section.settings.coffee_subtitle }}</small>
-      </div>
-    </a>
-    <a class="ncs-collection-tile" href="{% render 'nc-collection-url', handle: settings.collection_side %}" data-nc-reveal>
-      <div class="ncs-fit-img ncs-fit-img--tile ncs-fit-img--compact">
-        {%- capture cover_side -%}{% render 'nc-collection-cover', handle: settings.collection_side, image: section.settings.cover_side %}{%- endcapture -%}
-        {%- capture cover_side_sm -%}{% render 'nc-collection-cover', handle: settings.collection_side, image: section.settings.cover_side, width: 500 %}{%- endcapture -%}
-        {%- capture cover_side_md -%}{% render 'nc-collection-cover', handle: settings.collection_side, image: section.settings.cover_side, width: 800 %}{%- endcapture -%}
-        {%- assign cover_side = cover_side | strip -%}
-        {%- assign cover_side_sm = cover_side_sm | strip -%}
-        {%- assign cover_side_md = cover_side_md | strip -%}
-        {% if cover_side != blank %}
-          <img
-            src="{{ cover_side }}"
-            srcset="{{ cover_side_sm }} 500w, {{ cover_side_md }} 800w, {{ cover_side }} 1200w"
-            sizes="(min-width: 901px) 32vw, 92vw"
-            alt="Marble side tables"
-            width="1600"
-            height="1200"
-            loading="lazy">
-        {% endif %}
-      </div>
-      <div class="ncs-collection-tile-label">
-        <h2>{% render 'nc-title-gold', title: 'Side Tables' %}</h2>
-        <small>{{ section.settings.side_subtitle }}</small>
-      </div>
-    </a>
-    <a class="ncs-collection-tile" href="{% render 'nc-collection-url', handle: settings.collection_console %}" data-nc-reveal>
-      <div class="ncs-fit-img ncs-fit-img--tile ncs-fit-img--compact">
-        {%- capture cover_console -%}{% render 'nc-collection-cover', handle: settings.collection_console, image: section.settings.cover_console %}{%- endcapture -%}
-        {%- capture cover_console_sm -%}{% render 'nc-collection-cover', handle: settings.collection_console, image: section.settings.cover_console, width: 500 %}{%- endcapture -%}
-        {%- capture cover_console_md -%}{% render 'nc-collection-cover', handle: settings.collection_console, image: section.settings.cover_console, width: 800 %}{%- endcapture -%}
-        {%- assign cover_console = cover_console | strip -%}
-        {%- assign cover_console_sm = cover_console_sm | strip -%}
-        {%- assign cover_console_md = cover_console_md | strip -%}
-        {% if cover_console != blank %}
-          <img
-            src="{{ cover_console }}"
-            srcset="{{ cover_console_sm }} 500w, {{ cover_console_md }} 800w, {{ cover_console }} 1200w"
-            sizes="(min-width: 901px) 32vw, 92vw"
-            alt="Marble console tables"
-            width="1600"
-            height="1200"
-            loading="lazy">
-        {% endif %}
-      </div>
-      <div class="ncs-collection-tile-label">
-        <h2>{% render 'nc-title-gold', title: 'Console Tables' %}</h2>
-        <small>{{ section.settings.console_subtitle }}</small>
-      </div>
-    </a>
+    {%- liquid
+      assign skip = ',all,'
+      assign coffee_handle = settings.collection_coffee | default: 'coffee-tables'
+      assign side_handle = settings.collection_side | default: 'side-tables'
+      assign console_handle = settings.collection_console | default: 'console-tables'
+      assign coffee_coll = collections[coffee_handle]
+      assign side_coll = collections[side_handle]
+      assign console_coll = collections[console_handle]
+    -%}
+    {%- if coffee_coll != blank -%}
+      {% render 'nc-collection-tile', collection: coffee_coll, cover: section.settings.cover_coffee, subtitle: section.settings.coffee_subtitle %}
+      {%- assign skip = skip | append: coffee_handle | append: ',' -%}
+    {%- endif -%}
+    {%- if side_coll != blank -%}
+      {% render 'nc-collection-tile', collection: side_coll, cover: section.settings.cover_side, subtitle: section.settings.side_subtitle %}
+      {%- assign skip = skip | append: side_handle | append: ',' -%}
+    {%- endif -%}
+    {%- if console_coll != blank -%}
+      {% render 'nc-collection-tile', collection: console_coll, cover: section.settings.cover_console, subtitle: section.settings.console_subtitle %}
+      {%- assign skip = skip | append: console_handle | append: ',' -%}
+    {%- endif -%}
+    {%- for collection in collections -%}
+      {%- assign needle = ',' | append: collection.handle | append: ',' -%}
+      {%- unless skip contains needle -%}
+        {% render 'nc-collection-tile', collection: collection %}
+      {%- endunless -%}
+    {%- endfor -%}
   </div>
 </section>
 
@@ -98,13 +54,13 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "The marble collections"
+      "default": "The collection"
     },
     {
       "type": "textarea",
       "id": "lead",
       "label": "Lead",
-      "default": "Marble furniture shaped for living. Explore the collections, preview finishes on each piece, and choose your stone on the product page."
+      "default": "Marble furniture, made in our workshop. New pieces join the collection as they are ready."
     },
     {
       "type": "header",

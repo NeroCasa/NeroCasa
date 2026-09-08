@@ -2,7 +2,9 @@
   "sections": {
     "main": {
       "type": "ncs-collection",
-      "settings": {}
+      "settings": {
+        "lead": "Each design in several stones. Hover a swatch to preview, then open the piece to choose."
+      }
     }
   },
   "order": [
