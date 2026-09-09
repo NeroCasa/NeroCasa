@@ -222,11 +222,12 @@
       "price": {{ variant.price | divided_by: 100.0 }},
       "itemCondition": "https://schema.org/NewCondition",
       "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
-      "shippingDetails": {
+      "shippingDetails": [{
         "@type": "OfferShippingDetails",
+        "@id": {{ shop.url | append: '#shipping-policy' | json }},
         "shippingRate": {
           "@type": "MonetaryAmount",
-          "value": 0,
+          "value": "0",
           "currency": {{ shop.currency | json }}
         },
         "shippingDestination": {
@@ -248,16 +249,17 @@
             "unitCode": "DAY"
           }
         }
-      },
-      "hasMerchantReturnPolicy": {
+      }],
+      "hasMerchantReturnPolicy": [{
         "@type": "MerchantReturnPolicy",
+        "@id": {{ shop.url | append: '#return-policy' | json }},
         "applicableCountry": "AE",
         "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
         "merchantReturnDays": 7,
         "returnMethod": "https://schema.org/ReturnByMail",
         "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility",
         "merchantReturnLink": {{ shop.url | append: '/pages/refunds' | json }}
-      }
+      }]
       {%- if variant.sku != blank -%},
       "sku": {{ variant.sku | json }}
       {%- endif -%}
