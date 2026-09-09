@@ -3323,12 +3323,17 @@ body {
 }
 
 .ncs-home-value {
-  padding: clamp(36px, 5vw, 64px) clamp(20px, 3vw, 40px) clamp(36px, 5vw, 64px) 0;
+  padding: clamp(36px, 5vw, 64px) clamp(28px, 3.5vw, 48px);
   border-right: 1px solid var(--nc-line);
+}
+
+.ncs-home-value:first-child {
+  padding-left: 0;
 }
 
 .ncs-home-value:last-child {
   border-right: 0;
+  padding-right: 0;
 }
 
 .ncs-home-value::before {
