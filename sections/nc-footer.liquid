@@ -67,7 +67,14 @@
   </div>
 
   <div class="nc-footer-bottom">
-    <span class="nc-footer-copy">© {{ 'now' | date: '%Y' }} {{ settings.brand_name | default: 'NEROCASA' }}</span>
+    <div class="nc-footer-entity">
+      <span class="nc-footer-copy">© {{ 'now' | date: '%Y' }} {{ settings.brand_name | default: 'NEROCASA' }}</span>
+      <p class="nc-footer-owner">
+        {{ settings.brand_name | default: 'NEROCASA' }} is owned and backed by
+        <strong>AL SOURAH AL THAHABIA MARBLE &amp; GRANITE L.L.C</strong>
+        · Trade Licence <strong>1253846</strong>
+      </p>
+    </div>
     <div class="nc-footer-legal">
       <span class="nc-footer-legal-pair">
         <a href="{% render 'nc-page-url', handle: settings.page_terms_handle, view: 'terms' %}">Terms</a>
