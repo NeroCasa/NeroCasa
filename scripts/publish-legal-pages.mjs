@@ -18,14 +18,16 @@ const TERMS_BODY = `
 <p>Welcome to <strong>NeroCasa</strong>.</p>
 <p>These Terms of Service ("Terms") govern your access to and use of the NeroCasa website, including the purchase of marble furniture, décor, custom-made products, and related services.</p>
 <p>By accessing our website, submitting an enquiry, placing an order, or purchasing a product through our website, you acknowledge that you have read, understood, and agreed to these Terms, subject always to your rights under applicable laws and regulations of the United Arab Emirates.</p>
-<p>NeroCasa is a luxury marble furniture and design brand backed by <strong>AL SOURAH AL THAHABIAH MARBEL &amp; GRANITE TR LLC</strong>.</p>
+<p>NeroCasa is a luxury marble furniture and design brand owned and backed by <strong>AL SOURAH AL THAHABIA MARBLE &amp; GRANITE L.L.C</strong> (Trade Licence No. 1253846).</p>
 <p>For the purposes of these Terms, <strong>"NeroCasa", "Nero Casa", "we", "us", and "our"</strong> refer to NeroCasa and the business operating the website and providing the products and services described on it.</p>
 <p><strong>Business Name:</strong> NeroCasa<br>
 <strong>Website:</strong> <a href="https://nerocasa.com/">https://nerocasa.com/</a><br>
 <strong>Email:</strong> <a href="mailto:nerocasamarbles@gmail.com">nerocasamarbles@gmail.com</a><br>
 <strong>Phone / WhatsApp:</strong> +971 50 858 8828<br>
 <strong>Country of Operation:</strong> United Arab Emirates<br>
-<strong>Manufacturing / Business Support:</strong> AL SOURAH AL THAHABIAH MARBEL &amp; GRANITE TR LLC</p>
+<strong>Owning Company:</strong> AL SOURAH AL THAHABIA MARBLE &amp; GRANITE L.L.C<br>
+<strong>Trade Licence No.:</strong> 1253846<br>
+<strong>License Activity:</strong> Marble Cutting, Grinding &amp; Polishing</p>
 
 <h2>1. ACCEPTANCE OF THESE TERMS</h2>
 <p>By using the NeroCasa website, submitting an enquiry, or placing an order, you agree to comply with these Terms and the other policies published on our website, including:</p>
@@ -467,8 +469,9 @@ const TERMS_BODY = `
 <p><strong>Email:</strong> <a href="mailto:nerocasamarbles@gmail.com">nerocasamarbles@gmail.com</a><br>
 <strong>Phone / WhatsApp:</strong> +971 50 858 8828<br>
 <strong>Website:</strong> <a href="https://nerocasa.com/">https://nerocasa.com/</a></p>
-<p><strong>Backed by:</strong><br>
-<strong>AL SOURAH AL THAHABIAH MARBEL &amp; GRANITE TR LLC</strong></p>
+<p><strong>Owned and backed by:</strong><br>
+<strong>AL SOURAH AL THAHABIA MARBLE &amp; GRANITE L.L.C</strong><br>
+<strong>Trade Licence No.:</strong> 1253846</p>
 <p><strong>United Arab Emirates</strong></p>
 <p><strong>Last Updated: September 3, 2026</strong></p>
 <p>NeroCasa reserves the right to update these Terms of Service from time to time. The version published on the website at the relevant time will apply, subject to applicable UAE law and any specific contractual terms agreed with the customer.</p>
