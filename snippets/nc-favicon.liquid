@@ -1,8 +1,18 @@
 {%- comment -%}
-  Browser icon: black-background monogram, not the clear mark.
-  Placed after content_for_header so it wins over Shopify's default icon.
+  Browser tab icon. Keep this after content_for_header so it wins over
+  Shopify's default. Omit a 192-only sizes value — Chrome skips that for
+  the 16px tab and falls back to /favicon.ico, which this store does not serve.
 {%- endcomment -%}
-{%- assign nc_favicon = 'nerocasa-favicon.png' | asset_url | prepend: 'https:' -%}
-<link rel="icon" type="image/png" href="{{ nc_favicon }}" sizes="192x192">
-<link rel="shortcut icon" type="image/png" href="{{ nc_favicon }}">
+{%- liquid
+  assign nc_favicon = 'nerocasa-favicon.png' | asset_url
+  if nc_favicon contains 'https:'
+    assign nc_favicon = nc_favicon
+  else
+    assign nc_favicon = nc_favicon | prepend: 'https:'
+  endif
+-%}
+<link rel="icon" href="{{ nc_favicon }}" type="image/png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ nc_favicon }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ nc_favicon }}">
 <link rel="apple-touch-icon" href="{{ nc_favicon }}">
+<link rel="shortcut icon" type="image/png" href="{{ nc_favicon }}">
