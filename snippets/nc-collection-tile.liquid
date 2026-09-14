@@ -2,14 +2,16 @@
   Collection index / home tile.
   @param collection {Collection}
   @param cover {Image} optional Theme Editor override
+  @param cover_product_handle {String} optional product image for the tile
+  @param cover_marble {String} optional marble finish for that product
   @param subtitle {String} optional
 {%- endcomment -%}
 {%- assign tile_handle = collection.handle -%}
 <a class="ncs-collection-tile" href="{{ collection.url }}" data-nc-reveal>
   <div class="ncs-fit-img ncs-fit-img--tile ncs-fit-img--compact">
-    {%- capture cover_src -%}{% render 'nc-collection-cover', handle: tile_handle, image: cover %}{%- endcapture -%}
-    {%- capture cover_sm -%}{% render 'nc-collection-cover', handle: tile_handle, image: cover, width: 500 %}{%- endcapture -%}
-    {%- capture cover_md -%}{% render 'nc-collection-cover', handle: tile_handle, image: cover, width: 800 %}{%- endcapture -%}
+    {%- capture cover_src -%}{% render 'nc-collection-cover', handle: tile_handle, image: cover, product_handle: cover_product_handle, marble_name: cover_marble %}{%- endcapture -%}
+    {%- capture cover_sm -%}{% render 'nc-collection-cover', handle: tile_handle, image: cover, product_handle: cover_product_handle, marble_name: cover_marble, width: 500 %}{%- endcapture -%}
+    {%- capture cover_md -%}{% render 'nc-collection-cover', handle: tile_handle, image: cover, product_handle: cover_product_handle, marble_name: cover_marble, width: 800 %}{%- endcapture -%}
     {%- assign cover_src = cover_src | strip -%}
     {%- assign cover_sm = cover_sm | strip -%}
     {%- assign cover_md = cover_md | strip -%}

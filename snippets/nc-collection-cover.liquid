@@ -1,19 +1,36 @@
 {%- comment -%}
-  Collection cover — Admin collection image, Theme Editor override, or first product image.
+  Collection cover — Theme Editor override, a named product/marble, Admin
+  collection image, or the first product image.
   @param handle {String} collection handle
   @param image {Image} optional Theme Editor override
+  @param product_handle {String} optional product whose marble image to use
+  @param marble_name {String} optional marble finish for product_handle
   @param width {Number} optional, default 1200 — covers the index tiles at 2x.
 {%- endcomment -%}
 {%- liquid
   assign img_width = width | default: 1200
+  assign cover_url = blank
   if image != blank
-    echo image | image_url: width: img_width
-  else
+    assign cover_url = image | image_url: width: img_width
+  endif
+  if cover_url == blank and product_handle != blank
+    assign cover_product = all_products[product_handle]
+    if cover_product != blank
+      capture cover_from_product
+        render 'nc-variant-image', product: cover_product, marble_name: marble_name, width: img_width
+      endcapture
+      assign cover_url = cover_from_product | strip
+    endif
+  endif
+  if cover_url == blank
     assign coll = collections[handle]
     if coll != blank and coll.image != blank
-      echo coll.image | image_url: width: img_width
+      assign cover_url = coll.image | image_url: width: img_width
     elsif coll != blank and coll.products_count > 0 and coll.products.first.featured_image != blank
-      echo coll.products.first.featured_image | image_url: width: img_width
+      assign cover_url = coll.products.first.featured_image | image_url: width: img_width
     endif
+  endif
+  if cover_url != blank
+    echo cover_url
   endif
 -%}

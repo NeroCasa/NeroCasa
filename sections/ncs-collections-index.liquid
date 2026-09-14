@@ -29,6 +29,9 @@
   <header class="ncs-page-hero" data-nc-reveal>
     <span class="ncs-page-kicker">Collections</span>
     <h1>{% render 'nc-title-gold', title: index_heading %}</h1>
+    {%- if show_type_tiles and collection.description != blank -%}
+      <div class="ncs-collections-lead">{{ collection.description }}</div>
+    {%- endif -%}
   </header>
   {% render 'nc-page-hero-shell-close' %}
 
@@ -50,7 +53,7 @@
     {%- else -%}
       {%- assign skip = ',all,' | append: coffee_handle | append: ',' | append: side_handle | append: ',' | append: console_handle | append: ',' -%}
       {%- if the_9_coll != blank -%}
-        {% render 'nc-collection-tile', collection: the_9_coll, cover: section.settings.cover_the_9, subtitle: section.settings.the_9_subtitle %}
+        {% render 'nc-collection-tile', collection: the_9_coll, cover: section.settings.cover_the_9, cover_product_handle: 'cft-3', cover_marble: 'Rosso Levanto', subtitle: section.settings.the_9_subtitle %}
         {%- assign skip = skip | append: the_9_handle | append: ',' -%}
       {%- endif -%}
       {%- for collection in collections -%}
@@ -71,7 +74,7 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "The collection"
+      "default": "Our collections"
     },
     {
       "type": "header",
@@ -106,7 +109,7 @@
       "type": "text",
       "id": "the_9_subtitle",
       "label": "The 9 subtitle",
-      "default": "Nine marble designs"
+      "default": "Nine forms, cut in the workshop"
     },
     {
       "type": "image_picker",

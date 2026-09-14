@@ -1248,6 +1248,22 @@ body {
   padding-right: 0;
 }
 
+.ncs-collections-lead {
+  max-width: 34em;
+  margin: 0;
+}
+
+.ncs-collections-lead p {
+  margin: 0 0 14px;
+  color: var(--nc-muted);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.ncs-collections-lead p:last-child {
+  margin-bottom: 0;
+}
+
 .ncs-collection-page {
   padding: 0 8vw var(--nc-space-lg);
 }
