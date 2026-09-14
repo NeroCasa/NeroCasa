@@ -25,9 +25,8 @@
     center_image: section.settings.hero_slab_center,
     right_image: section.settings.hero_slab_right
   %}
-  <header class="ncs-collection-header" data-nc-reveal>
+  <header class="ncs-collection-header ncs-page-hero ncs-page-hero--compact" data-nc-reveal>
     <h1>{% render 'nc-title-gold', title: collection.title %}</h1>
-    <p class="ncs-collection-lead">{{ section.settings.lead }}</p>
     {% if collection.description != blank %}
       <p class="ncs-collection-desc">{{ collection.description | strip_html }}</p>
     {% endif %}
@@ -43,12 +42,6 @@
 {
   "name": "Nerocasa Collection",
   "settings": [
-    {
-      "type": "textarea",
-      "id": "lead",
-      "label": "Lead copy",
-      "default": "Each design in several stones. Hover a swatch to preview, then open the piece to choose."
-    },
     {
       "type": "header",
       "content": "Hero images"

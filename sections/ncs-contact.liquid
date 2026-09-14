@@ -9,7 +9,7 @@
       center_image: section.settings.hero_slab_center,
       right_image: section.settings.hero_slab_right
     %}
-    <header class="ncs-page-hero ncs-contact-hero" data-nc-reveal>
+    <header class="ncs-page-hero ncs-page-hero--compact ncs-contact-hero" data-nc-reveal>
       <h1>{% render 'nc-title-gold', title: 'Get in touch' %}</h1>
       <p>We respond to every enquiry within one business day. Custom pieces are handled on WhatsApp. Trade and project enquiries go to {% render 'nc-contact-email' %} via our B2B page.</p>
       <a class="ncs-btn ncs-btn--ghost" href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B</a>
@@ -22,37 +22,33 @@
     </header>
     {% render 'nc-page-hero-shell-close' %}
 
-    <div class="ncs-contact-grid">
-      <div class="ncs-contact-card" data-nc-reveal>
-        <span class="ncs-contact-label">WhatsApp</span>
-        <a class="ncs-contact-value" href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener noreferrer">{{ settings.whatsapp_phone | default: '+971 56 878 8789' }}</a>
-        <p class="ncs-contact-note">Fastest for custom pieces, catalog variations, reference images, and order updates.</p>
-      </div>
-      <div class="ncs-contact-card" data-nc-reveal>
-        <span class="ncs-contact-label">Email</span>
-        <a class="ncs-contact-value" href="mailto:{% render 'nc-contact-email' %}">{% render 'nc-contact-email' %}</a>
-        <p class="ncs-contact-note">For B2B and formal project enquiries. Custom pieces are best on WhatsApp.</p>
-      </div>
-      <div class="ncs-contact-card" data-nc-reveal>
-        <span class="ncs-contact-label">Call</span>
+    <ul class="ncs-contact-lines" data-nc-reveal>
+      <li>
+        <span>WhatsApp</span>
+        <a href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener noreferrer">{{ settings.whatsapp_phone | default: '+971 56 878 8789' }}</a>
+      </li>
+      <li>
+        <span>Email</span>
+        <a href="mailto:{% render 'nc-contact-email' %}">{% render 'nc-contact-email' %}</a>
+      </li>
+      <li>
+        <span>Call</span>
         {% if settings.contact_phone != blank %}
-          <a class="ncs-contact-value" href="tel:{{ settings.contact_phone }}">{{ settings.contact_phone }}</a>
+          <a href="tel:{{ settings.contact_phone }}">{{ settings.contact_phone }}</a>
         {% else %}
-          <span class="ncs-contact-value">Available on request</span>
+          <span>Available on request</span>
         {% endif %}
-        <p class="ncs-contact-note">We usually answer the same day.</p>
-      </div>
+      </li>
       {% if settings.instagram_url != blank %}
-        <div class="ncs-contact-card" data-nc-reveal>
-          <span class="ncs-contact-label">Instagram</span>
-          <a class="ncs-contact-value" href="{{ settings.instagram_url }}" target="_blank" rel="noopener">@ncmarbles</a>
-          <p class="ncs-contact-note">Follow our workshop, new pieces and stone in progress.</p>
-        </div>
+        <li>
+          <span>Instagram</span>
+          <a href="{{ settings.instagram_url }}" target="_blank" rel="noopener">@ncmarbles</a>
+        </li>
       {% endif %}
-    </div>
+    </ul>
 
     <div class="ncs-contact-form-wrap" data-nc-reveal>
-      <div class="ncs-b2b-form-panel">
+      <div class="ncs-contact-form-panel">
         <h2 class="ncs-form-title">{% render 'nc-title-gold', title: 'Send a message' %}</h2>
         <p class="ncs-form-lead">Order questions and general messages. For custom stone work, use WhatsApp. Trade projects go to <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B</a>.</p>
         {% form 'contact', class: 'ncs-b2b-form' %}

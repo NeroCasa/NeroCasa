@@ -5,7 +5,7 @@
     slab_center: 'hero-slab-grey.jpg',
     slab_right: 'hero-slab-travertine.jpg'
   %}
-  <header class="ncs-page-hero ncs-article-hero" data-nc-reveal>
+  <header class="ncs-page-hero ncs-page-hero--compact ncs-article-hero" data-nc-reveal>
     <a class="ncs-article-back" href="{{ blog.url }}">← Journal</a>
     <span class="ncs-page-kicker">{{ blog.title | default: 'Journal' }}</span>
     <h1>{% render 'nc-title-gold', title: article.title %}</h1>
@@ -32,16 +32,6 @@
         loading="eager"
       >
     </figure>
-  {%- else -%}
-    <figure class="ncs-article-featured ncs-article-featured--logo" data-nc-reveal>
-      <img
-        src="{{ 'nerocasa-brand-logo.jpg' | asset_url }}"
-        alt="{{ settings.brand_name | default: 'NEROCASA' }}"
-        width="1600"
-        height="900"
-        loading="eager"
-      >
-    </figure>
   {%- endif -%}
 
   <div class="ncs-article-content ncs-legal-body" data-nc-reveal>
@@ -49,7 +39,6 @@
   </div>
 
   <div class="ncs-article-cta" data-nc-reveal>
-    <p>Stone from quarries worldwide, cut in our workshop.</p>
     <div class="ncs-article-cta-actions">
       <a class="ncs-btn ncs-btn--compact" href="{% render 'nc-collections-index-url' %}">The collection</a>
       <a class="ncs-btn ncs-btn--outline ncs-btn--compact" href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}">Custom pieces</a>

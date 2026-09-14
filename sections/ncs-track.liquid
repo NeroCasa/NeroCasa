@@ -5,7 +5,9 @@
     slab_center: 'hero-slab-grey.jpg',
     slab_right: 'hero-slab-travertine.jpg'
   %}
-  <h1>{% render 'nc-title-gold', title: page.title | default: 'Track Your Order' %}</h1>
+  <header class="ncs-page-hero ncs-page-hero--compact">
+    <h1>{% render 'nc-title-gold', title: page.title | default: 'Track Your Order' %}</h1>
+  </header>
   {% render 'nc-page-hero-shell-close' %}
   <div class="ncs-legal-body">
     {% if page.content != blank %}

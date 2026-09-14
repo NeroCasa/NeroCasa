@@ -62,8 +62,8 @@
     if seo_description == blank
       assign seo_description = 'Guides on luxury marble furniture, natural stone finishes and interior design from ' | append: brand | append: '.'
     endif
-    if page_title == blank
-      assign seo_title = brand | append: ' Journal | Marble & Design'
+    if page_title == blank or page_title == blog.title or page_title == 'Journal'
+      assign seo_title = brand | append: ' Journal | Luxury Marble & Design'
     endif
   elsif request.page_type == 'list-collections'
     # /collections is the canonical collections index, but list-collections has
@@ -98,6 +98,8 @@
     assign seo_description = brand | append: '. ' | append: tagline
   endif
 
+  assign seo_title = seo_title | replace: '| NeroCasa', '| NEROCASA' | replace: '| Nero Casa', '| NEROCASA'
+
   if og_image == blank and settings.logo != blank
     assign og_image = settings.logo | image_url: width: 1200
   endif
@@ -113,9 +115,22 @@
   endif
 
   if settings.logo != blank
-    assign brand_logo = settings.logo | image_url: width: 600 | prepend: 'https:'
+    assign brand_logo = settings.logo | image_url: width: 600
   else
-    assign brand_logo = 'nerocasa-brand-logo.jpg' | asset_url | prepend: 'https:'
+    assign brand_logo = 'nerocasa-brand-logo.jpg' | asset_url
+  endif
+  if brand_logo contains 'https:'
+    assign brand_logo = brand_logo
+  else
+    assign brand_logo = brand_logo | prepend: 'https:'
+  endif
+
+  if og_image != blank
+    if og_image contains 'https:'
+      assign og_image_abs = og_image
+    else
+      assign og_image_abs = og_image | prepend: 'https:'
+    endif
   endif
 -%}
 
@@ -137,16 +152,16 @@
 <meta property="og:title" content="{{ seo_title | escape }}">
 <meta property="og:description" content="{{ seo_description | escape }}">
 <meta property="og:type" content="{{ og_type }}">
-{%- if og_image != blank -%}
-<meta property="og:image" content="https:{{ og_image }}">
-<meta property="og:image:secure_url" content="https:{{ og_image }}">
+{%- if og_image_abs != blank -%}
+<meta property="og:image" content="{{ og_image_abs }}">
+<meta property="og:image:secure_url" content="{{ og_image_abs }}">
 {%- endif -%}
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ seo_title | escape }}">
 <meta name="twitter:description" content="{{ seo_description | escape }}">
-{%- if og_image != blank -%}
-<meta name="twitter:image" content="https:{{ og_image }}">
+{%- if og_image_abs != blank -%}
+<meta name="twitter:image" content="{{ og_image_abs }}">
 {%- endif -%}
 
 {%- if request.page_type == 'product' and product -%}
@@ -306,8 +321,8 @@
     "@type": "WebPage",
     "@id": {{ page_url | json }}
   },
-  {%- if og_image != blank -%}
-  "image": [{{ og_image | prepend: 'https:' | json }}],
+  {%- if og_image_abs != blank -%}
+  "image": [{{ og_image_abs | json }}],
   {%- endif -%}
   "url": {{ page_url | json }}
 }

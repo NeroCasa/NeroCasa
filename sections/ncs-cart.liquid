@@ -5,7 +5,7 @@
     slab_center: 'hero-slab-red.jpg',
     slab_right: 'hero-slab-black.jpg'
   %}
-  <header class="ncs-page-hero" data-nc-reveal>
+  <header class="ncs-page-hero ncs-page-hero--compact" data-nc-reveal>
     <h1>{% render 'nc-title-gold', title: 'Your cart' %}</h1>
     {% if cart.item_count > 0 %}
       <p>{{ cart.item_count }} piece{% if cart.item_count != 1 %}s{% endif %} selected</p>
