@@ -1,7 +1,7 @@
 
 :root{
   --nc-bg:#080807;--nc-panel:#10100e;--nc-ink:#f2eee6;--nc-muted:#9d978d;
-  --nc-stone:#d8d0c3;--nc-line:rgba(242,238,230,.14);--nc-gold:#A57B00;
+  --nc-stone:#d8d0c3;--nc-line:rgba(242,238,230,.12);--nc-gold:#A57B00;
   --nc-display:"Cormorant Garamond",Didot,"Bodoni 72",serif;
   --nc-ui:"Inter","Helvetica Neue",Arial,sans-serif;
 }
@@ -48,7 +48,7 @@ body.nc-menu-open{overflow:hidden}
 .nc-search-form button svg{width:25px;fill:none;stroke:currentColor}
 .nc-search-close{font-size:28px}
 
-.ncs-home-hero{height:100vh;min-height:650px;position:relative;overflow:hidden;background:#050504}
+.ncs-home-hero{height:100vh;min-height:650px;position:relative;overflow:hidden;background:var(--nc-bg,#080807)}
 /* Hero slab / overlay / page-hero-shell rules removed from here — they were
    byte-for-byte duplicated (and fully superseded) by nerocasa-luxury.css,
    which loads after this file. Keeping one authoritative copy avoids two

@@ -3,8 +3,7 @@
     "main": {
       "type": "ncs-collections-index",
       "settings": {
-        "heading": "The collection",
-        "lead": "Marble furniture, made in our workshop. New pieces join the collection as they are ready."
+        "heading": "The collection"
       }
     }
   },

@@ -57,22 +57,7 @@
     <p>{{ section.settings.manifesto_text }}</p>
   </div>
 
-  <aside class="ncs-about-entity" data-nc-reveal>
-    <span class="ncs-page-kicker">The house</span>
-    <p>
-      {{ settings.brand_name | default: 'NEROCASA' }} is owned and backed by
-      <strong>AL SOURAH AL THAHABIA MARBLE &amp; GRANITE L.L.C</strong>,
-      a Dubai-licensed marble cutting, grinding and polishing workshop.
-      Trade Licence <strong>1253846</strong>.
-    </p>
-  </aside>
-
   <div class="ncs-about-closer" data-nc-reveal>
-    <div class="ncs-about-closer-intro">
-      <span class="ncs-page-kicker">Continue</span>
-      <h2 class="ncs-about-closer-heading">{% render 'nc-title-gold', title: 'Begin with stone' %}</h2>
-      <p class="ncs-about-closer-lead">Explore the collection, or speak with us about a project made for your space.</p>
-    </div>
     <div class="ncs-about-closer-grid">
       <article>
         <h3>{% render 'nc-title-gold', title: section.settings.advantage_1_title %}</h3>
@@ -83,10 +68,20 @@
         <p>{{ section.settings.advantage_2_text }}</p>
       </article>
     </div>
-    <div class="ncs-about-closer-actions">
-      <a class="ncs-btn ncs-btn--compact" href="{% render 'nc-collections-index-url' %}">The collection</a>
-      <a class="ncs-btn ncs-btn--outline ncs-btn--compact" href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B</a>
-    </div>
+  </div>
+
+  <aside class="ncs-about-entity" data-nc-reveal>
+    <p>
+      {{ settings.brand_name | default: 'NEROCASA' }} is owned and backed by
+      <strong>AL SOURAH AL THAHABIA MARBLE &amp; GRANITE L.L.C</strong>,
+      a Dubai-licensed marble cutting, grinding and polishing workshop.
+      Trade Licence <strong>1253846</strong>.
+    </p>
+  </aside>
+
+  <div class="ncs-about-closer-actions ncs-about-closer-actions--end" data-nc-reveal>
+    <a class="ncs-btn" href="{% render 'nc-collections-index-url' %}">The collection</a>
+    <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B</a>
   </div>
 </section>
 
