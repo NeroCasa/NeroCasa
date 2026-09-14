@@ -1246,6 +1246,20 @@ body {
 .ncs-collections-page .ncs-page-hero {
   padding-left: 0;
   padding-right: 0;
+  padding-bottom: 24px;
+  max-width: none;
+}
+
+.ncs-collections-page .ncs-page-hero h1 {
+  margin-bottom: 12px;
+}
+
+.ncs-collections-lead {
+  max-width: 46em;
+  margin: 0;
+  color: var(--nc-muted);
+  font-size: 16px;
+  line-height: 1.65;
 }
 
 .ncs-collection-page {

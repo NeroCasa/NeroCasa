@@ -27,7 +27,7 @@
     <h1>NERO<span class="nc-gold">CASA</span></h1>
     <p class="ncs-hero-tagline">{{ section.settings.hero_tagline | default: 'Furniture in stone.' }}</p>
     <div class="ncs-hero-ctas">
-      <a class="ncs-btn ncs-hero-cta" href="{% render 'nc-collections-index-url' %}">The collection</a>
+      <a class="ncs-btn ncs-hero-cta" href="{% render 'nc-collections-index-url' %}">Our collection</a>
       <a class="ncs-btn ncs-btn--ghost ncs-hero-cta" href="{% render 'nc-page-url', handle: settings.page_contact_handle, view: 'contact' %}">Contact us</a>
     </div>
   </div>
@@ -36,7 +36,7 @@
 <section class="ncs-home-maison">
   <article class="ncs-home-family">
     <header class="ncs-home-family-head">
-      <h2>{% render 'nc-title-gold', title: section.settings.collection_heading | default: 'products from collections' %}</h2>
+      <h2>{% render 'nc-title-gold', title: section.settings.collection_heading | default: 'Products from collections' %}</h2>
       <a href="{% render 'nc-collections-index-url' %}">View all</a>
     </header>
     <div class="ncs-grid-products">
@@ -110,7 +110,7 @@
       "type": "text",
       "id": "collection_heading",
       "label": "Collections heading",
-      "default": "products from collections"
+      "default": "Products from collections"
     },
     {
       "type": "header",
