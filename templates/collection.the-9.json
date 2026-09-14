@@ -12,8 +12,11 @@
     "main": {
       "type": "ncs-collections-index",
       "settings": {
-        "heading": "The collection",
-        "the_9_subtitle": "Nine marble designs"
+        "heading": "The 9",
+        "the_9_subtitle": "Nine marble designs",
+        "coffee_subtitle": "Living room pieces",
+        "side_subtitle": "Beside the sofa or bed",
+        "console_subtitle": "Hallway and entry"
       }
     }
   },

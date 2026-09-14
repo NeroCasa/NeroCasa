@@ -8,40 +8,58 @@
     center_image: section.settings.hero_slab_center,
     right_image: section.settings.hero_slab_right
   %}
+  {%- liquid
+    assign coffee_handle = settings.collection_coffee | default: 'coffee-tables'
+    assign side_handle = settings.collection_side | default: 'side-tables'
+    assign console_handle = settings.collection_console | default: 'console-tables'
+    assign the_9_handle = settings.collection_the_9 | default: 'the-9'
+    assign coffee_coll = collections[coffee_handle]
+    assign side_coll = collections[side_handle]
+    assign console_coll = collections[console_handle]
+    assign the_9_coll = collections[the_9_handle]
+    assign show_type_tiles = false
+    if request.page_type == 'collection'
+      assign show_type_tiles = true
+    endif
+    assign index_heading = section.settings.heading
+    if show_type_tiles and collection.title != blank
+      assign index_heading = collection.title
+    endif
+  -%}
   <header class="ncs-page-hero" data-nc-reveal>
     <span class="ncs-page-kicker">Collections</span>
-    <h1>{% render 'nc-title-gold', title: section.settings.heading %}</h1>
+    <h1>{% render 'nc-title-gold', title: index_heading %}</h1>
   </header>
   {% render 'nc-page-hero-shell-close' %}
 
   <div class="ncs-collections-list ncs-collections-list--grid">
-    {%- liquid
-      assign skip = ',all,'
-      assign coffee_handle = settings.collection_coffee | default: 'coffee-tables'
-      assign side_handle = settings.collection_side | default: 'side-tables'
-      assign console_handle = settings.collection_console | default: 'console-tables'
-      assign coffee_coll = collections[coffee_handle]
-      assign side_coll = collections[side_handle]
-      assign console_coll = collections[console_handle]
-    -%}
-    {%- if coffee_coll != blank -%}
-      {% render 'nc-collection-tile', collection: coffee_coll, cover: section.settings.cover_coffee, subtitle: section.settings.coffee_subtitle %}
-      {%- assign skip = skip | append: coffee_handle | append: ',' -%}
+    {%- if show_type_tiles -%}
+      {%- assign skip = ',all,' | append: the_9_handle | append: ',' -%}
+      {%- if coffee_coll != blank -%}
+        {% render 'nc-collection-tile', collection: coffee_coll, cover: section.settings.cover_coffee, subtitle: section.settings.coffee_subtitle %}
+        {%- assign skip = skip | append: coffee_handle | append: ',' -%}
+      {%- endif -%}
+      {%- if side_coll != blank -%}
+        {% render 'nc-collection-tile', collection: side_coll, cover: section.settings.cover_side, subtitle: section.settings.side_subtitle %}
+        {%- assign skip = skip | append: side_handle | append: ',' -%}
+      {%- endif -%}
+      {%- if console_coll != blank -%}
+        {% render 'nc-collection-tile', collection: console_coll, cover: section.settings.cover_console, subtitle: section.settings.console_subtitle %}
+        {%- assign skip = skip | append: console_handle | append: ',' -%}
+      {%- endif -%}
+    {%- else -%}
+      {%- assign skip = ',all,' | append: coffee_handle | append: ',' | append: side_handle | append: ',' | append: console_handle | append: ',' -%}
+      {%- if the_9_coll != blank -%}
+        {% render 'nc-collection-tile', collection: the_9_coll, cover: section.settings.cover_the_9, subtitle: section.settings.the_9_subtitle %}
+        {%- assign skip = skip | append: the_9_handle | append: ',' -%}
+      {%- endif -%}
+      {%- for collection in collections -%}
+        {%- assign needle = ',' | append: collection.handle | append: ',' -%}
+        {%- unless skip contains needle -%}
+          {% render 'nc-collection-tile', collection: collection %}
+        {%- endunless -%}
+      {%- endfor -%}
     {%- endif -%}
-    {%- if side_coll != blank -%}
-      {% render 'nc-collection-tile', collection: side_coll, cover: section.settings.cover_side, subtitle: section.settings.side_subtitle %}
-      {%- assign skip = skip | append: side_handle | append: ',' -%}
-    {%- endif -%}
-    {%- if console_coll != blank -%}
-      {% render 'nc-collection-tile', collection: console_coll, cover: section.settings.cover_console, subtitle: section.settings.console_subtitle %}
-      {%- assign skip = skip | append: console_handle | append: ',' -%}
-    {%- endif -%}
-    {%- for collection in collections -%}
-      {%- assign needle = ',' | append: collection.handle | append: ',' -%}
-      {%- unless skip contains needle -%}
-        {% render 'nc-collection-tile', collection: collection %}
-      {%- endunless -%}
-    {%- endfor -%}
   </div>
 </section>
 
@@ -77,6 +95,18 @@
     {
       "type": "header",
       "content": "Collection covers"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_the_9",
+      "label": "The 9 cover",
+      "info": "Used on the Collections index. Optional. Else uses the collection image in Admin, then the first product image."
+    },
+    {
+      "type": "text",
+      "id": "the_9_subtitle",
+      "label": "The 9 subtitle",
+      "default": "Nine marble designs"
     },
     {
       "type": "image_picker",

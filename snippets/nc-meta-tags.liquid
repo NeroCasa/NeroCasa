@@ -26,6 +26,17 @@
   elsif request.page_type == 'collection' and collection
     if collection.image
       assign og_image = collection.image | image_url: width: 1200
+    elsif collection.products_count > 0 and collection.products.first.featured_image
+      assign og_image = collection.products.first.featured_image | image_url: width: 1200
+    endif
+    assign the_9_handle = settings.collection_the_9 | default: 'the-9'
+    if collection.handle == the_9_handle
+      if page_title == blank or page_title == collection.title
+        assign seo_title = 'The 9 | Marble Furniture Collection | ' | append: brand
+      endif
+      if seo_description == blank
+        assign seo_description = 'Nine marble furniture designs. Coffee tables, side tables and console tables, cut in our workshop.'
+      endif
     endif
     if seo_description == blank
       if collection.seo.description != blank
@@ -72,7 +83,7 @@
     # the /pages/collections duplicate that now canonicalises here.
     assign seo_title = 'Marble Furniture Collections | ' | append: brand
     if seo_description == blank
-      assign seo_description = 'Coffee tables, side tables and console tables in natural marble. Explore the NEROCASA collections and preview each stone on the piece.'
+      assign seo_description = 'Explore NEROCASA collections, starting with The 9. Coffee tables, side tables and console tables in natural marble, cut in our workshop.'
     endif
   elsif request.page_type == 'index'
     # On the homepage Shopify falls back to the shop name, so page_title is
@@ -434,7 +445,19 @@
 
   case request.page_type
     when 'product'
-      assign parent_collection = product.collections.first
+      assign parent_collection = blank
+      assign coffee_handle = settings.collection_coffee | default: 'coffee-tables'
+      assign side_handle = settings.collection_side | default: 'side-tables'
+      assign console_handle = settings.collection_console | default: 'console-tables'
+      for coll in product.collections
+        if coll.handle == coffee_handle or coll.handle == side_handle or coll.handle == console_handle
+          assign parent_collection = coll
+          break
+        endif
+      endfor
+      if parent_collection == blank
+        assign parent_collection = product.collections.first
+      endif
       if parent_collection != blank
         assign crumb_names = parent_collection.title
         assign crumb_urls = shop.url | append: parent_collection.url

@@ -135,6 +135,12 @@
         "id": "collection_console",
         "label": "Console tables handle",
         "default": "console-tables"
+      },
+      {
+        "type": "text",
+        "id": "collection_the_9",
+        "label": "The 9 handle",
+        "default": "the-9"
       }
     ]
   },
