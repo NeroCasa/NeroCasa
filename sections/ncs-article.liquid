@@ -22,7 +22,16 @@
   </header>
   {% render 'nc-page-hero-shell-close' %}
 
-  {%- if article.image -%}
+  {%- liquid
+    assign show_article_image = false
+    if article.image
+      assign article_img_src = article.image.src | downcase
+      unless article_img_src contains 'nerocasa-brand-logo' or article_img_src contains 'nerocasa-logo' or article_img_src contains 'logo-user'
+        assign show_article_image = true
+      endunless
+    endif
+  -%}
+  {%- if show_article_image -%}
     <figure class="ncs-article-featured" data-nc-reveal>
       <img
         src="{{ article.image | image_url: width: 1600 }}"

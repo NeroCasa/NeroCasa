@@ -18,7 +18,16 @@
       {%- for article in blog.articles -%}
         <article class="ncs-blog-card" data-nc-reveal>
           <a href="{{ article.url }}" class="ncs-blog-card-link">
-            {%- if article.image -%}
+            {%- liquid
+              assign show_article_image = false
+              if article.image
+                assign article_img_src = article.image.src | downcase
+                unless article_img_src contains 'nerocasa-brand-logo' or article_img_src contains 'nerocasa-logo' or article_img_src contains 'logo-user'
+                  assign show_article_image = true
+                endunless
+              endif
+            -%}
+            {%- if show_article_image -%}
               <div class="ncs-blog-card-media">
                 <img
                   src="{{ article.image | image_url: width: 900 }}"
