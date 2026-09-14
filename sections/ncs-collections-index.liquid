@@ -53,7 +53,7 @@
     {%- else -%}
       {%- assign skip = ',all,' | append: coffee_handle | append: ',' | append: side_handle | append: ',' | append: console_handle | append: ',' -%}
       {%- if the_9_coll != blank -%}
-        {% render 'nc-collection-tile', collection: the_9_coll, cover: section.settings.cover_the_9, cover_product_handle: 'cft-3', cover_marble: 'Rosso Levanto', subtitle: section.settings.the_9_subtitle %}
+        {% render 'nc-collection-tile', collection: the_9_coll, cover: section.settings.cover_the_9, cover_product_handle: 'cft-3', cover_marble: 'Rosso Levanto' %}
         {%- assign skip = skip | append: the_9_handle | append: ',' -%}
       {%- endif -%}
       {%- for collection in collections -%}

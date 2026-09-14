@@ -532,15 +532,6 @@ body {
   align-items: stretch;
 }
 
-.ncs-collections-list--grid > a:only-child {
-  grid-column: 1 / -1 !important;
-}
-
-.ncs-collections-list--grid > a:only-child .ncs-fit-img {
-  aspect-ratio: 16 / 9;
-  max-height: 62vh;
-}
-
 .ncs-collections-page .ncs-collection-tile {
   display: flex;
   flex-direction: column;
