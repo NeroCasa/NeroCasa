@@ -1,39 +1,40 @@
-<section class="ncs-collections-page">
-  {% render 'nc-page-hero-shell-open',
-    quiet: true,
-    slab_left: 'hero-slab-red.jpg',
-    slab_center: 'hero-slab-green.jpg',
-    slab_right: 'hero-slab-travertine.jpg',
-    left_image: section.settings.hero_slab_left,
-    center_image: section.settings.hero_slab_center,
-    right_image: section.settings.hero_slab_right
-  %}
-  {%- liquid
-    assign coffee_handle = settings.collection_coffee | default: 'coffee-tables'
-    assign side_handle = settings.collection_side | default: 'side-tables'
-    assign console_handle = settings.collection_console | default: 'console-tables'
-    assign the_9_handle = settings.collection_the_9 | default: 'the-9'
-    assign coffee_coll = collections[coffee_handle]
-    assign side_coll = collections[side_handle]
-    assign console_coll = collections[console_handle]
-    assign the_9_coll = collections[the_9_handle]
-    assign show_type_tiles = false
-    if request.page_type == 'collection'
-      assign show_type_tiles = true
-    endif
-    assign index_heading = section.settings.heading
-    if show_type_tiles and collection.title != blank
-      assign index_heading = collection.title
-    endif
-  -%}
-  <header class="ncs-page-hero ncs-page-hero--compact" data-nc-reveal>
-    <span class="ncs-page-kicker">Collections</span>
-    <h1>{% render 'nc-title-gold', title: index_heading %}</h1>
-    {%- if show_type_tiles and collection.description != blank -%}
-      <p class="ncs-collections-lead">{{ collection.description | strip_html }}</p>
-    {%- endif -%}
-  </header>
-  {% render 'nc-page-hero-shell-close' %}
+{%- liquid
+  assign coffee_handle = settings.collection_coffee | default: 'coffee-tables'
+  assign side_handle = settings.collection_side | default: 'side-tables'
+  assign console_handle = settings.collection_console | default: 'console-tables'
+  assign the_9_handle = settings.collection_the_9 | default: 'the-9'
+  assign coffee_coll = collections[coffee_handle]
+  assign side_coll = collections[side_handle]
+  assign console_coll = collections[console_handle]
+  assign the_9_coll = collections[the_9_handle]
+  assign show_type_tiles = false
+  if request.page_type == 'collection'
+    assign show_type_tiles = true
+  endif
+  assign index_heading = section.settings.heading
+  if show_type_tiles and collection.title != blank
+    assign index_heading = collection.title
+  endif
+-%}
+<section class="ncs-collections-page{% unless show_type_tiles %} ncs-collections-page--index{% endunless %}">
+  {%- if show_type_tiles -%}
+    {% render 'nc-page-hero-shell-open',
+      quiet: true,
+      slab_left: 'hero-slab-red.jpg',
+      slab_center: 'hero-slab-green.jpg',
+      slab_right: 'hero-slab-travertine.jpg',
+      left_image: section.settings.hero_slab_left,
+      center_image: section.settings.hero_slab_center,
+      right_image: section.settings.hero_slab_right
+    %}
+    <header class="ncs-page-hero ncs-page-hero--compact" data-nc-reveal>
+      <h1>{% render 'nc-title-gold', title: index_heading %}</h1>
+      {%- if collection.description != blank -%}
+        <p class="ncs-collections-lead">{{ collection.description | strip_html }}</p>
+      {%- endif -%}
+    </header>
+    {% render 'nc-page-hero-shell-close' %}
+  {%- endif -%}
 
   <div class="ncs-collections-list ncs-collections-list--grid">
     {%- if show_type_tiles -%}

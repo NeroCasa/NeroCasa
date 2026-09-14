@@ -309,6 +309,9 @@ body.nc-menu-open{overflow:hidden}
 .ncs-collections-list{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .ncs-collections-list--grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:24px!important}
 .ncs-collections-list>a,.ncs-collections-list>a:nth-child(3),.ncs-collections-list--grid>a{grid-column:auto;min-height:0}
+@media(min-width:901px){.ncs-collections-page--index .ncs-collections-list.ncs-collections-list--grid{display:flex!important;flex-wrap:wrap;gap:24px!important;grid-template-columns:none!important}.ncs-collections-page--index .ncs-collection-tile{flex:0 0 calc((100% - 48px)/3);width:calc((100% - 48px)/3);max-width:calc((100% - 48px)/3)}}
+.ncs-collections-page--index{padding-top:calc(var(--nc-header-h) + 36px)!important}
+.ncs-collections-page--index .ncs-fit-img,.ncs-collections-page--index .ncs-fit-img--compact{aspect-ratio:4/5!important}
 .ncs-collections-list h2{font-size:clamp(30px,3.2vw,54px)}
 .ncs-mail{border-top:0}
 .ncs-cta{padding-top:8vw;padding-bottom:8vw}
