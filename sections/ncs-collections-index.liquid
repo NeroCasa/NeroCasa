@@ -26,7 +26,7 @@
       assign index_heading = collection.title
     endif
   -%}
-  <header class="ncs-page-hero" data-nc-reveal>
+  <header class="ncs-page-hero ncs-page-hero--compact" data-nc-reveal>
     <span class="ncs-page-kicker">Collections</span>
     <h1>{% render 'nc-title-gold', title: index_heading %}</h1>
     {%- if show_type_tiles and collection.description != blank -%}
