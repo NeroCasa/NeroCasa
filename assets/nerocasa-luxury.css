@@ -532,6 +532,15 @@ body {
   align-items: stretch;
 }
 
+.ncs-collections-list--grid > a:only-child {
+  grid-column: 1 / -1 !important;
+}
+
+.ncs-collections-list--grid > a:only-child .ncs-fit-img {
+  aspect-ratio: 16 / 9;
+  max-height: 62vh;
+}
+
 .ncs-collections-page .ncs-collection-tile {
   display: flex;
   flex-direction: column;
@@ -1246,22 +1255,19 @@ body {
 .ncs-collections-page .ncs-page-hero {
   padding-left: 0;
   padding-right: 0;
+  padding-bottom: 28px;
+}
+
+.ncs-collections-page .ncs-page-hero h1 {
+  margin-bottom: 16px;
 }
 
 .ncs-collections-lead {
-  max-width: 34em;
+  max-width: 42em;
   margin: 0;
-}
-
-.ncs-collections-lead p {
-  margin: 0 0 14px;
   color: var(--nc-muted);
-  font-size: 15px;
-  line-height: 1.85;
-}
-
-.ncs-collections-lead p:last-child {
-  margin-bottom: 0;
+  font-size: 16px;
+  line-height: 1.7;
 }
 
 .ncs-collection-page {

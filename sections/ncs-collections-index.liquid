@@ -30,7 +30,7 @@
     <span class="ncs-page-kicker">Collections</span>
     <h1>{% render 'nc-title-gold', title: index_heading %}</h1>
     {%- if show_type_tiles and collection.description != blank -%}
-      <div class="ncs-collections-lead">{{ collection.description }}</div>
+      <p class="ncs-collections-lead">{{ collection.description | strip_html }}</p>
     {%- endif -%}
   </header>
   {% render 'nc-page-hero-shell-close' %}
@@ -109,7 +109,7 @@
       "type": "text",
       "id": "the_9_subtitle",
       "label": "The 9 subtitle",
-      "default": "Nine forms, cut in the workshop"
+      "default": "Coffee, side and console tables"
     },
     {
       "type": "image_picker",
