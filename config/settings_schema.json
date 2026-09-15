@@ -87,12 +87,6 @@
         "id": "whatsapp_url",
         "label": "WhatsApp link override",
         "info": "Optional. Leave empty to auto-build from WhatsApp number, e.g. https://wa.me/971568788789"
-      },
-      {
-        "type": "text",
-        "id": "trade_email",
-        "label": "Trade / B2B email",
-        "default": "nerocasamarbles@gmail.com"
       }
     ]
   },

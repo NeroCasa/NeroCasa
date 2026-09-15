@@ -84,36 +84,9 @@ body {
   object-position: left center;
 }
 
-.nc-action-link {
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--nc-ink);
-  opacity: 0.85;
-  white-space: nowrap;
-  transition: color 0.2s, opacity 0.2s;
-}
-
-.nc-action-link:hover {
-  color: var(--nc-gold);
-  opacity: 1;
-}
-
 .nc-actions {
   gap: 16px !important;
   align-items: center;
-}
-
-.nc-logo-text {
-  font-family: var(--nc-display);
-  font-size: clamp(22px, 2.5vw, 28px);
-  letter-spacing: 0.18em;
-  font-weight: 400;
-  line-height: 1;
-}
-
-.nc-logo-text .nc-gold {
-  color: var(--nc-gold);
 }
 
 .nc-footer-social {
@@ -335,13 +308,6 @@ body {
     radial-gradient(ellipse at center, rgba(8, 8, 7, 0.18), rgba(8, 8, 7, 0.55));
 }
 
-.ncs-home-collections {
-  position: relative;
-  z-index: 2;
-  background: var(--nc-bg);
-  clear: both;
-}
-
 .ncs-hero-content {
   position: absolute;
   inset: 0;
@@ -377,14 +343,7 @@ body {
   max-width: 420px;
 }
 
-.ncs-hero-scroll {
-  display: none !important;
-}
-
 /* ── Home accent strip — removed from home, hide if legacy markup remains ── */
-.ncs-home-accent {
-  display: none !important;
-}
 
 /* ── Collection tiles (home + collections index) ── */
 .ncs-collection-tile {
@@ -422,14 +381,12 @@ body {
   font-size: clamp(28px, 3vw, 46px);
 }
 
-.ncs-collection-grid > a,
 .ncs-collections-list > a {
   position: relative;
   overflow: visible;
   min-height: 0 !important;
 }
 
-.ncs-collection-grid > a::after,
 .ncs-collections-list > a::after {
   display: none;
 }
@@ -467,25 +424,6 @@ body {
 
 .ncs-fit-img--compact {
   aspect-ratio: 4 / 5;
-}
-
-.ncs-home-collections .ncs-collection-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 24px;
-  align-items: stretch;
-}
-
-.ncs-home-collections .ncs-collection-tile {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  min-width: 0;
-  height: 100%;
-}
-
-.ncs-home-collections .ncs-fit-img {
-  flex: 0 0 auto;
 }
 
 .ncs-collection-tile:hover .ncs-fit-img img,
@@ -565,66 +503,14 @@ body {
     position: static;
   }
 }
-.ncs-home-intro,
-.ncs-materials,
-.ncs-bespoke-cta,
-.ncs-about-stones {
-  display: none !important;
-}
-
-.ncs-home-intro p {
-  max-width: 680px;
-  text-align: center;
-  font-family: var(--nc-display);
-  font-size: clamp(24px, 3vw, 42px);
-  line-height: 1.25;
-  margin: 0;
-  color: var(--nc-ink);
-}
 
 /* ── Section rhythm ── */
-.ncs-collections,
-.ncs-best,
-.ncs-materials,
-.ncs-ready-home,
-.ncs-mail,
-.ncs-bespoke-cta {
-  padding: var(--nc-space-lg) 8vw;
-}
-
-.ncs-section-head {
-  margin-bottom: 56px;
-  flex-direction: column !important;
-  align-items: flex-start !important;
-  gap: 12px;
-}
-
-.ncs-section-head--compact {
-  margin-bottom: 40px !important;
-}
-
-.ncs-section-head .ncs-page-kicker {
-  margin-bottom: 0;
-}
-
-.ncs-section-head h2 {
-  font-size: clamp(36px, 4.5vw, 64px) !important;
-  line-height: 1.05 !important;
-  letter-spacing: -0.03em !important;
-  color: var(--nc-ink) !important;
-  background: none !important;
-  -webkit-background-clip: unset !important;
-  background-clip: unset !important;
-}
 
 /* Remove gradient text globally */
 .ncs-collections-page h1,
 .ncs-collection-header h1,
 .ncs-info-page h1,
 .ncs-search-page h1,
-.ncs-mail h2,
-.ncs-bespoke-cta h2,
-.nc-footer-join h2,
 .ncs-form-title {
   background: none !important;
   -webkit-background-clip: unset !important;
@@ -634,25 +520,6 @@ body {
 }
 
 /* ── Collections grid ── */
-.ncs-collection-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 24px;
-}
-
-.ncs-collection-grid > a,
-.ncs-collection-grid > a:nth-child(1),
-.ncs-collection-grid > a:nth-child(2) {
-  grid-column: auto;
-  min-height: 0 !important;
-}
-
-.ncs-collection-grid .ncs-collection-tile-label {
-  position: static !important;
-  left: auto !important;
-  right: auto !important;
-  bottom: auto !important;
-}
 
 .ncs-collections-list .ncs-collection-tile-label {
   position: static !important;
@@ -671,69 +538,7 @@ body {
   font-weight: 400;
 }
 
-.ncs-collection-grid strong {
-  font-size: 11px;
-  letter-spacing: 0.18em;
-}
-
-.ncs-collection-grid small {
-  display: block;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  color: var(--nc-gold);
-  margin-bottom: 10px;
-}
-
 /* ── Product rail ── */
-.ncs-best-card {
-  flex: 0 0 calc((100% - 40px) / 3);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  text-decoration: none;
-  color: inherit;
-  overflow: visible;
-  background: transparent;
-  border: 0;
-}
-
-.ncs-best-image {
-  overflow: hidden;
-  background: transparent;
-}
-
-.ncs-best-image img {
-  width: 100% !important;
-  height: auto !important;
-}
-
-.ncs-best-meta {
-  position: static !important;
-  padding: 0 4px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-start !important;
-  justify-content: flex-start !important;
-  gap: 8px;
-  background: transparent !important;
-}
-
-.ncs-best-meta span {
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  line-height: 1.35;
-  max-width: 100%;
-}
-
-.ncs-best-meta b {
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  color: var(--nc-gold);
-  font-weight: 400;
-  white-space: nowrap;
-}
 
 /* ── Product cards on collection pages — 3 equal tiles ── */
 .ncs-grid-products {
@@ -865,32 +670,8 @@ body {
 }
 
 /* ── Bespoke CTA ── */
-.ncs-bespoke-cta {
-  text-align: center;
-  border: 0;
-  padding: var(--nc-space-xl) 8vw;
-}
-
-.ncs-bespoke-cta h2 {
-  font-size: clamp(40px, 6vw, 80px);
-  line-height: 1.05;
-  margin: 20px 0 40px;
-}
 
 /* ── Mail / newsletter ── */
-.ncs-mail {
-  border-top: 0;
-  gap: 60px;
-}
-
-.ncs-mail h2 {
-  font-size: clamp(36px, 5vw, 64px);
-}
-
-.ncs-mail-form input,
-.nc-footer-form input {
-  font-size: 11px;
-}
 
 /* ── WHY NEROCASA — editorial layout ── */
 .ncs-about-page {
@@ -1033,11 +814,6 @@ body {
   line-height: 1.85;
 }
 
-.ncs-about-stones {
-  padding: var(--nc-space-xl) 8vw;
-  background: #0c0c0a;
-}
-
 .ncs-about-stones-head {
   max-width: 520px;
   margin-bottom: var(--nc-space-md);
@@ -1097,40 +873,7 @@ body {
   line-height: 1.7;
 }
 
-.ncs-about-page .ncs-about-cta {
-  margin: 0 8vw;
-  padding: var(--nc-space-lg);
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 48px;
-  border: 0;
-  background: var(--nc-panel);
-}
-
-.ncs-about-cta-copy h2 {
-  font-family: var(--nc-display);
-  font-size: clamp(32px, 4vw, 56px);
-  font-weight: 400;
-  line-height: 1.08;
-  margin: 12px 0 0;
-  color: var(--nc-ink);
-}
-
-.ncs-about-cta-copy p {
-  max-width: 420px;
-  margin: 20px 0 0;
-  color: var(--nc-muted);
-  font-size: 15px;
-  line-height: 1.75;
-}
-
 /* Hide old why-nerocasa grid if present */
-.ncs-why-editorial,
-.ncs-why-cards,
-.ncs-why-lead {
-  display: none !important;
-}
 
 /* ── Contact page ── */
 .ncs-contact-page {
@@ -1484,12 +1227,7 @@ body {
   transform: translateY(-50%);
 }
 
-.ncs-b2b-form-wrap-centered {
-  padding: calc(var(--nc-header-h) + var(--nc-space-md)) 0 var(--nc-space-xl);
-}
-
-.ncs-b2b-form-panel,
-.ncs-custom-form-panel {
+.ncs-b2b-form-panel {
   background: transparent;
   padding: 0;
 }
@@ -1499,18 +1237,6 @@ body {
 }
 
 /* ── Material grid — softer ── */
-.ncs-material-grid {
-  border: 0;
-  gap: 24px;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.ncs-material-grid div {
-  border: 0;
-  border-top: 1px solid var(--nc-line);
-  padding: 32px 0;
-  min-height: auto;
-}
 
 /* ── Footer ── */
 .nc-footer {
@@ -1618,10 +1344,6 @@ body {
 
 .nc-footer-legal-sep {
   opacity: 0.55;
-}
-
-.nc-footer-join {
-  display: none;
 }
 
 /* ── Buttons ── */
@@ -1786,17 +1508,6 @@ body {
     max-width: none;
   }
 
-  .ncs-about-page .ncs-about-cta {
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 0 6vw;
-    padding: var(--nc-space-md);
-  }
-
-  .ncs-about-stones {
-    padding: var(--nc-space-lg) 6vw;
-  }
-
   .ncs-stone-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
@@ -1815,31 +1526,20 @@ body {
   }
 
   .ncs-collections-list,
-  .ncs-collections-list--grid {
+.ncs-collections-list--grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
 
   .ncs-collections-list > a,
-  .ncs-collections-list > a:nth-child(3),
-  .ncs-collections-list--grid > a {
+.ncs-collections-list > a:nth-child(3),
+.ncs-collections-list--grid > a {
     grid-column: auto;
     min-height: 0 !important;
   }
 
   .ncs-collection-page {
     padding: calc(var(--nc-header-h) + 48px) 6vw var(--nc-space-md);
-  }
-
-  .ncs-best-card {
-    flex-basis: calc((100% - 20px) / 2);
-  }
-
-  .ncs-collections,
-  .ncs-best,
-  .ncs-mail,
-  .ncs-bespoke-cta {
-    padding: var(--nc-space-md) 6vw;
   }
 
   .ncs-product-page {
@@ -1849,31 +1549,10 @@ body {
   .ncs-b2b-header {
     padding: calc(var(--nc-header-h) + 48px) 6vw var(--nc-space-sm);
   }
-
-  .ncs-b2b-form-wrap-centered {
-    padding: 0 6vw var(--nc-space-lg);
-  }
-
-  .ncs-material-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .ncs-material-grid div {
-    border-right: 0 !important;
-    border-bottom: 0 !important;
-  }
 }
 
 @media (max-width: 600px) {
-  .ncs-best-card {
-    flex-basis: 82vw;
-  }
-
   .ncs-grid-products {
-    grid-template-columns: 1fr;
-  }
-
-  .ncs-material-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1928,27 +1607,9 @@ body {
   letter-spacing: 0.12em !important;
 }
 
-.ncs-section-head {
-  margin-bottom: 64px !important;
-}
-
-.ncs-section-head span {
-  font-size: 11px !important;
-  letter-spacing: 0.2em !important;
-}
-
-.ncs-collection-grid strong,
 .ncs-collections-list b {
   font-size: 11px !important;
   letter-spacing: 0.16em !important;
-}
-
-.ncs-best-meta span {
-  font-size: 11px !important;
-}
-
-.ncs-best-meta b {
-  font-size: 11px !important;
 }
 
 .ncs-card-info span,
@@ -2018,21 +1679,7 @@ body {
   padding-top: 22px !important;
 }
 
-.ncs-mail-form input,
-.nc-footer-form input {
-  font-size: 12px !important;
-}
-
 .ncs-contact-lines span {
-  font-size: 11px !important;
-}
-
-.ncs-material-grid div {
-  border-top: 0 !important;
-  padding: 40px 0 !important;
-}
-
-.ncs-bespoke-cta span {
   font-size: 11px !important;
 }
 
@@ -2059,16 +1706,6 @@ body {
   max-width: 62ch;
 }
 
-.ncs-custom-ready {
-  padding: 0 8vw var(--nc-space-lg) !important;
-}
-
-.ncs-custom-form-wrap {
-  padding: 0 8vw var(--nc-space-xl) !important;
-  max-width: none !important;
-  margin: 0 !important;
-}
-
 .ncs-form-lead {
   margin: 0 0 var(--nc-space-md);
   color: var(--nc-muted);
@@ -2083,19 +1720,6 @@ body {
   line-height: 1.08 !important;
   margin: 0 0 20px !important;
   color: var(--nc-ink) !important;
-}
-
-.ncs-custom-upload {
-  border: 1px dashed rgba(242, 238, 230, 0.2) !important;
-  border-radius: 0;
-  background: rgba(255, 255, 255, 0.02);
-  min-height: 180px !important;
-  margin: 24px 0 !important;
-}
-
-.ncs-custom-upload strong {
-  font-size: 11px !important;
-  letter-spacing: 0.16em !important;
 }
 
 .ncs-upload-note {
@@ -2221,40 +1845,8 @@ body {
 }
 
 /* ── Materials (home) ── */
-.ncs-materials {
-  background: #0c0c0a;
-}
-
-.ncs-material-grid {
-  border: 0 !important;
-  gap: var(--nc-space-sm) !important;
-}
-
-.ncs-material-grid div {
-  background: var(--nc-panel);
-  border: 0 !important;
-  padding: var(--nc-space-md) !important;
-  min-height: 160px !important;
-}
-
-.ncs-material-grid strong {
-  font-size: 12px !important;
-}
-
-.ncs-material-grid span {
-  font-size: clamp(28px, 3vw, 40px) !important;
-}
 
 /* ── Mail / newsletter ── */
-.ncs-mail {
-  background: var(--nc-panel);
-}
-
-.ncs-cta-title {
-  flex-direction: column !important;
-  align-items: flex-start !important;
-  gap: 12px;
-}
 
 /* ── Form inputs global ── */
 .ncs-b2b-form input,
@@ -2277,17 +1869,13 @@ body {
 }
 
 /* ── Responsive: page layouts ── */
-.ncs-collection-grid img,
 .ncs-collections-list img,
 .ncs-fit-img img,
-.ncs-best-image img,
 .ncs-main-product-image img {
   filter: brightness(0.94) saturate(0.9) !important;
 }
 
-.ncs-collection-grid > a:hover img,
 .ncs-collections-list > a:hover img,
-.ncs-best-card:hover img,
 .ncs-card:hover .ncs-fit-img img {
   filter: brightness(1) saturate(0.96) !important;
 }
@@ -2305,21 +1893,7 @@ body {
   box-shadow: 0 8px 28px rgba(165, 123, 0, 0.4);
 }
 
-.ncs-mail-form {
-  align-items: center;
-  gap: 16px;
-}
-
-.ncs-mail-form .ncs-btn--compact {
-  flex-shrink: 0;
-  margin-bottom: 0;
-}
-
 @media (max-width: 900px) {
-  .nc-action-link {
-    display: none;
-  }
-
   .nc-header {
     grid-template-columns: 40px 1fr auto !important;
   }
@@ -2354,16 +1928,6 @@ body {
 
   .ncs-b2b-header {
     padding-top: calc(var(--nc-header-h) + 48px);
-  }
-
-  .ncs-b2b-form-wrap-centered {
-    padding: 0 0 var(--nc-space-lg);
-  }
-
-  .ncs-custom-ready,
-  .ncs-custom-form-wrap {
-    padding-left: 6vw !important;
-    padding-right: 6vw !important;
   }
 
   .ncs-search-page {
@@ -3167,7 +2731,7 @@ body {
 
 @media (max-width: 960px) {
   .ncs-about-closer-grid,
-  .ncs-about-manifesto {
+.ncs-about-manifesto {
     grid-template-columns: 1fr;
   }
 }
@@ -3232,12 +2796,6 @@ body {
   color: var(--nc-muted);
 }
 
-.ncs-about-cta--dual .ncs-about-cta-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
 .ncs-b2b-layout.ncs-b2b-layout--split {
   display: grid;
   grid-template-columns: 1fr minmax(320px, 480px);
@@ -3275,12 +2833,12 @@ body {
 
 @media (max-width: 960px) {
   .ncs-home-values,
-  .ncs-about-values {
+.ncs-about-values {
     grid-template-columns: 1fr;
   }
 
   .ncs-home-story,
-  .ncs-b2b-layout.ncs-b2b-layout--split {
+.ncs-b2b-layout.ncs-b2b-layout--split {
     grid-template-columns: 1fr;
   }
 
@@ -3820,7 +3378,7 @@ html.nc-has-cursor select {
   }
 
   [data-nc-reveal],
-  [data-nc-reveal].is-visible {
+[data-nc-reveal].is-visible {
     clip-path: none;
     opacity: 1;
     transform: none;
@@ -3836,9 +3394,9 @@ html.nc-has-cursor select {
   }
 
   html.nc-has-cursor,
-  html.nc-has-cursor body,
-  html.nc-has-cursor a,
-  html.nc-has-cursor button {
+html.nc-has-cursor body,
+html.nc-has-cursor a,
+html.nc-has-cursor button {
     cursor: auto;
   }
 }
@@ -3860,4 +3418,3 @@ html.nc-has-cursor select {
 .ncs-blog-card:hover .ncs-blog-card-body h2 {
   color: var(--nc-gold);
 }
-
