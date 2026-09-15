@@ -24,7 +24,7 @@
     {% endif %}
   </div>
   <div class="ncs-hero-content">
-    <h1>NERO<span class="nc-gold">CASA</span></h1>
+    <h1>NERO<span class="nc-gold nc-casa">CASA</span></h1>
     <p class="ncs-hero-tagline">{{ section.settings.hero_tagline | default: 'Furniture in stone' }}</p>
     <div class="ncs-hero-ctas">
       <a class="ncs-btn ncs-hero-cta" href="{% render 'nc-collections-index-url' %}">Our collection</a>
@@ -44,23 +44,23 @@
       {%- assign home_side = all_products['sd-1'] -%}
       {%- assign home_console = all_products['cs-1'] -%}
       {%- if home_coffee != blank -%}
-        {% render 'nc-catalog-card', shop_product: home_coffee %}
+        {% render 'nc-catalog-card', shop_product: home_coffee, reveal_delay: 0 %}
       {%- endif -%}
       {%- if home_side != blank -%}
-        {% render 'nc-catalog-card', shop_product: home_side %}
+        {% render 'nc-catalog-card', shop_product: home_side, reveal_delay: 1 %}
       {%- endif -%}
       {%- if home_console != blank -%}
-        {% render 'nc-catalog-card', shop_product: home_console %}
+        {% render 'nc-catalog-card', shop_product: home_console, reveal_delay: 2 %}
       {%- endif -%}
     </div>
   </article>
 </section>
 
-<section class="ncs-home-story" data-nc-reveal>
+<section class="ncs-home-story">
   <div class="ncs-home-story-copy">
-    <h2>{% render 'nc-title-gold', title: section.settings.story_heading %}</h2>
-    <p>{{ section.settings.story_text }}</p>
-    <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}">The house</a>
+    <h2 data-nc-reveal data-nc-reveal-delay="0">{% render 'nc-title-gold', title: section.settings.story_heading %}</h2>
+    <p data-nc-reveal data-nc-reveal-delay="1">{{ section.settings.story_text }}</p>
+    <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}" data-nc-reveal data-nc-reveal-delay="1">The house</a>
   </div>
   <div class="ncs-home-story-visual ncs-brand-visual-frame">
     <img src="{% render 'nc-brand-visual' %}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="1200" loading="lazy">

@@ -5,7 +5,7 @@
 {%- endcomment -%}
 {%- if collection != blank and collection.products_count > 0 -%}
   {%- for shop_product in collection.products -%}
-    {% render 'nc-catalog-card', shop_product: shop_product %}
+    {% render 'nc-catalog-card', shop_product: shop_product, reveal_delay: forloop.index0 %}
   {%- endfor -%}
 {%- else -%}
   {%- liquid
@@ -21,7 +21,7 @@
   {%- for item_handle in catalog_handles -%}
     {%- assign shop_product = all_products[item_handle] -%}
     {%- if shop_product != blank -%}
-      {% render 'nc-catalog-card', shop_product: shop_product %}
+      {% render 'nc-catalog-card', shop_product: shop_product, reveal_delay: forloop.index0 %}
     {%- endif -%}
   {%- endfor -%}
 {%- endif -%}

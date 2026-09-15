@@ -34,36 +34,36 @@
   {% endif %}
 
   <div class="ncs-about-values">
-    <article class="ncs-about-value" data-nc-reveal>
+    <article class="ncs-about-value" data-nc-reveal data-nc-reveal-delay="0">
       <h2>{% render 'nc-title-gold', title: section.settings.block_1_title %}</h2>
       <p>{{ section.settings.block_1_text }}</p>
     </article>
-    <article class="ncs-about-value" data-nc-reveal>
+    <article class="ncs-about-value" data-nc-reveal data-nc-reveal-delay="1">
       <h2>{% render 'nc-title-gold', title: section.settings.block_2_title %}</h2>
       <p>{{ section.settings.block_2_text }}</p>
     </article>
-    <article class="ncs-about-value" data-nc-reveal>
+    <article class="ncs-about-value" data-nc-reveal data-nc-reveal-delay="2">
       <h2>{% render 'nc-title-gold', title: section.settings.block_3_title %}</h2>
       <p>{{ section.settings.block_3_text }}</p>
     </article>
-    <article class="ncs-about-value" data-nc-reveal>
+    <article class="ncs-about-value" data-nc-reveal data-nc-reveal-delay="3">
       <h2>{% render 'nc-title-gold', title: section.settings.block_4_title %}</h2>
       <p>{{ section.settings.block_4_text }}</p>
     </article>
   </div>
 
-  <div class="ncs-about-manifesto" data-nc-reveal>
-    <p class="ncs-about-manifesto-lead">{% render 'nc-title-gold', title: section.settings.manifesto_lead %}</p>
-    <p>{{ section.settings.manifesto_text }}</p>
+  <div class="ncs-about-manifesto">
+    <p class="ncs-about-manifesto-lead" data-nc-reveal data-nc-reveal-delay="0">{% render 'nc-title-gold', title: section.settings.manifesto_lead %}</p>
+    <p data-nc-reveal data-nc-reveal-delay="1">{{ section.settings.manifesto_text }}</p>
   </div>
 
-  <div class="ncs-about-closer" data-nc-reveal>
+  <div class="ncs-about-closer">
     <div class="ncs-about-closer-grid">
-      <article>
+      <article data-nc-reveal data-nc-reveal-delay="0">
         <h3>{% render 'nc-title-gold', title: section.settings.advantage_1_title %}</h3>
         <p>{{ section.settings.advantage_1_text }}</p>
       </article>
-      <article>
+      <article data-nc-reveal data-nc-reveal-delay="1">
         <h3>{% render 'nc-title-gold', title: section.settings.advantage_2_title %}</h3>
         <p>{{ section.settings.advantage_2_text }}</p>
       </article>

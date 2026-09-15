@@ -12,6 +12,15 @@
   --nc-ui: "Inter", "Helvetica Neue", Arial, sans-serif;
 }
 
+.nc-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+}
+
 body {
   font-family: var(--nc-ui);
   -webkit-font-smoothing: antialiased;
@@ -190,13 +199,14 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.48) saturate(0.72) contrast(1.05);
+  filter: brightness(0.55) saturate(0.85) contrast(1.02);
 }
 
 .ncs-hero-slabs {
   position: absolute;
   inset: 0;
   z-index: 0;
+  will-change: transform;
 }
 
 .ncs-hero-slab {
@@ -205,7 +215,8 @@ body {
   bottom: 0;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.48) saturate(0.72) contrast(1.05);
+  filter: brightness(0.72) saturate(0.92) contrast(1.02);
+  transition: filter 0.6s ease, transform 0.6s ease;
 }
 
 .ncs-hero-slab--1 {
@@ -242,6 +253,8 @@ body {
   left: auto;
   width: 58%;
   opacity: 0.94;
+  filter: brightness(0.72) saturate(0.92) contrast(1.02);
+  transition: filter 0.6s ease, transform 0.6s ease;
   -webkit-mask-image: linear-gradient(to left, #000 50%, transparent);
   mask-image: linear-gradient(to left, #000 50%, transparent);
 }
@@ -637,6 +650,11 @@ body {
   border: 1px solid rgba(242, 238, 230, 0.22);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   pointer-events: auto;
+}
+
+.ncs-marble-swatch.is-active {
+  box-shadow: 0 0 0 2px var(--nc-gold), 0 0 12px rgba(165,123,0,0.3);
+  transform: scale(1.1);
 }
 
 .ncs-marble-swatch--ibiza-white { background: #f0ebe3; }
@@ -1371,6 +1389,11 @@ body {
   color: #080807 !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 28px rgba(165, 123, 0, 0.4);
+}
+
+.ncs-btn:active {
+  transform: translateY(0) scale(0.98) !important;
+  box-shadow: 0 2px 8px rgba(165,123,0,0.2) !important;
 }
 
 .ncs-custom-whatsapp-box {
@@ -2872,7 +2895,7 @@ body {
 .ncs-hero-slab[src*="hero-slab-travertine"],
 .ncs-hero-slab[src*="hero-slab-white"],
 .ncs-hero-slab[src*="hero-slab-grey"] {
-  filter: brightness(0.32) saturate(0.52) contrast(1.08);
+  filter: brightness(0.72) saturate(0.92) contrast(1.02);
 }
 
 /* ── Product gallery — turn the dead space under a short product photo
@@ -2993,6 +3016,12 @@ body {
 
 .ncs-hero-content h1 .nc-gold {
   color: var(--nc-gold);
+}
+
+.ncs-home-hero h1 .nc-casa {
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: -0.01em;
 }
 
 .ncs-hero-content {
@@ -3305,28 +3334,36 @@ body {
 
 .nc-cursor {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 14px;
-  height: 14px;
-  margin: -7px 0 0 -7px;
-  border: 1px solid var(--nc-gold);
-  border-radius: 50%;
+  top: 0; left: 0;
+  z-index: 9999;
   pointer-events: none;
-  z-index: 5000;
-  opacity: 0.85;
-  transition: width 0.28s var(--nc-ease, cubic-bezier(0.22, 1, 0.36, 1)),
-    height 0.28s var(--nc-ease, cubic-bezier(0.22, 1, 0.36, 1)),
-    margin 0.28s var(--nc-ease, cubic-bezier(0.22, 1, 0.36, 1)),
-    background 0.28s, opacity 0.2s;
-  will-change: transform;
+  transform: translate(-999px, -999px);
+  transition: transform 0.08s linear;
 }
-
-.nc-cursor.is-active {
-  width: 36px;
-  height: 36px;
-  margin: -18px 0 0 -18px;
-  background: rgba(165, 123, 0, 0.12);
+.nc-cursor-dot {
+  display: block;
+  width: 5px; height: 5px;
+  background: var(--nc-gold);
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-2.5px, -2.5px);
+  transition: transform 0.15s cubic-bezier(0.22,1,0.36,1);
+}
+.nc-cursor-ring {
+  display: block;
+  width: 28px; height: 28px;
+  border: 1px solid rgba(165,123,0,0.4);
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-14px, -14px);
+  transition: transform 0.15s cubic-bezier(0.22,1,0.36,1), width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+}
+.nc-cursor-ring.hovering {
+  width: 48px; height: 48px;
+  border-color: var(--nc-gold);
+}
+@media (pointer: coarse), (max-width: 900px) {
+  .nc-cursor { display: none; }
 }
 
 html.nc-has-cursor,

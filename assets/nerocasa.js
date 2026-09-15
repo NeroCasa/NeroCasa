@@ -99,8 +99,12 @@ document.addEventListener('DOMContentLoaded', function () {
     card.querySelectorAll('[data-nc-marble-preview]').forEach(function (swatch) {
       swatch.addEventListener('mouseenter', function () {
         showPreview(swatch);
+        swatch.classList.add('is-active');
       });
-      swatch.addEventListener('mouseleave', restoreDefault);
+      swatch.addEventListener('mouseleave', function () {
+        restoreDefault();
+        swatch.classList.remove('is-active');
+      });
       swatch.addEventListener('focus', function () {
         showPreview(swatch);
       });
@@ -123,31 +127,23 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   var cursor = document.querySelector('[data-nc-cursor]');
-  if (cursor && finePointer && !reduceMotion) {
-    cursor.hidden = false;
-    document.documentElement.classList.add('nc-has-cursor');
-    var cursorX = 0;
-    var cursorY = 0;
-    var pending = false;
-    function drawCursor() {
-      pending = false;
-      cursor.style.transform = 'translate(' + cursorX + 'px,' + cursorY + 'px)';
+  if (cursor) {
+    cursor.innerHTML = '<span class="nc-cursor-dot"></span><span class="nc-cursor-ring"></span>';
+    var ring = cursor.querySelector('.nc-cursor-ring');
+    var classic = window.matchMedia('(pointer: fine)').matches;
+    if (classic && !reduceMotion) {
+      cursor.hidden = false;
+      document.documentElement.classList.add('nc-has-cursor');
     }
-    document.addEventListener(
-      'mousemove',
-      function (e) {
-        cursorX = e.clientX;
-        cursorY = e.clientY;
-        if (!pending) {
-          pending = true;
-          window.requestAnimationFrame(drawCursor);
-        }
-      },
-      { passive: true }
-    );
-    document.addEventListener('mouseover', function (e) {
-      var hit = e.target.closest('a, button, [role="button"], summary, input, textarea, select');
-      cursor.classList.toggle('is-active', Boolean(hit));
+    document.addEventListener('mousemove', function (e) {
+      if (!classic) return;
+      var x = e.clientX, y = e.clientY;
+      cursor.style.transform = 'translate(' + (x - 4) + 'px, ' + (y - 4) + 'px)';
+    });
+    var hoverTargets = document.querySelectorAll('a, button, [role="button"], input, select, textarea, .ncs-marble-swatch');
+    hoverTargets.forEach(function (el) {
+      el.addEventListener('mouseenter', function () { ring.classList.add('hovering'); });
+      el.addEventListener('mouseleave', function () { ring.classList.remove('hovering'); });
     });
   }
 

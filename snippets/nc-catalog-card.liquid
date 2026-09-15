@@ -1,6 +1,7 @@
 {%- comment -%}
   Single collection/product card — Shopify product as source of truth.
   @param shop_product {Product}
+  @param reveal_delay {Number} optional stagger index for data-nc-reveal-delay
 {%- endcomment -%}
 {%- assign item_handle = shop_product.handle -%}
 {%- capture item_name -%}{% render 'nc-product-field', product: shop_product, handle: item_handle, field: 'name' %}{%- endcapture -%}
@@ -28,7 +29,7 @@
   {%- endif -%}
 {%- endcapture -%}
 {%- assign item_alt = item_alt | strip -%}
-<a class="ncs-card ncs-marble-card" href="{{ item_url }}" data-nc-marble-card data-nc-reveal>
+<a class="ncs-card ncs-marble-card" href="{{ item_url }}" data-nc-marble-card data-nc-reveal data-nc-reveal-delay="{{ reveal_delay | default: 0 }}">
   <div class="ncs-fit-img ncs-fit-img--tile ncs-card-media">
     {% if item_src != blank %}
       <img
