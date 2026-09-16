@@ -23,8 +23,7 @@
 | `--nc-display` | `"Cormorant Garamond", Didot, "Bodoni 72", serif` | Headings |
 | `--nc-ui` | `"Inter", "Helvetica Neue", Arial, sans-serif` | Body/UI |
 | Home hero h1 | `clamp(58px, 9vw, 145px)` (additions) / larger luxury overrides | Home only |
-| Compact page h1 | `clamp(36px, 4.8vw, 56px) !important` | Collection/search/info pages |
-| Page hero h1 (non-compact) | `clamp(48px, 6.5vw, 88px)` | About/contact-style heroes |
+| Compact page h1 | `clamp(36px, 4.8vw, 56px) !important` | Collection/search/custom/B2B/contact/about/legal — home keeps the large hero |
 | Home `.nc-casa` | italic, weight 300 | CASA in NEROCASA |
 
 Google Fonts loaded: Cormorant Garamond (300/400/500 + italics), Inter (300/400/500).
@@ -49,15 +48,15 @@ Google Fonts loaded: Cormorant Garamond (300/400/500 + italics), Inter (300/400/
 
 ### Radii / Shadows / Borders
 - Buttons: rectangular gold fill, `box-shadow: 0 4px 20px rgba(165,123,0,0.28)`.
-- Marble swatches: 14px circles, 50% radius.
-- Collection index tiles: 1px `rgba(242,238,230,0.14)` border on index (luxury).
+- Marble swatches: 22px circles, 50% radius (cards and PDP).
+- Product cards, collection tiles, and journal cards: 1px `rgba(242,238,230,0.14)` frame; fine-pointer hover lifts `-4px` and scales the image `1.03`.
 - Header: gold-tinted bottom border (`rgba(165,123,0,.2)`), always-on gold line (not only when scrolled).
 - Custom cursor: gold 5px dot + 28px ring.
 
 ## Core Components
 | Component | Location | Variants | Notes |
 |---|---|---|---|
-| `.ncs-btn` | additions + luxury | default, `--outline`, `--ghost` | Gold CTA; `:active` scale 0.98 in luxury |
+| `.ncs-btn` | additions + luxury | default, `--outline`, `--ghost` | Gold fill CTA; outline/ghost stay transparent with gold border |
 | Header | `nc-header.liquid` | desktop nav / hamburger | Search overlay, cart badge |
 | Footer | `nc-footer.liquid` | | WhatsApp always; IG/Pinterest if URLs set |
 | Product card | `nc-catalog-card.liquid` | | 4:5 cover tile, swatches, From price |

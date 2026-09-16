@@ -88,11 +88,28 @@
     <div class="ncs-product-options" data-nc-product-options>
       {% if product.has_only_default_variant == false %}
         {% for option in product.options_with_values %}
+          {%- assign opt_l = option.name | downcase -%}
+          {%- assign is_marble = false -%}
+          {%- if opt_l contains 'marble' or opt_l contains 'color' or opt_l contains 'colour' or opt_l contains 'finish' -%}
+            {%- assign is_marble = true -%}
+          {%- endif -%}
           <div class="ncs-choice" data-option-index="{{ forloop.index0 }}" data-option-name="{{ option.name | escape }}">
             <label>{{ option.name }}</label>
-            <div class="ncs-choice-row">
+            <div class="ncs-choice-row{% if is_marble %} ncs-choice-row--marbles{% endif %}">
               {% for value in option.values %}
-                <button type="button" data-value="{{ value | escape }}" class="{% if option.selected_value == value %}is-active{% endif %}">{{ value }}</button>
+                {% if is_marble %}
+                  {%- capture marble_slug -%}{% render 'nc-marble-slug', name: value %}{%- endcapture -%}
+                  <button
+                    type="button"
+                    data-value="{{ value | escape }}"
+                    class="ncs-marble-swatch ncs-marble-swatch--{{ marble_slug | strip }}{% if option.selected_value == value %} is-active{% endif %}"
+                    title="{{ value | escape }}"
+                    aria-label="{{ value | escape }}"
+                    aria-pressed="{% if option.selected_value == value %}true{% else %}false{% endif %}"
+                  ></button>
+                {% else %}
+                  <button type="button" data-value="{{ value | escape }}" class="{% if option.selected_value == value %}is-active{% endif %}" aria-pressed="{% if option.selected_value == value %}true{% else %}false{% endif %}">{{ value }}</button>
+                {% endif %}
               {% endfor %}
             </div>
           </div>
@@ -282,8 +299,16 @@
     var baseAlt=main.getAttribute('data-ncs-alt')||main.alt||'';
     var color=getSelectedColor();
     main.alt=color? (baseAlt+' — '+color) : baseAlt;
-    main.style.opacity='.35';
-    setTimeout(function(){main.src=src;main.style.opacity='1';},120);
+    if(main.getAttribute('src')===src){
+      main.style.opacity='1';
+      return;
+    }
+    main.style.transition='opacity 0.5s cubic-bezier(0.22,1,0.36,1)';
+    main.style.opacity='0';
+    window.setTimeout(function(){
+      main.src=src;
+      requestAnimationFrame(function(){ main.style.opacity='1'; });
+    }, 280);
   }
   function updateShownIn(){
     var el=root.querySelector('[data-ncs-shown-in]');
@@ -350,11 +375,18 @@
     updateShownIn();
     updateMarbleContent();
   }
+  function marbleSlug(name){
+    return String(name||'').toLowerCase().replace(/\s+/g,'-');
+  }
   function bindChoiceGroup(g){
     g.querySelectorAll('[data-value]').forEach(function(btn){
       btn.addEventListener('click',function(){
-        g.querySelectorAll('[data-value]').forEach(function(x){x.classList.remove('is-active')});
+        g.querySelectorAll('[data-value]').forEach(function(x){
+          x.classList.remove('is-active');
+          if(x.hasAttribute('aria-pressed')) x.setAttribute('aria-pressed','false');
+        });
         btn.classList.add('is-active');
+        if(btn.hasAttribute('aria-pressed')) btn.setAttribute('aria-pressed','true');
         syncVariant();
       });
     });
@@ -366,13 +398,16 @@
     wrap.dataset.optionIndex='0';
     wrap.dataset.optionName='Marble';
     wrap.dataset.ncInjectedMarble='1';
-    wrap.innerHTML='<label>Marble</label><div class="ncs-choice-row"></div>';
+    wrap.innerHTML='<label>Marble</label><div class="ncs-choice-row ncs-choice-row--marbles"></div>';
     var row=wrap.querySelector('.ncs-choice-row');
     catalog.colors.forEach(function(color,i){
       var btn=document.createElement('button');
       btn.type='button';
       btn.dataset.value=color;
-      btn.textContent=color;
+      btn.className='ncs-marble-swatch ncs-marble-swatch--'+marbleSlug(color);
+      btn.title=color;
+      btn.setAttribute('aria-label',color);
+      btn.setAttribute('aria-pressed', i===0 ? 'true' : 'false');
       if(i===0)btn.classList.add('is-active');
       row.appendChild(btn);
     });

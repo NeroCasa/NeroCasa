@@ -1,12 +1,17 @@
 {%- comment -%}
-  Page title with the last word in gold.
+  Page title with the last word in gold when the title has two or more words.
+  Single-word titles stay ink so they do not turn fully gold.
   @param title {String}
 {%- endcomment -%}
 {%- assign title_words = title | strip | split: ' ' -%}
-{%- assign last_word = title_words | last -%}
-{%- capture prefix -%}
-  {%- for word in title_words -%}
-    {%- unless forloop.last -%}{{ word }} {%- endunless -%}
-  {%- endfor -%}
-{%- endcapture -%}
-{{- prefix -}}<span class="nc-gold">{{ last_word }}</span>
+{%- if title_words.size <= 1 -%}
+  {{- title | strip -}}
+{%- else -%}
+  {%- assign last_word = title_words | last -%}
+  {%- capture prefix -%}
+    {%- for word in title_words -%}
+      {%- unless forloop.last -%}{{ word }} {%- endunless -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+  {{- prefix -}}<span class="nc-gold">{{ last_word }}</span>
+{%- endif -%}

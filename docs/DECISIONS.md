@@ -4,6 +4,12 @@
 > This exists so future sessions (and future you) don't re-litigate or accidentally reverse a
 > deliberate choice. Newest entries at the top.
 
+### 2026-09-17 — One card, one title, unboxed interiors
+**Context:** Owner asked for a luxury pass across every page after the collections tile landed.
+**Decision:** Treat The 9 index card as the master card; compact titles except home; unbox Why Nerocasa; restore outline/ghost buttons; PDP marble as swatches with a slower fade; keep `object-fit: contain`.
+**Alternatives considered:** 3D configurator; putting all nine products on home; replaying the reverted Why magazine layout.
+**Consequences:** Hover lift is desktop/fine-pointer only. Journal still needs photography in Admin to fill the 4:5 media slot.
+
 ### 2026-09-16 — Collections index compact title + single-tile width
 **Context:** `/collections` looked empty (no heading, The 9 locked to 1/3 of a 3-up grid). Editorial and large-hero layouts were reverted.
 **Decision:** Use the same compact quiet page hero as search/The 9 (“Our collections”). Keep the 4:5 card. When it is the only tile, cap width at 480px; two or more tiles stay on the 3-up grid. Do not pass tile subtitles. Leave `/collections/the-9` type tiles unchanged.

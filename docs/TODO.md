@@ -4,8 +4,8 @@
 > just what's relevant to keep the codebase healthy and what was consciously deferred.
 
 ## Deferred From Recent Work
-- [x] Collections index presentation (`/collections` looks empty with only The 9) — compact quiet heading + ~480px only-child card; The 9 type page unchanged. Draft 2026-09-16
-- [ ] Why Nerocasa editorial recomposition — implemented then reverted; do not reapply unless asked
+- [x] Collections index presentation (`/collections` looks empty with only The 9) — compact quiet heading + ~480px only-child card; The 9 type page unchanged. Live 2026-09-16
+- [x] Why Nerocasa editorial recomposition — gold boxes removed 2026-09-17; vertical story, not the reverted magazine layout
 - [ ] Step 10 gated collection grid split (featured + 2 supporting, drop `quiet: true`) — never approved
 
 ## Known Gaps / Risks Not Yet Addressed
@@ -18,6 +18,7 @@
 - [ ] No automated storefront test suite in the repo
 
 ## Nice-to-Haves (explicitly not urgent)
+- [ ] Add featured images to Journal posts so 4:5 media slots fill
 - [ ] Self-host Google Fonts to drop render-blocking third-party CSS
 - [ ] Unify CSS into one cascade without `!important` wars
 - [ ] Inventory unused snippets (Theme Check warned `nc-catalog-search-index` as orphaned)

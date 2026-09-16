@@ -28,7 +28,7 @@
               endif
             -%}
             {%- if show_article_image -%}
-              <div class="ncs-blog-card-media">
+              <div class="ncs-blog-card-media ncs-fit-img ncs-fit-img--tile">
                 <img
                   src="{{ article.image | image_url: width: 900 }}"
                   alt="{{ article.image.alt | default: article.title | escape }}"

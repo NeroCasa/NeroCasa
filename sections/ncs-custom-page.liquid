@@ -8,8 +8,7 @@
     center_image: section.settings.hero_slab_center,
     right_image: section.settings.hero_slab_right
   %}
-  <header class="ncs-page-hero" data-nc-reveal>
-    <span class="ncs-page-kicker">{{ section.settings.hero_kicker }}</span>
+  <header class="ncs-page-hero ncs-page-hero--compact" data-nc-reveal>
     <h1>{% render 'nc-title-gold', title: section.settings.hero_heading %}</h1>
     <p>{{ section.settings.hero_lead }}</p>
   </header>
@@ -26,21 +25,16 @@
         <li>{{ section.settings.scope_3 }}</li>
         <li>{{ section.settings.scope_4 }}</li>
       </ul>
+      <p class="ncs-custom-soon">{{ section.settings.waterjet_note }} — {{ section.settings.waterjet_heading }}. {{ section.settings.waterjet_text }}</p>
     </div>
 
-    <div class="ncs-custom-whatsapp-panel">
-      <p class="ncs-custom-whatsapp-note">{{ section.settings.whatsapp_note }}</p>
+    <div class="ncs-custom-visual">
+      <div class="ncs-fit-img ncs-fit-img--tile">
+        <img src="{{ 'hero-slab-white.jpg' | asset_img_url: '1200x' }}" alt="" width="1200" height="1500" loading="lazy">
+      </div>
       <a class="ncs-btn" href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">Talk to us on WhatsApp</a>
       <p class="ncs-custom-whatsapp-hint">{{ section.settings.whatsapp_hint }}</p>
       <p class="ncs-custom-b2b-note">{{ section.settings.b2b_note }} <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B</a></p>
-    </div>
-  </section>
-
-  <section class="ncs-custom-block ncs-custom-block--waterjet" data-nc-reveal>
-    <div class="ncs-custom-block-copy">
-      <p class="ncs-custom-soon">{{ section.settings.waterjet_note }}</p>
-      <h2>{% render 'nc-title-gold', title: section.settings.waterjet_heading %}</h2>
-      <p>{{ section.settings.waterjet_text }}</p>
     </div>
   </section>
 </section>

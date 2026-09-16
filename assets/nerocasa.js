@@ -99,6 +99,9 @@ document.addEventListener('DOMContentLoaded', function () {
     card.querySelectorAll('[data-nc-marble-preview]').forEach(function (swatch) {
       swatch.addEventListener('mouseenter', function () {
         showPreview(swatch);
+        card.querySelectorAll('[data-nc-marble-preview]').forEach(function (el) {
+          el.classList.remove('is-active');
+        });
         swatch.classList.add('is-active');
       });
       swatch.addEventListener('mouseleave', function () {
@@ -109,6 +112,15 @@ document.addEventListener('DOMContentLoaded', function () {
         showPreview(swatch);
       });
       swatch.addEventListener('blur', restoreDefault);
+      swatch.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        showPreview(swatch);
+        card.querySelectorAll('[data-nc-marble-preview]').forEach(function (el) {
+          el.classList.remove('is-active');
+        });
+        swatch.classList.add('is-active');
+      });
     });
   });
 
