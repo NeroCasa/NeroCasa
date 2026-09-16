@@ -1,3 +1,7 @@
-.cursor/
+# Keep Cursor editor settings local; version agent skills with the repo.
+.cursor/*
+!.cursor/skills/
+!.cursor/skills/**
+
 .DS_Store
 Thumbs.db
