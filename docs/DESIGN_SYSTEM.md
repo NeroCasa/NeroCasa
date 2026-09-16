@@ -70,7 +70,7 @@ Google Fonts loaded: Cormorant Garamond (300/400/500 + italics), Inter (300/400/
 
 ## Motion Language
 - Easing `--nc-ease`: `cubic-bezier(0.22, 1, 0.36, 1)`.
-- Scroll reveal: `[data-nc-reveal]` via `nerocasa-v20.js` (opacity + translateY; reverse when leaving viewport); CSS also has `.is-visible` (legacy).
+- Scroll reveal: `[data-nc-reveal]` via `nerocasa-v20.js` (opacity + translateY, play-once `.is-visible`); `prefers-reduced-motion` forces visible.
 - Home hero media parallax `translate3d(0, scrollY * 0.12px)` in `nerocasa.js` (fine pointer, not reduced-motion).
 - Button hover translate/scale; swatch `.is-active` glow.
 - `prefers-reduced-motion`: reveal forced visible, loader/cursor hidden, transitions none (luxury).
@@ -96,4 +96,4 @@ Google Fonts loaded: Cormorant Garamond (300/400/500 + italics), Inter (300/400/
 - Duplicate CSS in additions vs luxury with conflicting `!important`.
 - Page kickers `.ncs-page-kicker { display: none !important; }` so kicker markup is dead.
 - Gold last-word helper used even when a full title treatment is wanted.
-- Index collections list forced to 3-column card width, so one collection looks empty.
+- Index collections list: a single collection uses a 480px card; two or more stay on the 3-up grid.

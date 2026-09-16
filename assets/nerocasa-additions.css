@@ -262,8 +262,8 @@ body.nc-menu-open {overflow:hidden}
 .ncs-collections-list>a,
 .ncs-collections-list>a:nth-child(3),
 .ncs-collections-list--grid>a {grid-column:auto;min-height:0}
-@media(min-width:901px) {.ncs-collections-page--index .ncs-collections-list.ncs-collections-list--grid {display:flex!important;flex-wrap:wrap;gap:24px!important;grid-template-columns:none!important}.ncs-collections-page--index .ncs-collection-tile {flex:0 0 calc((100% - 48px)/3);width:calc((100% - 48px)/3);max-width:calc((100% - 48px)/3)}}
-.ncs-collections-page--index {padding-top:calc(var(--nc-header-h) + 36px)!important}
+@media(min-width:901px) {.ncs-collections-page--index .ncs-collections-list.ncs-collections-list--grid {display:flex!important;flex-wrap:wrap;gap:24px!important;grid-template-columns:none!important}.ncs-collections-page--index .ncs-collection-tile {flex:0 0 calc((100% - 48px)/3);width:calc((100% - 48px)/3);max-width:calc((100% - 48px)/3)}.ncs-collections-page--index .ncs-collection-tile:only-child {flex:0 0 480px;width:480px;max-width:min(480px,100%)}}
+.ncs-collections-page--index {padding-top:0!important}
 .ncs-collections-page--index .ncs-fit-img,
 .ncs-collections-page--index .ncs-fit-img--compact {aspect-ratio:4/5!important}
 .ncs-collections-list h2 {font-size:clamp(30px,3.2vw,54px)}

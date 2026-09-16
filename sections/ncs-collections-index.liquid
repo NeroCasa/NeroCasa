@@ -17,24 +17,22 @@
   endif
 -%}
 <section class="ncs-collections-page{% unless show_type_tiles %} ncs-collections-page--index{% endunless %}">
-  {%- if show_type_tiles -%}
-    {% render 'nc-page-hero-shell-open',
-      quiet: true,
-      slab_left: 'hero-slab-red.jpg',
-      slab_center: 'hero-slab-green.jpg',
-      slab_right: 'hero-slab-travertine.jpg',
-      left_image: section.settings.hero_slab_left,
-      center_image: section.settings.hero_slab_center,
-      right_image: section.settings.hero_slab_right
-    %}
-    <header class="ncs-page-hero ncs-page-hero--compact" data-nc-reveal>
-      <h1>{% render 'nc-title-gold', title: index_heading %}</h1>
-      {%- if collection.description != blank -%}
-        <p class="ncs-collections-lead">{{ collection.description | strip_html }}</p>
-      {%- endif -%}
-    </header>
-    {% render 'nc-page-hero-shell-close' %}
-  {%- endif -%}
+  {% render 'nc-page-hero-shell-open',
+    quiet: true,
+    slab_left: 'hero-slab-red.jpg',
+    slab_center: 'hero-slab-green.jpg',
+    slab_right: 'hero-slab-travertine.jpg',
+    left_image: section.settings.hero_slab_left,
+    center_image: section.settings.hero_slab_center,
+    right_image: section.settings.hero_slab_right
+  %}
+  <header class="ncs-page-hero ncs-page-hero--compact" data-nc-reveal>
+    <h1>{% render 'nc-title-gold', title: index_heading %}</h1>
+    {%- if show_type_tiles and collection.description != blank -%}
+      <p class="ncs-collections-lead">{{ collection.description | strip_html }}</p>
+    {%- endif -%}
+  </header>
+  {% render 'nc-page-hero-shell-close' %}
 
   <div class="ncs-collections-list ncs-collections-list--grid">
     {%- if show_type_tiles -%}

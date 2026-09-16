@@ -90,10 +90,9 @@ graph TD
 - English copy is hardcoded in sections, not `t:` locale keys (`locales/en.default.json` is nearly empty).
 
 ## Known Technical Debt
-- Two overlapping CSS files with `!important` fights (index collection tile width historically forced to 1/3).
+- Two overlapping CSS files with `!important` fights.
 - Theme Check errors on several `nc-title-gold` render calls that pass filters inline; HTML split across `nc-page-hero-shell-open/close`.
 - `scripts/validate.mjs` (Shopify plugin) fails locally without `@shopify/theme-check-common`.
-- Scroll-reveal CSS still targets `.is-visible` while `nerocasa-v20.js` now uses inline opacity/transform (and reverse-on-leave).
 - Grain overlay `z-index: 1` vs header `100`; film over un-z-indexed main.
-- `/collections` with a single collection (The 9) looks sparse (small 1/3 card, no index heading). Attempts to redesign were reverted on request.
+- `/collections` is a compact quiet heading plus The 9 card (~480px when it is the only tile). Type collections stay on `/collections/the-9`.
 - Installed Shopify apps are not listed in the repo (only `content_for_header`).

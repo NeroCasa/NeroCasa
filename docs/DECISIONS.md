@@ -4,6 +4,18 @@
 > This exists so future sessions (and future you) don't re-litigate or accidentally reverse a
 > deliberate choice. Newest entries at the top.
 
+### 2026-09-16 — Collections index compact title + single-tile width
+**Context:** `/collections` looked empty (no heading, The 9 locked to 1/3 of a 3-up grid). Editorial and large-hero layouts were reverted.
+**Decision:** Use the same compact quiet page hero as search/The 9 (“Our collections”). Keep the 4:5 card. When it is the only tile, cap width at 480px; two or more tiles stay on the 3-up grid. Do not pass tile subtitles. Leave `/collections/the-9` type tiles unchanged.
+**Alternatives considered:** Full-width editorial feature; 16:10 banner; restoring 1/3 lock.
+**Consequences:** Future extra collections fill the remaining columns. Do not revive reverted magazine/banner layouts unless asked.
+
+### 2026-09-16 — Scroll reveal plays once
+**Context:** Luxury CSS expected `.is-visible` and an 18% clip-path, while JS set inline opacity and reversed on leave, so revealed blocks could stay cropped.
+**Decision:** JS adds `.is-visible` once and unobserves. CSS uses opacity/transform only. `prefers-reduced-motion` still forces visible.
+**Alternatives considered:** Keep reverse-on-leave; animate clip-path.
+**Consequences:** Reveal is a one-way entrance. Cart AJAX, cursor, and loader were not changed.
+
 ### 2026-09-16 — Track agent skills in git
 **Context:** Skills lived under `.cursor/skills/` but `.gitignore` ignored all of `.cursor/`, so clones and other sessions would not get them.
 **Decision:** Ignore `.cursor/*` except `.cursor/skills/`. Keep `.cursor/settings.json` and similar editor files local.

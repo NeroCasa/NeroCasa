@@ -4,6 +4,11 @@
 > project memory, not a marketing changelog — be specific about files and behavior touched.
 
 ### 2026-09-16
+- Changed: Scroll reveal now plays once via `.is-visible` (`assets/nerocasa-v20.js`); removed the 18% clip-path CSS override in `assets/nerocasa-luxury.css`. `/collections` index shows a compact “Our collections” heading and a 480px The 9 card when it is the only tile (`sections/ncs-collections-index.liquid`, additions + luxury CSS). `/collections/the-9`, cart, CASA, Custom, password, and PDP `object-fit: contain` were not changed.
+- Verified: Source review of reveal CSS/JS and index Liquid; pushed to unpublished Atelier draft only (not live).
+- Follow-up: Owner preview on draft `/collections`, home, about; publish live only if approved.
+
+### 2026-09-16
 - Changed: Versioned Cursor agent skills with the repo. `.gitignore` now ignores `.cursor/*` except `.cursor/skills/`. Updated PROJECT_CONTEXT, ARCHITECTURE, DECISIONS, TODO. Storefront files untouched.
 - Verified: Skills remain loadable from `.cursor/skills/<name>/SKILL.md`; `.cursor/settings.json` stays untracked.
 - Follow-up: Push when asked so clones receive the skills.
