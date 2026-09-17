@@ -72,7 +72,8 @@
               <label>Marble or stone preference<input type="text" name="contact[marble_preference]" placeholder="Describe the finish you want, or leave open for our suggestion"></label>
             </div>
             <label class="ncs-form-full">Project details<textarea name="contact[body]" rows="4" placeholder="Space, pieces required, location, timeline, anything else we should know."></textarea></label>
-            <button type="submit" class="ncs-btn">{% render 'nc-title-gold', title: 'Send' %}</button>
+            {%- assign cta_send = 'actions.send' | t -%}
+            <button type="submit" class="ncs-btn">{% render 'nc-title-gold', title: cta_send %}</button>
           {% endif %}
         {% endform %}
       </div>

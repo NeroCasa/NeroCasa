@@ -7,7 +7,7 @@
 | Name | Purpose | Where it's wired in | Status | Notes |
 |---|---|---|---|---|
 | Shopify Online Store / `content_for_header` | Platform scripts, possible app embeds | `layout/theme.liquid`, `layout/password.liquid` | Active | Installed Admin apps are **not listed in the theme repo**. Treat anything injected here as protected. |
-| Google Fonts | Display + UI type | `layout/theme.liquid` `<link>` | Active | Render-blocking stylesheet from fonts.googleapis.com |
+| Shopify themes (CLI 2026-09-17) | Live + draft | Admin, not theme files | Active | NeroCasa/main `#161950105824` live; NeroCasa Atelier `#162217230560` unpublished. No extra themes. |
 
 ## APIs (Inbound & Outbound)
 | Name | Direction | Endpoint(s) | Auth method | Used by | Notes |

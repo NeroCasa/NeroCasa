@@ -13,9 +13,9 @@
 > Filled in by AGENTS.md Step 0 ("Detect the Project").
 - **Platform:** Shopify theme (`config/settings_schema.json`, `layout/theme.liquid`, JSON templates). No `.theme-check.yml` or `shopify.theme.toml` in the repo.
 - **Language(s):** Liquid, CSS, vanilla JavaScript, JSON. Node `.mjs` scripts for Admin/CLI catalog setup (not a storefront runtime).
-- **Framework(s)/libraries in active use:** No React/Vue/Next. No `package.json`. No Three.js/WebGL. Google Fonts (Cormorant Garamond, Inter) loaded from fonts.googleapis.com in `layout/theme.liquid`.
+- **Framework(s)/libraries in active use:** No React/Vue/Next. No `package.json`. No Three.js/WebGL. Self-hosted Cormorant Garamond + Inter woff2 in `assets/`, referenced from `nerocasa.css.liquid`.
 - **Package manager:** None for the theme. Shopify CLI (`shopify theme push`, `shopify theme check`) used operationally.
-- **Build/dev tooling:** None. CSS/JS are authored directly in `assets/`. Theme Check reports pre-existing Liquid issues in several sections (not introduced by this init).
+- **Build/dev tooling:** CSS is authored in `assets/nerocasa.css.liquid`. Integrity checks: `node scripts/test-storefront.mjs`. Theme Check still reports split hero-shell snippets and RemoteAsset warnings.
 - **Hosting / deployment target:** Shopify Online Store. Store domain observed in scripts/docs: `zhjbdz-yw.myshopify.com`. Public site: `www.nerocasa.com` (from prior operational use; not hardcoded as canonical in `theme.liquid`). GitHub: `https://github.com/NeroCasa/NeroCasa` (from theme_info).
 - **Repository layout notes:** Custom `ncs-*` sections and `nc-*` snippets rather than Dawn. Extra top-level `scripts/`, `SETUP.md`, `CHECKOUT-SETUP.md`, `MANUAL-ADMIN-SETUP.md`. Agent system lives at repo root: `AGENTS.md`, `docs/`, `.cursor/skills/` (skills are tracked; other `.cursor/` files stay gitignored).
 
@@ -33,7 +33,7 @@
 - Locked public copy observed in code/settings: hero “Furniture in stone”; home heading “The 9”; CTAs “Our collection”; collection “The 9”.
 - Contacts in theme settings defaults: WhatsApp `+971 56 878 8789`, phone `+971 50 858 8828`, email `nerocasamarbles@gmail.com`.
 - Cart/checkout is Shopify native plus theme AJAX add-to-cart in `assets/nerocasa.js`. Do not change payment/checkout unless asked.
-- `/collections` lists The 9 (and future non-type collections); type collections coffee/side/console are skipped on the index and shown as tiles on The 9 collection template (`templates/collection.the-9.json`).
+- `/collections` lists The 9 only; type collections coffee/side/console are tiles on The 9 collection template (`templates/collection.the-9.json`). Only-child index tile caps at 480px. Marble hero stays on.
 - `templates/*.json` are merchant-editable; do not overwrite carelessly.
 
 ## Ownership / Stakeholders
@@ -41,4 +41,4 @@
 - Payments, legal pages, pricing, and catalog membership should be confirmed with the store owner before edits.
 
 ## Summary of Current State
-A custom, production Shopify theme with a dark gold-on-black luxury visual layer (`nerocasa-additions.css` then `nerocasa-luxury.css`), JSON templates, and a small catalog of nine marble products. Storefront JS is two deferred files (header/cart/cursor/parallax + scroll reveal). No theme-level analytics pixels were found; apps may still inject via `{{ content_for_header }}`. CSS is duplicated across two large stylesheets. `/collections` uses a compact quiet heading and a single The 9 card at ~480px until more collections exist. Agent system installed 2026-09-16.
+A custom, production Shopify theme with a dark gold-on-black luxury visual layer in one stylesheet (`assets/nerocasa.css.liquid`), JSON templates, and a small catalog of nine marble products. Storefront design was accepted and published live 2026-09-17 (NeroCasa/main `#161950105824`). Storefront JS is two deferred files (header/cart/cursor/parallax + catalog search + scroll reveal). No theme-level analytics pixels were found; apps may still inject via `{{ content_for_header }}`. `/collections` uses a marble hero and a single The 9 tile. Agent system: `AGENTS.md`, `docs/`, `.cursor/skills/`, always-on rule `.cursor/rules/always-use-skills.mdc`.

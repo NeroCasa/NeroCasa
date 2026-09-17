@@ -1,0 +1,16 @@
+---
+description: Always load and follow project skills; never wait to be asked
+alwaysApply: true
+---
+
+# Always use skills
+
+Do not wait for the user to say “use your skills.” That is already the default.
+
+On every task:
+
+1. Read `AGENTS.md`.
+2. Read `.cursor/skills/<name>/SKILL.md` for every skill that applies **before** editing or answering. Path: `.cursor/skills/<skill-name>/SKILL.md`.
+3. Always load `project-memory` (read relevant `docs/` first). For storefront work also load `project-architecture`, `integration-protection`, and `code-review`. Add `platform-expert`, `design-system`, `ui-ux`, `responsive`, `accessibility`, `performance`, `testing-qa`, and `visual-verification` when the change is visible or ships.
+
+Follow the skill. Do not only mention it.

@@ -10,13 +10,14 @@ layout/          theme.liquid (storefront shell), password.liquid
 templates/       JSON OS 2.0 templates mapping routes → sections; gift_card.liquid
 sections/        ncs-* page sections; nc-header, nc-footer
 snippets/        nc-* shared Liquid (cards, heroes, SEO, catalog fields, contact)
-assets/          nerocasa-additions.css, nerocasa-luxury.css, nerocasa.js, nerocasa-v20.js, images
+assets/          nerocasa.css.liquid (single cascade + @font-face), woff2 fonts, nerocasa.js, nerocasa-v20.js, images
 config/          settings_schema.json, settings_data.json, markets.json (AE)
 locales/         en.default.json (minimal: general.brand)
 scripts/         Node .mjs Admin/CLI catalog and store setup helpers
 docs/            Agent project memory (this folder)
 AGENTS.md        Agent operating rules
-.cursor/skills/  Agent skills (tracked in git; other `.cursor/` files ignored)
+.cursor/skills/  Agent skills (tracked in git)
+.cursor/rules/   Always-on Cursor rules (tracked); other `.cursor/` files stay gitignored
 SETUP.md, CHECKOUT-SETUP.md, MANUAL-ADMIN-SETUP.md
 ```
 
@@ -30,7 +31,7 @@ Request
   → snippets (nc-*)
   → Shopify objects (product, collection, cart, page, settings)
   → layout/theme.liquid wraps header + main + footer
-  → CSS: additions then luxury; JS: nerocasa.js + nerocasa-v20.js (defer)
+  → CSS: `nerocasa.css` (from `nerocasa.css.liquid`); JS: nerocasa.js + nerocasa-v20.js (defer)
   → {{ content_for_header }} (Shopify + any installed app embeds)
 ```
 
@@ -46,8 +47,7 @@ graph TD
   layout --> header[sections/nc-header]
   layout --> main[content_for_layout]
   layout --> footer[sections/nc-footer]
-  layout --> cssA[assets/nerocasa-additions.css]
-  layout --> cssL[assets/nerocasa-luxury.css]
+  layout --> css[assets/nerocasa.css.liquid]
   layout --> js1[assets/nerocasa.js]
   layout --> js2[assets/nerocasa-v20.js]
   layout --> cfh[content_for_header]
@@ -73,12 +73,12 @@ graph TD
 | Header | `sections/nc-header.liquid` | Nav, search overlay, cart link, mobile menu | `nc-collections-index-url`, `nc-page-url` |
 | Footer | `sections/nc-footer.liquid` | Logo, WhatsApp/Instagram/Pinterest, nav | contact snippets |
 | Home | `sections/ncs-store-home.liquid` | Hero slabs or photo, 3 product cards, story | `nc-hero-marble-bg`, `nc-catalog-card` |
-| Collections index | `sections/ncs-collections-index.liquid` | `/collections` shows The 9 (+ other non-type collections); on `collection.the-9` shows coffee/side/console tiles | `nc-collection-tile`, collection settings handles |
+| Collections index | `sections/ncs-collections-index.liquid` | `/collections` shows The 9 only (marble hero); on `collection.the-9` shows coffee/side/console tiles | `nc-collection-tile`, collection settings handles |
 | Collection products | `sections/ncs-collection.liquid` | Category collection product grid | `nc-catalog-cards` |
 | Product | `sections/ncs-product.liquid` | Gallery, marble options, add to cart | metafields, `nc-product-field` |
 | Cart | `sections/ncs-cart.liquid` | Line items, qty, checkout button | `/cart/update.js` |
 | SEO | `snippets/nc-meta-tags.liquid` | title, canonical, OG, JSON-LD | Shopify SEO objects |
-| Store JS | `assets/nerocasa.js` | header scroll, AJAX cart, marble preview, loader, cursor, hero parallax, last-word gold on legal h2/h3 | DOM hooks in layout/header |
+| Store JS | `assets/nerocasa.js` | header scroll, AJAX cart, marble preview, loader, cursor, hero parallax, last-word gold on legal h2/h3, catalog search | DOM hooks in layout/header |
 | Reveal JS | `assets/nerocasa-v20.js` | IntersectionObserver `[data-nc-reveal]` | markup attributes |
 
 ## Conventions in Use
@@ -86,14 +86,14 @@ graph TD
 - JSON templates with a single `main` section.
 - Title helper `snippets/nc-title-gold.liquid` golds the last word of any multi-word title (CASA is still marked up separately; product names stay gold in their own markup).
 - Named stone selectors via `snippets/nc-marble-choice.liquid`.
-- Marble heroes via `nc-hero-marble-bg` + optional Theme Editor images; `quiet: true` skips slabs on some pages.
-- CSS cascade: additions (base/legacy) then luxury (overrides). Many selectors are duplicated.
-- English copy is hardcoded in sections, not `t:` locale keys (`locales/en.default.json` is nearly empty).
+- Marble heroes via `nc-hero-marble-bg` + optional Theme Editor images; `quiet: true` skips slabs on some interior pages (search, cart, legal). Collections index uses the full marble hero. Page heroes wrap inner markup through `snippets/nc-page-hero-shell.liquid`.
+- CSS cascade: one file `assets/nerocasa.css.liquid` (former additions + luxury concatenated; leftover `!important` still exists inside that file).
+- Storefront chrome (nav, CTAs, cart/search/404) uses `locales/en.default.json` via `| t`. Long page copy still lives in section settings / Liquid.
 
 ## Known Technical Debt
-- Two overlapping CSS files with `!important` fights.
-- Theme Check errors on several `nc-title-gold` render calls that pass filters inline; HTML split across `nc-page-hero-shell-open/close`.
-- `scripts/validate.mjs` (Shopify plugin) fails locally without `@shopify/theme-check-common`.
-- Grain overlay `z-index: 1` vs header `100`; film over un-z-indexed main.
-- `/collections` is a compact quiet heading plus The 9 card (~480px when it is the only tile). Type collections stay on `/collections/the-9`.
+- Historical `!important` still present inside the unified CSS file; not a second stylesheet.
+- Theme Check: RemoteAsset warnings on brand visual / product images (not errors). Hero shell is one balanced snippet `nc-page-hero-shell`.
+- `scripts/validate.mjs` (Shopify plugin) fails locally without `@shopify/theme-check-common`. Use `node scripts/test-storefront.mjs` instead.
+- `/collections` shows The 9 only, with the marble page hero. Type collections stay on `/collections/the-9`. The only-child tile caps at 480px.
 - Installed Shopify apps are not listed in the repo (only `content_for_header`).
+- Password wall and Payments stay Admin-only.

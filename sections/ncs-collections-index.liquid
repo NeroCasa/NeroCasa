@@ -17,8 +17,16 @@
   endif
 -%}
 <section class="ncs-collections-page{% unless show_type_tiles %} ncs-collections-page--index{% endunless %}">
-  {% render 'nc-page-hero-shell-open',
-    quiet: true,
+  {%- capture nc_hero_body -%}
+  <header class="ncs-page-hero ncs-page-hero--compact" data-nc-reveal>
+    <h1>{% render 'nc-title-gold', title: index_heading %}</h1>
+    {%- if show_type_tiles and collection.description != blank -%}
+      <p class="ncs-collections-lead">{{ collection.description | strip_html }}</p>
+    {%- endif -%}
+  </header>
+  {%- endcapture -%}
+  {% render 'nc-page-hero-shell',
+    body: nc_hero_body,
     slab_left: 'hero-slab-red.jpg',
     slab_center: 'hero-slab-green.jpg',
     slab_right: 'hero-slab-travertine.jpg',
@@ -26,13 +34,6 @@
     center_image: section.settings.hero_slab_center,
     right_image: section.settings.hero_slab_right
   %}
-  <header class="ncs-page-hero ncs-page-hero--compact" data-nc-reveal>
-    <h1>{% render 'nc-title-gold', title: index_heading %}</h1>
-    {%- if show_type_tiles and collection.description != blank -%}
-      <p class="ncs-collections-lead">{{ collection.description | strip_html }}</p>
-    {%- endif -%}
-  </header>
-  {% render 'nc-page-hero-shell-close' %}
 
   <div class="ncs-collections-list ncs-collections-list--grid">
     {%- if show_type_tiles -%}
@@ -50,17 +51,9 @@
         {%- assign skip = skip | append: console_handle | append: ',' -%}
       {%- endif -%}
     {%- else -%}
-      {%- assign skip = ',all,' | append: coffee_handle | append: ',' | append: side_handle | append: ',' | append: console_handle | append: ',' -%}
       {%- if the_9_coll != blank -%}
         {% render 'nc-collection-tile', collection: the_9_coll, cover: section.settings.cover_the_9, cover_product_handle: 'cft-3', cover_marble: 'Rosso Levanto' %}
-        {%- assign skip = skip | append: the_9_handle | append: ',' -%}
       {%- endif -%}
-      {%- for collection in collections -%}
-        {%- assign needle = ',' | append: collection.handle | append: ',' -%}
-        {%- unless skip contains needle -%}
-          {% render 'nc-collection-tile', collection: collection %}
-        {%- endunless -%}
-      {%- endfor -%}
     {%- endif -%}
   </div>
 </section>

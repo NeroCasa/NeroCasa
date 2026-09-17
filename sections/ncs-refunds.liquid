@@ -1,14 +1,17 @@
 <section class="ncs-info-page ncs-legal-page">
-  {% render 'nc-page-hero-shell-open',
+  {%- capture nc_hero_body -%}
+  <header class="ncs-page-hero ncs-page-hero--compact">
+    {%- assign refunds_title = page.title | default: 'Refunds and Returns' -%}
+    <h1>{% render 'nc-title-gold', title: refunds_title %}</h1>
+  </header>
+  {%- endcapture -%}
+  {% render 'nc-page-hero-shell',
     quiet: true,
+    body: nc_hero_body,
     slab_left: 'hero-slab-green.jpg',
     slab_center: 'hero-slab-white.jpg',
     slab_right: 'hero-slab-travertine.jpg'
   %}
-  <header class="ncs-page-hero ncs-page-hero--compact">
-    <h1>{% render 'nc-title-gold', title: page.title | default: 'Refunds and Returns' %}</h1>
-  </header>
-  {% render 'nc-page-hero-shell-close' %}
   <div class="ncs-legal-shell">
     <div class="ncs-legal-body">
       {% if page.content != blank %}

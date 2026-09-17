@@ -4,6 +4,24 @@
 > This exists so future sessions (and future you) don't re-litigate or accidentally reverse a
 > deliberate choice. Newest entries at the top.
 
+### 2026-09-17 — Collections index: The 9 only, keep hero
+**Context:** Owner asked to return collections to only The 9 after the Step 10 featured split, but keep the marble hero.
+**Decision:** Index renders only `the-9`. Do not pass `quiet: true`. Keep the existing 480px only-child tile CSS. Type tiles stay on `/collections/the-9`.
+**Alternatives considered:** Keep coffee/side as extra tiles; quiet compact heading without slabs.
+**Consequences:** `/collections` looks like the compact The 9 card again, with the full marble hero behind the heading.
+
+### 2026-09-17 — Engineering leftovers, including Step 10
+**Context:** Owner asked to execute every leftover in `docs/TODO.md`, including optional engineering and the previously gated collections grid split. Password wall and Payments stay Admin-only. Atelier is not deleted.
+**Decision:** Self-host latin woff2 and drop Google Fonts. Concatenate additions + luxury into `nerocasa.css.liquid` and delete the two source CSS files. Move catalog search JS into `nerocasa.js`. Put chrome strings in `locales/en.default.json`. Fill journal cards with rotating slab assets when Admin has no featured image. On `/collections`, drop `quiet: true` and show The 9 + coffee + side in a featured grid. Add `scripts/test-storefront.mjs` with no extra packages.
+**Alternatives considered:** Keep additions/luxury as rebuild sources; fake journal photography; disable password from the theme.
+**Consequences:** One render-blocking stylesheet instead of two plus Google Fonts. Historical `!important` remains inside the unified file. Collections index is no longer a single 480px The 9 card when coffee and side exist.
+
+### 2026-09-17 — Always use skills; design closed
+**Context:** Owner said design is done and should not have to type “use your skills” every chat. `AGENTS.md` already pointed at skills, but Cursor only always-injects what is in always-on rules.
+**Decision:** Add `.cursor/rules/always-use-skills.mdc` with `alwaysApply: true`, track `.cursor/rules/` in git, and add AGENTS.md golden rule 8. Treat storefront design as complete in `docs/TODO.md`; leftover items are Admin or optional debt.
+**Alternatives considered:** User-level Cursor rules only (would not travel with the repo); stuffing the full skill index into the always-on rule (too long).
+**Consequences:** New chats in this repo get the rule automatically. Skills still live in `.cursor/skills/<name>/SKILL.md` and must actually be read.
+
 ### 2026-09-17 — Fill interiors; restore last-word gold
 **Context:** Owner liked the review pass but B2B, Why Nerocasa, Terms, Privacy, and Refunds were a left-hand strip with empty black to the right. Last-word gold had been scoped to CASA/9 only.
 **Decision:** B2B copy sits in two columns, form centered underneath at the same width as the copy and not taller. Why restores 2×2 framed value cards, a framed logo on the right, and a 2-col manifesto — not the reverted magazine layout. Legal/track use two reading columns across the 8vw gutters. `nc-title-gold` golds the last word of every multi-word title again; outline/ghost CTAs match; fill CTAs stay gold chips with dark text so last-word gold is readable.

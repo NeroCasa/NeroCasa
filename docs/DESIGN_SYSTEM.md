@@ -12,7 +12,7 @@
 | `--nc-bg` / settings.background | `#080807` | Page background |
 | Body text (inlined) | `#f2eee6` | Primary ink on dark |
 | `--nc-line` | `rgba(242, 238, 230, 0.14)` | Hairlines |
-| `--nc-ink` | `#f2eee6` (`nerocasa-additions.css` `:root`) | Headings / primary text |
+| `--nc-ink` | `#f2eee6` (`nerocasa.css.liquid` `:root`) | Headings / primary text |
 | `--nc-muted` | `#9d978d` | Secondary copy |
 | `--nc-panel` | `#10100e` | Panels / PDP gallery wash |
 | Hover gold | `#c49200` | Button hover |
@@ -26,7 +26,7 @@
 | Compact page h1 | `clamp(36px, 4.8vw, 56px) !important` | Collection/search/custom/B2B/contact/about/legal — home keeps the large hero |
 | Home `.nc-casa` | italic, weight 300 | CASA in NEROCASA |
 
-Google Fonts loaded: Cormorant Garamond (300/400/500 + italics), Inter (400/500). Body UI is Inter 400, 16px; UI chrome minimum 11px.
+Self-hosted latin woff2: Cormorant Garamond (300/400/500 + italics), Inter (400/500). Body UI is Inter 400, 16px; UI chrome minimum 11px.
 
 ### Spacing Scale
 | Token | Value |
@@ -78,7 +78,7 @@ Google Fonts loaded: Cormorant Garamond (300/400/500 + italics), Inter (400/500)
 
 ## Imagery & Iconography
 - Product card tiles: `object-fit: cover`, aspect 4/5.
-- PDP main image: `object-fit: contain`, `aspect-ratio: auto` (additions) — do not crop.
+- PDP main image: `object-fit: contain`, `aspect-ratio: auto` — do not crop.
 - Hero slabs: `object-fit: cover` with brightness/saturate/contrast filters.
 - Inline SVG icons for search, cart, WhatsApp, Instagram, Pinterest.
 - Bundled catalog JPGs and `hero-slab-*.jpg`, logo `nerocasa-logo-user.png`.
@@ -93,8 +93,8 @@ Google Fonts loaded: Cormorant Garamond (300/400/500 + italics), Inter (400/500)
 - Missing: **Unknown** dedicated disabled/loading skeletons beyond add-to-cart `aria-busy`. Empty blog has a message in `ncs-blog.liquid`.
 
 ## Anti-Patterns Observed
-- Duplicate CSS in additions vs luxury with conflicting `!important`.
+- Unified CSS still contains historical `!important` from the former two-file cascade.
 - Page kickers `.ncs-page-kicker { display: none !important; }` so kicker markup is dead.
 - Gold last word of multi-word titles via `snippets/nc-title-gold.liquid` (CASA markup and product names stay separate). Outline/ghost CTAs use the same last-word gold; fill CTAs stay gold chips with dark text.
 - Named stone selectors via `snippets/nc-marble-choice.liquid`.
-- Index collections list: a single collection uses a 480px card; two or more stay on the 3-up grid.
+- Index collections list: a single The 9 card at 480px; two or more tiles would stay on the 3-up grid.

@@ -4,6 +4,21 @@
 > project memory, not a marketing changelog — be specific about files and behavior touched.
 
 ### 2026-09-17
+- Changed: `/collections` tiles reverted to The 9 only. Marble page hero stays. Coffee/side/console remain on `/collections/the-9`. Featured 3-up CSS removed.
+- Verified: Integrity tests for index else-branch The 9 only and no `quiet: true`. Pushed Atelier `#162217230560` and live `#161950105824`.
+- Follow-up: Live now matches The 9-only index with marble hero.
+
+### 2026-09-17
+- Changed: Executed remaining TODO including optional work. Self-hosted Cormorant/Inter woff2; removed Google Fonts. Unified CSS into `assets/nerocasa.css.liquid` and deleted `nerocasa-additions.css` / `nerocasa-luxury.css`. Collections index featured The 9 + coffee + side with marble hero. Journal cards use slab fallbacks. Chrome copy in `locales/en.default.json`. Catalog search lives in `assets/nerocasa.js`. Gift card img dimensions + deferred scripts. Page heroes use one `nc-page-hero-shell` snippet. Integrity suite `scripts/test-storefront.mjs`. CLI theme list: live + Atelier only. Password wall, Payments, and Atelier deletion untouched. Cart AJAX, CASA, Custom wording, PDP `contain` unchanged.
+- Verified: `node scripts/test-storefront.mjs` passed. Theme Check: 0 errors, 4 RemoteAsset warnings. Pushed unpublished Atelier `#162217230560` and live NeroCasa/main `#161950105824`. Cart AJAX, `content_for_header`, Custom wording, and PDP `contain` unchanged. Password wall and Payments not touched. Git not committed.
+- Follow-up: Admin still owns apps/pixels, real journal photos, password, and Payments.
+
+### 2026-09-17
+- Changed: Design marked complete in `docs/TODO.md`. Added always-on Cursor rule `.cursor/rules/always-use-skills.mdc` and AGENTS.md golden rule 8 so agents load `.cursor/skills/` without being asked. `.gitignore` now tracks `.cursor/rules/`. `nc-catalog-search-index` is used by search — removed from “orphaned” notes.
+- Verified: Compared `docs/TODO.md`, INTEGRATIONS, ARCHITECTURE, MANUAL-ADMIN-SETUP, and snippet renders against the live-shipped theme.
+- Follow-up: Remaining items are Admin/owner or optional engineering debt; do not start unless asked.
+
+### 2026-09-17
 - Changed: Interior pages fill the width. B2B copy is two columns with a wider centered form under it (`ncs-b2b.liquid`). Why Nerocasa restores framed 2-col values, a framed logo panel, and a split manifesto (`ncs-about.liquid`) — not the reverted magazine. Terms/Privacy/Refunds/Track use two reading columns (`ncs-legal-shell`). `nc-title-gold` golds the last word of multi-word titles again, including CTA labels. Contact form tag `b2b-enquiry` unchanged. Custom size still hides Add to cart.
 - Verified: Owner approved Atelier. Publishing to live NeroCasa/main `#161950105824` and git `main`.
 - Follow-up: Live and git now match this pass.

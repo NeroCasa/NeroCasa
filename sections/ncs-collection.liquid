@@ -16,8 +16,17 @@
       assign hero_right = 'hero-slab-grey.jpg'
     endif
   %}
-  {% render 'nc-page-hero-shell-open',
+  {%- capture nc_hero_body -%}
+  <header class="ncs-collection-header ncs-page-hero ncs-page-hero--compact" data-nc-reveal>
+    <h1>{% render 'nc-title-gold', title: collection.title %}</h1>
+    {% if collection.description != blank %}
+      <p class="ncs-collection-desc">{{ collection.description | strip_html }}</p>
+    {% endif %}
+  </header>
+  {%- endcapture -%}
+  {% render 'nc-page-hero-shell',
     quiet: true,
+    body: nc_hero_body,
     slab_left: hero_left,
     slab_center: hero_center,
     slab_right: hero_right,
@@ -25,13 +34,6 @@
     center_image: section.settings.hero_slab_center,
     right_image: section.settings.hero_slab_right
   %}
-  <header class="ncs-collection-header ncs-page-hero ncs-page-hero--compact" data-nc-reveal>
-    <h1>{% render 'nc-title-gold', title: collection.title %}</h1>
-    {% if collection.description != blank %}
-      <p class="ncs-collection-desc">{{ collection.description | strip_html }}</p>
-    {% endif %}
-  </header>
-  {% render 'nc-page-hero-shell-close' %}
 
   <div class="ncs-grid-products">
     {% render 'nc-catalog-cards', category: catalog_category, collection: collection %}

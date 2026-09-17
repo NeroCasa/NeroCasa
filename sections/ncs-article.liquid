@@ -1,10 +1,5 @@
 <section class="ncs-article-page">
-  {% render 'nc-page-hero-shell-open',
-    quiet: true,
-    slab_left: 'hero-slab-white.jpg',
-    slab_center: 'hero-slab-grey.jpg',
-    slab_right: 'hero-slab-travertine.jpg'
-  %}
+  {%- capture nc_hero_body -%}
   <header class="ncs-page-hero ncs-page-hero--compact ncs-article-hero" data-nc-reveal>
     <a class="ncs-article-back" href="{{ blog.url }}">← Journal</a>
     <span class="ncs-page-kicker">{{ blog.title | default: 'Journal' }}</span>
@@ -20,7 +15,14 @@
       {%- endif -%}
     </p>
   </header>
-  {% render 'nc-page-hero-shell-close' %}
+  {%- endcapture -%}
+  {% render 'nc-page-hero-shell',
+    quiet: true,
+    body: nc_hero_body,
+    slab_left: 'hero-slab-white.jpg',
+    slab_center: 'hero-slab-grey.jpg',
+    slab_right: 'hero-slab-travertine.jpg'
+  %}
 
   {%- liquid
     assign show_article_image = false
@@ -49,8 +51,10 @@
 
   <div class="ncs-article-cta" data-nc-reveal>
     <div class="ncs-article-cta-actions">
-      <a class="ncs-btn ncs-btn--compact" href="{% render 'nc-collections-index-url' %}">{% render 'nc-title-gold', title: 'Our collection' %}</a>
-      <a class="ncs-btn ncs-btn--outline ncs-btn--compact" href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}">{% render 'nc-title-gold', title: 'Custom pieces' %}</a>
+      {%- assign cta_collection = 'actions.our_collection' | t -%}
+      {%- assign cta_custom = 'actions.custom_pieces' | t -%}
+      <a class="ncs-btn ncs-btn--compact" href="{% render 'nc-collections-index-url' %}">{% render 'nc-title-gold', title: cta_collection %}</a>
+      <a class="ncs-btn ncs-btn--outline ncs-btn--compact" href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}">{% render 'nc-title-gold', title: cta_custom %}</a>
     </div>
   </div>
 </section>

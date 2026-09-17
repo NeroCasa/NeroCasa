@@ -4,6 +4,10 @@ This file is the entry point for any AI coding agent (Cursor Agent, etc.) workin
 repository. Read this file in full before doing any non-trivial work. Then read the skills
 under `.cursor/skills/` that are relevant to the task, and the project memory under `docs/`.
 
+**Always use skills.** Never wait for the user to say “use your skills.” Load the relevant
+`.cursor/skills/<name>/SKILL.md` files before acting. The always-on Cursor rule is
+`.cursor/rules/always-use-skills.mdc`.
+
 This system is **portable and stack-agnostic**. It was not written for one specific project.
 It adapts itself to whatever codebase it is installed into by inspecting the project first and
 recording what it finds in `docs/PROJECT_CONTEXT.md`. Today this repository is a **Shopify
@@ -33,6 +37,9 @@ contents of `docs/` change.
    If docs and code disagree, trust the code, fix the docs.
 7. **Stay in scope.** Do not expand a request into unrelated improvements without flagging them
    first as suggestions.
+8. **Always use skills.** Load the relevant `.cursor/skills/` files on every task. Do not wait
+   to be asked. For storefront work always include `project-architecture`,
+   `integration-protection`, `code-review`, and `project-memory`.
 
 ---
 
@@ -166,8 +173,10 @@ Files:
 ## 6. Skills Index
 
 All skills live in `.cursor/skills/<skill-name>/SKILL.md`. Load the ones relevant to the current
-task; you don't need to load all 21 for a small change, but always load `project-architecture`,
-`integration-protection`, and `code-review` for anything that touches shipped functionality.
+task without being asked; you don't need to load all 21 for a small change, but always load
+`project-architecture`, `integration-protection`, and `code-review` for anything that touches
+shipped functionality. The Cursor rule `.cursor/rules/always-use-skills.mdc` (`alwaysApply`)
+enforces this in every chat.
 
 | Skill | Use for |
 |---|---|

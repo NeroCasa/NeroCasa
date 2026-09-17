@@ -1,14 +1,17 @@
 <section class="ncs-info-page ncs-legal-page">
-  {% render 'nc-page-hero-shell-open',
+  {%- capture nc_hero_body -%}
+  <header class="ncs-page-hero ncs-page-hero--compact">
+    {%- assign privacy_title = page.title | default: 'Privacy Policy' -%}
+    <h1>{% render 'nc-title-gold', title: privacy_title %}</h1>
+  </header>
+  {%- endcapture -%}
+  {% render 'nc-page-hero-shell',
     quiet: true,
+    body: nc_hero_body,
     slab_left: 'hero-slab-white.jpg',
     slab_center: 'hero-slab-grey.jpg',
     slab_right: 'hero-slab-green.jpg'
   %}
-  <header class="ncs-page-hero ncs-page-hero--compact">
-    <h1>{% render 'nc-title-gold', title: page.title | default: 'Privacy Policy' %}</h1>
-  </header>
-  {% render 'nc-page-hero-shell-close' %}
   <div class="ncs-legal-shell">
     <div class="ncs-legal-body">
       {% if page.content != blank %}

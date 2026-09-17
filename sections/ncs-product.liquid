@@ -123,7 +123,7 @@
       <label>Size</label>
       <div class="ncs-size-mode-row">
         <button type="button" class="is-active" data-size-mode-button="fixed">Standard</button>
-        <button type="button" data-size-mode-button="custom">Custom</button>
+        <button type="button" data-size-mode-button="custom">{{ 'nav.custom' | t }}</button>
       </div>
 
       <div class="ncs-fixed-dimensions" data-fixed-size>
@@ -152,8 +152,8 @@
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-ncs-variant>
         <input type="hidden" name="properties[Color / Marble]" value="" data-ncs-color-property>
         <input type="hidden" name="properties[Size Type]" value="Standard" data-ncs-size-type-property>
-        <button type="submit" name="add" data-ncs-add-btn {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
-          {% if product.selected_or_first_available_variant.available %}Add to cart{% else %}Not available{% endif %}
+        <button type="submit" name="add" data-ncs-add-btn data-label-add="{{ 'actions.add_to_cart' | t }}" data-label-unavailable="{{ 'actions.not_available' | t }}" {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
+          {% if product.selected_or_first_available_variant.available %}{{ 'actions.add_to_cart' | t }}{% else %}{{ 'actions.not_available' | t }}{% endif %}
         </button>
         <p class="ncs-cart-added" data-nc-cart-added hidden>Added to cart.</p>
       {% endform %}
@@ -341,7 +341,7 @@
     var selected=selectedValues();
     var v=findVariant(selected);
     if(!v){
-      if(add){add.disabled=true;add.innerHTML='Not available';}
+      if(add){add.disabled=true;add.innerHTML=add.getAttribute('data-label-unavailable')||'Not available';}
       var imgOnly=resolveImage(null);
       if(imgOnly)setImage(imgOnly);
       updateShownIn();
@@ -350,7 +350,7 @@
     }
     if(variantInput)variantInput.value=v.id;
     if(price)price.textContent=v.price;
-    if(add){add.disabled=!v.available;add.innerHTML=v.available?'Add to cart':'Not available';}
+    if(add){add.disabled=!v.available;add.innerHTML=v.available?(add.getAttribute('data-label-add')||'Add to cart'):(add.getAttribute('data-label-unavailable')||'Not available');}
     if(summary)summary.textContent=getSelectedColor()||v.title;
     var img=resolveImage(v);
     if(img)setImage(img);
