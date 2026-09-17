@@ -9,15 +9,21 @@
     <h1>{% render 'nc-title-gold', title: page.title | default: 'Track Your Order' %}</h1>
   </header>
   {% render 'nc-page-hero-shell-close' %}
-  <div class="ncs-legal-body">
-    {% if page.content != blank %}
-      {{ page.content }}
-    {% else %}
-      <p>Track your order using the link in your order confirmation email. That email is also your receipt (order number, items, and total paid).</p>
-      <p>Order numbers start at <strong>#1001</strong> and increase with each order (<strong>#1002</strong>, <strong>#1003</strong>, and so on). That is normal for a new store — always include the full number, including the <strong>#</strong>, when you contact us.</p>
-      <p>Enter your order number and email on the status page linked from the email, or contact us with those details.</p>
-      <p>For warranty or questions about what you bought, email <a href="mailto:{% render 'nc-contact-email' %}">{% render 'nc-contact-email' %}</a> or <a href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">WhatsApp</a> with your order number.</p>
-    {% endif %}
+  <div class="ncs-legal-shell">
+    <div class="ncs-legal-body">
+      {% if page.content != blank %}
+        {{ page.content }}
+      {% else %}
+        <h2>Confirmation email</h2>
+        <p>Track your order using the link in your order confirmation email. That email is also your receipt (order number, items, and total paid).</p>
+        <h2>Order number</h2>
+        <p>Order numbers start at <strong>#1001</strong> and increase with each order. Include the full number, including the <strong>#</strong>, when you contact us.</p>
+        <h2>Status page</h2>
+        <p>Enter your order number and email on the status page linked from the email, or contact us with those details.</p>
+        <h2>Warranty</h2>
+        <p>For warranty or questions about what you bought, email <a href="mailto:{% render 'nc-contact-email' %}">{% render 'nc-contact-email' %}</a> or <a href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">WhatsApp</a> with your order number.</p>
+      {% endif %}
+    </div>
   </div>
 </section>
 {% schema %}{"name":"TRACK YOUR ORDER","presets":[{"name":"TRACK YOUR ORDER"}]}{% endschema %}

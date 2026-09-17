@@ -19,20 +19,21 @@
       <h2>{% render 'nc-title-gold', title: section.settings.vision_heading %}</h2>
       <p class="ncs-form-lead">{{ section.settings.vision_lead }}</p>
 
-      <ul class="ncs-custom-scope">
+      <ol class="ncs-process">
         <li>{{ section.settings.scope_1 }}</li>
         <li>{{ section.settings.scope_2 }}</li>
         <li>{{ section.settings.scope_3 }}</li>
-        <li>{{ section.settings.scope_4 }}</li>
-      </ul>
-      <p class="ncs-custom-soon">{{ section.settings.waterjet_note }} — {{ section.settings.waterjet_heading }}. {{ section.settings.waterjet_text }}</p>
+      </ol>
+
+      <aside class="ncs-coming-soon">
+        <span class="ncs-coming-soon-kicker">{{ section.settings.waterjet_note | default: 'Coming soon' }}</span>
+        <p>{{ section.settings.waterjet_text }}</p>
+      </aside>
     </div>
 
-    <div class="ncs-custom-visual">
-      <div class="ncs-fit-img ncs-fit-img--tile">
-        <img src="{{ 'hero-slab-white.jpg' | asset_img_url: '1200x' }}" alt="" width="1200" height="1500" loading="lazy">
-      </div>
-      <a class="ncs-btn" href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">Talk to us on WhatsApp</a>
+    <div class="ncs-custom-visual ncs-home-story-visual nc-brand-visual-frame">
+      <img src="{% render 'nc-brand-visual' %}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="1200" loading="lazy">
+      <a class="ncs-btn" href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">{% render 'nc-title-gold', title: 'Talk to us on WhatsApp' %}</a>
       <p class="ncs-custom-whatsapp-hint">{{ section.settings.whatsapp_hint }}</p>
       <p class="ncs-custom-b2b-note">{{ section.settings.b2b_note }} <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B</a></p>
     </div>
@@ -96,19 +97,19 @@
       "type": "text",
       "id": "scope_1",
       "label": "Scope point 1",
-      "default": "Any collection design in a different marble or custom size"
+      "default": "Send dimensions, stone preference, and references on WhatsApp"
     },
     {
       "type": "text",
       "id": "scope_2",
       "label": "Scope point 2",
-      "default": "Soglia, Monolite, Galleria, and every piece in our catalog, adapted to your space"
+      "default": "We confirm feasibility, marble, and timing"
     },
     {
       "type": "text",
       "id": "scope_3",
       "label": "Scope point 3",
-      "default": "One-off furniture, tables and surfaces in premium marble and natural stone"
+      "default": "Production in our workshop"
     },
     {
       "type": "text",
@@ -156,7 +157,7 @@
       "type": "textarea",
       "id": "waterjet_text",
       "label": "Water jet text",
-      "default": "A curated line of NeroCasa water-cut marble shapes, surfaces, and objects is in development. Custom water jet work is still available now through WhatsApp above."
+      "default": "A line of water-cut marble shapes, surfaces, and objects is in development. Custom water-jet work is available on WhatsApp now."
     }
   ],
   "presets": [{ "name": "Custom Page" }]

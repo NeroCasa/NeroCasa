@@ -1,16 +1,45 @@
 <section class="ncs-b2b-page">
-  <div class="ncs-b2b-layout ncs-b2b-layout--split ncs-page-hero-shell ncs-page-hero-shell--quiet">
+  <div class="ncs-b2b-layout ncs-b2b-layout--copyform ncs-page-hero-shell ncs-page-hero-shell--quiet">
     <header class="ncs-b2b-header ncs-page-hero ncs-page-hero--compact" data-nc-reveal>
       <span class="ncs-page-kicker">{{ section.settings.kicker }}</span>
       <h1>{% render 'nc-title-gold', title: section.settings.heading %}</h1>
-      <p class="ncs-b2b-lead">{{ section.settings.lead }}</p>
-      <p class="ncs-b2b-detail">{{ section.settings.detail_text }}</p>
-      <ul class="ncs-b2b-trust">
-        <li>{{ section.settings.trust_1 }}</li>
-        <li>{{ section.settings.trust_2 }}</li>
-        <li>{{ section.settings.trust_3 }}</li>
-      </ul>
     </header>
+
+    <div class="ncs-b2b-copy" data-nc-reveal>
+      <div class="ncs-b2b-copy-col">
+        <p class="ncs-b2b-lead">{{ section.settings.lead }}</p>
+        {%- if section.settings.detail_text != blank -%}
+          <p class="ncs-b2b-detail">{{ section.settings.detail_text }}</p>
+        {%- endif -%}
+      </div>
+      <div class="ncs-b2b-copy-col">
+        {%- if section.settings.who_text != blank -%}
+          <p class="ncs-b2b-detail">{{ section.settings.who_text }}</p>
+        {%- endif -%}
+        {%- if section.settings.make_text != blank -%}
+          <p class="ncs-b2b-detail">{{ section.settings.make_text }}</p>
+        {%- endif -%}
+        <dl class="ncs-ledger">
+          <div>
+            <dt>Workshop</dt>
+            <dd>{{ section.settings.trust_1 }}</dd>
+          </div>
+          <div>
+            <dt>Stone</dt>
+            <dd>{{ section.settings.trust_2 }}</dd>
+          </div>
+          <div>
+            <dt>Support</dt>
+            <dd>{{ section.settings.trust_3 }}</dd>
+          </div>
+        </dl>
+        <ol class="ncs-process">
+          <li>{{ section.settings.process_1 }}</li>
+          <li>{{ section.settings.process_2 }}</li>
+          <li>{{ section.settings.process_3 }}</li>
+        </ol>
+      </div>
+    </div>
 
     <div class="ncs-b2b-form-wrap" data-nc-reveal>
       <div class="ncs-b2b-form-panel">
@@ -30,7 +59,7 @@
               <label>Phone<input type="tel" name="contact[phone]" autocomplete="tel"></label>
             </div>
             <div class="ncs-form-row">
-              <label class="ncs-form-full">Project type
+              <label>Project type
                 <select name="contact[project_type]">
                   <option>Residential interior</option>
                   <option>Architecture and build</option>
@@ -40,10 +69,10 @@
                   <option>Other commercial</option>
                 </select>
               </label>
+              <label>Marble or stone preference<input type="text" name="contact[marble_preference]" placeholder="Describe the finish you want, or leave open for our suggestion"></label>
             </div>
-            <label class="ncs-form-full">Marble or stone preference<input type="text" name="contact[marble_preference]" placeholder="Describe the finish you want, or leave open for our suggestion"></label>
-            <label class="ncs-form-full">Project details<textarea name="contact[body]" rows="7" placeholder="Space, pieces required, location, timeline, anything else we should know."></textarea></label>
-            <button type="submit" class="ncs-btn">Send</button>
+            <label class="ncs-form-full">Project details<textarea name="contact[body]" rows="4" placeholder="Space, pieces required, location, timeline, anything else we should know."></textarea></label>
+            <button type="submit" class="ncs-btn">{% render 'nc-title-gold', title: 'Send' %}</button>
           {% endif %}
         {% endform %}
       </div>
@@ -99,6 +128,18 @@
       "default": "Because NeroCasa imports marble and owns its factory, we do not buy ready-made pieces from outside. We build to order, including custom versions of our current designs and project-specific stone work."
     },
     {
+      "type": "textarea",
+      "id": "who_text",
+      "label": "Who we work with",
+      "default": "We work with interior designers, architects, developers, and hospitality groups. Typical briefs include suites and public spaces for hotels, restaurant floors and bars, villa programmes, and multi-unit developments that need the same design repeated in stone — with one workshop accountable for the finish."
+    },
+    {
+      "type": "textarea",
+      "id": "make_text",
+      "label": "What we make",
+      "default": "Coffee tables, consoles, and side tables from The 9 can be recut in a different marble, a different size, or as a pair for a room. We also take original drawings. Stone is sourced at quarries worldwide and cut, ground, and polished here in Dubai under AL SOURAH AL THAHABIA MARBLE & GRANITE L.L.C, Trade Licence 1253846. Tell us the space, the quantity, the finish, and the date you need the pieces on site. We reply with feasibility, timing, and a production plan."
+    },
+    {
       "type": "text",
       "id": "trust_1",
       "label": "Trust point 1",
@@ -115,6 +156,24 @@
       "id": "trust_3",
       "label": "Trust point 3",
       "default": "Dedicated project support"
+    },
+    {
+      "type": "text",
+      "id": "process_1",
+      "label": "Process step 1",
+      "default": "Send the project, stone preference, and timing"
+    },
+    {
+      "type": "text",
+      "id": "process_2",
+      "label": "Process step 2",
+      "default": "We confirm feasibility and production"
+    },
+    {
+      "type": "text",
+      "id": "process_3",
+      "label": "Process step 3",
+      "default": "Cut and finish in our workshop"
     }
   ],
   "presets": [{ "name": "B2B Project Enquiry" }]

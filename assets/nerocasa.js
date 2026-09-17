@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var x = e.clientX, y = e.clientY;
       cursor.style.transform = 'translate(' + (x - 4) + 'px, ' + (y - 4) + 'px)';
     });
-    var hoverTargets = document.querySelectorAll('a, button, [role="button"], input, select, textarea, .ncs-marble-swatch');
+    var hoverTargets = document.querySelectorAll('a, button, [role="button"], input, select, textarea, .ncs-marble-choice, .ncs-marble-swatch');
     hoverTargets.forEach(function (el) {
       el.addEventListener('mouseenter', function () { ring.classList.add('hovering'); });
       el.addEventListener('mouseleave', function () { ring.classList.remove('hovering'); });
@@ -171,4 +171,19 @@ document.addEventListener('DOMContentLoaded', function () {
       );
     }
   }
+
+  document.querySelectorAll('.ncs-legal-page .ncs-legal-body h2, .ncs-legal-page .ncs-legal-body h3').forEach(function (heading) {
+    if (heading.querySelector('.nc-gold')) return;
+    if (heading.children.length) return;
+    var text = (heading.textContent || '').trim();
+    var parts = text.split(/\s+/);
+    if (parts.length < 2) return;
+    var last = parts.pop();
+    heading.textContent = '';
+    heading.appendChild(document.createTextNode(parts.join(' ') + ' '));
+    var gold = document.createElement('span');
+    gold.className = 'nc-gold';
+    gold.textContent = last;
+    heading.appendChild(gold);
+  });
 });

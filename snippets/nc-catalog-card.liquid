@@ -45,7 +45,7 @@
     {% endif %}
   </div>
   <div class="ncs-card-info">
-    <span class="ncs-card-name">{{ item_name }}</span>
+    <span class="ncs-card-name nc-gold">{{ item_name }}</span>
     {%- if item_category != blank -%}
       <span class="ncs-card-category">{{ item_category }}</span>
     {%- endif -%}
@@ -66,17 +66,12 @@
           {%- for marble_name in marble_option.values -%}
             {%- capture marble_slug -%}{% render 'nc-marble-slug', name: marble_name %}{%- endcapture -%}
             {%- capture marble_img -%}{% render 'nc-variant-image', product: shop_product, marble_name: marble_name, width: 900 %}{%- endcapture -%}
-            {%- assign marble_slug = marble_slug | strip -%}
-            {%- assign marble_img = marble_img | strip -%}
-            <span
-              class="ncs-marble-swatch ncs-marble-swatch--{{ marble_slug }}"
-              data-nc-marble-preview
-              {% if marble_img != blank %}data-img="{{ marble_img }}"{% endif %}
-              title="{{ marble_name }}"
-              aria-label="{{ marble_name }}"
-              tabindex="0"
-              role="img"
-            ></span>
+            {% render 'nc-marble-choice',
+              name: marble_name,
+              slug: marble_slug,
+              img: marble_img,
+              mode: 'preview'
+            %}
           {%- endfor -%}
         {%- else -%}
           {%- capture marble_data -%}{% render 'nc-catalog-marbles', handle: item_handle %}{%- endcapture -%}
@@ -86,20 +81,15 @@
             {%- assign marble_name = parts[0] -%}
             {%- assign marble_slug = parts[1] -%}
             {%- capture marble_img -%}{% render 'nc-variant-image', product: shop_product, marble_name: marble_name, width: 900 %}{%- endcapture -%}
-            {%- assign marble_img = marble_img | strip -%}
-            <span
-              class="ncs-marble-swatch ncs-marble-swatch--{{ marble_slug }}"
-              data-nc-marble-preview
-              {% if marble_img != blank %}data-img="{{ marble_img }}"{% endif %}
-              title="{{ marble_name }}"
-              aria-label="{{ marble_name }}"
-              tabindex="0"
-              role="img"
-            ></span>
+            {% render 'nc-marble-choice',
+              name: marble_name,
+              slug: marble_slug,
+              img: marble_img,
+              mode: 'preview'
+            %}
           {%- endfor -%}
         {%- endif -%}
       </div>
-      <p class="ncs-card-marbles-label">Hover a finish.</p>
     </div>
   </div>
 </a>

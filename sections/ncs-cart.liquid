@@ -16,7 +16,13 @@
   {% if cart.item_count == 0 %}
     <div class="ncs-cart-empty" data-nc-reveal>
       <p>Your cart is empty.</p>
-      <a class="ncs-btn" href="{% render 'nc-collections-index-url' %}">Browse collections</a>
+      {%- assign empty_collection = collections['the-9'] -%}
+      {%- if empty_collection != blank -%}
+        <div class="ncs-cart-empty-card">
+          {% render 'nc-collection-tile', collection: empty_collection %}
+        </div>
+      {%- endif -%}
+      <a class="ncs-btn" href="{% render 'nc-collections-index-url' %}">{% render 'nc-title-gold', title: 'Our collection' %}</a>
     </div>
   {% else %}
     <form action="{{ routes.cart_url }}" method="post" class="ncs-cart-form" data-nc-reveal>
@@ -95,8 +101,8 @@
         <p class="ncs-cart-note">At checkout you will enter your <strong>email</strong> for order confirmation and your <strong>phone number</strong> (WhatsApp) so we can reach you. Delivery address is entered there too.</p>
 
         <div class="ncs-cart-summary-actions">
-          <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-collections-index-url' %}">Continue shopping</a>
-          <button type="submit" name="checkout" class="ncs-btn">Proceed to checkout</button>
+          <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-collections-index-url' %}">{% render 'nc-title-gold', title: 'Continue shopping' %}</a>
+          <button type="submit" name="checkout" class="ncs-btn">{% render 'nc-title-gold', title: 'Proceed to checkout' %}</button>
         </div>
       </aside>
     </form>

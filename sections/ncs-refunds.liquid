@@ -9,12 +9,14 @@
     <h1>{% render 'nc-title-gold', title: page.title | default: 'Refunds and Returns' %}</h1>
   </header>
   {% render 'nc-page-hero-shell-close' %}
-  <div class="ncs-legal-body">
-    {% if page.content != blank %}
-      {{ page.content }}
-    {% else %}
-      <p>Add your refund policy in <strong>Online Store → Pages → Refunds</strong>. Content entered there will appear here automatically.</p>
-    {% endif %}
+  <div class="ncs-legal-shell">
+    <div class="ncs-legal-body">
+      {% if page.content != blank %}
+        {{ page.content }}
+      {% else %}
+        <p>Add your refund policy in <strong>Online Store → Pages → Refunds</strong>. Content entered there will appear here automatically.</p>
+      {% endif %}
+    </div>
   </div>
 </section>
 {% schema %}{"name":"REFUNDS","presets":[{"name":"REFUNDS"}]}{% endschema %}

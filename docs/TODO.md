@@ -5,7 +5,8 @@
 
 ## Deferred From Recent Work
 - [x] Collections index presentation (`/collections` looks empty with only The 9) — compact quiet heading + ~480px only-child card; The 9 type page unchanged. Live 2026-09-16
-- [x] Why Nerocasa editorial recomposition — gold boxes removed 2026-09-17; vertical story, not the reverted magazine layout
+- [x] Why Nerocasa fill — 2026-09-17: 2-col framed values + logo panel; not the reverted magazine layout
+- [x] Forensic material-ledger pass (named stones, last-word gold, Custom WhatsApp-only buy) — live 2026-09-17
 - [ ] Step 10 gated collection grid split (featured + 2 supporting, drop `quiet: true`) — never approved
 
 ## Known Gaps / Risks Not Yet Addressed

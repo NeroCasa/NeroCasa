@@ -10,9 +10,11 @@
   </header>
   {% render 'nc-page-hero-shell-close' %}
   <div class="ncs-legal-body">
-    <p>This page is not here.</p>
-    <a class="ncs-btn" href="{{ routes.root_url }}">Home</a>
-    <a class="ncs-btn ncs-btn--ghost" href="{% render 'nc-collections-index-url' %}">Our collection</a>
+    <p>This page is not here. The piece, or the path, has moved.</p>
+    <div class="ncs-404-actions">
+      <a class="ncs-btn" href="{{ routes.root_url }}">Home</a>
+      <a class="ncs-btn ncs-btn--ghost" href="{% render 'nc-collections-index-url' %}">{% render 'nc-title-gold', title: 'Our collection' %}</a>
+    </div>
   </div>
 </section>
 {% schema %}{"name":"404","presets":[{"name":"404"}]}{% endschema %}

@@ -1,17 +1,16 @@
 {%- comment -%}
-  Page title with the last word in gold when the title has two or more words.
-  Single-word titles stay ink so they do not turn fully gold.
+  Last word of a multi-word title is gold. Single-word titles stay ink
+  (CASA and product names are marked in their own markup).
   @param title {String}
 {%- endcomment -%}
 {%- assign title_words = title | strip | split: ' ' -%}
 {%- if title_words.size <= 1 -%}
   {{- title | strip -}}
 {%- else -%}
-  {%- assign last_word = title_words | last -%}
   {%- capture prefix -%}
     {%- for word in title_words -%}
       {%- unless forloop.last -%}{{ word }} {%- endunless -%}
     {%- endfor -%}
   {%- endcapture -%}
-  {{- prefix -}}<span class="nc-gold">{{ last_word }}</span>
+  {{- prefix -}}<span class="nc-gold">{{ title_words | last }}</span>
 {%- endif -%}

@@ -30,7 +30,7 @@
 - Brand gold `#A57B00`, background `#080807`. Do not restyle gold CASA / “Custom” wording / nav labels unless asked.
 - Product gallery `.ncs-main-product-image img` must stay natural ratio / `object-fit: contain` (never cover-crop). Card tiles `.ncs-fit-img img` use `object-fit: cover`.
 - Catalog of 9 products (`cft-1` Soglia, `cft-2` Equilibrio, `cft-3` Monolite; `cs-1` Galleria, `cs-2` Passaggio, `cs-3` Atrio; `sd-1` Nodo, `sd-2` Punto, `sd-3` Scalino) and collections `coffee-tables`, `side-tables`, `console-tables`, `the-9`. Do not restructure catalog or The 9 membership unless asked.
-- Locked public copy observed in code/settings: hero “Furniture in stone”; home heading “Products from collections”; CTAs “Our collection”; collection “The 9”.
+- Locked public copy observed in code/settings: hero “Furniture in stone”; home heading “The 9”; CTAs “Our collection”; collection “The 9”.
 - Contacts in theme settings defaults: WhatsApp `+971 56 878 8789`, phone `+971 50 858 8828`, email `nerocasamarbles@gmail.com`.
 - Cart/checkout is Shopify native plus theme AJAX add-to-cart in `assets/nerocasa.js`. Do not change payment/checkout unless asked.
 - `/collections` lists The 9 (and future non-type collections); type collections coffee/side/console are skipped on the index and shown as tiles on The 9 collection template (`templates/collection.the-9.json`).

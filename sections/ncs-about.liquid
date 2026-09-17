@@ -16,7 +16,7 @@
       <h1>{% render 'nc-title-gold', title: section.settings.hero_heading | default: page.title %}</h1>
       <p class="ncs-about-hero-lead">{{ section.settings.hero_lead }}</p>
     </div>
-    <div class="ncs-about-hero-visual ncs-about-hero-logo">
+    <div class="ncs-about-hero-visual ncs-about-hero-logo nc-brand-visual-frame">
       {%- if section.settings.hero_brand_image != blank -%}
         <img src="{{ section.settings.hero_brand_image | image_url: width: 1600 }}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="1200" loading="eager">
       {%- elsif settings.brand_visual != blank -%}
@@ -35,18 +35,22 @@
 
   <div class="ncs-about-values">
     <article class="ncs-about-value" data-nc-reveal data-nc-reveal-delay="0">
+      <span class="ncs-about-value-num">01</span>
       <h2>{% render 'nc-title-gold', title: section.settings.block_1_title %}</h2>
       <p>{{ section.settings.block_1_text }}</p>
     </article>
     <article class="ncs-about-value" data-nc-reveal data-nc-reveal-delay="1">
+      <span class="ncs-about-value-num">02</span>
       <h2>{% render 'nc-title-gold', title: section.settings.block_2_title %}</h2>
       <p>{{ section.settings.block_2_text }}</p>
     </article>
     <article class="ncs-about-value" data-nc-reveal data-nc-reveal-delay="2">
+      <span class="ncs-about-value-num">03</span>
       <h2>{% render 'nc-title-gold', title: section.settings.block_3_title %}</h2>
       <p>{{ section.settings.block_3_text }}</p>
     </article>
     <article class="ncs-about-value" data-nc-reveal data-nc-reveal-delay="3">
+      <span class="ncs-about-value-num">04</span>
       <h2>{% render 'nc-title-gold', title: section.settings.block_4_title %}</h2>
       <p>{{ section.settings.block_4_text }}</p>
     </article>
@@ -80,7 +84,7 @@
   </aside>
 
   <div class="ncs-about-closer-actions ncs-about-closer-actions--end" data-nc-reveal>
-    <a class="ncs-btn" href="{% render 'nc-collections-index-url' %}">Our collection</a>
+    <a class="ncs-btn" href="{% render 'nc-collections-index-url' %}">{% render 'nc-title-gold', title: 'Our collection' %}</a>
     <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B</a>
   </div>
 </section>

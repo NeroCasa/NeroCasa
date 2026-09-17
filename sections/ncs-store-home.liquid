@@ -27,8 +27,8 @@
     <h1>NERO<span class="nc-gold nc-casa">CASA</span></h1>
     <p class="ncs-hero-tagline">{{ section.settings.hero_tagline | default: 'Furniture in stone' }}</p>
     <div class="ncs-hero-ctas">
-      <a class="ncs-btn ncs-hero-cta" href="{% render 'nc-collections-index-url' %}">Our collection</a>
-      <a class="ncs-btn ncs-btn--ghost ncs-hero-cta" href="{% render 'nc-page-url', handle: settings.page_contact_handle, view: 'contact' %}">Contact us</a>
+      <a class="ncs-btn ncs-hero-cta" href="{% render 'nc-collections-index-url' %}">{% render 'nc-title-gold', title: 'Our collection' %}</a>
+      <a class="ncs-btn ncs-btn--ghost ncs-hero-cta" href="{% render 'nc-page-url', handle: settings.page_contact_handle, view: 'contact' %}">{% render 'nc-title-gold', title: 'Contact us' %}</a>
     </div>
   </div>
 </section>
@@ -36,8 +36,8 @@
 <section class="ncs-home-maison">
   <article class="ncs-home-family">
     <header class="ncs-home-family-head">
-      <h2>{% render 'nc-title-gold', title: section.settings.collection_heading | default: 'Products from collections' %}</h2>
-      <a href="{% render 'nc-collections-index-url' %}">View all</a>
+      <h2>{% render 'nc-title-gold', title: section.settings.collection_heading | default: 'The 9' %}</h2>
+      <a href="{% render 'nc-collections-index-url' %}">{% render 'nc-title-gold', title: 'View all' %}</a>
     </header>
     <div class="ncs-grid-products">
       {%- assign home_coffee = all_products['cft-3'] -%}
@@ -60,7 +60,7 @@
   <div class="ncs-home-story-copy">
     <h2 data-nc-reveal data-nc-reveal-delay="0">{% render 'nc-title-gold', title: section.settings.story_heading %}</h2>
     <p data-nc-reveal data-nc-reveal-delay="1">{{ section.settings.story_text }}</p>
-    <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}" data-nc-reveal data-nc-reveal-delay="1">The house</a>
+    <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}" data-nc-reveal data-nc-reveal-delay="1">{% render 'nc-title-gold', title: 'The house' %}</a>
   </div>
   <div class="ncs-home-story-visual ncs-brand-visual-frame">
     <img src="{% render 'nc-brand-visual' %}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="1200" loading="lazy">
@@ -110,7 +110,7 @@
       "type": "text",
       "id": "collection_heading",
       "label": "Collections heading",
-      "default": "Products from collections"
+      "default": "The 9"
     },
     {
       "type": "header",

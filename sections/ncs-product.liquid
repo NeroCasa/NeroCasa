@@ -69,7 +69,7 @@
   </div>
 
   <div class="ncs-product-config">
-    <h1>{% render 'nc-title-gold', title: display_name %}</h1>
+    <h1 class="nc-gold">{{ display_name }}</h1>
     {%- if catalog_category != blank -%}
       <p class="ncs-product-category">{{ catalog_category }}</p>
     {%- endif -%}
@@ -99,14 +99,16 @@
               {% for value in option.values %}
                 {% if is_marble %}
                   {%- capture marble_slug -%}{% render 'nc-marble-slug', name: value %}{%- endcapture -%}
-                  <button
-                    type="button"
-                    data-value="{{ value | escape }}"
-                    class="ncs-marble-swatch ncs-marble-swatch--{{ marble_slug | strip }}{% if option.selected_value == value %} is-active{% endif %}"
-                    title="{{ value | escape }}"
-                    aria-label="{{ value | escape }}"
-                    aria-pressed="{% if option.selected_value == value %}true{% else %}false{% endif %}"
-                  ></button>
+                  {%- assign marble_selected = false -%}
+                  {%- if option.selected_value == value -%}
+                    {%- assign marble_selected = true -%}
+                  {%- endif -%}
+                  {% render 'nc-marble-choice',
+                    name: value,
+                    slug: marble_slug,
+                    mode: 'button',
+                    selected: marble_selected
+                  %}
                 {% else %}
                   <button type="button" data-value="{{ value | escape }}" class="{% if option.selected_value == value %}is-active{% endif %}" aria-pressed="{% if option.selected_value == value %}true{% else %}false{% endif %}">{{ value }}</button>
                 {% endif %}
@@ -143,7 +145,7 @@
     <div class="ncs-buy" data-ncs-buy>
       <div>
         <span>This piece</span>
-        <b data-ncs-summary>{{ product.selected_or_first_available_variant.title }}</b>
+        <b data-ncs-summary></b>
         <small class="ncs-selected-dimensions" data-ncs-selected-dimensions></small>
       </div>
       {% form 'product', product, data-nc-ajax-cart: 'true' %}
@@ -194,27 +196,7 @@
             {%- elsif product.handle == 'cft-3' -%}
               <p class="ncs-dimension-note">Monolite is a set of two pieces. Dimensions for each table:</p>
             {%- endif -%}
-            {%- if product.handle == 'cft-3' -%}
-              <p class="ncs-dim-set-label">Piece 1</p>
-              <ul class="ncs-dims">
-                <li><span>H</span><b>45 cm</b></li>
-                <li><span>L</span><b>190 cm</b></li>
-                <li><span>W</span><b>60 cm</b></li>
-              </ul>
-              <p class="ncs-dim-set-label">Piece 2</p>
-              <ul class="ncs-dims">
-                <li><span>H</span><b>30 cm</b></li>
-                <li><span>L</span><b>190 cm</b></li>
-                <li><span>W</span><b>60 cm</b></li>
-              </ul>
-            {%- else -%}
-              <ul class="ncs-dims">
-                {%- if dim_h != blank -%}<li><span>H</span><b>{{ dim_h }} cm</b></li>{%- endif -%}
-                {%- if dim_l != blank -%}<li><span>L</span><b>{{ dim_l }} cm</b></li>{%- endif -%}
-                {%- if dim_w != blank -%}<li><span>W</span><b>{{ dim_w }} cm</b></li>{%- endif -%}
-                {%- if dim_d != blank -%}<li><span>D</span><b>{{ dim_d }} cm</b></li>{%- endif -%}
-              </ul>
-            {%- endif -%}
+            {% render 'nc-catalog-dimensions', product: product, handle: product.handle %}
           {%- else -%}
             <p>Dimensions are controlled by the selected configuration.</p>
           {%- endif -%}
@@ -369,7 +351,7 @@
     if(variantInput)variantInput.value=v.id;
     if(price)price.textContent=v.price;
     if(add){add.disabled=!v.available;add.innerHTML=v.available?'Add to cart':'Not available';}
-    if(summary)summary.textContent=v.title;
+    if(summary)summary.textContent=getSelectedColor()||v.title;
     var img=resolveImage(v);
     if(img)setImage(img);
     updateShownIn();
@@ -404,11 +386,17 @@
       var btn=document.createElement('button');
       btn.type='button';
       btn.dataset.value=color;
-      btn.className='ncs-marble-swatch ncs-marble-swatch--'+marbleSlug(color);
-      btn.title=color;
+      btn.className='ncs-marble-choice'+(i===0?' is-active':'');
       btn.setAttribute('aria-label',color);
       btn.setAttribute('aria-pressed', i===0 ? 'true' : 'false');
-      if(i===0)btn.classList.add('is-active');
+      var sample=document.createElement('span');
+      sample.className='ncs-marble-swatch ncs-marble-swatch--'+marbleSlug(color);
+      sample.setAttribute('aria-hidden','true');
+      var label=document.createElement('span');
+      label.className='ncs-marble-name';
+      label.textContent=color;
+      btn.appendChild(sample);
+      btn.appendChild(label);
       row.appendChild(btn);
     });
     optionsWrap.prepend(wrap);

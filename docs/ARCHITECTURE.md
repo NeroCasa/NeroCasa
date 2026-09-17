@@ -78,13 +78,14 @@ graph TD
 | Product | `sections/ncs-product.liquid` | Gallery, marble options, add to cart | metafields, `nc-product-field` |
 | Cart | `sections/ncs-cart.liquid` | Line items, qty, checkout button | `/cart/update.js` |
 | SEO | `snippets/nc-meta-tags.liquid` | title, canonical, OG, JSON-LD | Shopify SEO objects |
-| Store JS | `assets/nerocasa.js` | header scroll, AJAX cart, marble preview, loader, cursor, hero parallax | DOM hooks in layout/header |
+| Store JS | `assets/nerocasa.js` | header scroll, AJAX cart, marble preview, loader, cursor, hero parallax, last-word gold on legal h2/h3 | DOM hooks in layout/header |
 | Reveal JS | `assets/nerocasa-v20.js` | IntersectionObserver `[data-nc-reveal]` | markup attributes |
 
 ## Conventions in Use
 - Prefix `ncs-` for page sections/CSS blocks; `nc-` for snippets, header/footer, tokens (`--nc-gold`).
 - JSON templates with a single `main` section.
-- Gold last-word titles via `snippets/nc-title-gold.liquid`.
+- Title helper `snippets/nc-title-gold.liquid` golds the last word of any multi-word title (CASA is still marked up separately; product names stay gold in their own markup).
+- Named stone selectors via `snippets/nc-marble-choice.liquid`.
 - Marble heroes via `nc-hero-marble-bg` + optional Theme Editor images; `quiet: true` skips slabs on some pages.
 - CSS cascade: additions (base/legacy) then luxury (overrides). Many selectors are duplicated.
 - English copy is hardcoded in sections, not `t:` locale keys (`locales/en.default.json` is nearly empty).

@@ -1,5 +1,5 @@
 {%- comment -%}
-  Standard dimension chips from Shopify metafields (fallback: catalog defaults).
+  Standard dimensions as a spec grid (not dim chips).
   @param product {Product} optional
   @param handle {String}
 {%- endcomment -%}
@@ -14,19 +14,25 @@
 {%- if handle == 'cft-3' -%}
   <div class="ncs-dim-set">
     <small>Piece 1</small>
-    <span><b>H</b> 45 cm</span>
-    <span><b>L</b> 190 cm</span>
-    <span><b>W</b> 60 cm</span>
+    <dl class="ncs-spec-grid">
+      <div><dt>Height</dt><dd>45 cm</dd></div>
+      <div><dt>Length</dt><dd>190 cm</dd></div>
+      <div><dt>Width</dt><dd>60 cm</dd></div>
+    </dl>
   </div>
   <div class="ncs-dim-set">
     <small>Piece 2</small>
-    <span><b>H</b> 30 cm</span>
-    <span><b>L</b> 190 cm</span>
-    <span><b>W</b> 60 cm</span>
+    <dl class="ncs-spec-grid">
+      <div><dt>Height</dt><dd>30 cm</dd></div>
+      <div><dt>Length</dt><dd>190 cm</dd></div>
+      <div><dt>Width</dt><dd>60 cm</dd></div>
+    </dl>
   </div>
 {%- else -%}
-  {%- if dim_h != blank -%}<span><b>H</b> {{ dim_h }} cm</span>{%- endif -%}
-  {%- if dim_l != blank -%}<span><b>L</b> {{ dim_l }} cm</span>{%- endif -%}
-  {%- if dim_w != blank -%}<span><b>W</b> {{ dim_w }} cm</span>{%- endif -%}
-  {%- if dim_d != blank -%}<span><b>D</b> {{ dim_d }} cm</span>{%- endif -%}
+  <dl class="ncs-spec-grid">
+    {%- if dim_h != blank -%}<div><dt>Height</dt><dd>{{ dim_h }} cm</dd></div>{%- endif -%}
+    {%- if dim_l != blank -%}<div><dt>Length</dt><dd>{{ dim_l }} cm</dd></div>{%- endif -%}
+    {%- if dim_w != blank -%}<div><dt>Width</dt><dd>{{ dim_w }} cm</dd></div>{%- endif -%}
+    {%- if dim_d != blank -%}<div><dt>Depth</dt><dd>{{ dim_d }} cm</dd></div>{%- endif -%}
+  </dl>
 {%- endif -%}

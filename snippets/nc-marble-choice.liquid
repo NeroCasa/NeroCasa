@@ -1,0 +1,40 @@
+{%- comment -%}
+  Named stone selector: 10px sample + marble name.
+  Cards sit inside a link, so they use a span. PDP uses a button.
+  @param name {String}
+  @param slug {String}
+  @param mode {String} 'button' or 'preview'
+  @param selected {Boolean} optional, button mode
+  @param img {String} optional preview image, preview mode
+{%- endcomment -%}
+{%- assign choice_slug = slug | strip -%}
+{%- assign choice_name = name | strip -%}
+{%- assign preview_img = img | strip -%}
+{%- assign is_selected = false -%}
+{%- if selected == true or selected == 'true' -%}
+  {%- assign is_selected = true -%}
+{%- endif -%}
+{%- if mode == 'button' -%}
+  <button
+    type="button"
+    data-value="{{ choice_name | escape }}"
+    class="ncs-marble-choice{% if is_selected %} is-active{% endif %}"
+    aria-label="{{ choice_name | escape }}"
+    aria-pressed="{% if is_selected %}true{% else %}false{% endif %}"
+  >
+    <span class="ncs-marble-swatch ncs-marble-swatch--{{ choice_slug }}" aria-hidden="true"></span>
+    <span class="ncs-marble-name">{{ choice_name }}</span>
+  </button>
+{%- else -%}
+  <span
+    class="ncs-marble-choice"
+    data-nc-marble-preview
+    {% if preview_img != blank %}data-img="{{ preview_img | escape }}"{% endif %}
+    tabindex="0"
+    role="button"
+    aria-label="Preview {{ choice_name | escape }}"
+  >
+    <span class="ncs-marble-swatch ncs-marble-swatch--{{ choice_slug }}" aria-hidden="true"></span>
+    <span class="ncs-marble-name">{{ choice_name }}</span>
+  </span>
+{%- endif -%}

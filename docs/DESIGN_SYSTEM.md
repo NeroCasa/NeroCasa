@@ -8,10 +8,10 @@
 ### Color
 | Token | Value | Used for |
 |---|---|---|
-| `--nc-gold` / settings.gold | `#A57B00` | Accents, buttons, last-word titles, borders |
+| `--nc-gold` / settings.gold | `#A57B00` | CASA, last word of titles, product names, selected stone, fill CTAs, header rule, Coming soon |
 | `--nc-bg` / settings.background | `#080807` | Page background |
 | Body text (inlined) | `#f2eee6` | Primary ink on dark |
-| `--nc-line` | `rgba(242, 238, 230, 0.1)` | Hairlines |
+| `--nc-line` | `rgba(242, 238, 230, 0.14)` | Hairlines |
 | `--nc-ink` | `#f2eee6` (`nerocasa-additions.css` `:root`) | Headings / primary text |
 | `--nc-muted` | `#9d978d` | Secondary copy |
 | `--nc-panel` | `#10100e` | Panels / PDP gallery wash |
@@ -26,7 +26,7 @@
 | Compact page h1 | `clamp(36px, 4.8vw, 56px) !important` | Collection/search/custom/B2B/contact/about/legal — home keeps the large hero |
 | Home `.nc-casa` | italic, weight 300 | CASA in NEROCASA |
 
-Google Fonts loaded: Cormorant Garamond (300/400/500 + italics), Inter (300/400/500).
+Google Fonts loaded: Cormorant Garamond (300/400/500 + italics), Inter (400/500). Body UI is Inter 400, 16px; UI chrome minimum 11px.
 
 ### Spacing Scale
 | Token | Value |
@@ -47,9 +47,10 @@ Google Fonts loaded: Cormorant Garamond (300/400/500 + italics), Inter (300/400/
 | Compact card grid | `601px` mentioned in catalog card sizes |
 
 ### Radii / Shadows / Borders
-- Buttons: rectangular gold fill, `box-shadow: 0 4px 20px rgba(165,123,0,0.28)`.
-- Marble swatches: 22px circles, 50% radius (cards and PDP).
-- Product cards, collection tiles, and journal cards: 1px `rgba(242,238,230,0.14)` frame; fine-pointer hover lifts `-4px` and scales the image `1.03`.
+- Buttons: rectangular gold fill, no box-shadow.
+- Marble selectors: 10px sample + 14px stone name in a wrapping horizontal row (`nc-marble-choice.liquid`); selected name is gold.
+- Product cards, collection tiles, and journal cards: 1px gold-tinted frame; fine-pointer hover scales the image `1.02` (no lift).
+- PDP gallery: same hairline frame as cards, no grey panel fill; image stays `object-fit: contain`.
 - Header: gold-tinted bottom border (`rgba(165,123,0,.2)`), always-on gold line (not only when scrolled).
 - Custom cursor: gold 5px dot + 28px ring.
 
@@ -59,7 +60,7 @@ Google Fonts loaded: Cormorant Garamond (300/400/500 + italics), Inter (300/400/
 | `.ncs-btn` | additions + luxury | default, `--outline`, `--ghost` | Gold fill CTA; outline/ghost stay transparent with gold border |
 | Header | `nc-header.liquid` | desktop nav / hamburger | Search overlay, cart badge |
 | Footer | `nc-footer.liquid` | | WhatsApp always; IG/Pinterest if URLs set |
-| Product card | `nc-catalog-card.liquid` | | 4:5 cover tile, swatches, From price |
+| Product card | `nc-catalog-card.liquid` | | 4:5 cover tile, named stones, From price |
 | Collection tile | `nc-collection-tile.liquid` | optional subtitle | Used on index and The 9 type grid |
 | Page hero shell | `nc-page-hero-shell-*` | `quiet` skips marble slabs | |
 | Marble slabs | `nc-hero-marble-bg.liquid` | dual / triple | Cover-fit backgrounds, CSS filters |
@@ -71,7 +72,7 @@ Google Fonts loaded: Cormorant Garamond (300/400/500 + italics), Inter (300/400/
 - Easing `--nc-ease`: `cubic-bezier(0.22, 1, 0.36, 1)`.
 - Scroll reveal: `[data-nc-reveal]` via `nerocasa-v20.js` (opacity + translateY, play-once `.is-visible`); `prefers-reduced-motion` forces visible.
 - Home hero media parallax `translate3d(0, scrollY * 0.12px)` in `nerocasa.js` (fine pointer, not reduced-motion).
-- Button hover translate/scale; swatch `.is-active` glow.
+- Button hover is color-only (no lift/shadow); selected stone name turns gold.
 - `prefers-reduced-motion`: reveal forced visible, loader/cursor hidden, transitions none (luxury).
 - Grain: fixed SVG feTurbulence overlay, opacity 0.035, pointer-events none.
 
@@ -94,5 +95,6 @@ Google Fonts loaded: Cormorant Garamond (300/400/500 + italics), Inter (300/400/
 ## Anti-Patterns Observed
 - Duplicate CSS in additions vs luxury with conflicting `!important`.
 - Page kickers `.ncs-page-kicker { display: none !important; }` so kicker markup is dead.
-- Gold last-word helper used even when a full title treatment is wanted.
+- Gold last word of multi-word titles via `snippets/nc-title-gold.liquid` (CASA markup and product names stay separate). Outline/ghost CTAs use the same last-word gold; fill CTAs stay gold chips with dark text.
+- Named stone selectors via `snippets/nc-marble-choice.liquid`.
 - Index collections list: a single collection uses a 480px card; two or more stay on the 3-up grid.

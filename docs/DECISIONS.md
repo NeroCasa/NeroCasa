@@ -4,6 +4,24 @@
 > This exists so future sessions (and future you) don't re-litigate or accidentally reverse a
 > deliberate choice. Newest entries at the top.
 
+### 2026-09-17 — Fill interiors; restore last-word gold
+**Context:** Owner liked the review pass but B2B, Why Nerocasa, Terms, Privacy, and Refunds were a left-hand strip with empty black to the right. Last-word gold had been scoped to CASA/9 only.
+**Decision:** B2B copy sits in two columns, form centered underneath at the same width as the copy and not taller. Why restores 2×2 framed value cards, a framed logo on the right, and a 2-col manifesto — not the reverted magazine layout. Legal/track use two reading columns across the 8vw gutters. `nc-title-gold` golds the last word of every multi-word title again; outline/ghost CTAs match; fill CTAs stay gold chips with dark text so last-word gold is readable.
+**Alternatives considered:** Keep B2B as a single 760px stack; CSS columns only on legal; gold last word on fill buttons (invisible on gold).
+**Consequences:** Why is framed again, but still not the magazine layout. Custom WhatsApp-only buy, cart AJAX, CASA, and PDP `contain` stay.
+
+### 2026-09-17 — Review pass: rows, handles, warmth
+**Context:** Owner found stacked stone/size boxes, printed handles (read as codes like VFT-2 / CFT-1), a grey PDP panel, missing social logos, a white-slab Custom visual, a buried water-jet line, a split B2B form, and a flat/antiseptic feel.
+**Decision:** Keep named stones, but in a wrapping row. Size modes as a text row, not boxed columns. Hide handles. Gold piece names. Match PDP frame to collection cards without changing image size or `contain`. Restore social SVGs. Custom visual uses `nc-brand-visual`. Water-jet is a gold Coming soon panel. B2B is one column with fuller copy. Warmth via grain, gold-tinted card rules, and gold names — not a second type system.
+**Alternatives considered:** Empty-circle swatches again; keeping the grey gallery as a “display panel.”
+**Consequences:** Gold is now also used on product names, not only CASA/9. Custom size remains WhatsApp-only.
+
+### 2026-09-17 — Material ledger on Atelier
+**Context:** Owner approved the forensic redesign and confirmed custom size hiding Add to cart is intentional (WhatsApp).
+**Decision:** Named stone selectors (sample + name); gold only on CASA, numeral 9, selected stone, fill CTA, and the header rule; Inter body 400; one hairline; no button shadow; no card lift; home heading The 9; Custom/B2B process ledgers. Implement on `atelier/material-ledger` and unpublished Atelier only — not live, not `main`.
+**Alternatives considered:** Keep empty-circle swatches; last-word gold on every title; showing Add to cart in custom mode.
+**Consequences:** Custom size remains WhatsApp-only. Live theme stays on the previous luxury pass until an explicit publish/live-push.
+
 ### 2026-09-17 — One card, one title, unboxed interiors
 **Context:** Owner asked for a luxury pass across every page after the collections tile landed.
 **Decision:** Treat The 9 index card as the master card; compact titles except home; unbox Why Nerocasa; restore outline/ghost buttons; PDP marble as swatches with a slower fade; keep `object-fit: contain`.
