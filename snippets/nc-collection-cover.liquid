@@ -15,6 +15,13 @@
   endif
   if cover_url == blank and product_handle != blank
     assign cover_product = all_products[product_handle]
+    if cover_product == blank
+      capture mapped_handle
+        render 'nc-catalog-code', handle: product_handle
+      endcapture
+      assign mapped_handle = mapped_handle | strip
+      assign cover_product = all_products[mapped_handle]
+    endif
     if cover_product != blank
       capture cover_from_product
         render 'nc-variant-image', product: cover_product, marble_name: marble_name, width: img_width

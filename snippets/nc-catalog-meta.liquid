@@ -7,7 +7,7 @@
 {%- liquid
   assign field = field | default: 'name'
   case handle
-    when 'cft-1'
+    when 'cft-1', 'soglia'
       case field
         when 'name'
           echo 'Soglia'
@@ -20,7 +20,7 @@
         when 'width'
           echo '90'
       endcase
-    when 'cft-2'
+    when 'cft-2', 'equilibrio'
       case field
         when 'name'
           echo 'Equilibrio'
@@ -33,7 +33,7 @@
         when 'width'
           echo '120'
       endcase
-    when 'cft-3'
+    when 'cft-3', 'monolite'
       case field
         when 'name'
           echo 'Monolite'
@@ -46,7 +46,7 @@
         when 'width'
           echo '60'
       endcase
-    when 'cs-1'
+    when 'cs-1', 'galleria'
       case field
         when 'name'
           echo 'Galleria'
@@ -59,7 +59,7 @@
         when 'length'
           echo '90'
       endcase
-    when 'cs-2'
+    when 'cs-2', 'passaggio'
       case field
         when 'name'
           echo 'Passaggio'
@@ -72,7 +72,7 @@
         when 'length'
           echo '140'
       endcase
-    when 'cs-3'
+    when 'cs-3', 'atrio'
       case field
         when 'name'
           echo 'Atrio'
@@ -85,7 +85,7 @@
         when 'length'
           echo '175'
       endcase
-    when 'sd-1'
+    when 'sd-1', 'nodo'
       case field
         when 'name'
           echo 'Nodo'
@@ -98,7 +98,7 @@
         when 'depth'
           echo '18'
       endcase
-    when 'sd-2'
+    when 'sd-2', 'punto'
       case field
         when 'name'
           echo 'Punto'
@@ -111,7 +111,7 @@
         when 'depth'
           echo '40'
       endcase
-    when 'sd-3'
+    when 'sd-3', 'scalino'
       case field
         when 'name'
           echo 'Scalino'

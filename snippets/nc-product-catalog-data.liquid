@@ -55,6 +55,8 @@ window.NC_CATALOG[{{ product.handle | json }}] = {
   }
 };
 </script>
-{%- if product.handle contains 'cft-' or product.handle contains 'cs-' or product.handle contains 'sd-' -%}
+{%- capture catalog_code -%}{% render 'nc-catalog-code', handle: product.handle %}{%- endcapture -%}
+{%- assign catalog_code = catalog_code | strip -%}
+{%- if catalog_code contains 'cft-' or catalog_code contains 'cs-' or catalog_code contains 'sd-' -%}
   {% render 'nc-product-marble-json', handle: product.handle %}
 {%- endif -%}

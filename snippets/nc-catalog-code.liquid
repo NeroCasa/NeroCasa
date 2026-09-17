@@ -1,0 +1,28 @@
+{%- comment -%}
+  Canonical catalog code for a product handle.
+  Accepts both the public name URL (soglia) and the legacy SKU URL (cft-1).
+{%- endcomment -%}
+{%- liquid
+  case handle
+    when 'soglia', 'cft-1'
+      echo 'cft-1'
+    when 'equilibrio', 'cft-2'
+      echo 'cft-2'
+    when 'monolite', 'cft-3'
+      echo 'cft-3'
+    when 'galleria', 'cs-1'
+      echo 'cs-1'
+    when 'passaggio', 'cs-2'
+      echo 'cs-2'
+    when 'atrio', 'cs-3'
+      echo 'cs-3'
+    when 'nodo', 'sd-1'
+      echo 'sd-1'
+    when 'punto', 'sd-2'
+      echo 'sd-2'
+    when 'scalino', 'sd-3'
+      echo 'sd-3'
+    else
+      echo handle
+  endcase
+-%}

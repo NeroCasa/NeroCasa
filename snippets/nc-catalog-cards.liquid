@@ -11,11 +11,11 @@
   {%- liquid
     case category
       when 'side'
-        assign catalog_handles = 'sd-1,sd-2,sd-3' | split: ','
+        assign catalog_handles = 'nodo,sd-1,punto,sd-2,scalino,sd-3' | split: ','
       when 'console'
-        assign catalog_handles = 'cs-1,cs-2,cs-3' | split: ','
+        assign catalog_handles = 'galleria,cs-1,passaggio,cs-2,atrio,cs-3' | split: ','
       else
-        assign catalog_handles = 'cft-1,cft-2,cft-3' | split: ','
+        assign catalog_handles = 'soglia,cft-1,equilibrio,cft-2,monolite,cft-3' | split: ','
     endcase
   -%}
   {%- for item_handle in catalog_handles -%}

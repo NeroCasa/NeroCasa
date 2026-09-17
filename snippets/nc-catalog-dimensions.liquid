@@ -11,7 +11,9 @@
 {%- assign dim_l = dim_l | strip -%}
 {%- assign dim_w = dim_w | strip -%}
 {%- assign dim_d = dim_d | strip -%}
-{%- if handle == 'cft-3' -%}
+{%- capture catalog_code -%}{% render 'nc-catalog-code', handle: handle %}{%- endcapture -%}
+{%- assign catalog_code = catalog_code | strip -%}
+{%- if catalog_code == 'cft-3' -%}
   <div class="ncs-dim-set">
     <small>Piece 1</small>
     <dl class="ncs-spec-grid">
