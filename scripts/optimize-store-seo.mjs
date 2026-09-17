@@ -20,145 +20,161 @@ if (!store) {
 }
 
 const PRODUCTS = {
-  'cft-1': {
-    seoTitle: 'Soglia Marble Coffee Table | Natural Stone Pair | NEROCASA',
+  soglia: {
+    seoTitle: 'Soglia Marble Coffee Table Pair | UAE | NEROCASA',
     seoDescription:
-      'A pair of sculptural marble coffee tables in Ibiza White, Armani Grey, Travertine or Rosso Levanto. Price shown is for both tables, hand-finished in our workshop.',
+      'Made-to-order pair of marble coffee tables from our Sharjah factory. Ibiza White, Armani Grey, Travertine or Rosso Levanto. Delivered across the UAE.',
     descriptionHtml:
-      '<p>Soglia is a sculptural marble coffee table sold as a matching pair. Available in Ibiza White, Armani Grey, Travertine and Rosso Levanto, each piece is hand-finished in our workshop for refined, architectural living spaces.</p>',
+      '<p>Soglia is a sculptural marble coffee table sold as a matching pair. Available in Ibiza White, Armani Grey, Travertine and Rosso Levanto, each piece is cut in our Sharjah factory and delivered across the UAE.</p>',
   },
-  'cft-2': {
-    seoTitle: 'Equilibrio Marble Coffee Table | Natural Stone | NEROCASA',
+  equilibrio: {
+    seoTitle: 'Equilibrio Marble Coffee Table | UAE | NEROCASA',
     seoDescription:
-      'Equilibrio balances mass and lightness in Ibiza White, Armani Grey or Travertine. A luxury marble coffee table crafted for architectural interiors.',
+      'Equilibrio marble coffee table, made to order in Sharjah. Ibiza White, Armani Grey or Travertine. Delivered across the UAE.',
     descriptionHtml:
-      '<p>Equilibrio is a premium marble coffee table that balances mass and lightness with architectural precision. Choose Ibiza White, Armani Grey or Travertine for a centrepiece that elevates contemporary and classic interiors alike.</p>',
+      '<p>Equilibrio is a marble coffee table that balances mass and lightness. Choose Ibiza White, Armani Grey or Travertine. Cut in Sharjah Industrial Area 15 and delivered across the UAE.</p>',
   },
-  'cft-3': {
-    seoTitle: 'Monolite Marble Coffee Table | Rosso Levanto | NEROCASA',
+  monolite: {
+    seoTitle: 'Monolite Marble Coffee Table | UAE | NEROCASA',
     seoDescription:
-      'Monolite marble coffee table in Ibiza White, Travertine or Rosso Levanto. A bold monolithic form in premium natural stone for luxury interiors.',
+      'Monolite marble coffee table in Ibiza White, Travertine or Rosso Levanto. Made to order in Sharjah and delivered across the UAE.',
     descriptionHtml:
-      '<p>Monolite commands attention with a bold monolithic form carved from premium marble. Available in Ibiza White, Travertine and Rosso Levanto, it brings sculptural presence and natural stone character to luxury living rooms.</p>',
+      '<p>Monolite is a bold marble coffee table in Ibiza White, Travertine or Rosso Levanto. Cut in our Sharjah factory for homes and projects across the UAE.</p>',
   },
-  'cs-1': {
-    seoTitle: 'Galleria Marble Console Table | Entry Furniture | NEROCASA',
+  galleria: {
+    seoTitle: 'Galleria Marble Console Table | UAE | NEROCASA',
     seoDescription:
-      'Galleria is an architectural marble console in Ibiza White, Armani Grey or Travertine. Premium stone furniture for refined hallways and living spaces.',
+      'Galleria marble console for hallways and entries. Ibiza White, Armani Grey or Travertine. Made in Sharjah, delivered across the UAE.',
     descriptionHtml:
-      '<p>Galleria is an architectural marble console table designed for entryways, galleries and refined living spaces. Finished in Ibiza White, Armani Grey or Travertine, it pairs gallery-worthy presence with everyday elegance.</p>',
+      '<p>Galleria is an architectural marble console table for entryways and living spaces. Finished in Ibiza White, Armani Grey or Travertine in our Sharjah factory. Delivery across the UAE.</p>',
   },
-  'cs-2': {
-    seoTitle: 'Passaggio Marble Console Table | Natural Stone | NEROCASA',
+  passaggio: {
+    seoTitle: 'Passaggio Marble Console Table | UAE | NEROCASA',
     seoDescription:
-      'Passaggio marble console table in Ibiza White, Armani Grey or Travertine. Slim, sculptural luxury furniture for hallways and curated interiors.',
+      'Passaggio slim marble console in Ibiza White, Armani Grey or Travertine. Made to order in Sharjah, delivered across the UAE.',
     descriptionHtml:
-      '<p>Passaggio is a slim, sculptural marble console that frames transitions between rooms with quiet luxury. Hand-finished in Ibiza White, Armani Grey or Travertine for discerning residential and hospitality projects.</p>',
+      '<p>Passaggio is a slim marble console for hallways and interiors. Hand-finished in Ibiza White, Armani Grey or Travertine at our Sharjah factory. We deliver across the UAE.</p>',
   },
-  'cs-3': {
-    seoTitle: 'Atrio Marble Console Table | Natural Stone | NEROCASA',
+  atrio: {
+    seoTitle: 'Atrio Marble Console Table | UAE | NEROCASA',
     seoDescription:
-      'Atrio marble console table in Ibiza White, Armani Grey or Travertine. Statement stone furniture for luxury foyers, corridors and living areas.',
+      'Atrio statement marble console in Ibiza White, Armani Grey or Travertine. Made in Sharjah and delivered across the UAE.',
     descriptionHtml:
-      '<p>Atrio is a statement marble console table crafted for luxury foyers and curated interiors. Available in Ibiza White, Armani Grey and Travertine, it combines generous surface area with the enduring beauty of natural stone.</p>',
+      '<p>Atrio is a statement marble console for foyers and living areas. Available in Ibiza White, Armani Grey and Travertine. Cut in Sharjah Industrial Area 15, delivered UAE-wide.</p>',
   },
-  'sd-1': {
-    seoTitle: 'Nodo Marble Side Table | Accent Furniture | NEROCASA',
+  nodo: {
+    seoTitle: 'Nodo Marble Side Table | UAE | NEROCASA',
     seoDescription:
-      'Nodo marble side table in Ibiza White, Armani Grey or Travertine. Compact luxury stone accent for sofas, bedsides and curated seating areas.',
+      'Nodo marble side table in Ibiza White, Armani Grey or Travertine. Compact made-to-order stone from Sharjah, delivered across the UAE.',
     descriptionHtml:
-      '<p>Nodo is a compact marble side table that anchors seating arrangements with sculptural simplicity. Finished in Ibiza White, Armani Grey or Travertine, it is ideal beside sofas, beds and lounge chairs.</p>',
+      '<p>Nodo is a compact marble side table for sofas, bedsides and seating. Finished in Ibiza White, Armani Grey or Travertine in Sharjah. Delivery across the UAE.</p>',
   },
-  'sd-2': {
-    seoTitle: 'Punto Marble Side Table | Natural Stone Accent | NEROCASA',
+  punto: {
+    seoTitle: 'Punto Marble Side Table | UAE | NEROCASA',
     seoDescription:
-      'Punto marble side table in Ibiza White, Armani Grey or Travertine. Refined natural stone accent furniture for premium interiors.',
+      'Punto marble side table in Ibiza White, Armani Grey or Travertine. Made to order in Sharjah and delivered across the UAE.',
     descriptionHtml:
-      '<p>Punto is a refined marble side table designed as a precise accent in premium interiors. Select Ibiza White, Armani Grey or Travertine to complement upholstery, lighting and architectural details.</p>',
+      '<p>Punto is a refined marble side table in Ibiza White, Armani Grey or Travertine. Cut in our Sharjah factory for interiors across the UAE.</p>',
   },
-  'sd-3': {
-    seoTitle: 'Scalino Marble Side Table | Stone Furniture | NEROCASA',
+  scalino: {
+    seoTitle: 'Scalino Marble Side Table | UAE | NEROCASA',
     seoDescription:
-      'Scalino marble side table in Ibiza White, Armani Grey or Travertine. Layered stone form for luxury living rooms and boutique hospitality spaces.',
+      'Scalino layered marble side table in Ibiza White, Armani Grey or Travertine. Made in Sharjah, delivered across the UAE.',
     descriptionHtml:
-      '<p>Scalino features a layered marble form that adds depth and texture to luxury living rooms and boutique hospitality spaces. Available in Ibiza White, Armani Grey and Travertine with hand-finished natural stone surfaces.</p>',
+      '<p>Scalino is a layered marble side table for living rooms and hospitality. Available in Ibiza White, Armani Grey and Travertine from our Sharjah factory. UAE delivery.</p>',
   },
 };
+PRODUCTS['cft-1'] = PRODUCTS.soglia;
+PRODUCTS['cft-2'] = PRODUCTS.equilibrio;
+PRODUCTS['cft-3'] = PRODUCTS.monolite;
+PRODUCTS['cs-1'] = PRODUCTS.galleria;
+PRODUCTS['cs-2'] = PRODUCTS.passaggio;
+PRODUCTS['cs-3'] = PRODUCTS.atrio;
+PRODUCTS['sd-1'] = PRODUCTS.nodo;
+PRODUCTS['sd-2'] = PRODUCTS.punto;
+PRODUCTS['sd-3'] = PRODUCTS.scalino;
 
 const COLLECTIONS = {
   'coffee-tables': {
-    seoTitle: 'Marble Coffee Tables | Sculptural Natural Stone | NEROCASA',
+    seoTitle: 'Marble Coffee Tables UAE | Made to Order | NEROCASA',
     seoDescription:
-      'Marble coffee tables in Ibiza White, Armani Grey, Travertine and Rosso Levanto. Sculptural natural stone furniture for premium interiors.',
+      'Soglia, Equilibrio and Monolite marble coffee tables. Made to order in Sharjah Industrial Area 15 and delivered across the UAE.',
     descriptionHtml:
-      '<p>Architect-designed marble coffee tables in Ibiza White, Armani Grey, Travertine and Rosso Levanto. From the paired Soglia to the monolithic Monolite, each design is cut and finished in our workshop for architectural living spaces.</p>',
+      '<p>Marble coffee tables from The 9: Soglia, Equilibrio and Monolite. Cut in our Sharjah factory in Ibiza White, Armani Grey, Travertine and Rosso Levanto. Delivery across the UAE.</p>',
   },
   'side-tables': {
-    seoTitle: 'Marble Side Tables | Accent Furniture | NEROCASA',
+    seoTitle: 'Marble Side Tables UAE | Made to Order | NEROCASA',
     seoDescription:
-      'Marble side tables in Ibiza White, Armani Grey and Travertine. Compact luxury stone accent pieces for refined sofas, bedsides and lounge settings.',
+      'Nodo, Punto and Scalino marble side tables. Made in Sharjah and delivered across the UAE.',
     descriptionHtml:
-      '<p>Discover marble side tables designed as sculptural accents for premium interiors. Nodo, Punto and Scalino are available in Ibiza White, Armani Grey and Travertine with hand-finished natural stone surfaces.</p>',
+      '<p>Marble side tables Nodo, Punto and Scalino in Ibiza White, Armani Grey and Travertine. Made in Sharjah Industrial Area 15. UAE delivery.</p>',
   },
   'console-tables': {
-    seoTitle: 'Marble Console Tables | Entry & Hall Furniture | NEROCASA',
+    seoTitle: 'Marble Console Tables UAE | Hall Furniture | NEROCASA',
     seoDescription:
-      'Architectural marble console tables in Ibiza White, Armani Grey and Travertine. Premium stone furniture for foyers, corridors and curated interiors.',
+      'Galleria, Passaggio and Atrio marble consoles for entries and halls. Made in Sharjah, delivered across the UAE.',
     descriptionHtml:
-      '<p>Browse luxury marble console tables for entryways, hallways and gallery walls. Galleria, Passaggio and Atrio combine architectural proportion with the enduring character of natural stone.</p>',
+      '<p>Marble console tables for hallways and foyers. Galleria, Passaggio and Atrio, cut in Sharjah and delivered across the UAE.</p>',
+  },
+  'the-9': {
+    seoTitle: 'The 9 | Marble Furniture UAE | NEROCASA',
+    seoDescription:
+      'Nine made-to-order marble designs from our Sharjah factory. Coffee, side and console tables, delivered across the UAE.',
+    descriptionHtml:
+      '<p>The 9 is NeroCasa’s marble furniture collection: coffee, side and console tables made in Sharjah Industrial Area 15 and delivered across the UAE.</p>',
   },
 };
 
 const PAGES = {
   'why-nerocasa': {
-    seoTitle: 'Why NEROCASA | Luxury Marble Furniture Workshop',
+    seoTitle: 'Why NEROCASA | Marble Factory Sharjah UAE',
     seoDescription:
-      'NEROCASA imports premium marble from quarries worldwide and crafts luxury furniture in its own workshop. Architectural design and white-glove delivery.',
+      'NEROCASA cuts marble furniture in Sharjah Industrial Area 15 and delivers across the UAE. Made to order, no showroom markup.',
   },
   contact: {
-    seoTitle: 'Contact NEROCASA | Luxury Marble Furniture',
+    seoTitle: 'Contact NEROCASA | Sharjah Factory | UAE',
     seoDescription:
-      'Contact NEROCASA for luxury marble furniture, custom stone pieces and project enquiries. WhatsApp, email and showroom appointments available.',
+      'WhatsApp, email or call NEROCASA. Factory in Sharjah Industrial Area 15. We sell and deliver marble furniture across the UAE. No showroom.',
   },
   custom: {
-    seoTitle: 'Custom Marble Furniture | Made to Your Design | NEROCASA',
+    seoTitle: 'Custom Marble Furniture UAE | Made to Order | NEROCASA',
     seoDescription:
-      'Commission custom marble furniture in any stone, size or design. Custom tables and surfaces crafted from premium natural stone by NEROCASA.',
+      'Commission custom marble furniture from our Sharjah factory. Any stone, size or design, delivered across the UAE.',
   },
   b2b: {
-    seoTitle: 'B2B Marble Furniture | Trade & Hospitality | NEROCASA',
+    seoTitle: 'B2B Marble Furniture UAE | Trade and Hospitality',
     seoDescription:
-      'Trade and hospitality marble furniture from NEROCASA. Production at volume, project support and premium natural stone for architects and designers.',
+      'Trade and hospitality marble furniture from our Sharjah factory. Production for architects and designers, delivered across the UAE.',
   },
   terms: {
-    seoTitle: 'Terms & Conditions | NEROCASA',
-    seoDescription: 'Terms and conditions for purchasing luxury marble furniture from NEROCASA online and in showroom.',
+    seoTitle: 'Terms and Conditions | NEROCASA',
+    seoDescription: 'Terms for buying made-to-order marble furniture from NEROCASA in the UAE.',
   },
   refunds: {
-    seoTitle: 'Refunds & Returns Policy | NEROCASA',
-    seoDescription: 'NEROCASA refunds and returns policy for luxury marble furniture orders, delivery and product care.',
+    seoTitle: 'Refunds and Returns | NEROCASA',
+    seoDescription: 'Made-to-order marble furniture refunds and returns for NEROCASA orders in the UAE.',
   },
   'track-order': {
-    seoTitle: 'Track Your Order | NEROCASA',
-    seoDescription: 'Track your NEROCASA marble furniture order. Delivery updates for luxury stone furniture across the UAE and internationally.',
+    seoTitle: 'Track Your Order UAE | NEROCASA',
+    seoDescription: 'Track your NEROCASA marble furniture order. White-glove delivery across the UAE, typically 3 to 7 working days.',
   },
   collections: {
-    seoTitle: 'Marble Furniture Collections | NEROCASA',
+    seoTitle: 'Marble Furniture Collections UAE | NEROCASA',
     seoDescription:
-      'Browse all NEROCASA marble furniture collections. Coffee tables, console tables and side tables in premium natural stone finishes.',
+      'The 9 marble collection. Coffee, side and console tables made in Sharjah and delivered across the UAE.',
   },
   privacy: {
     seoTitle: 'Privacy Policy | NEROCASA',
     seoDescription:
-      'How NEROCASA collects, uses and discloses your personal information when you shop for marble furniture online or contact us.',
+      'How NEROCASA collects and uses personal information when you shop for marble furniture in the UAE.',
   },
 };
 
 const ARTICLES = {
   'how-to-choose-luxury-marble-coffee-table': {
-    seoTitle: 'How to Choose a Marble Coffee Table | NEROCASA',
+    seoTitle: 'How to Choose a Marble Coffee Table UAE | NEROCASA',
     seoDescription:
-      'Scale, stone and silhouette: what to look for when choosing a marble coffee table for a refined living room.',
+      'Scale, stone and silhouette for a marble coffee table in a UAE living room. From the NEROCASA Sharjah factory.',
   },
   'ibiza-white-vs-armani-grey-vs-travertine': {
     seoTitle: 'Ibiza White vs Armani Grey vs Travertine | NEROCASA',
@@ -166,7 +182,7 @@ const ARTICLES = {
       'Three signature marbles, three distinct moods. Compare colour, veining and character to find the finish that suits your interior.',
   },
   'marble-console-tables-entryway-guide': {
-    seoTitle: 'Marble Console Tables for Entryways | NEROCASA',
+    seoTitle: 'Marble Console Tables for Entryways UAE | NEROCASA',
     seoDescription:
       'How to choose and style a marble console table for an entryway or hallway, from proportion to finish.',
   },

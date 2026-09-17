@@ -2,9 +2,9 @@
   <div class="ncs-contact-layout ncs-contact-layout--split ncs-page-hero-shell ncs-page-hero-shell--quiet">
     <div class="ncs-contact-primary" data-nc-reveal>
     <header class="ncs-page-hero ncs-page-hero--compact ncs-contact-hero">
-      {%- assign contact_heading = 'actions.get_in_touch' | t -%}
+      {%- assign contact_heading = page.title | default: 'Contact' -%}
       <h1>{% render 'nc-title-gold', title: contact_heading %}</h1>
-      <p>We respond to every enquiry within one business day. Custom pieces are handled on WhatsApp. Trade and project enquiries go to {% render 'nc-contact-email' %} via our B2B page.</p>
+      <p>Factory in Sharjah Industrial Area 15. We sell and deliver across the UAE. No showroom — WhatsApp, email, or the form. Custom pieces are handled on WhatsApp. Trade enquiries go to {% render 'nc-contact-email' %} via our B2B page.</p>
       <a class="ncs-btn ncs-btn--ghost" href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B</a>
       <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">
         <svg class="nc-social-icon nc-social-icon--inline" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:-2px;margin-right:8px">
@@ -31,6 +31,10 @@
         {% else %}
           <span>Available on request</span>
         {% endif %}
+      </li>
+      <li>
+        <span>Factory</span>
+        <span>{{ settings.workshop_address | default: 'Industrial Area 15, Sharjah, United Arab Emirates' }}. Delivery across the UAE.</span>
       </li>
       {% if settings.instagram_url != blank %}
         <li>

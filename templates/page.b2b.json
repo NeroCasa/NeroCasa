@@ -12,10 +12,11 @@
     "main": {
       "type": "ncs-b2b",
       "settings": {
+        "heading": "B2B",
         "lead": "Hotels, residences, restaurants and retail. We work with designers, architects and developers who need real stone, with production they can trust. Marble from quarries worldwide. Any catalog design can be adapted in different stones, sizes, or finishes.",
         "detail_text": "Because NeroCasa imports marble and owns its factory, we do not buy ready-made pieces from outside. We build to order, including custom versions of our current designs and project-specific stone work.",
         "who_text": "We work with interior designers, architects, developers, and hospitality groups. Typical briefs include suites and public spaces for hotels, restaurant floors and bars, villa programmes, and multi-unit developments that need the same design repeated in stone — with one workshop accountable for the finish.",
-        "make_text": "Coffee tables, consoles, and side tables from The 9 can be recut in a different marble, a different size, or as a pair for a room. We also take original drawings. Stone is sourced at quarries worldwide and cut, ground, and polished here in Dubai under AL SOURAH AL THAHABIA MARBLE & GRANITE L.L.C, Trade Licence 1253846. Tell us the space, the quantity, the finish, and the date you need the pieces on site. We reply with feasibility, timing, and a production plan.",
+        "make_text": "Coffee tables, consoles, and side tables from The 9 can be recut in a different marble, a different size, or as a pair for a room. We also take original drawings. Stone is sourced at quarries worldwide and cut, ground, and polished in our factory in Sharjah Industrial Area 15 under AL SOURAH AL THAHABIA MARBLE & GRANITE L.L.C, Trade Licence 1253846. We deliver across the UAE. Tell us the space, the quantity, the finish, and the date you need the pieces on site. We reply with feasibility, timing, and a production plan.",
         "process_1": "Send the project, stone preference, and timing",
         "process_2": "We confirm feasibility and production",
         "process_3": "Cut and finish in our workshop"

@@ -81,6 +81,13 @@ ok(/all_products\['monolite'\]/.test(read('sections/ncs-store-home.liquid')), 'h
 ok(/assign emitted = false/.test(read('snippets/nc-catalog-search-index.liquid')), 'search index commas skip blank handles');
 ok(/nerocasamarbles@gmail\.com/.test(read('config/settings_data.json')), 'theme contact email is gmail');
 ok(exists('README.md'), 'README exists so GitHub is not AGENTS.md');
+ok(/Marble Furniture UAE/.test(read('snippets/nc-meta-tags.liquid')), 'home SEO title includes UAE');
+ok(/FurnitureStore/.test(read('snippets/nc-meta-tags.liquid')), 'LocalBusiness FurnitureStore schema');
+ok(/MerchantReturnNotPermitted/.test(read('snippets/nc-meta-tags.liquid')), 'return schema matches made-to-order');
+ok(/seo_noindex/.test(read('snippets/nc-meta-tags.liquid')), 'noindex flag for policies and all-collection');
+ok(/workshop_address/.test(read('config/settings_schema.json')), 'factory address setting exists');
+ok(/Sharjah Industrial Area 15/.test(read('sections/ncs-contact.liquid')), 'contact states Sharjah factory');
+ok(/Coffee tables/.test(read('sections/nc-footer.liquid')), 'footer links type collections');
 
 if (failed) {
   console.error('\n' + failed + ' check(s) failed');

@@ -12,7 +12,8 @@
     "main": {
       "type": "ncs-custom-page",
       "settings": {
-        "hero_lead": "Beyond the collection, NeroCasa cuts custom marble furniture in any stone, size or design. From an existing piece in a new finish to a fully original brief, the workshop works to your specification. Begin on WhatsApp.",
+        "hero_heading": "Custom",
+        "hero_lead": "Beyond the collection, NeroCasa cuts custom marble furniture in any stone, size or design. From an existing piece in a new finish to a fully original brief, the workshop in Sharjah works to your specification. We deliver across the UAE. Begin on WhatsApp.",
         "scope_1": "Send dimensions, stone preference, and references on WhatsApp",
         "scope_2": "We confirm feasibility, marble, and timing",
         "scope_3": "Production in our workshop",

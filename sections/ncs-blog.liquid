@@ -46,7 +46,7 @@
               <div class="ncs-blog-card-media ncs-fit-img ncs-fit-img--tile">
                 <img
                   src="{{ fallback_slabs[fallback_i] | asset_url }}"
-                  alt=""
+                  alt="{{ article.title | escape }}"
                   width="900"
                   height="1125"
                   loading="lazy"

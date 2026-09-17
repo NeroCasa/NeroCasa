@@ -1,6 +1,8 @@
 {%- liquid
   assign brand = settings.brand_name | default: 'NEROCASA'
-  assign tagline = settings.brand_tagline | default: 'Luxury marble furniture. Stone from quarries worldwide, crafted in our workshop.'
+  assign tagline = settings.brand_tagline | default: 'Made-to-order marble furniture from our factory in Sharjah Industrial Area 15. Delivered across the UAE.'
+  assign the_9_handle = settings.collection_the_9 | default: 'the-9'
+  assign workshop_address = settings.workshop_address | default: 'Industrial Area 15, Sharjah, United Arab Emirates'
   assign seo_title = page_title | default: brand
   assign seo_description = page_description
   assign og_type = 'website'
@@ -32,10 +34,10 @@
     assign the_9_handle = settings.collection_the_9 | default: 'the-9'
     if collection.handle == the_9_handle
       if page_title == blank or page_title == collection.title
-        assign seo_title = 'The 9 | Marble Furniture Collection | ' | append: brand
+        assign seo_title = 'The 9 | Marble Furniture UAE | ' | append: brand
       endif
       if seo_description == blank
-        assign seo_description = 'Nine marble designs for the house. Coffee, side and console tables, cut and finished in our workshop, in the stone you choose.'
+        assign seo_description = 'Nine made-to-order marble designs from our Sharjah factory. Coffee, side and console tables, delivered across the UAE.'
       endif
     endif
     if seo_description == blank
@@ -74,34 +76,36 @@
       assign seo_description = 'Guides on luxury marble furniture, natural stone finishes and interior design from ' | append: brand | append: '.'
     endif
     if page_title == blank or page_title == blog.title or page_title == 'Journal'
-      assign seo_title = brand | append: ' Journal | Luxury Marble & Design'
+      assign seo_title = brand | append: ' Journal | Marble Furniture UAE'
     endif
   elsif request.page_type == 'list-collections'
     # /collections is the canonical collections index, but list-collections has
     # no SEO fields in Admin, so it rendered as bare "Collections" with the
     # generic brand description. The descriptive metadata previously lived on
     # the /pages/collections duplicate that now canonicalises here.
-    assign seo_title = 'Marble Furniture Collections | ' | append: brand
+    assign seo_title = 'Marble Furniture Collections UAE | ' | append: brand
     if seo_description == blank
-      assign seo_description = 'Explore NEROCASA collections, starting with The 9. Coffee tables, side tables and console tables in natural marble, cut in our workshop.'
+      assign seo_description = 'The 9 marble collection from NEROCASA. Coffee, side and console tables made in Sharjah Industrial Area 15 and delivered across the UAE.'
     endif
   elsif request.page_type == 'index'
-    # On the homepage Shopify falls back to the shop name, so page_title is
-    # never blank and the descriptor below never applied — the most valuable
-    # title on the site rendered as bare "NeroCasa". Only an explicit homepage
-    # title set in Online Store > Preferences should win over the descriptor.
-    if page_title == blank or page_title == shop.name
-      assign seo_title = brand | append: ' | Luxury Marble Furniture'
+    if page_title == blank or page_title == shop.name or page_title contains 'Luxury Marble Furniture'
+      assign seo_title = brand | append: ' | Marble Furniture UAE'
     endif
+    unless seo_title contains 'UAE'
+      assign seo_title = brand | append: ' | Marble Furniture UAE'
+    endunless
     if seo_description == blank
       assign seo_description = tagline
     endif
+    unless seo_description contains 'Sharjah' or seo_description contains 'UAE'
+      assign seo_description = tagline
+    endunless
   elsif request.page_type == 'search'
     if page_title == blank
       assign seo_title = 'Search | ' | append: brand
     endif
     if seo_description == blank
-      assign seo_description = 'Search luxury marble coffee tables, console tables, side tables and custom stone furniture from ' | append: brand | append: '.'
+      assign seo_description = 'Search made-to-order marble coffee, side and console tables from ' | append: brand | append: ', made in Sharjah and delivered across the UAE.'
     endif
   endif
 
@@ -109,7 +113,8 @@
     assign seo_description = brand | append: '. ' | append: tagline
   endif
 
-  assign seo_title = seo_title | replace: '| NeroCasa', '| NEROCASA' | replace: '| Nero Casa', '| NEROCASA'
+  assign seo_title = seo_title | replace: '&amp;', '&' | replace: '| NeroCasa', '| NEROCASA' | replace: '| Nero Casa', '| NEROCASA'
+  assign seo_description = seo_description | replace: '&amp;', '&'
 
   if og_image == blank and settings.logo != blank
     assign og_image = settings.logo | image_url: width: 1200
@@ -123,6 +128,9 @@
   # /collections so the two do not compete as duplicates.
   if request.page_type == 'page' and page.template_suffix == 'collections'
     assign page_url = shop.url | append: routes.collections_url
+  endif
+  if request.page_type == 'collection' and collection.handle == 'all'
+    assign page_url = shop.url | append: '/collections/' | append: the_9_handle
   endif
 
   if settings.logo != blank
@@ -143,6 +151,17 @@
       assign og_image_abs = og_image | prepend: 'https:'
     endif
   endif
+
+  assign seo_noindex = false
+  if request.page_type == 'search' or request.page_type == 'cart' or request.page_type == 'gift_card'
+    assign seo_noindex = true
+  endif
+  if request.path contains '/account' or request.path contains '/policies/'
+    assign seo_noindex = true
+  endif
+  if request.page_type == 'collection' and collection.handle == 'all'
+    assign seo_noindex = true
+  endif
 -%}
 
 <title>{{ seo_title | escape }}</title>
@@ -153,8 +172,7 @@
   permutation was a separate indexable URL with no unique content. Keep them
   crawlable (follow) so link equity still reaches the products.
 {%- endcomment -%}
-{%- assign noindex_types = 'search,cart,gift_card' | split: ',' -%}
-{%- if noindex_types contains request.page_type or request.path contains '/account' -%}
+{%- if seo_noindex -%}
 <meta name="robots" content="noindex,follow">
 {%- endif -%}
 
@@ -166,6 +184,7 @@
 {%- if og_image_abs != blank -%}
 <meta property="og:image" content="{{ og_image_abs }}">
 <meta property="og:image:secure_url" content="{{ og_image_abs }}">
+<meta property="og:image:alt" content="{{ seo_title | escape }}">
 {%- endif -%}
 
 <meta name="twitter:card" content="summary_large_image">
@@ -247,7 +266,7 @@
       "priceCurrency": {{ shop.currency | json }},
       "price": {{ variant.price | divided_by: 100.0 }},
       "itemCondition": "https://schema.org/NewCondition",
-      "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+      "availability": "https://schema.org/{% if variant.available %}{% if variant.inventory_quantity > 0 %}InStock{% else %}PreOrder{% endif %}{% else %}OutOfStock{% endif %}",
       "shippingDetails": [{
         "@type": "OfferShippingDetails",
         "@id": {{ shop.url | append: '#shipping-policy' | json }},
@@ -280,10 +299,7 @@
         "@type": "MerchantReturnPolicy",
         "@id": {{ shop.url | append: '#return-policy' | json }},
         "applicableCountry": "AE",
-        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-        "merchantReturnDays": 7,
-        "returnMethod": "https://schema.org/ReturnByMail",
-        "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
         "merchantReturnLink": {{ shop.url | append: '/pages/refunds' | json }}
       }]
       {%- if variant.sku != blank -%},
@@ -355,12 +371,28 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": ["Organization", "FurnitureStore"],
   "name": {{ shop.name | json }},
   "alternateName": {{ brand | json }},
   "url": {{ shop.url | json }},
   "logo": {{ brand_logo | json }},
   "description": {{ tagline | json }},
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "AL SOURAH AL THAHABIA MARBLE AND GRANITE L.L.C",
+    "identifier": "1253846"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": {{ workshop_address | json }},
+    "addressLocality": "Sharjah",
+    "addressRegion": "Sharjah",
+    "addressCountry": "AE"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "United Arab Emirates"
+  },
   {%- assign social_profiles = '' -%}
   {%- if settings.instagram_url != blank -%}
     {%- assign social_profiles = settings.instagram_url -%}
@@ -382,9 +414,11 @@
   {%- endif %}
   "contactPoint": {
     "@type": "ContactPoint",
-    "contactType": "customer service"
+    "contactType": "customer service",
+    "areaServed": "AE",
+    "availableLanguage": ["English", "Arabic"]
     {%- if settings.contact_phone != blank -%},
-    "telephone": {{ settings.contact_phone | json }}
+    "telephone": {{ settings.contact_phone | replace: ' ', '' | json }}
     {%- endif -%}
     {%- if settings.contact_email != blank -%},
     "email": {{ settings.contact_email | json }}
@@ -513,4 +547,69 @@
 }
 </script>
 {%- endif -%}
+{%- endif -%}
+
+{%- if request.page_type == 'collection' and collection and collection.handle != 'all' and collection.products_count > 0 -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": {{ seo_title | json }},
+  "description": {{ seo_description | json }},
+  "url": {{ page_url | json }},
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {%- for list_product in collection.products limit: 24 -%}
+      {
+        "@type": "ListItem",
+        "position": {{ forloop.index }},
+        "name": {{ list_product.title | json }},
+        "url": {{ shop.url | append: list_product.url | json }}
+      }{%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    ]
+  }
+}
+</script>
+{%- endif -%}
+
+{%- if request.page_type == 'list-collections' -%}
+{%- liquid
+  assign coffee_handle_ld = settings.collection_coffee | default: 'coffee-tables'
+  assign side_handle_ld = settings.collection_side | default: 'side-tables'
+  assign console_handle_ld = settings.collection_console | default: 'console-tables'
+  assign coffee_coll_ld = collections[coffee_handle_ld]
+  assign side_coll_ld = collections[side_handle_ld]
+  assign console_coll_ld = collections[console_handle_ld]
+  assign the_9_coll_ld = collections[the_9_handle]
+-%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": {{ seo_title | json }},
+  "url": {{ page_url | json }},
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {%- if the_9_coll_ld != blank -%}
+      { "@type": "ListItem", "position": 1, "name": {{ the_9_coll_ld.title | json }}, "url": {{ shop.url | append: the_9_coll_ld.url | json }} }
+      {%- if coffee_coll_ld != blank or side_coll_ld != blank or console_coll_ld != blank -%},{%- endif -%}
+      {%- endif -%}
+      {%- if coffee_coll_ld != blank -%}
+      { "@type": "ListItem", "position": 2, "name": {{ coffee_coll_ld.title | json }}, "url": {{ shop.url | append: coffee_coll_ld.url | json }} }
+      {%- if side_coll_ld != blank or console_coll_ld != blank -%},{%- endif -%}
+      {%- endif -%}
+      {%- if side_coll_ld != blank -%}
+      { "@type": "ListItem", "position": 3, "name": {{ side_coll_ld.title | json }}, "url": {{ shop.url | append: side_coll_ld.url | json }} }
+      {%- if console_coll_ld != blank -%},{%- endif -%}
+      {%- endif -%}
+      {%- if console_coll_ld != blank -%}
+      { "@type": "ListItem", "position": 4, "name": {{ console_coll_ld.title | json }}, "url": {{ shop.url | append: console_coll_ld.url | json }} }
+      {%- endif -%}
+    ]
+  }
+}
+</script>
 {%- endif -%}

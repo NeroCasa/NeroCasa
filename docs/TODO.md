@@ -23,9 +23,27 @@ Verified against Admin GraphQL + live `www.nerocasa.com` on 2026-09-17.
 - [x] Journal posts given product-slab featured images. 2026-09-17
 - [x] Shipping method renamed to **Free delivery (3 to 7 working days)** (AED 0, Domestic UAE). 2026-09-17
 - [ ] Payments / wallets: Shop Pay / Apple Pay / Google Pay cannot be enabled from this API — owner enables them in Admin → Payments after Shopify Payments is on.
+- [ ] **Google Search Console** — verify `www.nerocasa.com`, submit sitemap, request indexing (home, coffee-tables, Soglia, Why)
+- [ ] **Bing Webmaster** — same sitemap
+- [ ] **Google Business Profile** — NEROCASA, factory Industrial Area 15 Sharjah, service area all UAE
+- [ ] Recrawl homepage so the old GoDaddy “Elegance Redefined” listing dies
+- [ ] Instagram handle vs brand name (`@ncmarbles`) — rename or add a NeroCasa profile if wanted
 - [x] Storefront password wall — live homepage returns the storefront (not a password gate) as of 2026-09-17
 - [x] Theme inventory: NeroCasa/main `#161950105824` live; Atelier `#162217230560` unpublished
 - [x] Theme-authored GA4 / Meta / TikTok pixels — **not** on the live homepage (`content_for_header` still may inject Shopify analytics)
+
+## SEO / listings
+Theme and Admin SEO implemented 2026-09-18: UAE/Sharjah titles, FurnitureStore schema, policy/all noindex, type-collection footer links, factory NAP. Google still has to index the site.
+
+- [x] Add UAE / Sharjah / made-to-order to titles and descriptions
+- [x] Canonical/noindex `/policies/*` and `/collections/all`
+- [x] FurnitureStore JSON-LD; CollectionPage ItemList; made-to-order return schema
+- [x] Contact showroom copy, Track Order international copy, ampersand titles
+- [x] Footer links to coffee / side / console collections
+- [ ] Search Console + Bing: verify domain, submit sitemap, inspect home + Soglia + The 9
+- [ ] Google Business Profile: NEROCASA, Industrial Area 15 Sharjah, service area all UAE
+- [ ] Recrawl homepage so the old GoDaddy “Elegance Redefined” listing dies
+- [ ] Instagram `@ncmarbles` vs brand name — optional rename
 
 
 ## Engineering debt — done 2026-09-17

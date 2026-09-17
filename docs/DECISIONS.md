@@ -4,6 +4,12 @@
 > This exists so future sessions (and future you) don't re-litigate or accidentally reverse a
 > deliberate choice. Newest entries at the top.
 
+### 2026-09-18 — SEO: Sharjah factory, UAE market
+**Context:** Owner asked to implement the SEO audit. Factory is Sharjah Industrial Area 15; they sell and deliver across the UAE; they are online only (no showroom).
+**Decision:** Use UAE and Sharjah in titles, not a fake Dubai showroom. Keep “marble coffee table Dubai” competitors in mind via UAE + delivery copy. Schema is FurnitureStore with that NAP. `/policies/*` and `/collections/all` noindex so they do not compete with theme pages.
+**Alternatives considered:** Put Dubai in every title (search demand) — rejected because the factory is not in Dubai.
+**Consequences:** Rankings still wait on Search Console and Google Business Profile, which the theme cannot do.
+
 ### 2026-09-17 — Name URLs, Gmail, README index
 **Context:** Owner asked to finish Admin leftovers, use `nerocasamarbles@gmail.com` everywhere, asked why GitHub showed `AGENTS.md` as the repo index, and why `/products/cft-1` did not match the product name Soglia.
 **Decision:** Change product handles to the piece names and 301 the SKU URLs. Keep SKUs as variant SKUs. Theme dual-matches both handles. Add `README.md` as the GitHub homepage; leave `AGENTS.md` as agent instructions. `.shopifyignore` so those files never upload as theme assets.

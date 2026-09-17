@@ -20,7 +20,7 @@
         "type": "textarea",
         "id": "brand_tagline",
         "label": "Tagline",
-        "default": "Real marble furniture. From our factory to your home."
+        "default": "Real marble furniture. From our Sharjah factory to homes across the UAE."
       },
       {
         "type": "image_picker",
@@ -87,6 +87,13 @@
         "id": "whatsapp_url",
         "label": "WhatsApp link override",
         "info": "Optional. Leave empty to auto-build from WhatsApp number, e.g. https://wa.me/971568788789"
+      },
+      {
+        "type": "text",
+        "id": "workshop_address",
+        "label": "Factory address",
+        "default": "Industrial Area 15, Sharjah, United Arab Emirates",
+        "info": "Public NAP for schema and the contact page. We deliver across the UAE."
       }
     ]
   },

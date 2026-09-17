@@ -16,6 +16,7 @@
 | Shopify Admin / CLI | Outbound from `scripts/*.mjs` | Shopify CLI / Admin (not storefront) | CLI auth or `SHOPIFY_ADMIN_TOKEN` | Catalog setup scripts | Not used at runtime on the site |
 | WhatsApp | Outbound link | `wa.me` via `nc-whatsapp-link` / `nc-contact-whatsapp` | None | Header/footer/contact/custom | Phone from settings |
 | Store email | Outbound mailto | `nerocasamarbles@gmail.com` | None | Theme settings, legal pages, checkout copy | Shop `email` / `contactEmail` already this address |
+| NAP / schema | Outbound JSON-LD | FurnitureStore + Organization in `nc-meta-tags` | None | Homepage | Factory Industrial Area 15, Sharjah; areaServed UAE |
 
 ## Webhooks
 | Name | Trigger | Handler location | Notes |

@@ -5,7 +5,7 @@
       <img
         class="ncs-home-hero-photo"
         src="{{ home_hero | image_url: width: 2400 }}"
-        alt=""
+        alt="{{ settings.brand_name | default: 'NEROCASA' }} marble furniture, made in Sharjah and delivered across the UAE"
         width="2400"
         height="1600"
         fetchpriority="high"
@@ -41,7 +41,13 @@
       {%- assign home_collection_heading = section.settings.collection_heading | default: 'The 9' -%}
       <h2>{% render 'nc-title-gold', title: home_collection_heading %}</h2>
       {%- capture cta_view_all -%}{{ 'actions.view_all' | t }}{%- endcapture -%}
-      <a href="{% render 'nc-collections-index-url' %}">{% render 'nc-title-gold', title: cta_view_all %}</a>
+      {%- assign the_9_home_handle = settings.collection_the_9 | default: 'the-9' -%}
+      {%- assign the_9_home = collections[the_9_home_handle] -%}
+      {%- if the_9_home != blank -%}
+        <a href="{{ the_9_home.url }}">{% render 'nc-title-gold', title: cta_view_all %}</a>
+      {%- else -%}
+        <a href="{% render 'nc-collections-index-url' %}">{% render 'nc-title-gold', title: cta_view_all %}</a>
+      {%- endif -%}
     </header>
     <div class="ncs-grid-products">
       {%- assign home_coffee = all_products['monolite'] -%}

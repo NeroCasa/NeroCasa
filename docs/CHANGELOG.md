@@ -3,6 +3,16 @@
 > Dated, human-readable log of what the agent actually changed, session by session. This is for
 > project memory, not a marketing changelog — be specific about files and behavior touched.
 
+### 2026-09-18
+- Changed: Applied SEO audit. Titles/descriptions use UAE + Sharjah factory (not Dubai showroom). FurnitureStore schema, CollectionPage ItemList, PreOrder + MerchantReturnNotPermitted, noindex on `/policies/*` and `/collections/all`. Contact/Track/About/B2B/Custom H1s and factory copy. Footer type-collection links. Admin SEO via `scripts/optimize-store-seo.mjs`.
+- Verified: `node scripts/test-storefront.mjs`; live titles after theme push.
+- Follow-up: Owner must submit Search Console, Bing, Google Business Profile (Industrial Area 15, Sharjah; service area UAE).
+
+### 2026-09-17
+- Changed: SEO and listings audit of live `www.nerocasa.com` (titles, descriptions, canonicals, JSON-LD, robots, sitemap) plus Google/web presence. Findings in `docs/TODO.md`. Storefront files not edited.
+- Verified: HTTP GET of 28 URLs; Admin product/collection SEO fields; Google `site:www.nerocasa.com` (no hits); apex `nerocasa.com` 301 to www.
+- Follow-up: Indexing, GBP, geo titles, policy duplicates, LocalBusiness schema — implement when asked.
+
 ### 2026-09-17
 - Changed: Product URLs use piece names (`/products/soglia` not `/products/cft-1`); old SKU URLs redirect. Theme matches both handles via `nc-catalog-code`. All store/theme emails are `nerocasamarbles@gmail.com`. GitHub index is `README.md` so `AGENTS.md` is no longer the repo homepage; `.shopifyignore` keeps agent files out of the theme zip. Unpublished `/pages/collections`, deleted empty News, renamed Terms/Refunds, journal featured images, shipping label “Free delivery (3 to 7 working days)”. Shop Pay/wallets still Admin-only.
 - Verified: Admin GraphQL product handles; shipping mutation; `node scripts/test-storefront.mjs`; live `/products/soglia` and `/products/cft-1` redirect.
