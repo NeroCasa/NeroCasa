@@ -1,6 +1,14 @@
 <!doctype html>
 <html lang="{{ request.locale.iso_code }}">
 <head>
+  {%- comment -%} Google tag GT-PJ46R9SC — Search Console / Google. One per page. Do not add a second gtag. {%- endcomment -%}
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GT-PJ46R9SC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GT-PJ46R9SC');
+  </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="{{ settings.background | default: '#080807' }}">
