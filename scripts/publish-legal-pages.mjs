@@ -22,7 +22,7 @@ const TERMS_BODY = `
 <p>For the purposes of these Terms, <strong>"NeroCasa", "Nero Casa", "we", "us", and "our"</strong> refer to NeroCasa and the business operating the website and providing the products and services described on it.</p>
 <p><strong>Business Name:</strong> NeroCasa<br>
 <strong>Website:</strong> <a href="https://nerocasa.com/">https://nerocasa.com/</a><br>
-<strong>Email:</strong> <a href="mailto:nerocasamarbles@gmail.com">nerocasamarbles@gmail.com</a><br>
+<strong>Email:</strong> <a href="mailto:info@nerocasa.com">info@nerocasa.com</a><br>
 <strong>Phone / WhatsApp:</strong> +971 50 858 8828<br>
 <strong>Country of Operation:</strong> United Arab Emirates<br>
 <strong>Owning Company:</strong> AL SOURAH AL THAHABIA MARBLE &amp; GRANITE L.L.C<br>
@@ -466,7 +466,7 @@ const TERMS_BODY = `
 <h2>40. CONTACT US</h2>
 <p>For questions regarding these Terms, an order, a product, a custom design, delivery, installation, returns, or any other NeroCasa service, please contact us:</p>
 <p><strong>NeroCasa</strong></p>
-<p><strong>Email:</strong> <a href="mailto:nerocasamarbles@gmail.com">nerocasamarbles@gmail.com</a><br>
+<p><strong>Email:</strong> <a href="mailto:info@nerocasa.com">info@nerocasa.com</a><br>
 <strong>Phone / WhatsApp:</strong> +971 50 858 8828<br>
 <strong>Website:</strong> <a href="https://nerocasa.com/">https://nerocasa.com/</a></p>
 <p><strong>Owned and backed by:</strong><br>
@@ -763,7 +763,7 @@ const REFUND_BODY = `
 <p><strong>NeroCasa</strong><br>
 United Arab Emirates</p>
 <p><strong>Website:</strong> <a href="https://nerocasa.com/">https://nerocasa.com/</a><br>
-<strong>Email:</strong> <a href="mailto:nerocasamarbles@gmail.com">nerocasamarbles@gmail.com</a><br>
+<strong>Email:</strong> <a href="mailto:info@nerocasa.com">info@nerocasa.com</a><br>
 <strong>Phone / WhatsApp:</strong> +971 50 858 8828</p>
 
 <h2>21. CHANGES TO THIS POLICY</h2>

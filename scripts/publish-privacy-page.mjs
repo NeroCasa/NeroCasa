@@ -93,7 +93,7 @@ const PRIVACY_BODY = `
 <p>We may update this Privacy Policy from time to time, including to reflect changes to our practices or for other operational, legal, or regulatory reasons. We will post the revised Privacy Policy on this website, update the "Last updated" date and provide notice as required by applicable law.</p>
 
 <h2>Contact</h2>
-<p>Should you have any questions about our privacy practices or this Privacy Policy, or if you would like to exercise any of the rights available to you, please call <a href="tel:+971508588828">+971 50 858 8828</a> or email us at <a href="mailto:nerocasamarbles@gmail.com">nerocasamarbles@gmail.com</a> or contact us at Sharjah, United Arab Emirates.</p>
+<p>Should you have any questions about our privacy practices or this Privacy Policy, or if you would like to exercise any of the rights available to you, please call <a href="tel:+971508588828">+971 50 858 8828</a> or email us at <a href="mailto:info@nerocasa.com">info@nerocasa.com</a> or contact us at Sharjah, United Arab Emirates.</p>
 `.trim();
 
 function execute(query, variables, allowMutations = false) {

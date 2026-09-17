@@ -1,0 +1,20 @@
+query ContactEmailAudit {
+  shop {
+    email
+    contactEmail
+  }
+  pages(first: 50) {
+    nodes {
+      id
+      handle
+      body
+    }
+  }
+  articles(first: 50) {
+    nodes {
+      id
+      handle
+      body
+    }
+  }
+}

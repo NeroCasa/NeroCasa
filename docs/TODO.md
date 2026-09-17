@@ -23,6 +23,7 @@ Verified against Admin GraphQL + live `www.nerocasa.com` on 2026-09-17.
 - [x] Journal posts given product-slab featured images. 2026-09-17
 - [x] Shipping method renamed to **Free delivery (3 to 7 working days)** (AED 0, Domestic UAE). 2026-09-17
 - [ ] Payments / wallets: Shop Pay / Apple Pay / Google Pay cannot be enabled from this API — owner enables them in Admin → Payments after Shopify Payments is on.
+- [ ] **Notifications** — In Admin → Notifications → **Customize**: logo + accent `#A57B00`. Do not replace Shopify’s 3k-line templates. Optional copy search-replace in `CHECKOUT-SETUP.md` §3.
 - [x] Google tag `GT-PJ46R9SC` in `layout/theme.liquid` (after `<head>`). No Meta / TikTok. Shopify analytics still via `content_for_header`. 2026-09-18
 - [x] **Google Search Console** — owner submitted sitemap + requested indexing (home, coffee-tables, Soglia, Why). Tag `GT-PJ46R9SC` is live. Public `site:www.nerocasa.com` still empty 2026-09-18 — wait for Google, do not re-request those URLs.
 - [ ] **Bing Webmaster** — same sitemap

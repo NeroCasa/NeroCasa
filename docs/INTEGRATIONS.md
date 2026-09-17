@@ -15,7 +15,8 @@
 | Shopify Ajax Cart | Outbound from storefront | `/cart/add.js`, `/cart.js`, `/cart/update.js` | Session cookie | `assets/nerocasa.js`, `sections/ncs-cart.liquid` | Native cart JSON |
 | Shopify Admin / CLI | Outbound from `scripts/*.mjs` | Shopify CLI / Admin (not storefront) | CLI auth or `SHOPIFY_ADMIN_TOKEN` | Catalog setup scripts | Not used at runtime on the site |
 | WhatsApp | Outbound link | `wa.me` via `nc-whatsapp-link` / `nc-contact-whatsapp` | None | Header/footer/contact/custom | Phone from settings |
-| Store email | Outbound mailto | `nerocasamarbles@gmail.com` | None | Theme settings, legal pages, checkout copy | Shop `email` / `contactEmail` already this address |
+| Store email | Outbound mailto | `info@nerocasa.com` | None | Theme settings, legal pages, checkout copy | Admin `contactEmail` is this address. Admin `shop.email` (notification sender) is still the old Gmail — GraphQL has no `shopUpdate`; change it in Settings → Store details if it should match. |
+| Shopify customer notifications | Outbound email | Admin → Settings → Notifications | Merchant Admin | Order/shipping/invoice mail | Not in the theme. Brand via Customize (logo + `#A57B00`). Admin GraphQL cannot write templates. |
 | NAP / schema | Outbound JSON-LD | FurnitureStore + Organization in `nc-meta-tags` | None | Homepage | Factory Industrial Area 15, Sharjah; areaServed UAE |
 
 ## Webhooks

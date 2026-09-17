@@ -31,7 +31,7 @@
 - Product gallery `.ncs-main-product-image img` must stay natural ratio / `object-fit: contain` (never cover-crop). Card tiles `.ncs-fit-img img` use `object-fit: cover`.
 - Catalog of 9 products (`soglia` Soglia, `equilibrio` Equilibrio, `monolite` Monolite; `galleria` Galleria, `passaggio` Passaggio, `atrio` Atrio; `nodo` Nodo, `punto` Punto, `scalino` Scalino). Legacy SKU URLs (`cft-1` …) redirect. Collections `coffee-tables`, `side-tables`, `console-tables`, `the-9`. Do not restructure catalog or The 9 membership unless asked.
 - Locked public copy observed in code/settings: hero “Furniture in stone”; home heading “The 9”; CTAs “Our collection”; collection “The 9”.
-- Contacts in theme settings defaults: WhatsApp `+971 56 878 8789`, phone `+971 50 858 8828`, email `nerocasamarbles@gmail.com`. Factory: Industrial Area 15, Sharjah. Delivery: UAE-wide.
+- Contacts in theme settings defaults: WhatsApp `+971 56 878 8789`, phone `+971 50 858 8828`, email `info@nerocasa.com`. Factory: Industrial Area 15, Sharjah. Delivery: UAE-wide.
 - Cart/checkout is Shopify native plus theme AJAX add-to-cart in `assets/nerocasa.js`. Do not change payment/checkout unless asked.
 - `/collections` lists The 9 only; type collections coffee/side/console are tiles on The 9 collection template (`templates/collection.the-9.json`). Only-child index tile caps at 480px. Marble hero stays on.
 - `templates/*.json` are merchant-editable; do not overwrite carelessly.

@@ -13,7 +13,7 @@ const store = process.argv[2] || process.env.SHOPIFY_FLAG_STORE || process.env.S
 const isWin = platform() === 'win32';
 const shopifyCmd = isWin ? 'shopify.cmd' : 'shopify';
 const SCOPES = 'write_content,read_content,write_shop';
-const EMAIL = 'nerocasamarbles@gmail.com';
+const EMAIL = 'info@nerocasa.com';
 const INSTAGRAM = 'https://www.instagram.com/ncmarbles/';
 
 if (!store) {
@@ -59,7 +59,7 @@ console.log(`Updating store settings on ${store} ...\n`);
 ensureAuth();
 
 // Shop contact email cannot be updated via Store GraphQL execute API — set manually in
-// Admin → Settings → Store details → Store contact email: nerocasamarbles@gmail.com
+// Admin → Settings → Store details → Store contact email: info@nerocasa.com
 console.log('  · shop contact email: set manually in Admin → Settings → Store details');
 
 const seoMutation = `mutation SeoMetafields($metafields: [MetafieldsSetInput!]!) {

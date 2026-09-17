@@ -4,6 +4,19 @@
 > project memory, not a marketing changelog — be specific about files and behavior touched.
 
 ### 2026-09-18
+- Changed: Store contact email is `info@nerocasa.com` everywhere current (theme settings, snippet default, Custom page default, README, checkout/legal scripts). Live Admin bodies for `/pages/terms`, `/pages/refunds`, `/pages/privacy` replaced via `pageUpdate`. Historical changelog/decision entries still mention the old Gmail as what was true then.
+- Verified: `node scripts/test-storefront.mjs`; live theme `#161950105824` pushed (`settings_data`, `settings_schema`, `nc-contact-email`, `ncs-custom-page`); homepage, contact, terms, refunds, privacy, B2B, and track-order all show `info@nerocasa.com` with no Gmail.
+- Follow-up: Admin `shop.email` (order-mail From) cannot be changed via GraphQL; owner must set Store details sender if it still shows Gmail.
+
+### 2026-09-18
+- Changed: Removed the `notifications/` Liquid files that were a visual reference for Admin emails. Owner will brand via Notifications → Customize instead of replacing 3k-line templates.
+- Verified: Folder deleted; `.shopifyignore` no longer lists `notifications/*`.
+- Follow-up: Owner sets logo + accent `#A57B00` in Admin → Notifications → Customize.
+
+### 2026-09-18
+- Changed: Wrote NeroCasa-branded Shopify **notification** Liquid then deleted it (owner request). Public Admin API has no EmailTemplate type.
+
+### 2026-09-18
 - Changed: Installed Google tag `GT-PJ46R9SC` immediately after `<head>` in `layout/theme.liquid` (Search Console snippet). One loader, `async`. Cart/checkout, CASA, Custom, password wall, gift card layout untouched.
 - Verified: `node scripts/test-storefront.mjs`; live homepage HTML contains the tag after theme push.
 - Follow-up: Owner finishes Search Console verify + sitemap + URL inspection. Do not add a second Google tag.

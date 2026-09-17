@@ -4,6 +4,18 @@
 > This exists so future sessions (and future you) don't re-litigate or accidentally reverse a
 > deliberate choice. Newest entries at the top.
 
+### 2026-09-18 — Store email is info@nerocasa.com
+**Context:** Owner changed the mailbox to `info@nerocasa.com` and asked to update the whole site.
+**Decision:** Theme `contact_email` setting, snippet fallback, Custom schema default, and legal/setup scripts all use `info@nerocasa.com`. Forms still go through Shopify contact (inbox follows Admin sender). Footer/contact/B2B/Track read the setting.
+**Alternatives considered:** Leave Gmail as a fallback in the snippet — rejected; one address only.
+**Consequences:** Old Gmail still works if they keep the mailbox; the site no longer publishes it.
+
+### 2026-09-18 — Notification emails are Admin Liquid, not theme
+**Context:** Owner asked to restyle Settings → Notifications (order confirmation, draft invoice, shipping, order invoice, everything) to match the storefront.
+**Decision:** Do not keep custom notification Liquid in the repo. Shopify’s live templates are ~3k lines; replacing them loses payment/gift-card/B2B logic. Public Admin API has no `EmailTemplate` type.
+**Alternatives considered:** Full branded Liquid in `notifications/` (deleted 2026-09-18 at owner request); internal `emailTemplateUpdate`.
+**Consequences:** Owner uses Notifications → Customize (logo + `#A57B00`) and optional copy search-replace.
+
 ### 2026-09-18 — Google tag in theme.liquid, not GTM
 **Context:** Owner pasted Google’s `GT-PJ46R9SC` install screen (Shopify CMS path) and asked to install it after confirming it does not change the look of the site.
 **Decision:** One `gtag.js` snippet immediately after `<head>` in `layout/theme.liquid`. Do not add Google Tag Manager, do not duplicate in gift-card or password layouts, do not add the same ID in Shopify Admin pixels.

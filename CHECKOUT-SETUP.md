@@ -46,7 +46,7 @@ We will contact you on WhatsApp if we need to confirm marble, size, or delivery 
 
 Your order confirmation email is your receipt. It includes your order number, what you bought, and the total paid (VAT included). Keep it for tracking and warranty.
 
-Questions? WhatsApp us or email nerocasamarbles@gmail.com
+Questions? WhatsApp us or email info@nerocasa.com
 ```
 
 **Branding:** background `#080807`, accent `#A57B00`, NeroCasa logo.
@@ -67,8 +67,15 @@ Guests get a bill **without an account**:
 
 **Set notification email:**
 
-- **Settings → Store details** → contact email: `nerocasamarbles@gmail.com`
-- **Settings → Notifications** → Order confirmation — add: *This email is your receipt. Total includes VAT where applicable.*
+- **Settings → Store details** → contact email: `info@nerocasa.com`
+- **Do not replace the 3k-line Shopify notification templates.** They contain payment terms, gift cards, and B2B logic.
+- **Settings → Notifications → Customer notifications → Customize** — upload the NEROCASA logo, accent `#A57B00`. That is what themes every customer email.
+- Optional copy tweaks in **Edit code** (search, don’t replace the whole file):
+  - `Thank you for your purchase!` → `Your NEROCASA order is confirmed`
+  - `We're getting your order ready to be shipped. We will notify you when it has been sent.` → `Every piece is made when you order. Production and delivery across the UAE usually take 3 to 7 working days. This email is your receipt.`
+  - Footer `If you have any questions, reply to this email or contact us at` — leave `{{ shop.email }}`; add after that paragraph: Factory Industrial Area 15, Sharjah · WhatsApp +971 56 878 8789 · https://www.nerocasa.com/pages/track-order
+
+Direct: https://admin.shopify.com/store/zhjbdz-yw/settings/notifications
 
 ---
 
