@@ -39,6 +39,15 @@
       <div>
         <span class="nc-footer-nav-label">Explore</span>
         <a href="{% render 'nc-collections-index-url' %}">Collections</a>
+        {%- assign foot_coffee_handle = settings.collection_coffee | default: 'coffee-tables' -%}
+        {%- assign foot_side_handle = settings.collection_side | default: 'side-tables' -%}
+        {%- assign foot_console_handle = settings.collection_console | default: 'console-tables' -%}
+        {%- assign foot_coffee = collections[foot_coffee_handle] -%}
+        {%- assign foot_side = collections[foot_side_handle] -%}
+        {%- assign foot_console = collections[foot_console_handle] -%}
+        {%- if foot_coffee != blank -%}<a href="{{ foot_coffee.url }}">Coffee tables</a>{%- endif -%}
+        {%- if foot_side != blank -%}<a href="{{ foot_side.url }}">Side tables</a>{%- endif -%}
+        {%- if foot_console != blank -%}<a href="{{ foot_console.url }}">Console tables</a>{%- endif -%}
         <a href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}">Custom</a>
         <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B</a>
         <a href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}">Why Nerocasa</a>
@@ -72,6 +81,8 @@
         {{ settings.brand_name | default: 'NEROCASA' }} is owned and backed by
         <strong>AL SOURAH AL THAHABIA MARBLE &amp; GRANITE L.L.C</strong>
         · Trade Licence <strong>1253846</strong>
+        · Factory {{ settings.workshop_address | default: 'Industrial Area 15, Sharjah' }}
+        · Delivery across the UAE
       </p>
     </div>
     <div class="nc-footer-legal">
