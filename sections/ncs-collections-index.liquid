@@ -35,7 +35,7 @@
     right_image: section.settings.hero_slab_right
   %}
 
-  <div class="ncs-collections-list ncs-collections-list--grid{% unless show_type_tiles %} ncs-collections-list--featured{% endunless %}">
+  <div class="ncs-collections-list ncs-collections-list--grid">
     {%- if show_type_tiles -%}
       {%- assign skip = ',all,' | append: the_9_handle | append: ',' -%}
       {%- if coffee_coll != blank -%}
@@ -51,22 +51,9 @@
         {%- assign skip = skip | append: console_handle | append: ',' -%}
       {%- endif -%}
     {%- else -%}
-      {%- assign skip = ',all,' | append: coffee_handle | append: ',' | append: side_handle | append: ',' | append: console_handle | append: ',' | append: the_9_handle | append: ',' -%}
       {%- if the_9_coll != blank -%}
         {% render 'nc-collection-tile', collection: the_9_coll, cover: section.settings.cover_the_9, cover_product_handle: 'cft-3', cover_marble: 'Rosso Levanto' %}
       {%- endif -%}
-      {%- if coffee_coll != blank -%}
-        {% render 'nc-collection-tile', collection: coffee_coll, cover: section.settings.cover_coffee, subtitle: section.settings.coffee_subtitle %}
-      {%- endif -%}
-      {%- if side_coll != blank -%}
-        {% render 'nc-collection-tile', collection: side_coll, cover: section.settings.cover_side, subtitle: section.settings.side_subtitle %}
-      {%- endif -%}
-      {%- for collection in collections -%}
-        {%- assign needle = ',' | append: collection.handle | append: ',' -%}
-        {%- unless skip contains needle -%}
-          {% render 'nc-collection-tile', collection: collection %}
-        {%- endunless -%}
-      {%- endfor -%}
     {%- endif -%}
   </div>
 </section>
