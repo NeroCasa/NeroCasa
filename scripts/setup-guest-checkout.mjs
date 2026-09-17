@@ -49,7 +49,7 @@ We will contact you on WhatsApp if we need to confirm marble, size, or delivery 
 
 Your order confirmation email is your receipt. It includes your order number, what you bought, and the total paid (VAT included). Keep it for tracking and warranty.
 
-Questions? WhatsApp us or email info@nerocasa.com`;
+Questions? WhatsApp us or email nerocasamarbles@gmail.com`;
 
 const CHECKOUT_BANNER = `Use your WhatsApp number in the phone field so we can reach you about your order.`;
 
@@ -134,7 +134,7 @@ What the customer receives:
   • VAT — your prices already include standard VAT (taxesIncluded: ${shop.taxesIncluded ? 'on' : 'off'})
 
 What you should set in Admin:
-  1. Settings → Store details → Store contact email: info@nerocasa.com
+  1. Settings → Store details → Store contact email: nerocasamarbles@gmail.com
   2. Settings → Notifications → Order confirmation — review template
      Add a line: "Total includes VAT where applicable. This email is your receipt."
   3. Optional: from any order in Admin → Send invoice (PDF) if a client asks formally

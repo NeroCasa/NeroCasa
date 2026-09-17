@@ -44,9 +44,12 @@
       <a href="{% render 'nc-collections-index-url' %}">{% render 'nc-title-gold', title: cta_view_all %}</a>
     </header>
     <div class="ncs-grid-products">
-      {%- assign home_coffee = all_products['cft-3'] -%}
-      {%- assign home_side = all_products['sd-1'] -%}
-      {%- assign home_console = all_products['cs-1'] -%}
+      {%- assign home_coffee = all_products['monolite'] -%}
+      {%- if home_coffee == blank -%}{%- assign home_coffee = all_products['cft-3'] -%}{%- endif -%}
+      {%- assign home_side = all_products['nodo'] -%}
+      {%- if home_side == blank -%}{%- assign home_side = all_products['sd-1'] -%}{%- endif -%}
+      {%- assign home_console = all_products['galleria'] -%}
+      {%- if home_console == blank -%}{%- assign home_console = all_products['cs-1'] -%}{%- endif -%}
       {%- if home_coffee != blank -%}
         {% render 'nc-catalog-card', shop_product: home_coffee, reveal_delay: 0 %}
       {%- endif -%}

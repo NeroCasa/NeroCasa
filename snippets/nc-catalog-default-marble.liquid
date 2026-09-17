@@ -4,13 +4,13 @@
 {%- endcomment -%}
 {%- liquid
   case handle
-    when 'cft-1', 'cs-2', 'sd-3'
+    when 'cft-1', 'soglia', 'cs-2', 'passaggio', 'sd-3', 'scalino'
       echo 'Ibiza White'
-    when 'cft-2', 'cs-3', 'sd-1'
+    when 'cft-2', 'equilibrio', 'cs-3', 'atrio', 'sd-1', 'nodo'
       echo 'Armani Grey'
-    when 'cft-3'
+    when 'cft-3', 'monolite'
       echo 'Rosso Levanto'
-    when 'cs-1', 'sd-2'
+    when 'cs-1', 'galleria', 'sd-2', 'punto'
       echo 'Travertine'
     else
       echo 'Ibiza White'

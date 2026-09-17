@@ -1,0 +1,12 @@
+# Ignore non-theme files so they never become storefront/theme assets.
+AGENTS.md
+README.md
+docs/*
+.cursor/*
+scripts/*
+SETUP.md
+CHECKOUT-SETUP.md
+MANUAL-ADMIN-SETUP.md
+.git/*
+.github/*
+node_modules/*

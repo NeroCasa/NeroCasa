@@ -17,7 +17,7 @@
 - **Package manager:** None for the theme. Shopify CLI (`shopify theme push`, `shopify theme check`) used operationally.
 - **Build/dev tooling:** CSS is authored in `assets/nerocasa.css.liquid`. Integrity checks: `node scripts/test-storefront.mjs`. Theme Check still reports split hero-shell snippets and RemoteAsset warnings.
 - **Hosting / deployment target:** Shopify Online Store. Store domain observed in scripts/docs: `zhjbdz-yw.myshopify.com`. Public site: `www.nerocasa.com` (from prior operational use; not hardcoded as canonical in `theme.liquid`). GitHub: `https://github.com/NeroCasa/NeroCasa` (from theme_info).
-- **Repository layout notes:** Custom `ncs-*` sections and `nc-*` snippets rather than Dawn. Extra top-level `scripts/`, `SETUP.md`, `CHECKOUT-SETUP.md`, `MANUAL-ADMIN-SETUP.md`. Agent system lives at repo root: `AGENTS.md`, `docs/`, `.cursor/skills/` (skills are tracked; other `.cursor/` files stay gitignored).
+- **Repository layout notes:** Custom `ncs-*` sections and `nc-*` snippets rather than Dawn. Extra top-level `scripts/`, `SETUP.md`, `CHECKOUT-SETUP.md`, `MANUAL-ADMIN-SETUP.md`. Public GitHub homepage is `README.md`. Agent system lives at repo root: `AGENTS.md`, `docs/`, `.cursor/skills/` (skills are tracked; other `.cursor/` files stay gitignored). `.shopifyignore` keeps those files out of theme uploads.
 
 ## Environments
 | Environment | URL / target | Notes |
@@ -29,7 +29,7 @@
 ## Key Constraints
 - Brand gold `#A57B00`, background `#080807`. Do not restyle gold CASA / “Custom” wording / nav labels unless asked.
 - Product gallery `.ncs-main-product-image img` must stay natural ratio / `object-fit: contain` (never cover-crop). Card tiles `.ncs-fit-img img` use `object-fit: cover`.
-- Catalog of 9 products (`cft-1` Soglia, `cft-2` Equilibrio, `cft-3` Monolite; `cs-1` Galleria, `cs-2` Passaggio, `cs-3` Atrio; `sd-1` Nodo, `sd-2` Punto, `sd-3` Scalino) and collections `coffee-tables`, `side-tables`, `console-tables`, `the-9`. Do not restructure catalog or The 9 membership unless asked.
+- Catalog of 9 products (`soglia` Soglia, `equilibrio` Equilibrio, `monolite` Monolite; `galleria` Galleria, `passaggio` Passaggio, `atrio` Atrio; `nodo` Nodo, `punto` Punto, `scalino` Scalino). Legacy SKU URLs (`cft-1` …) redirect. Collections `coffee-tables`, `side-tables`, `console-tables`, `the-9`. Do not restructure catalog or The 9 membership unless asked.
 - Locked public copy observed in code/settings: hero “Furniture in stone”; home heading “The 9”; CTAs “Our collection”; collection “The 9”.
 - Contacts in theme settings defaults: WhatsApp `+971 56 878 8789`, phone `+971 50 858 8828`, email `nerocasamarbles@gmail.com`.
 - Cart/checkout is Shopify native plus theme AJAX add-to-cart in `assets/nerocasa.js`. Do not change payment/checkout unless asked.

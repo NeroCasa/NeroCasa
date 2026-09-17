@@ -5,11 +5,11 @@
 {%- endcomment -%}
 {%- liquid
   case handle
-    when 'cft-1'
+    when 'cft-1', 'soglia'
       echo 'Ibiza White:ibiza-white|Armani Grey:armani-grey|Travertine:travertine|Rosso Levanto:rosso-levanto'
-    when 'cft-2', 'cs-1', 'cs-2', 'cs-3', 'sd-1', 'sd-2', 'sd-3'
+    when 'cft-2', 'equilibrio', 'cs-1', 'galleria', 'cs-2', 'passaggio', 'cs-3', 'atrio', 'sd-1', 'nodo', 'sd-2', 'punto', 'sd-3', 'scalino'
       echo 'Ibiza White:ibiza-white|Armani Grey:armani-grey|Travertine:travertine'
-    when 'cft-3'
+    when 'cft-3', 'monolite'
       echo 'Ibiza White:ibiza-white|Travertine:travertine|Rosso Levanto:rosso-levanto'
     else
       echo 'Ibiza White:ibiza-white|Armani Grey:armani-grey|Travertine:travertine'

@@ -37,25 +37,25 @@ Create **9 products** in **Products → Add product**. Each needs a **URL handle
 
 | Product title | Handle | Marble variants (option name: **Marble**) |
 |---------------|--------|-------------------------------------------|
-| Soglia | `cft-1` | Ibiza White, Armani Grey, Travertine |
-| Equilibrio | `cft-2` | Ibiza White, Armani Grey, Travertine |
-| Monolite | `cft-3` | Ibiza White, Travertine, Rosso Levanto |
+| Soglia | `soglia` (legacy `cft-1`) | Ibiza White, Armani Grey, Travertine |
+| Equilibrio | `equilibrio` (legacy `cft-2`) | Ibiza White, Armani Grey, Travertine |
+| Monolite | `monolite` (legacy `cft-3`) | Ibiza White, Travertine, Rosso Levanto |
 
 ### Console Tables — collection `console-tables`
 
 | Product title | Handle | Marble variants |
 |---------------|--------|-----------------|
-| Galleria | `cs-1` | Ibiza White, Armani Grey, Travertine |
-| Passaggio | `cs-2` | Ibiza White, Armani Grey, Travertine |
-| Atrio | `cs-3` | Ibiza White, Armani Grey, Travertine |
+| Galleria | `galleria` (legacy `cs-1`) | Ibiza White, Armani Grey, Travertine |
+| Passaggio | `passaggio` (legacy `cs-2`) | Ibiza White, Armani Grey, Travertine |
+| Atrio | `atrio` (legacy `cs-3`) | Ibiza White, Armani Grey, Travertine |
 
 ### Side Tables — collection `side-tables`
 
 | Product title | Handle | Marble variants |
 |---------------|--------|-----------------|
-| Nodo | `sd-1` | Ibiza White, Armani Grey, Travertine |
-| Punto | `sd-2` | Ibiza White, Armani Grey, Travertine |
-| Scalino | `sd-3` | Ibiza White, Armani Grey, Travertine |
+| Nodo | `nodo` (legacy `sd-1`) | Ibiza White, Armani Grey, Travertine |
+| Punto | `punto` (legacy `sd-2`) | Ibiza White, Armani Grey, Travertine |
+| Scalino | `scalino` (legacy `sd-3`) | Ibiza White, Armani Grey, Travertine |
 
 **Color names must match exactly** (the theme maps images to these):
 

@@ -59,7 +59,7 @@ ok(/form 'contact'/.test(b2b), 'B2B uses native contact form');
 const js = read('assets/nerocasa.js');
 ok(/\/cart\/add\.js/.test(js), 'AJAX cart add remains');
 
-const locales = JSON.parse(read('locales/en.default.json'));
+const locales = JSON.parse(read('locales/en.default.json').replace(/\/\*[\s\S]*?\*\//g, ''));
 ok(locales.nav && locales.nav.custom === 'Custom', 'locales keep Custom nav label');
 ok(locales.actions && locales.actions.our_collection === 'Our collection', 'locales keep Our collection');
 
@@ -76,7 +76,11 @@ ok(/the_9_coll/.test(indexElse) && !/coffee_coll/.test(indexElse), 'index else b
 const blog = read('sections/ncs-blog.liquid');
 ok(/fallback_slabs/.test(blog), 'journal cards have media fallback');
 
-ok(exists('.cursor/rules/always-use-skills.mdc'), 'always-use-skills rule exists');
+ok(exists('snippets/nc-catalog-code.liquid'), 'catalog handle alias snippet exists');
+ok(/all_products\['monolite'\]/.test(read('sections/ncs-store-home.liquid')), 'home prefers named product handles');
+ok(/assign emitted = false/.test(read('snippets/nc-catalog-search-index.liquid')), 'search index commas skip blank handles');
+ok(/nerocasamarbles@gmail\.com/.test(read('config/settings_data.json')), 'theme contact email is gmail');
+ok(exists('README.md'), 'README exists so GitHub is not AGENTS.md');
 
 if (failed) {
   console.error('\n' + failed + ' check(s) failed');

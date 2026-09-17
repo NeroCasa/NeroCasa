@@ -15,7 +15,9 @@ config/          settings_schema.json, settings_data.json, markets.json (AE)
 locales/         en.default.json (minimal: general.brand)
 scripts/         Node .mjs Admin/CLI catalog and store setup helpers
 docs/            Agent project memory (this folder)
+README.md        Public GitHub homepage (so AGENTS.md is not the repo index)
 AGENTS.md        Agent operating rules
+.shopifyignore   Keeps docs/scripts/agent files out of theme uploads
 .cursor/skills/  Agent skills (tracked in git)
 .cursor/rules/   Always-on Cursor rules (tracked); other `.cursor/` files stay gitignored
 SETUP.md, CHECKOUT-SETUP.md, MANUAL-ADMIN-SETUP.md

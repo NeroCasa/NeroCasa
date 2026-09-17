@@ -14,11 +14,19 @@ Engineering leftovers below were executed 2026-09-17 after the owner asked to do
 - [x] `/collections` marble hero kept; tiles reverted to The 9 only (~480px only-child). Coffee/side/console stay on `/collections/the-9`. 2026-09-17
 
 ## Owner / Shopify Admin (theme cannot do these)
-- [ ] Confirm which apps or pixels inject via `content_for_header` (not visible in theme files)
-- [ ] Optional: replace journal marble-slab fallbacks with real featured images in Admin
-- [x] Theme inventory via CLI 2026-09-17: only NeroCasa/main `#161950105824` (live) and NeroCasa Atelier `#162217230560` (unpublished). Do not delete Atelier unless asked.
-- [ ] Storefront password wall — theme must not change it unless asked
-- [ ] Payments / going-live checklist in `MANUAL-ADMIN-SETUP.md` (Shopify Payments, password) — owner decision
+Verified against Admin GraphQL + live `www.nerocasa.com` on 2026-09-17.
+
+**Catalog / pages:** 9 active products with name URLs (`/products/soglia` …). Legacy SKU URLs redirect. The 9 + type collections, SKUs, VAT-included AED, `CONTINUE` inventory (made-to-order). Pages/templates match. Journal has 6 posts with featured images.
+
+- [x] Duplicate collections URL unpublished; `/pages/collections` redirects to `/collections`. 2026-09-17
+- [x] Empty **News** blog deleted. Journal remains `/blogs/journal`. 2026-09-17
+- [x] Journal posts given product-slab featured images. 2026-09-17
+- [x] Shipping method renamed to **Free delivery (3 to 7 working days)** (AED 0, Domestic UAE). 2026-09-17
+- [ ] Payments / wallets: Shop Pay / Apple Pay / Google Pay cannot be enabled from this API — owner enables them in Admin → Payments after Shopify Payments is on.
+- [x] Storefront password wall — live homepage returns the storefront (not a password gate) as of 2026-09-17
+- [x] Theme inventory: NeroCasa/main `#161950105824` live; Atelier `#162217230560` unpublished
+- [x] Theme-authored GA4 / Meta / TikTok pixels — **not** on the live homepage (`content_for_header` still may inject Shopify analytics)
+
 
 ## Engineering debt — done 2026-09-17
 - [x] Duplicate CSS removed: single `assets/nerocasa.css.liquid` (Shopify compiles to `nerocasa.css`)

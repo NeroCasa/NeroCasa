@@ -10,16 +10,27 @@
   assign console = collections[console_handle]
 -%}
 <script type="application/json" data-nc-catalog-search>[
-{%- assign catalog_handles = 'cft-1,cft-2,cft-3,cs-1,cs-2,cs-3,sd-1,sd-2,sd-3' | split: ',' -%}
+{%- assign catalog_handles = 'soglia,equilibrio,monolite,galleria,passaggio,atrio,nodo,punto,scalino,cft-1,cft-2,cft-3,cs-1,cs-2,cs-3,sd-1,sd-2,sd-3' | split: ',' -%}
+{%- assign seen_ids = ',' -%}
+{%- assign emitted = false -%}
 {%- for handle in catalog_handles -%}
   {%- assign p = all_products[handle] -%}
+  {%- if p == blank or p.id == blank -%}{%- continue -%}{%- endif -%}
+  {%- assign id_needle = ',' | append: p.id | append: ',' -%}
+  {%- if seen_ids contains id_needle -%}{%- continue -%}{%- endif -%}
+  {%- assign seen_ids = seen_ids | append: p.id | append: ',' -%}
   {%- capture img_src -%}{% render 'nc-catalog-default-img', handle: handle, product: p %}{%- endcapture -%}
   {%- capture pname -%}{% if p != blank %}{{ p.title }}{% else %}{{ handle }}{% endif %}{%- endcapture -%}
   {%- capture pcat -%}{% render 'nc-product-field', product: p, handle: handle, field: 'category' %}{%- endcapture -%}
+  {%- capture catalog_code -%}{% render 'nc-catalog-code', handle: handle %}{%- endcapture -%}
   {%- assign pname = pname | strip -%}
   {%- assign pcat = pcat | strip -%}
   {%- assign img_src = img_src | strip -%}
-  {"handle":{{ handle | json }},"name":{{ pname | json }},"category":{{ pcat | json }},"url":{% if p != blank %}{{ p.url | json }}{% else %}{{ handle | prepend: '/products/' | json }}{% endif %},"image":{{ img_src | json }},"keywords":{{ handle | append: ' ' | append: pname | append: ' ' | append: pcat | downcase | json }}}{% unless forloop.last %},{% endunless %}
+  {%- assign catalog_code = catalog_code | strip -%}
+  {%- assign kw = handle | append: ' ' | append: catalog_code | append: ' ' | append: pname | append: ' ' | append: pcat | downcase -%}
+  {%- if emitted -%},{%- endif -%}
+  {%- assign emitted = true -%}
+  {"handle":{{ handle | json }},"name":{{ pname | json }},"category":{{ pcat | json }},"url":{% if p != blank %}{{ p.url | json }}{% else %}{{ handle | prepend: '/products/' | json }}{% endif %},"image":{{ img_src | json }},"keywords":{{ kw | json }}}
 {%- endfor -%}
 ,{%- capture coffee_img -%}{% render 'nc-collection-cover', handle: coffee_handle %}{%- endcapture -%}
 {%- capture side_img -%}{% render 'nc-collection-cover', handle: side_handle %}{%- endcapture -%}

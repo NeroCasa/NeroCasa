@@ -15,6 +15,7 @@
 | Shopify Ajax Cart | Outbound from storefront | `/cart/add.js`, `/cart.js`, `/cart/update.js` | Session cookie | `assets/nerocasa.js`, `sections/ncs-cart.liquid` | Native cart JSON |
 | Shopify Admin / CLI | Outbound from `scripts/*.mjs` | Shopify CLI / Admin (not storefront) | CLI auth or `SHOPIFY_ADMIN_TOKEN` | Catalog setup scripts | Not used at runtime on the site |
 | WhatsApp | Outbound link | `wa.me` via `nc-whatsapp-link` / `nc-contact-whatsapp` | None | Header/footer/contact/custom | Phone from settings |
+| Store email | Outbound mailto | `nerocasamarbles@gmail.com` | None | Theme settings, legal pages, checkout copy | Shop `email` / `contactEmail` already this address |
 
 ## Webhooks
 | Name | Trigger | Handler location | Notes |
@@ -24,7 +25,7 @@
 ## Analytics & Tracking
 | Tool | Where loaded | Events tracked | Notes |
 |---|---|---|---|
-| Theme-authored GA4 / Meta / TikTok | **Not found** in Liquid/JS | — | Apps may still add pixels via `content_for_header` — **unverified** |
+| Theme-authored GA4 / Meta / TikTok | **Not found** in Liquid/JS or live homepage HTML | — | Verified 2026-09-17: no `gtag` / `fbq` / `ttq`. Shopify analytics still via `content_for_header`. |
 | Shopify analytics | `content_for_header` | Platform default | Protected |
 
 ## Forms & Submission Handlers

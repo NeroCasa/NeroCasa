@@ -33,7 +33,7 @@ const ARTICLES = [
       'Scale, stone and silhouette: what to look for when choosing a luxury marble coffee table for a refined living room.',
     bodyHtml: `<p>A marble coffee table should feel inevitable in the room: sculptural, calm and unmistakably premium. Before choosing a design, consider three things: proportion, stone character and how the piece will be used day to day.</p>
 <h2>Start with scale</h2>
-<p>The table should sit comfortably within your seating layout. As a guide, aim for roughly two thirds the length of your sofa and a height close to the seat cushions. Our <a href="/products/cft-1">Soglia</a>, <a href="/products/cft-2">Equilibrio</a> and <a href="/products/cft-3">Monolite</a> designs cover distinct silhouettes from refined minimal to bold monolithic form.</p>
+<p>The table should sit comfortably within your seating layout. As a guide, aim for roughly two thirds the length of your sofa and a height close to the seat cushions. Our <a href="/products/soglia">Soglia</a>, <a href="/products/equilibrio">Equilibrio</a> and <a href="/products/monolite">Monolite</a> designs cover distinct silhouettes from refined minimal to bold monolithic form.</p>
 <h2>Choose your marble finish</h2>
 <p>Ibiza White brings luminous clarity. Armani Grey adds depth and architectural restraint. Travertine introduces warmth and texture. For a statement centre piece, Rosso Levanto on Monolite delivers rich colour with gallery-level presence. Browse the full <a href="/collections/coffee-tables">coffee table collection</a> to compare finishes.</p>
 <h2>Think long term</h2>
@@ -56,7 +56,7 @@ const ARTICLES = [
 <h2>Travertine</h2>
 <p>Warm, tactile and timeless. Travertine adds organic movement and a softer presence than polished white marble. It works exceptionally well in Mediterranean, warm minimal and boutique hotel-inspired interiors.</p>
 <h2>Which should you choose?</h2>
-<p>Match the stone to the room's light and mood. Bright spaces often favour Ibiza White. Structured, urban interiors suit Armani Grey. Warm, layered rooms come alive with Travertine. For a deeper red tone, explore Rosso Levanto on selected designs such as <a href="/products/cft-3">Monolite</a>.</p>`,
+<p>Match the stone to the room's light and mood. Bright spaces often favour Ibiza White. Structured, urban interiors suit Armani Grey. Warm, layered rooms come alive with Travertine. For a deeper red tone, explore Rosso Levanto on selected designs such as <a href="/products/monolite">Monolite</a>.</p>`,
   },
   {
     handle: 'marble-console-tables-entryway-guide',
@@ -69,7 +69,7 @@ const ARTICLES = [
       'The right console table sets the tone from the moment you arrive home.',
     bodyHtml: `<p>An entryway console is the first impression of your home. In marble, it signals taste, permanence and attention to material quality before a guest reaches the living room.</p>
 <h2>Proportion in narrow spaces</h2>
-<p>Hallways and foyers need furniture that feels generous without blocking flow. Slim profiles such as <a href="/products/cs-2">Passaggio</a> work well in tighter corridors, while <a href="/products/cs-1">Galleria</a> and <a href="/products/cs-3">Atrio</a> suit wider entries where you can layer art, sculpture or lighting above.</p>
+<p>Hallways and foyers need furniture that feels generous without blocking flow. Slim profiles such as <a href="/products/passaggio">Passaggio</a> work well in tighter corridors, while <a href="/products/galleria">Galleria</a> and <a href="/products/atrio">Atrio</a> suit wider entries where you can layer art, sculpture or lighting above.</p>
 <h2>Stone as a design anchor</h2>
 <p>Because marble carries visual weight, a console can anchor an otherwise minimal space. Keep styling restrained: one object, a low bowl, a single stem or a framed print. Let the stone be the story.</p>
 <h2>Finishes for entry light</h2>
@@ -105,7 +105,7 @@ const ARTICLES = [
       'How custom marble commissions work, from first conversation to installation.',
     bodyHtml: `<p>Beyond our catalog, NEROCASA creates custom marble furniture for private clients, designers and hospitality projects. Commissions may adapt an existing design, resize a piece for a specific room or develop something entirely new in stone.</p>
 <h2>Start with the space</h2>
-<p>Share floor plans, reference images and the mood you want the piece to create. If you love a catalog silhouette, designs such as <a href="/products/cft-1">Soglia</a> or <a href="/products/cs-3">Atrio</a> can often be reinterpreted in a different marble or dimension.</p>
+<p>Share floor plans, reference images and the mood you want the piece to create. If you love a catalog silhouette, designs such as <a href="/products/soglia">Soglia</a> or <a href="/products/atrio">Atrio</a> can often be reinterpreted in a different marble or dimension.</p>
 <h2>Stone selection</h2>
 <p>We source premium marbles from quarries worldwide. Ibiza White, Armani Grey, Travertine and Rosso Levanto are among our most requested finishes, but custom projects can explore other slabs based on availability and your brief.</p>
 <h2>Process and delivery</h2>
@@ -124,7 +124,7 @@ const ARTICLES = [
 <h2>Material honesty</h2>
 <p>In an era of synthetic surfaces, real stone stands out. Veining, tone shift and tactile depth give each piece individuality. That is particularly powerful in minimal spaces where every object is visible.</p>
 <h2>Sculptural furniture</h2>
-<p>Contemporary design favours strong silhouettes. Marble adds gravity to those forms. A monolithic coffee table such as <a href="/products/cft-3">Monolite</a> can anchor an entire seating area, while side tables like <a href="/products/sd-2">Punto</a> provide precise accents without clutter.</p>
+<p>Contemporary design favours strong silhouettes. Marble adds gravity to those forms. A monolithic coffee table such as <a href="/products/monolite">Monolite</a> can anchor an entire seating area, while side tables like <a href="/products/punto">Punto</a> provide precise accents without clutter.</p>
 <h2>Layering stone through a home</h2>
 <p>Consider marble at multiple scales: a console in the entry, a coffee table in the living room and side tables beside seating. Repeating the material creates cohesion while varying the design keeps the story interesting. Explore the full <a href="/collections">NEROCASA collections</a> to build a coherent stone palette throughout your home.</p>`,
   },

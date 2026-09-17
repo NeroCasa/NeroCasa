@@ -4,6 +4,16 @@
 > project memory, not a marketing changelog — be specific about files and behavior touched.
 
 ### 2026-09-17
+- Changed: Product URLs use piece names (`/products/soglia` not `/products/cft-1`); old SKU URLs redirect. Theme matches both handles via `nc-catalog-code`. All store/theme emails are `nerocasamarbles@gmail.com`. GitHub index is `README.md` so `AGENTS.md` is no longer the repo homepage; `.shopifyignore` keeps agent files out of the theme zip. Unpublished `/pages/collections`, deleted empty News, renamed Terms/Refunds, journal featured images, shipping label “Free delivery (3 to 7 working days)”. Shop Pay/wallets still Admin-only.
+- Verified: Admin GraphQL product handles; shipping mutation; `node scripts/test-storefront.mjs`; live `/products/soglia` and `/products/cft-1` redirect.
+- Follow-up: Enable Shop Pay / Apple Pay / Google Pay in Admin → Payments if wanted.
+
+### 2026-09-17
+- Changed: Admin audit of live store `zhjbdz-yw` / `www.nerocasa.com`. Catalog, collections, pages, and VAT-inclusive prices match the theme. Findings logged in `docs/TODO.md` (duplicate `/pages/collections`, empty News blog, journal images, shipping name, wallets). Password wall is off. No theme GA4/Meta/TikTok on the homepage.
+- Verified: Admin GraphQL products/collections/pages/blogs/markets/delivery; live homepage fetch.
+- Follow-up: Owner should decide whether to unpublish `/pages/collections`, delete News, add journal photos, rename shipping, and enable wallets.
+
+### 2026-09-17
 - Changed: `/collections` tiles reverted to The 9 only. Marble page hero stays. Coffee/side/console remain on `/collections/the-9`. Featured 3-up CSS removed.
 - Verified: Integrity tests for index else-branch The 9 only and no `quiet: true`. Pushed Atelier `#162217230560` and live `#161950105824`.
 - Follow-up: Live now matches The 9-only index with marble hero.

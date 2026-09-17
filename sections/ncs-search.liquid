@@ -45,9 +45,7 @@
             <a class="ncs-card" href="{{ item.url }}" data-nc-reveal>
               <div class="ncs-card-media ncs-fit-img ncs-fit-img--tile">
                 {%- capture search_img -%}{% render 'nc-catalog-default-img', handle: item.handle, product: item %}{%- endcapture -%}
-                {% if item.handle contains 'cft-' or item.handle contains 'cs-' or item.handle contains 'sd-' %}
-                  <img src="{{ search_img | strip }}" alt="{{ item.title | escape }}" loading="lazy" width="700" height="875">
-                {% elsif item.featured_image %}
+                {% if item.featured_image %}
                   <img src="{{ item.featured_image | image_url: width: 900 }}" alt="{{ item.featured_image.alt | default: item.title | escape }}" loading="lazy" width="700" height="875">
                 {% else %}
                   <img src="{{ search_img | strip }}" alt="{{ item.title | escape }}" loading="lazy" width="700" height="875">

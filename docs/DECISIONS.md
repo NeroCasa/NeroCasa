@@ -4,6 +4,12 @@
 > This exists so future sessions (and future you) don't re-litigate or accidentally reverse a
 > deliberate choice. Newest entries at the top.
 
+### 2026-09-17 — Name URLs, Gmail, README index
+**Context:** Owner asked to finish Admin leftovers, use `nerocasamarbles@gmail.com` everywhere, asked why GitHub showed `AGENTS.md` as the repo index, and why `/products/cft-1` did not match the product name Soglia.
+**Decision:** Change product handles to the piece names and 301 the SKU URLs. Keep SKUs as variant SKUs. Theme dual-matches both handles. Add `README.md` as the GitHub homepage; leave `AGENTS.md` as agent instructions. `.shopifyignore` so those files never upload as theme assets.
+**Alternatives considered:** Keep SKU handles and only change the visible title (URL would still say cft-1). Rename AGENTS.md (would break the agent system).
+**Consequences:** Public URLs are `/products/soglia` etc. Search still finds `cft-1`. GitHub shows README. Wallets remain an Admin Payments setting.
+
 ### 2026-09-17 — Collections index: The 9 only, keep hero
 **Context:** Owner asked to return collections to only The 9 after the Step 10 featured split, but keep the marble hero.
 **Decision:** Index renders only `the-9`. Do not pass `quiet: true`. Keep the existing 480px only-child tile CSS. Type tiles stay on `/collections/the-9`.

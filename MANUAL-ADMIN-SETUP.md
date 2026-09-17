@@ -14,15 +14,15 @@ Products use Italian names (Soglia, Equilibrio, Monolite, etc.) and handles:
 
 | Title | Handle |
 |-------|--------|
-| Soglia | `cft-1` |
-| Equilibrio | `cft-2` |
-| Monolite | `cft-3` |
-| Galleria | `cs-1` |
-| Passaggio | `cs-2` |
-| Atrio | `cs-3` |
-| Nodo | `sd-1` |
-| Punto | `sd-2` |
-| Scalino | `sd-3` |
+| Soglia | `soglia` (legacy `cft-1`) |
+| Equilibrio | `equilibrio` (legacy `cft-2`) |
+| Monolite | `monolite` (legacy `cft-3`) |
+| Galleria | `galleria` (legacy `cs-1`) |
+| Passaggio | `passaggio` (legacy `cs-2`) |
+| Atrio | `atrio` (legacy `cs-3`) |
+| Nodo | `nodo` (legacy `sd-1`) |
+| Punto | `punto` (legacy `sd-2`) |
+| Scalino | `scalino` (legacy `sd-3`) |
 
 Each has **Marble** variants: Ibiza White, Armani Grey, Travertine (+ Rosso Levanto on Monolite).
 

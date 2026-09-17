@@ -5,8 +5,10 @@
 {%- endcomment -%}
 {%- liquid
   assign marble_key = marble | downcase | strip
-  assign hook_key = handle | append: ':' | append: marble_key
 -%}
+{%- capture catalog_code -%}{% render 'nc-catalog-code', handle: handle %}{%- endcapture -%}
+{%- assign catalog_code = catalog_code | strip -%}
+{%- assign hook_key = catalog_code | append: ':' | append: marble_key -%}
 {%- case hook_key -%}
   {%- when 'cft-1:ibiza white' -%}
     <p>On Soglia's wide horizontal plane, Ibiza White reads calm and architectural. Light catches the soft grey veining like clouds over a still surface.</p>
