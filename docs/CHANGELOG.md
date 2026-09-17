@@ -4,6 +4,11 @@
 > project memory, not a marketing changelog — be specific about files and behavior touched.
 
 ### 2026-09-18
+- Changed: Installed Google tag `GT-PJ46R9SC` immediately after `<head>` in `layout/theme.liquid` (Search Console snippet). One loader, `async`. Cart/checkout, CASA, Custom, password wall, gift card layout untouched.
+- Verified: `node scripts/test-storefront.mjs`; live homepage HTML contains the tag after theme push.
+- Follow-up: Owner finishes Search Console verify + sitemap + URL inspection. Do not add a second Google tag.
+
+### 2026-09-18
 - Changed: Applied SEO audit. Titles/descriptions use UAE + Sharjah factory (not Dubai showroom). FurnitureStore schema, CollectionPage ItemList, PreOrder + MerchantReturnNotPermitted, noindex on `/policies/*` and `/collections/all`. Contact/Track/About/B2B/Custom H1s and factory copy. Footer type-collection links. Admin SEO via `scripts/optimize-store-seo.mjs`.
 - Verified: `node scripts/test-storefront.mjs`; live titles after theme push.
 - Follow-up: Owner must submit Search Console, Bing, Google Business Profile (Industrial Area 15, Sharjah; service area UAE).

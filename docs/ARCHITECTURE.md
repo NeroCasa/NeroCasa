@@ -33,6 +33,7 @@ Request
   → snippets (nc-*)
   → Shopify objects (product, collection, cart, page, settings)
   → layout/theme.liquid wraps header + main + footer
+  → Google tag `GT-PJ46R9SC` (async, immediately after `<head>`)
   → CSS: `nerocasa.css` (from `nerocasa.css.liquid`); JS: nerocasa.js + nerocasa-v20.js (defer)
   → {{ content_for_header }} (Shopify + any installed app embeds)
 ```
@@ -52,6 +53,7 @@ graph TD
   layout --> css[assets/nerocasa.css.liquid]
   layout --> js1[assets/nerocasa.js]
   layout --> js2[assets/nerocasa-v20.js]
+  layout --> gtag[Google tag GT-PJ46R9SC]
   layout --> cfh[content_for_header]
   main --> home[ncs-store-home]
   main --> colIndex[ncs-collections-index]

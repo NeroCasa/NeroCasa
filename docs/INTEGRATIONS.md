@@ -26,7 +26,8 @@
 ## Analytics & Tracking
 | Tool | Where loaded | Events tracked | Notes |
 |---|---|---|---|
-| Theme-authored GA4 / Meta / TikTok | **Not found** in Liquid/JS or live homepage HTML | — | Verified 2026-09-17: no `gtag` / `fbq` / `ttq`. Shopify analytics still via `content_for_header`. |
+| Google tag `GT-PJ46R9SC` | `layout/theme.liquid` immediately after `<head>` | Search Console / Google destinations on this tag | Owner snippet 2026-09-18. `async`. Do **not** add a second gtag, GTM, or the same ID in Shopify Admin pixels. Gift card + password layouts do not load it. |
+| Theme-authored Meta / TikTok | **Not found** | — | No `fbq` / `ttq`. |
 | Shopify analytics | `content_for_header` | Platform default | Protected |
 
 ## Forms & Submission Handlers

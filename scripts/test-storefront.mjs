@@ -31,6 +31,8 @@ ok(!/nerocasa-additions\.css/.test(theme), 'theme.liquid does not load additions
 ok(!/nerocasa-luxury\.css/.test(theme), 'theme.liquid does not load luxury.css');
 ok(/nerocasa\.css/.test(theme), 'theme.liquid loads unified nerocasa.css');
 ok(/content_for_header/.test(theme), 'theme.liquid keeps content_for_header');
+ok((theme.match(/gtag\/js\?id=GT-PJ46R9SC/g) || []).length === 1, 'theme.liquid loads Google tag GT-PJ46R9SC once');
+ok(/gtag\('config', 'GT-PJ46R9SC'\)/.test(theme), 'theme.liquid configures Google tag');
 
 ok(exists('assets/nerocasa.css.liquid'), 'unified CSS liquid exists');
 ok(!exists('assets/nerocasa-additions.css'), 'additions.css removed');

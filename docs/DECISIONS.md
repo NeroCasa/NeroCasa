@@ -4,6 +4,12 @@
 > This exists so future sessions (and future you) don't re-litigate or accidentally reverse a
 > deliberate choice. Newest entries at the top.
 
+### 2026-09-18 — Google tag in theme.liquid, not GTM
+**Context:** Owner pasted Google’s `GT-PJ46R9SC` install screen (Shopify CMS path) and asked to install it after confirming it does not change the look of the site.
+**Decision:** One `gtag.js` snippet immediately after `<head>` in `layout/theme.liquid`. Do not add Google Tag Manager, do not duplicate in gift-card or password layouts, do not add the same ID in Shopify Admin pixels.
+**Alternatives considered:** Shopify Google & YouTube channel; GTM. Rejected — this is the exact snippet Google gave, and GTM is extra weight.
+**Consequences:** Search Console can verify via this tag. A second gtag with the same ID would double-fire.
+
 ### 2026-09-18 — SEO: Sharjah factory, UAE market
 **Context:** Owner asked to implement the SEO audit. Factory is Sharjah Industrial Area 15; they sell and deliver across the UAE; they are online only (no showroom).
 **Decision:** Use UAE and Sharjah in titles, not a fake Dubai showroom. Keep “marble coffee table Dubai” competitors in mind via UAE + delivery copy. Schema is FurnitureStore with that NAP. `/policies/*` and `/collections/all` noindex so they do not compete with theme pages.
