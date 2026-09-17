@@ -1,16 +1,19 @@
 <section class="ncs-blog-page">
-  {% render 'nc-page-hero-shell-open',
+  {%- capture nc_hero_body -%}
+  <header class="ncs-page-hero ncs-page-hero--compact ncs-blog-hero" data-nc-reveal>
+    <span class="ncs-page-kicker">{{ section.settings.kicker | default: 'Journal' }}</span>
+    {%- assign blog_heading = section.settings.heading | default: blog.title | default: 'Journal' -%}
+    <h1>{% render 'nc-title-gold', title: blog_heading %}</h1>
+    <p class="ncs-blog-intro">{{ section.settings.intro | default: 'Guides on marble, design and living with natural stone. Curated by NEROCASA.' }}</p>
+  </header>
+  {%- endcapture -%}
+  {% render 'nc-page-hero-shell',
     quiet: true,
+    body: nc_hero_body,
     slab_left: 'hero-slab-grey.jpg',
     slab_center: 'hero-slab-travertine.jpg',
     slab_right: 'hero-slab-white.jpg'
   %}
-  <header class="ncs-page-hero ncs-page-hero--compact ncs-blog-hero" data-nc-reveal>
-    <span class="ncs-page-kicker">{{ section.settings.kicker | default: 'Journal' }}</span>
-    <h1>{% render 'nc-title-gold', title: section.settings.heading | default: blog.title | default: 'Journal' %}</h1>
-    <p class="ncs-blog-intro">{{ section.settings.intro | default: 'Guides on marble, design and living with natural stone. Curated by NEROCASA.' }}</p>
-  </header>
-  {% render 'nc-page-hero-shell-close' %}
 
   {%- paginate blog.articles by 12 -%}
   {%- if blog.articles_count > 0 -%}
@@ -33,7 +36,19 @@
                   src="{{ article.image | image_url: width: 900 }}"
                   alt="{{ article.image.alt | default: article.title | escape }}"
                   width="900"
-                  height="600"
+                  height="1125"
+                  loading="lazy"
+                >
+              </div>
+            {%- else -%}
+              {%- assign fallback_slabs = 'hero-slab-grey.jpg,hero-slab-travertine.jpg,hero-slab-white.jpg' | split: ',' -%}
+              {%- assign fallback_i = forloop.index0 | modulo: fallback_slabs.size -%}
+              <div class="ncs-blog-card-media ncs-fit-img ncs-fit-img--tile">
+                <img
+                  src="{{ fallback_slabs[fallback_i] | asset_url }}"
+                  alt=""
+                  width="900"
+                  height="1125"
                   loading="lazy"
                 >
               </div>

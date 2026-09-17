@@ -186,4 +186,57 @@ document.addEventListener('DOMContentLoaded', function () {
     gold.textContent = last;
     heading.appendChild(gold);
   });
+
+  var indexEl = document.querySelector('[data-nc-catalog-search]');
+  var emptyEl = document.querySelector('[data-nc-search-empty]');
+  var resultsEl = document.querySelector('[data-nc-catalog-results]');
+  if (indexEl && emptyEl && resultsEl) {
+    var catalog = [];
+    try {
+      catalog = JSON.parse(indexEl.textContent);
+    } catch (e) {
+      catalog = [];
+    }
+    var params = new URLSearchParams(window.location.search);
+    var query = (params.get('q') || '').trim().toLowerCase();
+    if (query && catalog.length) {
+      var matches = catalog.filter(function (item) {
+        var hay = (item.name + ' ' + item.category + ' ' + item.handle + ' ' + item.keywords).toLowerCase();
+        return hay.indexOf(query) > -1;
+      });
+      if (!matches.length) {
+        emptyEl.textContent = 'Nothing under that name.';
+      } else {
+        emptyEl.hidden = true;
+        resultsEl.hidden = false;
+        resultsEl.innerHTML = matches
+          .map(function (item) {
+            var isCollection = item.category === 'Collection';
+            var safeName = String(item.name || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+            var media =
+              '<div class="ncs-card-media ncs-fit-img ncs-fit-img--tile' +
+              (isCollection ? ' ncs-fit-img--compact' : '') +
+              '"><img src="' +
+              String(item.image || '').replace(/"/g, '') +
+              '" alt="' +
+              safeName +
+              '" loading="lazy" width="700" height="' +
+              (isCollection ? '525' : '875') +
+              '"></div>';
+            return (
+              '<a class="ncs-card" href="' +
+              String(item.url || '').replace(/"/g, '') +
+              '">' +
+              media +
+              '<div class="ncs-card-info"><span class="ncs-card-name">' +
+              safeName +
+              '</span><span class="ncs-card-category">' +
+              String(item.category || '').replace(/</g, '&lt;') +
+              '</span></div></a>'
+            );
+          })
+          .join('');
+      }
+    }
+  }
 });

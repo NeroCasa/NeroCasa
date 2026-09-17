@@ -1,19 +1,23 @@
 <section class="ncs-info-page ncs-404-page">
-  {% render 'nc-page-hero-shell-open',
+  {%- capture nc_hero_body -%}
+  <header class="ncs-page-hero ncs-page-hero--compact">
+    {%- assign not_found_title = 'errors.not_found' | t -%}
+    <h1>{% render 'nc-title-gold', title: not_found_title %}</h1>
+  </header>
+  {%- endcapture -%}
+  {% render 'nc-page-hero-shell',
     quiet: true,
+    body: nc_hero_body,
     slab_left: 'hero-slab-red.jpg',
     slab_center: 'hero-slab-black.jpg',
     slab_right: 'hero-slab-grey.jpg'
   %}
-  <header class="ncs-page-hero ncs-page-hero--compact">
-    <h1>{% render 'nc-title-gold', title: 'Page not found' %}</h1>
-  </header>
-  {% render 'nc-page-hero-shell-close' %}
   <div class="ncs-legal-body">
     <p>This page is not here. The piece, or the path, has moved.</p>
     <div class="ncs-404-actions">
-      <a class="ncs-btn" href="{{ routes.root_url }}">Home</a>
-      <a class="ncs-btn ncs-btn--ghost" href="{% render 'nc-collections-index-url' %}">{% render 'nc-title-gold', title: 'Our collection' %}</a>
+      <a class="ncs-btn" href="{{ routes.root_url }}">{{ 'nav.home' | t }}</a>
+      {%- assign cta_collection = 'actions.our_collection' | t -%}
+      <a class="ncs-btn ncs-btn--ghost" href="{% render 'nc-collections-index-url' %}">{% render 'nc-title-gold', title: cta_collection %}</a>
     </div>
   </div>
 </section>

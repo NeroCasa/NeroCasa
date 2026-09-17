@@ -3,7 +3,9 @@
     type="button"
     class="nc-menu-toggle"
     data-mobile-menu-toggle
-    aria-label="Open menu"
+    data-label-open="{{ 'nav.open_menu' | t }}"
+    data-label-close="{{ 'nav.close_menu' | t }}"
+    aria-label="{{ 'nav.open_menu' | t }}"
     aria-expanded="false"
     aria-controls="nc-mobile-menu"
   >
@@ -24,42 +26,42 @@
     {% endif %}
   </a>
 
-  <nav class="nc-nav" aria-label="Primary navigation">
-    <a href="{{ routes.root_url }}" class="{% if request.page_type == 'index' %}is-active{% endif %}">Home</a>
-    <a href="{% render 'nc-collections-index-url' %}" class="{% if request.page_type == 'collection' or request.page_type == 'list-collections' %}is-active{% endif %}">Collections</a>
-    <a href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}" class="{% if request.page_type == 'page' and page.handle == settings.page_custom_handle %}is-active{% endif %}">Custom</a>
-    <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}" class="{% if request.page_type == 'page' and page.handle == settings.page_b2b_handle %}is-active{% endif %}">B2B</a>
-    <a href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}" class="{% if request.page_type == 'page' and page.handle == settings.page_about_handle %}is-active{% endif %}">Why Nerocasa</a>
+  <nav class="nc-nav" aria-label="{{ 'nav.primary' | t }}">
+    <a href="{{ routes.root_url }}" class="{% if request.page_type == 'index' %}is-active{% endif %}">{{ 'nav.home' | t }}</a>
+    <a href="{% render 'nc-collections-index-url' %}" class="{% if request.page_type == 'collection' or request.page_type == 'list-collections' %}is-active{% endif %}">{{ 'nav.collections' | t }}</a>
+    <a href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}" class="{% if request.page_type == 'page' and page.handle == settings.page_custom_handle %}is-active{% endif %}">{{ 'nav.custom' | t }}</a>
+    <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}" class="{% if request.page_type == 'page' and page.handle == settings.page_b2b_handle %}is-active{% endif %}">{{ 'nav.b2b' | t }}</a>
+    <a href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}" class="{% if request.page_type == 'page' and page.handle == settings.page_about_handle %}is-active{% endif %}">{{ 'nav.why' | t }}</a>
   </nav>
 
   <div class="nc-actions">
-    <button type="button" class="nc-icon-link" data-search-open aria-label="Search" aria-expanded="false">
+    <button type="button" class="nc-icon-link" data-search-open aria-label="{{ 'nav.search' | t }}" aria-expanded="false">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5L21 21"></path></svg>
     </button>
-    <a class="nc-icon-link" href="{{ routes.cart_url }}" aria-label="Cart">
+    <a class="nc-icon-link" href="{{ routes.cart_url }}" aria-label="{{ 'nav.cart' | t }}">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h2l2.1 10.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 1.9-1.4L21 8H6"></path><circle cx="10" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle></svg>
       {% if cart.item_count > 0 %}<span class="nc-cart-count" data-cart-count>{{ cart.item_count }}</span>{% endif %}
     </a>
   </div>
 </header>
 
-<nav class="nc-mobile-menu" id="nc-mobile-menu" data-mobile-menu hidden aria-label="Mobile navigation">
-  <a href="{{ routes.root_url }}" class="{% if request.page_type == 'index' %}is-active{% endif %}">Home</a>
-  <a href="{% render 'nc-collections-index-url' %}" class="{% if request.page_type == 'collection' or request.page_type == 'list-collections' %}is-active{% endif %}">Collections</a>
-  <a href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}" class="{% if request.page_type == 'page' and page.handle == settings.page_custom_handle %}is-active{% endif %}">Custom</a>
-  <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}" class="{% if request.page_type == 'page' and page.handle == settings.page_b2b_handle %}is-active{% endif %}">B2B</a>
-  <a href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}" class="{% if request.page_type == 'page' and page.handle == settings.page_about_handle %}is-active{% endif %}">Why Nerocasa</a>
+<nav class="nc-mobile-menu" id="nc-mobile-menu" data-mobile-menu hidden aria-label="{{ 'nav.mobile' | t }}">
+  <a href="{{ routes.root_url }}" class="{% if request.page_type == 'index' %}is-active{% endif %}">{{ 'nav.home' | t }}</a>
+  <a href="{% render 'nc-collections-index-url' %}" class="{% if request.page_type == 'collection' or request.page_type == 'list-collections' %}is-active{% endif %}">{{ 'nav.collections' | t }}</a>
+  <a href="{% render 'nc-page-url', handle: settings.page_custom_handle, view: 'custom' %}" class="{% if request.page_type == 'page' and page.handle == settings.page_custom_handle %}is-active{% endif %}">{{ 'nav.custom' | t }}</a>
+  <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}" class="{% if request.page_type == 'page' and page.handle == settings.page_b2b_handle %}is-active{% endif %}">{{ 'nav.b2b' | t }}</a>
+  <a href="{% render 'nc-page-url', handle: settings.page_about_handle, view: 'about' %}" class="{% if request.page_type == 'page' and page.handle == settings.page_about_handle %}is-active{% endif %}">{{ 'nav.why' | t }}</a>
 </nav>
 
 <div class="nc-search-overlay" data-search-overlay hidden>
   <div class="nc-search-panel" data-search-panel>
     <form action="{{ routes.search_url }}" method="get" role="search" class="nc-search-form" data-search-form>
-      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="A name, a collection, a stone" aria-label="Search" autocomplete="off" data-search-input>
-      <button type="submit" aria-label="Submit search">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'search.overlay_placeholder' | t }}" aria-label="{{ 'nav.search' | t }}" autocomplete="off" data-search-input>
+      <button type="submit" aria-label="{{ 'nav.submit_search' | t }}">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5L21 21"></path></svg>
       </button>
     </form>
-    <button type="button" class="nc-search-close" data-search-close aria-label="Close search">×</button>
+    <button type="button" class="nc-search-close" data-search-close aria-label="{{ 'nav.close_search' | t }}">×</button>
   </div>
 </div>
 
@@ -73,7 +75,7 @@
     mobileMenu.classList.remove('is-open');
     if(menuToggle){
       menuToggle.setAttribute('aria-expanded','false');
-      menuToggle.setAttribute('aria-label','Open menu');
+      menuToggle.setAttribute('aria-label', menuToggle.getAttribute('data-label-open') || 'Open menu');
     }
     document.body.classList.remove('nc-menu-open');
   }
@@ -83,7 +85,7 @@
     mobileMenu.classList.add('is-open');
     if(menuToggle){
       menuToggle.setAttribute('aria-expanded','true');
-      menuToggle.setAttribute('aria-label','Close menu');
+      menuToggle.setAttribute('aria-label', menuToggle.getAttribute('data-label-close') || 'Close menu');
     }
     document.body.classList.add('nc-menu-open');
   }

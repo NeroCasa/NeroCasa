@@ -1,6 +1,13 @@
 <section class="ncs-custom-page">
-  {% render 'nc-page-hero-shell-open',
+  {%- capture nc_hero_body -%}
+  <header class="ncs-page-hero ncs-page-hero--compact" data-nc-reveal>
+    <h1>{% render 'nc-title-gold', title: section.settings.hero_heading %}</h1>
+    <p>{{ section.settings.hero_lead }}</p>
+  </header>
+  {%- endcapture -%}
+  {% render 'nc-page-hero-shell',
     quiet: true,
+    body: nc_hero_body,
     slab_left: 'hero-slab-red.jpg',
     slab_center: 'hero-slab-white.jpg',
     slab_right: 'hero-slab-grey.jpg',
@@ -8,11 +15,6 @@
     center_image: section.settings.hero_slab_center,
     right_image: section.settings.hero_slab_right
   %}
-  <header class="ncs-page-hero ncs-page-hero--compact" data-nc-reveal>
-    <h1>{% render 'nc-title-gold', title: section.settings.hero_heading %}</h1>
-    <p>{{ section.settings.hero_lead }}</p>
-  </header>
-  {% render 'nc-page-hero-shell-close' %}
 
   <section class="ncs-custom-block ncs-custom-block--whatsapp" data-nc-reveal>
     <div class="ncs-custom-block-copy">
@@ -33,7 +35,8 @@
 
     <div class="ncs-custom-visual ncs-home-story-visual nc-brand-visual-frame">
       <img src="{% render 'nc-brand-visual' %}" alt="{{ settings.brand_name | default: 'NeroCasa' }} Marble Works" width="1200" height="1200" loading="lazy">
-      <a class="ncs-btn" href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">{% render 'nc-title-gold', title: 'Talk to us on WhatsApp' %}</a>
+      {%- assign cta_whatsapp = 'actions.talk_whatsapp' | t -%}
+      <a class="ncs-btn" href="{% render 'nc-contact-whatsapp' %}" target="_blank" rel="noopener">{% render 'nc-title-gold', title: cta_whatsapp %}</a>
       <p class="ncs-custom-whatsapp-hint">{{ section.settings.whatsapp_hint }}</p>
       <p class="ncs-custom-b2b-note">{{ section.settings.b2b_note }} <a href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B</a></p>
     </div>

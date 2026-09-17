@@ -1,1 +1,64 @@
-{"general":{"brand":"NEROCASA"}}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "general": {
+    "brand": "NEROCASA"
+  },
+  "nav": {
+    "home": "Home",
+    "collections": "Collections",
+    "custom": "Custom",
+    "b2b": "B2B",
+    "why": "Why Nerocasa",
+    "primary": "Primary navigation",
+    "mobile": "Mobile navigation",
+    "open_menu": "Open menu",
+    "close_menu": "Close menu",
+    "search": "Search",
+    "submit_search": "Submit search",
+    "close_search": "Close search",
+    "cart": "Cart"
+  },
+  "actions": {
+    "our_collection": "Our collection",
+    "contact_us": "Contact us",
+    "view_all": "View all",
+    "the_house": "The house",
+    "continue_shopping": "Continue shopping",
+    "proceed_to_checkout": "Proceed to checkout",
+    "custom_pieces": "Custom pieces",
+    "whatsapp_custom": "WhatsApp for custom",
+    "talk_whatsapp": "Talk to us on WhatsApp",
+    "send": "Send",
+    "search": "Search",
+    "read": "Read",
+    "add_to_cart": "Add to cart",
+    "not_available": "Not available",
+    "get_in_touch": "Get in touch",
+    "send_a_message": "Send a message"
+  },
+  "cart": {
+    "title": "Your cart",
+    "empty": "Your cart is empty."
+  },
+  "search": {
+    "find": "Find your piece",
+    "placeholder": "Soglia, Equilibrio, coffee tables…",
+    "overlay_placeholder": "A name, a collection, a stone",
+    "one_result": "1 result",
+    "results": "results",
+    "for": "For",
+    "empty": "Nothing under that name.",
+    "searching": "Searching our catalog…"
+  },
+  "errors": {
+    "not_found": "Page not found"
+  }
+}

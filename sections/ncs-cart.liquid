@@ -1,28 +1,32 @@
 <section class="ncs-cart-page">
-  {% render 'nc-page-hero-shell-open',
-    quiet: true,
-    slab_left: 'hero-slab-travertine.jpg',
-    slab_center: 'hero-slab-red.jpg',
-    slab_right: 'hero-slab-black.jpg'
-  %}
+  {%- capture nc_hero_body -%}
   <header class="ncs-page-hero ncs-page-hero--compact" data-nc-reveal>
-    <h1>{% render 'nc-title-gold', title: 'Your cart' %}</h1>
+    {%- assign cart_title = 'cart.title' | t -%}
+    <h1>{% render 'nc-title-gold', title: cart_title %}</h1>
     {% if cart.item_count > 0 %}
       <p>{{ cart.item_count }} piece{% if cart.item_count != 1 %}s{% endif %} selected</p>
     {% endif %}
   </header>
-  {% render 'nc-page-hero-shell-close' %}
+  {%- endcapture -%}
+  {% render 'nc-page-hero-shell',
+    quiet: true,
+    body: nc_hero_body,
+    slab_left: 'hero-slab-travertine.jpg',
+    slab_center: 'hero-slab-red.jpg',
+    slab_right: 'hero-slab-black.jpg'
+  %}
 
   {% if cart.item_count == 0 %}
     <div class="ncs-cart-empty" data-nc-reveal>
-      <p>Your cart is empty.</p>
+      <p>{{ 'cart.empty' | t }}</p>
       {%- assign empty_collection = collections['the-9'] -%}
       {%- if empty_collection != blank -%}
         <div class="ncs-cart-empty-card">
           {% render 'nc-collection-tile', collection: empty_collection %}
         </div>
       {%- endif -%}
-      <a class="ncs-btn" href="{% render 'nc-collections-index-url' %}">{% render 'nc-title-gold', title: 'Our collection' %}</a>
+      {%- assign cta_collection = 'actions.our_collection' | t -%}
+      <a class="ncs-btn" href="{% render 'nc-collections-index-url' %}">{% render 'nc-title-gold', title: cta_collection %}</a>
     </div>
   {% else %}
     <form action="{{ routes.cart_url }}" method="post" class="ncs-cart-form" data-nc-reveal>
@@ -101,8 +105,10 @@
         <p class="ncs-cart-note">At checkout you will enter your <strong>email</strong> for order confirmation and your <strong>phone number</strong> (WhatsApp) so we can reach you. Delivery address is entered there too.</p>
 
         <div class="ncs-cart-summary-actions">
-          <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-collections-index-url' %}">{% render 'nc-title-gold', title: 'Continue shopping' %}</a>
-          <button type="submit" name="checkout" class="ncs-btn">{% render 'nc-title-gold', title: 'Proceed to checkout' %}</button>
+          {%- assign cta_continue = 'actions.continue_shopping' | t -%}
+          {%- assign cta_checkout = 'actions.proceed_to_checkout' | t -%}
+          <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-collections-index-url' %}">{% render 'nc-title-gold', title: cta_continue %}</a>
+          <button type="submit" name="checkout" class="ncs-btn">{% render 'nc-title-gold', title: cta_checkout %}</button>
         </div>
       </aside>
     </form>

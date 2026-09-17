@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="{{ settings.background | default: '#080807' }}">
   {% render 'nc-meta-tags' %}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   {{ content_for_header }}
   {% render 'nc-favicon' %}
   {%- comment -%}
@@ -19,8 +16,7 @@
     body { background: {{ settings.background | default: '#080807' }}; color: #f2eee6; }
     * { box-sizing: border-box; }
   </style>
-  {{ 'nerocasa-additions.css' | asset_url | stylesheet_tag }}
-  {{ 'nerocasa-luxury.css' | asset_url | stylesheet_tag }}
+  {{ 'nerocasa.css' | asset_url | stylesheet_tag }}
   <style>
     :root {
       --nc-bg: {{ settings.background | default: '#080807' }};

@@ -13,7 +13,8 @@
     </div>
     <div class="ncs-about-hero-copy">
       <span class="ncs-page-kicker">Why Nerocasa</span>
-      <h1>{% render 'nc-title-gold', title: section.settings.hero_heading | default: page.title %}</h1>
+      {%- assign about_heading = section.settings.hero_heading | default: page.title -%}
+      <h1>{% render 'nc-title-gold', title: about_heading %}</h1>
       <p class="ncs-about-hero-lead">{{ section.settings.hero_lead }}</p>
     </div>
     <div class="ncs-about-hero-visual ncs-about-hero-logo nc-brand-visual-frame">
@@ -84,8 +85,9 @@
   </aside>
 
   <div class="ncs-about-closer-actions ncs-about-closer-actions--end" data-nc-reveal>
-    <a class="ncs-btn" href="{% render 'nc-collections-index-url' %}">{% render 'nc-title-gold', title: 'Our collection' %}</a>
-    <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">B2B</a>
+    {%- assign cta_collection = 'actions.our_collection' | t -%}
+    <a class="ncs-btn" href="{% render 'nc-collections-index-url' %}">{% render 'nc-title-gold', title: cta_collection %}</a>
+    <a class="ncs-btn ncs-btn--outline" href="{% render 'nc-page-url', handle: settings.page_b2b_handle, view: 'b2b' %}">{{ 'nav.b2b' | t }}</a>
   </div>
 </section>
 
