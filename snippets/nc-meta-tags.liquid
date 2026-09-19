@@ -223,6 +223,8 @@
     assign schema_span = schema_w
     assign schema_front = schema_d
   endif
+  assign nc_ship_id = shop.url | append: '#shipping-policy'
+  assign nc_return_id = shop.url | append: '#return-policy'
 -%}
 <script type="application/ld+json">
 {
@@ -268,8 +270,9 @@
       "itemCondition": "https://schema.org/NewCondition",
       "availability": "https://schema.org/{% if variant.available %}{% if variant.inventory_quantity > 0 %}InStock{% else %}PreOrder{% endif %}{% else %}OutOfStock{% endif %}",
       "shippingDetails": [{
+        {%- if forloop.first -%}
         "@type": "OfferShippingDetails",
-        "@id": {{ shop.url | append: '#shipping-policy' | json }},
+        "@id": {{ nc_ship_id | json }},
         "shippingRate": {
           "@type": "MonetaryAmount",
           "value": "0",
@@ -294,13 +297,20 @@
             "unitCode": "DAY"
           }
         }
+        {%- else -%}
+        "@id": {{ nc_ship_id | json }}
+        {%- endif -%}
       }],
       "hasMerchantReturnPolicy": [{
+        {%- if forloop.first -%}
         "@type": "MerchantReturnPolicy",
-        "@id": {{ shop.url | append: '#return-policy' | json }},
+        "@id": {{ nc_return_id | json }},
         "applicableCountry": "AE",
         "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
         "merchantReturnLink": {{ shop.url | append: '/pages/refunds' | json }}
+        {%- else -%}
+        "@id": {{ nc_return_id | json }}
+        {%- endif -%}
       }]
       {%- if variant.sku != blank -%},
       "sku": {{ variant.sku | json }}
