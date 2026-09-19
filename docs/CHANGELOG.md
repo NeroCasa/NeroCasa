@@ -3,6 +3,11 @@
 > Dated, human-readable log of what the agent actually changed, session by session. This is for
 > project memory, not a marketing changelog — be specific about files and behavior touched.
 
+### 2026-09-19
+- Changed: Product JSON-LD defines `shippingRate` / `deliveryTime` (and the return policy) once, then other stone variants only reference that `@id`. Stops Google “duplicate field” warnings. Still no fake `review` / `aggregateRating`.
+- Verified: `node scripts/test-storefront.mjs`; live product JSON-LD on a multi-variant PDP after theme push.
+- Follow-up: Owner waits for Google recrawl. Review-star warnings stay until real reviews exist.
+
 ### 2026-09-18
 - Changed: Footer WhatsApp / Instagram buttons no longer overlap on mobile. Brand column is full width under 900px; social links wrap at 148px instead of forced 50% inside a 160px column.
 - Verified: Live footer at 320–430px after theme push.

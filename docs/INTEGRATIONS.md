@@ -17,7 +17,7 @@
 | WhatsApp | Outbound link | `wa.me` via `nc-whatsapp-link` / `nc-contact-whatsapp` | None | Header/footer/contact/custom | Phone from settings |
 | Store email | Outbound mailto | `info@nerocasa.com` | None | Theme settings, legal pages, checkout copy | Admin `contactEmail` is this address. Admin `shop.email` (notification sender) is still the old Gmail — GraphQL has no `shopUpdate`; change it in Settings → Store details if it should match. |
 | Shopify customer notifications | Outbound email | Admin → Settings → Notifications | Merchant Admin | Order/shipping/invoice mail | Not in the theme. Brand via Customize (logo + `#A57B00`). Admin GraphQL cannot write templates. |
-| NAP / schema | Outbound JSON-LD | FurnitureStore + Organization in `nc-meta-tags` | None | Homepage | Factory Industrial Area 15, Sharjah; areaServed UAE |
+| NAP / schema | Outbound JSON-LD | FurnitureStore + Organization + Product Offer in `nc-meta-tags` | None | Home + PDPs | Factory Industrial Area 15, Sharjah; areaServed UAE. Product shipping/return defined once (`#shipping-policy`, `#return-policy`); later variants reference that `@id`. Reviews only if metafields exist. |
 
 ## Webhooks
 | Name | Trigger | Handler location | Notes |

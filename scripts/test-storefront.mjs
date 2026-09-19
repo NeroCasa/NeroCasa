@@ -87,6 +87,7 @@ ok(exists('README.md'), 'README exists so GitHub is not AGENTS.md');
 ok(/Marble Furniture UAE/.test(read('snippets/nc-meta-tags.liquid')), 'home SEO title includes UAE');
 ok(/FurnitureStore/.test(read('snippets/nc-meta-tags.liquid')), 'LocalBusiness FurnitureStore schema');
 ok(/MerchantReturnNotPermitted/.test(read('snippets/nc-meta-tags.liquid')), 'return schema matches made-to-order');
+ok(/nc_ship_id/.test(read('snippets/nc-meta-tags.liquid')) && /forloop.first/.test(read('snippets/nc-meta-tags.liquid')), 'shipping schema defined once then referenced');
 ok(/seo_noindex/.test(read('snippets/nc-meta-tags.liquid')), 'noindex flag for policies and all-collection');
 ok(/workshop_address/.test(read('config/settings_schema.json')), 'factory address setting exists');
 ok(/Sharjah Industrial Area 15/.test(read('sections/ncs-contact.liquid')), 'contact states Sharjah factory');
