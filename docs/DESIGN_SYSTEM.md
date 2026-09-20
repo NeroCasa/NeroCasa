@@ -88,7 +88,7 @@ Self-hosted latin woff2: Cormorant Garamond (300/400/500 + italics), Inter (400/
 - Nav: `.is-active` current section.
 - Cart: count badge; AJAX add success `[data-nc-cart-added]`.
 - Forms: success/error paragraphs.
-- Search: overlay open/close.
+- Search: overlay open/close. **Removed 2026-09-20** — header/footer have no search; `/search` is a The 9 pointer.
 - Mobile menu: `hidden` / `.is-open`.
 - Missing: **Unknown** dedicated disabled/loading skeletons beyond add-to-cart `aria-busy`. Empty blog has a message in `ncs-blog.liquid`.
 

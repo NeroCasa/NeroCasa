@@ -3,6 +3,11 @@
 > Dated, human-readable log of what the agent actually changed, session by session. This is for
 > project memory, not a marketing changelog — be specific about files and behavior touched.
 
+### 2026-09-20
+- Changed: Removed storefront search (header overlay, footer link, catalog JS, JSON-LD SearchAction). `/search` is a The 9 browse page, still noindex. CSS file not rewritten.
+- Verified: `node scripts/test-storefront.mjs`; live header/footer/`/search` after theme push.
+- Follow-up: None.
+
 ### 2026-09-19
 - Changed: Product JSON-LD defines `shippingRate` / `deliveryTime` (and the return policy) once, then other stone variants only reference that `@id`. Stops Google “duplicate field” warnings. Still no fake `review` / `aggregateRating`.
 - Verified: `node scripts/test-storefront.mjs`; live product JSON-LD on a multi-variant PDP after theme push.

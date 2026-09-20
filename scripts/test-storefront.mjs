@@ -80,7 +80,10 @@ ok(/fallback_slabs/.test(blog), 'journal cards have media fallback');
 
 ok(exists('snippets/nc-catalog-code.liquid'), 'catalog handle alias snippet exists');
 ok(/all_products\['monolite'\]/.test(read('sections/ncs-store-home.liquid')), 'home prefers named product handles');
-ok(/assign emitted = false/.test(read('snippets/nc-catalog-search-index.liquid')), 'search index commas skip blank handles');
+ok(!/data-search-open/.test(read('sections/nc-header.liquid')), 'header has no search overlay trigger');
+ok(!/routes\.search_url/.test(read('sections/nc-footer.liquid')), 'footer has no Search link');
+ok(!/data-nc-catalog-search/.test(read('assets/nerocasa.js')), 'storefront JS has no catalog search');
+ok(!/SearchAction/.test(read('snippets/nc-meta-tags.liquid')), 'JSON-LD has no site search action');
 ok(/info@nerocasa\.com/.test(read('config/settings_data.json')), 'theme contact email is info@nerocasa.com');
 ok(!/nerocasamarbles@gmail\.com/.test(read('snippets/nc-contact-email.liquid')), 'contact snippet is not gmail');
 ok(exists('README.md'), 'README exists so GitHub is not AGENTS.md');

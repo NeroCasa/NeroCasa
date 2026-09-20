@@ -101,11 +101,9 @@
       assign seo_description = tagline
     endunless
   elsif request.page_type == 'search'
-    if page_title == blank
-      assign seo_title = 'Search | ' | append: brand
-    endif
+    assign seo_title = brand | append: ' | The 9'
     if seo_description == blank
-      assign seo_description = 'Search made-to-order marble coffee, side and console tables from ' | append: brand | append: ', made in Sharjah and delivered across the UAE.'
+      assign seo_description = brand | append: ' marble furniture. Nine made-to-order pieces from Sharjah, delivered across the UAE.'
     endif
   endif
 
@@ -372,12 +370,6 @@
   entity dozens of times over.
 {%- endcomment -%}
 {%- if request.page_type == 'index' -%}
-{%- comment -%}
-  The {search_term_string} placeholder has to sit in plain text — Liquid's
-  lexer treats the closing brace as the end of an output tag if it is inside
-  a filter argument.
-{%- endcomment -%}
-{%- assign search_target = routes.search_url | prepend: shop.url -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -441,15 +433,7 @@
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": {{ shop.name | json }},
-  "url": {{ shop.url | json }},
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "{{ search_target }}?q={search_term_string}"
-    },
-    "query-input": "required name=search_term_string"
-  }
+  "url": {{ shop.url | json }}
 }
 </script>
 {%- liquid

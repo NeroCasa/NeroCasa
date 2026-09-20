@@ -82,7 +82,7 @@ graph TD
 | Product | `sections/ncs-product.liquid` | Gallery, marble options, add to cart | metafields, `nc-product-field` |
 | Cart | `sections/ncs-cart.liquid` | Line items, qty, checkout button | `/cart/update.js` |
 | SEO | `snippets/nc-meta-tags.liquid` | title, canonical, OG, JSON-LD | Shopify SEO objects |
-| Store JS | `assets/nerocasa.js` | header scroll, AJAX cart, marble preview, loader, cursor, hero parallax, last-word gold on legal h2/h3, catalog search | DOM hooks in layout/header |
+| Store JS | `assets/nerocasa.js` | header scroll, AJAX cart, marble preview, loader, cursor, hero parallax, last-word gold on legal h2/h3 | DOM hooks in layout/header |
 | Reveal JS | `assets/nerocasa-v20.js` | IntersectionObserver `[data-nc-reveal]` | markup attributes |
 
 ## Conventions in Use
@@ -92,7 +92,7 @@ graph TD
 - Named stone selectors via `snippets/nc-marble-choice.liquid`.
 - Marble heroes via `nc-hero-marble-bg` + optional Theme Editor images; `quiet: true` skips slabs on some interior pages (search, cart, legal). Collections index uses the full marble hero. Page heroes wrap inner markup through `snippets/nc-page-hero-shell.liquid`.
 - CSS cascade: one file `assets/nerocasa.css.liquid` (former additions + luxury concatenated; leftover `!important` still exists inside that file).
-- Storefront chrome (nav, CTAs, cart/search/404) uses `locales/en.default.json` via `| t`. Long page copy still lives in section settings / Liquid.
+- Storefront chrome (nav, CTAs, cart/404) uses `locales/en.default.json` via `| t`. Long page copy still lives in section settings / Liquid.
 
 ## Known Technical Debt
 - Historical `!important` still present inside the unified CSS file; not a second stylesheet.

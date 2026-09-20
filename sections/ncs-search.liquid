@@ -1,23 +1,9 @@
-{% render 'nc-catalog-search-index' %}
-
 <section class="ncs-search-page">
   {%- capture nc_hero_body -%}
   <header class="ncs-search-hero ncs-page-hero ncs-page-hero--compact" data-nc-reveal>
-    {% if search.performed %}
-      {%- liquid
-        if search.results_count == 1
-          assign search_title = search.results_count | append: ' result'
-        else
-          assign search_title = search.results_count | append: ' results'
-        endif
-      -%}
-      <h1>{% render 'nc-title-gold', title: search_title %}</h1>
-      <p>For “{{ search.terms | escape }}”</p>
-    {% else %}
-      {%- assign search_find = 'search.find' | t -%}
-      <h1>{% render 'nc-title-gold', title: search_find %}</h1>
-      <p>Search by design name, collection, or marble.</p>
-    {% endif %}
+    {%- assign the_9_heading = 'The 9' -%}
+    <h1>{% render 'nc-title-gold', title: the_9_heading %}</h1>
+    <p>Nine made-to-order pieces. Browse the collection.</p>
   </header>
   {%- endcapture -%}
   {% render 'nc-page-hero-shell',
@@ -28,67 +14,19 @@
     slab_right: 'hero-slab-grey.jpg'
   %}
 
-  <form action="{{ routes.search_url }}" method="get" role="search" class="ncs-search-page-form" data-nc-reveal data-nc-search-form>
-    <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Soglia, Equilibrio, coffee tables…" aria-label="Search" data-nc-search-input>
-    <button type="submit" class="ncs-btn">{{ 'actions.search' | t }}</button>
-  </form>
-
-  {% if search.performed %}
-    {% if search.results_count == 0 %}
-      <p class="ncs-empty ncs-search-empty" data-nc-search-empty>Searching our catalog…</p>
-      <div class="ncs-grid-products ncs-search-results" data-nc-catalog-results hidden></div>
-    {% else %}
-      {% paginate search.results by 24 %}
-      <div class="ncs-grid-products ncs-search-results">
-        {% for item in search.results %}
-          {% if item.object_type == 'product' %}
-            <a class="ncs-card" href="{{ item.url }}" data-nc-reveal>
-              <div class="ncs-card-media ncs-fit-img ncs-fit-img--tile">
-                {%- capture search_img -%}{% render 'nc-catalog-default-img', handle: item.handle, product: item %}{%- endcapture -%}
-                {% if item.featured_image %}
-                  <img src="{{ item.featured_image | image_url: width: 900 }}" alt="{{ item.featured_image.alt | default: item.title | escape }}" loading="lazy" width="700" height="875">
-                {% else %}
-                  <img src="{{ search_img | strip }}" alt="{{ item.title | escape }}" loading="lazy" width="700" height="875">
-                {% endif %}
-              </div>
-              <div class="ncs-card-info">
-                {%- capture search_name -%}{% render 'nc-product-field', product: item, handle: item.handle, field: 'name' %}{%- endcapture -%}
-                {%- capture search_category -%}{% render 'nc-product-field', product: item, handle: item.handle, field: 'category' %}{%- endcapture -%}
-                {%- assign search_name = search_name | strip -%}
-                {%- assign search_category = search_category | strip -%}
-                <span class="ncs-card-name">{{ search_name | default: item.title }}</span>
-                {%- if search_category != blank -%}
-                  <span class="ncs-card-category">{{ search_category }}</span>
-                {%- endif -%}
-                <b>{{ item.price | money }}</b>
-              </div>
-            </a>
-          {% elsif item.object_type == 'collection' %}
-            <a class="ncs-card ncs-card-page" href="{{ item.url }}" data-nc-reveal>
-              <div class="ncs-card-media ncs-fit-img ncs-fit-img--tile ncs-fit-img--compact">
-                <img src="{% render 'nc-collection-cover', handle: item.handle, width: 900 %}" alt="{{ item.title | escape }}" loading="lazy" width="700" height="525">
-              </div>
-              <div class="ncs-card-info">
-                <span class="ncs-card-name">{{ item.title }}</span>
-                <span class="ncs-card-category">Collection</span>
-              </div>
-            </a>
-          {% elsif item.object_type == 'page' or item.object_type == 'article' %}
-            <a class="ncs-card ncs-card-page" href="{{ item.url }}" data-nc-reveal>
-              <div class="ncs-card-info"><span class="ncs-card-name">{{ item.title }}</span><span class="ncs-card-category">{{ item.object_type | capitalize }}</span></div>
-            </a>
-          {% endif %}
-        {% endfor %}
+  {%- assign empty_collection = collections['the-9'] -%}
+  {%- if empty_collection != blank -%}
+    <div class="ncs-cart-empty" data-nc-reveal>
+      <div class="ncs-cart-empty-card">
+        {% render 'nc-collection-tile', collection: empty_collection %}
       </div>
-      {% if paginate.pages > 1 %}
-        <div class="ncs-pagination">
-          {% if paginate.previous %}<a href="{{ paginate.previous.url }}">← Previous</a>{% endif %}
-          <span>{{ paginate.current_page }} / {{ paginate.pages }}</span>
-          {% if paginate.next %}<a href="{{ paginate.next.url }}">Next →</a>{% endif %}
-        </div>
-      {% endif %}
-      {% endpaginate %}
-    {% endif %}
-  {% endif %}
+      {%- assign cta_collection = 'actions.our_collection' | t -%}
+      <a class="ncs-btn" href="{% render 'nc-collections-index-url' %}">{% render 'nc-title-gold', title: cta_collection %}</a>
+    </div>
+  {%- else -%}
+    <p class="ncs-empty" data-nc-reveal>
+      <a href="{% render 'nc-collections-index-url' %}">{{ 'actions.our_collection' | t }}</a>
+    </p>
+  {%- endif -%}
 </section>
 {% schema %}{"name":"Search","presets":[{"name":"Search"}]}{% endschema %}

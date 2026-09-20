@@ -36,7 +36,7 @@
 |---|---|---|---|---|
 | Contact | `sections/ncs-contact.liquid` | `{% form 'contact' %}` | HTML required | tag `contact-enquiry` |
 | B2B | `sections/ncs-b2b.liquid` | `{% form 'contact' %}` | HTML required | tag `b2b-enquiry` |
-| Search | header overlay + `ncs-search.liquid` | `routes.search_url` GET | — | Native search |
+| Search | — | — | Removed | No header overlay, footer link, catalog JS, or SearchAction. `/search` stays a Shopify route but shows The 9 browse, noindex. |
 | Add to cart | product forms | `/cart/add` intercepted by AJAX | Shopify | `data-nc-ajax-cart='false'` can opt out |
 | Cart update | `ncs-cart.liquid` | `/cart/update.js` | — | Qty changes |
 | Checkout | cart | Shopify checkout | Shopify | **Do not modify** unless asked |

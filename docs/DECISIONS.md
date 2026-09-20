@@ -4,6 +4,12 @@
 > This exists so future sessions (and future you) don't re-litigate or accidentally reverse a
 > deliberate choice. Newest entries at the top.
 
+### 2026-09-20 — No storefront search
+**Context:** Owner asked to leave CSS as-is, then remove the whole search function. Nine named pieces do not need a search box.
+**Decision:** Remove header overlay, footer Search link, catalog-search JS, and WebSite `SearchAction`. Shopify still has `/search`; that template now points to The 9 with no form and stays `noindex`.
+**Alternatives considered:** Hide with CSS only — rejected; function would still work. Delete `templates/search.json` — Shopify still serves `/search`.
+**Consequences:** Google sitelinks search box will drop after recrawl. Old `/search?q=` URLs show The 9, not results.
+
 ### 2026-09-18 — Store email is info@nerocasa.com
 **Context:** Owner changed the mailbox to `info@nerocasa.com` and asked to update the whole site.
 **Decision:** Theme `contact_email` setting, snippet fallback, Custom schema default, and legal/setup scripts all use `info@nerocasa.com`. Forms still go through Shopify contact (inbox follows Admin sender). Footer/contact/B2B/Track read the setting.
