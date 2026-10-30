@@ -79,14 +79,14 @@
         "type": "text",
         "id": "whatsapp_phone",
         "label": "WhatsApp number",
-        "default": "+971 56 878 8789",
+        "default": "+971 50 544 6514",
         "info": "Include country code. Used for WhatsApp buttons across the site."
       },
       {
         "type": "text",
         "id": "whatsapp_url",
         "label": "WhatsApp link override",
-        "info": "Optional. Leave empty to auto-build from WhatsApp number, e.g. https://wa.me/971568788789"
+        "info": "Optional. Leave empty to auto-build from WhatsApp number, e.g. https://wa.me/971505446514"
       },
       {
         "type": "text",
